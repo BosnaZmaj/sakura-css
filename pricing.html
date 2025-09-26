@@ -34,23 +34,37 @@
         </div>
     </nav>
 
-    <!-- Pricing Hero -->
-    <section class="sakura-hero sakura-hero--compact">
+    <!-- Hero Section -->
+    <section class="sakura-hero sakura-hero--compact ">
         <div class="sakura-container">
-            <div class="sakura-hero-content">
-                <h1 class="sakura-hero-title">Simple, transparent pricing</h1>
-                <p class="sakura-hero-subtitle">Choose the plan that fits your financial journey. All plans include our core budgeting features with no hidden fees.</p>
-
-                <div class="sakura-pricing-toggle">
-                    <span>Monthly</span>
-                    <div class="sakura-toggle-switch">
-                        <input type="checkbox" id="pricing-toggle">
-                        <label for="pricing-toggle"></label>
+            <div class="sakura-hero-container gap-0">
+                <div class="sakura-hero-content">
+                    <h1 class="sakura-hero-title">Simple, transparent <span class="sakura-text-primary">pricing</span></h1>
+                    <p class="sakura-hero-subtitle">Choose the plan that fits your financial journey. All plans include our core budgeting features with no hidden fees.</p>
+                    <div class="sakura-hero-actions">
+                        <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">Start Free Trial</a>
+                        <a href="#plans" class="sakura-btn sakura-btn--outline sakura-btn--lg">View Plans</a>
                     </div>
-                    <span>Annual <span class="sakura-pricing-badge">Save 20%</span></span>
+                    <div class="sakura-hero-stats">
+                        <div class="sakura-stat">
+                            <span class="sakura-stat-number">Free</span>
+                            <span class="sakura-stat-label">Forever plan</span>
+                        </div>
+                        <div class="sakura-stat">
+                            <span class="sakura-stat-number">7-day</span>
+                            <span class="sakura-stat-label">Free trial</span>
+                        </div>
+                        <div class="sakura-stat">
+                            <span class="sakura-stat-number">30-day</span>
+                            <span class="sakura-stat-label">Money back</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sakura-hero-visual">
                 </div>
             </div>
         </div>
+
         <!-- Wave Transition -->
         <div class="sakura-hero-wave">
             <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -64,23 +78,36 @@
                         <stop offset="100%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
                     </linearGradient>
                 </defs>
+
                 <!-- Background feathering wave -->
                 <path fill="url(#sakura-wave-gradient-2)"
                       d="M0,40 C150,90 350,20 600,50 C850,80 1050,10 1200,40 L1200,120 L0,120 Z">
-                    <animateTransform attributeName="transform" type="translate" values="0,0;30,0;0,0" dur="15s" repeatCount="indefinite"/>
                 </path>
+
                 <!-- Main wave -->
                 <path fill="url(#sakura-wave-gradient-1)"
-                      d="M0,60 C150,100 350,40 600,70 C850,100 1050,30 1200,60 L1200,120 L0,120 Z">
-                    <animateTransform attributeName="transform" type="translate" values="0,0;-20,0;0,0" dur="12s" repeatCount="indefinite"/>
+                      d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Top feathering wave for smooth morphing -->
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,80 C200,30 400,110 600,70 C800,30 1000,100 1200,60 L1200,120 L0,120 Z">
                 </path>
             </svg>
         </div>
     </section>
 
     <!-- Pricing Plans -->
-    <section class="sakura-pricing-plans">
+    <section id="plans" class="sakura-pricing-plans">
         <div class="sakura-container">
+            <div class="sakura-pricing-toggle">
+                <span>Monthly</span>
+                <div class="sakura-toggle-switch">
+                    <input type="checkbox" id="pricing-toggle">
+                    <label for="pricing-toggle"></label>
+                </div>
+                <span>Annual <span class="sakura-pricing-badge">Save 20%</span></span>
+            </div>
             <div class="sakura-pricing-grid">
 
                 <!-- Free Plan -->
