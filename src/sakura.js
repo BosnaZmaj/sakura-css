@@ -1,0 +1,981 @@
+// Sakura CSS Framework JavaScript
+// Delightful interactions and animations for financial applications
+
+class SakuraFramework {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.setupNavigation();
+    this.setupAnimations();
+    this.setupCounters();
+    this.setupFeatureModals();
+    this.setupDemoModal();
+    this.setupUrgencyUpdater();
+  }
+
+  // Navigation functionality
+  setupNavigation() {
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.querySelector('.sakura-navbar-menu');
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+      });
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  }
+
+  // Animation setup using Intersection Observer
+  setupAnimations() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Add animation classes to elements
+    document.querySelectorAll('.sakura-feature-card, .sakura-dashboard-preview').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  }
+
+  // Animated counters for hero statistics
+  setupCounters() {
+    const counters = document.querySelectorAll('.sakura-stat-number');
+
+    counters.forEach(counter => {
+      const target = counter.innerText;
+      const numericValue = parseFloat(target.replace(/[^\d.-]/g, ''));
+      const suffix = target.replace(/[\d.-]/g, '');
+
+      if (!isNaN(numericValue)) {
+        let current = 0;
+        const increment = numericValue / 60; // 60 frames for smooth animation
+
+        const updateCounter = () => {
+          current += increment;
+          if (current < numericValue) {
+            counter.innerText = Math.floor(current) + suffix;
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.innerText = target;
+          }
+        };
+
+        // Start animation when element is visible
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              updateCounter();
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        observer.observe(counter);
+      }
+    });
+  }
+
+  // Enhanced dashboard preview interactions
+  setupDashboardPreview() {
+    const preview = document.querySelector('.sakura-dashboard-preview');
+    if (preview) {
+      // Add subtle hover effects and interactions
+      preview.addEventListener('mouseenter', () => {
+        preview.style.transform = 'perspective(1200px) rotateY(-4deg) rotateX(3deg) scale(1.02)';
+      });
+
+      preview.addEventListener('mouseleave', () => {
+        preview.style.transform = 'perspective(1200px) rotateY(-8deg) rotateX(6deg) scale(1)';
+      });
+    }
+  }
+
+  // Progress bar animations
+  animateProgressBars() {
+    const progressBars = document.querySelectorAll('.sakura-progress-bar');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const progressBar = entry.target;
+          const width = progressBar.style.width;
+          progressBar.style.width = '0%';
+
+          setTimeout(() => {
+            progressBar.style.width = width;
+          }, 300);
+
+          observer.unobserve(progressBar);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    progressBars.forEach(bar => {
+      observer.observe(bar);
+    });
+  }
+
+  // Feature Explanation Modal System
+  setupFeatureModals() {
+    console.log('Setting up feature modals...');
+
+    this.modal = document.getElementById('sakura-feature-modal');
+    this.modalTitle = document.getElementById('feature-modal-title');
+    this.featureVisual = document.getElementById('feature-visual');
+    this.featureBenefits = document.getElementById('feature-benefits');
+    this.featureSteps = document.getElementById('feature-steps');
+    this.featureStory = document.getElementById('feature-story');
+    this.tryDemoBtn = document.getElementById('try-demo-btn');
+
+    console.log('Modal elements found:', {
+      modal: !!this.modal,
+      title: !!this.modalTitle,
+      visual: !!this.featureVisual,
+      benefits: !!this.featureBenefits,
+      steps: !!this.featureSteps,
+      story: !!this.featureStory,
+      tryBtn: !!this.tryDemoBtn
+    });
+
+    // Set up event listeners
+    this.setupModalEventListeners();
+  }
+
+  setupModalEventListeners() {
+    // Learn More button clicks
+    const learnMoreButtons = document.querySelectorAll('.sakura-feature-learn-more');
+    console.log('Found Learn More buttons:', learnMoreButtons.length);
+
+    learnMoreButtons.forEach((link, index) => {
+      const featureType = link.getAttribute('data-feature');
+      console.log(`Button ${index + 1} feature type:`, featureType);
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Learn More clicked for feature:', featureType);
+        this.openFeatureModal(featureType);
+      });
+
+      // Also add a test mousedown event to see if ANY events work
+      link.addEventListener('mousedown', (e) => {
+        console.log('Mousedown detected on:', featureType);
+      });
+    });
+
+    // Modal close events
+    document.getElementById('feature-modal-close')?.addEventListener('click', () => {
+      this.closeFeatureModal();
+    });
+
+    this.modal?.addEventListener('click', (e) => {
+      if (e.target === this.modal) {
+        this.closeFeatureModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.modal?.classList.contains('sakura-modal--active')) {
+        this.closeFeatureModal();
+      }
+    });
+
+    // Try Demo button
+    this.tryDemoBtn?.addEventListener('click', () => {
+      this.closeFeatureModal();
+      this.openDemoModal();
+    });
+  }
+
+  openFeatureModal(featureType) {
+    console.log('Opening modal for:', featureType);
+    console.log('Modal element exists:', !!this.modal);
+
+    const featureData = this.getFeatureData(featureType);
+    console.log('Feature data found:', !!featureData);
+
+    if (featureData) {
+      this.populateModalContent(featureData);
+      this.modal?.classList.add('sakura-modal--active');
+      document.body.style.overflow = 'hidden';
+      console.log('Modal should be visible now');
+    } else {
+      console.error('No feature data found for:', featureType);
+    }
+  }
+
+  closeFeatureModal() {
+    this.modal?.classList.remove('sakura-modal--active');
+    document.body.style.overflow = '';
+  }
+
+  populateModalContent(data) {
+    // Update title
+    if (this.modalTitle) {
+      this.modalTitle.textContent = data.title;
+    }
+
+    // Update visual section
+    if (this.featureVisual) {
+      this.featureVisual.innerHTML = `
+        <div class="sakura-visual-content">
+          ${data.visual}
+        </div>
+      `;
+    }
+
+    // Update benefits section
+    if (this.featureBenefits) {
+      this.featureBenefits.innerHTML = data.benefits.map(benefit => `
+        <div class="sakura-benefit-item">
+          <div class="sakura-benefit-icon">
+            <i class="${benefit.icon}"></i>
+          </div>
+          <div class="sakura-benefit-title">${benefit.title}</div>
+          <div class="sakura-benefit-description">${benefit.description}</div>
+        </div>
+      `).join('');
+    }
+
+    // Update process steps
+    if (this.featureSteps) {
+      this.featureSteps.innerHTML = data.steps.map((step, index) => `
+        <div class="sakura-process-step">
+          <div class="sakura-step-number">${index + 1}</div>
+          <div class="sakura-step-title">${step.title}</div>
+          <div class="sakura-step-description">${step.description}</div>
+        </div>
+      `).join('');
+    }
+
+    // Update user story
+    if (this.featureStory) {
+      this.featureStory.innerHTML = `
+        <div class="sakura-story-avatar">${data.story.avatar}</div>
+        <div class="sakura-story-quote">${data.story.quote}</div>
+        <div class="sakura-story-attribution">— ${data.story.name}, ${data.story.title}</div>
+        <div class="sakura-story-results">
+          ${data.story.metrics.map(metric => `
+            <div class="sakura-story-metric">
+              <span class="sakura-story-number">${metric.value}</span>
+              <span class="sakura-story-label">${metric.label}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+  }
+
+  getFeatureData(featureType) {
+    const featureData = {
+      'smart-envelopes': {
+        title: 'Smart Envelopes',
+        visual: `
+          <div style="font-size: 4rem; color: #5B8BF5;">
+            <i class="bi bi-collection" style="margin-right: 1rem;"></i>
+            <i class="bi bi-arrow-right" style="font-size: 2rem; vertical-align: middle; margin: 0 1rem; color: #8B5CF6;"></i>
+            <i class="bi bi-wallet2" style="color: #10B981;"></i>
+          </div>
+          <p style="font-size: 1.125rem; color: #6b7280; margin-top: 1rem;">Your money, organized into smart digital envelopes</p>
+        `,
+        benefits: [
+          {
+            icon: 'bi-shield-check',
+            title: 'Never Overspend',
+            description: 'Each envelope has a limit - when it\'s empty, you know to stop spending'
+          },
+          {
+            icon: 'bi-eye',
+            title: 'Clear Visibility',
+            description: 'See exactly where your money goes with colorful, intuitive categories'
+          },
+          {
+            icon: 'bi-lightning',
+            title: 'Instant Updates',
+            description: 'Every purchase automatically updates the right envelope in real-time'
+          }
+        ],
+        steps: [
+          {
+            title: 'Create Categories',
+            description: 'Set up envelopes for dining, entertainment, bills, and more'
+          },
+          {
+            title: 'Allocate Money',
+            description: 'Put a specific amount in each envelope every month'
+          },
+          {
+            title: 'Spend Wisely',
+            description: 'Watch your envelope balances as you make purchases'
+          }
+        ],
+        story: {
+          avatar: 'S',
+          name: 'Sarah Johnson',
+          title: 'Marketing Manager',
+          quote: 'I used to wonder where my money went every month. Now with smart envelopes, I put $300 in my "Dining Out" envelope and I know exactly how much I can spend. It\'s like having cash envelopes, but digital and automatic!',
+          metrics: [
+            { value: '$450', label: 'Monthly Savings' },
+            { value: '40%', label: 'Spending Reduction' },
+            { value: '3 months', label: 'To Build Habit' }
+          ]
+        }
+      },
+
+      'automatic-allocation': {
+        title: 'Automatic Allocation',
+        visual: `
+          <div style="font-size: 4rem; color: #7c3aed;">
+            <i class="bi bi-currency-dollar" style="margin-right: 1rem;"></i>
+            <i class="bi bi-magic" style="font-size: 3rem; vertical-align: middle; margin: 0 1rem; color: #8B5CF6;"></i>
+            <i class="bi bi-distribute-vertical" style="color: #10B981;"></i>
+          </div>
+          <p style="font-size: 1.125rem; color: #6b7280; margin-top: 1rem;">Your paycheck automatically flows to the right places</p>
+        `,
+        benefits: [
+          {
+            icon: 'bi-clock',
+            title: 'Save Time',
+            description: 'Set it once, and your budget runs itself every payday'
+          },
+          {
+            icon: 'bi-gear',
+            title: 'No Manual Work',
+            description: 'No more moving money around or forgetting to budget'
+          },
+          {
+            icon: 'bi-graph-up',
+            title: 'Consistent Habits',
+            description: 'Build strong financial habits without thinking about it'
+          }
+        ],
+        steps: [
+          {
+            title: 'Set Percentages',
+            description: 'Decide what percentage goes to savings, bills, fun money, etc.'
+          },
+          {
+            title: 'Connect Payroll',
+            description: 'Link your bank account and set up automatic transfers'
+          },
+          {
+            title: 'Relax & Prosper',
+            description: 'Every paycheck automatically goes where it should'
+          }
+        ],
+        story: {
+          avatar: 'J',
+          name: 'John Martinez',
+          title: 'Software Developer',
+          quote: 'Before automation, I\'d get paid and forget to budget for weeks. Now 20% automatically goes to savings, 30% to bills, and I never have to think about it. It\'s like having a financial assistant!',
+          metrics: [
+            { value: '$1,200', label: 'Auto-Saved Monthly' },
+            { value: '0 minutes', label: 'Manual Budget Time' },
+            { value: '6 months', label: 'Emergency Fund Built' }
+          ]
+        }
+      },
+
+      'visual-insights': {
+        title: 'Visual Insights',
+        visual: `
+          <div style="font-size: 4rem; color: #059669;">
+            <i class="bi bi-pie-chart" style="margin-right: 1rem;"></i>
+            <i class="bi bi-bar-chart-line" style="margin: 0 1rem;"></i>
+            <i class="bi bi-graph-up-arrow" style="color: #10B981;"></i>
+          </div>
+          <p style="font-size: 1.125rem; color: #6b7280; margin-top: 1rem;">Beautiful charts that make your money story clear</p>
+        `,
+        benefits: [
+          {
+            icon: 'bi-lightbulb',
+            title: 'Spot Patterns',
+            description: 'Discover spending habits you never knew you had'
+          },
+          {
+            icon: 'bi-target',
+            title: 'Make Better Decisions',
+            description: 'See where cuts will have the biggest impact'
+          },
+          {
+            icon: 'bi-trending-up',
+            title: 'Track Progress',
+            description: 'Watch your financial health improve over time'
+          }
+        ],
+        steps: [
+          {
+            title: 'Connect Accounts',
+            description: 'Link your bank and credit cards for complete visibility'
+          },
+          {
+            title: 'View Insights',
+            description: 'See beautiful charts showing where your money goes'
+          },
+          {
+            title: 'Take Action',
+            description: 'Use insights to optimize your spending and saving'
+          }
+        ],
+        story: {
+          avatar: 'L',
+          name: 'Lisa Chen',
+          title: 'Teacher',
+          quote: 'The spending breakdown chart showed me I was spending $400 a month on coffee shops and takeout! I had no idea. Now I see exactly where every dollar goes and I\'ve cut my food spending by 50%.',
+          metrics: [
+            { value: '$200', label: 'Monthly Savings Found' },
+            { value: '15 min', label: 'Weekly Review Time' },
+            { value: '12 insights', label: 'Money-Saving Discoveries' }
+          ]
+        }
+      },
+
+      'goal-tracking': {
+        title: 'Goal Tracking',
+        visual: `
+          <div style="font-size: 4rem; color: #d97706;">
+            <i class="bi bi-flag" style="margin-right: 1rem;"></i>
+            <i class="bi bi-arrow-right" style="font-size: 2rem; vertical-align: middle; margin: 0 1rem; color: #8B5CF6;"></i>
+            <i class="bi bi-trophy" style="color: #10B981;"></i>
+          </div>
+          <p style="font-size: 1.125rem; color: #6b7280; margin-top: 1rem;">Turn your financial dreams into achievable milestones</p>
+        `,
+        benefits: [
+          {
+            icon: 'bi-bullseye',
+            title: 'Stay Motivated',
+            description: 'See your progress towards each goal with visual progress bars'
+          },
+          {
+            icon: 'bi-calendar-check',
+            title: 'Smart Timelines',
+            description: 'Get realistic timelines for reaching each financial goal'
+          },
+          {
+            icon: 'bi-trophy',
+            title: 'Celebrate Wins',
+            description: 'Get notifications and celebrations when you hit milestones'
+          }
+        ],
+        steps: [
+          {
+            title: 'Set Goals',
+            description: 'Define your emergency fund, vacation, or house down payment'
+          },
+          {
+            title: 'Plan Contributions',
+            description: 'Decide how much to save monthly for each goal'
+          },
+          {
+            title: 'Watch Progress',
+            description: 'See your goals grow closer with every contribution'
+          }
+        ],
+        story: {
+          avatar: 'M',
+          name: 'Mike Thompson',
+          title: 'Nurse',
+          quote: 'I always wanted a $5,000 emergency fund but it felt impossible. The goal tracker showed me I could do it in 10 months by saving $500 monthly. Seeing that progress bar fill up kept me motivated every month!',
+          metrics: [
+            { value: '$5,000', label: 'Emergency Fund Built' },
+            { value: '10 months', label: 'Time to Goal' },
+            { value: '3 goals', label: 'Active Savings Goals' }
+          ]
+        }
+      },
+
+      'bank-sync': {
+        title: 'Bank Sync',
+        visual: `
+          <div style="font-size: 4rem; color: #db2777;">
+            <i class="bi bi-bank" style="margin-right: 1rem;"></i>
+            <i class="bi bi-arrow-left-right" style="font-size: 2rem; vertical-align: middle; margin: 0 1rem; color: #8B5CF6;"></i>
+            <i class="bi bi-phone" style="color: #10B981;"></i>
+          </div>
+          <p style="font-size: 1.125rem; color: #6b7280; margin-top: 1rem;">Your budget stays current automatically</p>
+        `,
+        benefits: [
+          {
+            icon: 'bi-clock-history',
+            title: 'Real-Time Updates',
+            description: 'Every transaction updates your budget within minutes'
+          },
+          {
+            icon: 'bi-shield-lock',
+            title: 'Bank-Level Security',
+            description: 'Your data is protected with the same security banks use'
+          },
+          {
+            icon: 'bi-check-circle',
+            title: 'Always Accurate',
+            description: 'No more manual entry errors or forgotten transactions'
+          }
+        ],
+        steps: [
+          {
+            title: 'Connect Securely',
+            description: 'Link your bank accounts with military-grade encryption'
+          },
+          {
+            title: 'Categorize Automatically',
+            description: 'Transactions are automatically sorted into the right envelopes'
+          },
+          {
+            title: 'Stay Updated',
+            description: 'Your budget reflects reality in real-time, 24/7'
+          }
+        ],
+        story: {
+          avatar: 'E',
+          name: 'Emma Davis',
+          title: 'Freelancer',
+          quote: 'As a freelancer with irregular income, tracking expenses was a nightmare. Now every coffee purchase, client payment, and bill automatically updates my budget. I finally have a clear picture of my finances!',
+          metrics: [
+            { value: '2 minutes', label: 'Setup Time' },
+            { value: '100%', label: 'Transaction Accuracy' },
+            { value: '5 accounts', label: 'Connected Banks' }
+          ]
+        }
+      },
+
+      'smart-alerts': {
+        title: 'Smart Alerts',
+        visual: `
+          <div style="font-size: 4rem; color: #1f2937;">
+            <i class="bi bi-bell" style="margin-right: 1rem;"></i>
+            <i class="bi bi-chat-heart" style="font-size: 2rem; vertical-align: middle; margin: 0 1rem; color: #8B5CF6;"></i>
+            <i class="bi bi-shield-check" style="color: #10B981;"></i>
+          </div>
+          <p style="font-size: 1.125rem; color: #6b7280; margin-top: 1rem;">Gentle nudges that keep you on track</p>
+        `,
+        benefits: [
+          {
+            icon: 'bi-heart',
+            title: 'Gentle Guidance',
+            description: 'Helpful reminders, not annoying nagging or shame'
+          },
+          {
+            icon: 'bi-sliders',
+            title: 'Fully Customizable',
+            description: 'Choose what alerts you want and when you want them'
+          },
+          {
+            icon: 'bi-graph-up',
+            title: 'Stay On Track',
+            description: 'Prevent overspending before it becomes a problem'
+          }
+        ],
+        steps: [
+          {
+            title: 'Set Preferences',
+            description: 'Choose which alerts you want and when to receive them'
+          },
+          {
+            title: 'Get Notified',
+            description: 'Receive gentle reminders when approaching limits'
+          },
+          {
+            title: 'Make Adjustments',
+            description: 'Use alerts as opportunities to make better choices'
+          }
+        ],
+        story: {
+          avatar: 'D',
+          name: 'David Wilson',
+          title: 'Sales Representative',
+          quote: 'The gentle nudge when I\'m close to my entertainment budget limit has saved me hundreds. Instead of guilt-tripping me, it just says "You have $40 left for entertainment this month" - so helpful and positive!',
+          metrics: [
+            { value: '$300', label: 'Monthly Overspend Prevented' },
+            { value: '85%', label: 'Budget Adherence Rate' },
+            { value: '0 stress', label: 'Financial Anxiety Level' }
+          ]
+        }
+      }
+    };
+
+    return featureData[featureType] || null;
+  }
+
+  // Interactive Demo Modal System
+  setupDemoModal() {
+    this.demoModal = document.getElementById('sakura-demo-modal');
+    this.demoSetup = document.getElementById('demo-setup');
+    this.demoDashboard = document.getElementById('demo-dashboard');
+
+    // Form elements
+    this.demoIncomeInput = document.getElementById('demo-income');
+    this.demoHousingInput = document.getElementById('demo-housing');
+    this.demoFoodInput = document.getElementById('demo-food');
+    this.demoEntertainmentInput = document.getElementById('demo-entertainment');
+    this.demoSavingsInput = document.getElementById('demo-savings');
+
+    // Dashboard elements
+    this.demoIncomeDisplay = document.getElementById('demo-income-display');
+    this.demoBudgetedDisplay = document.getElementById('demo-budgeted-display');
+    this.demoAvailableDisplay = document.getElementById('demo-available-display');
+    this.demoEnvelopesGrid = document.getElementById('demo-envelopes-grid');
+
+    this.setupDemoEventListeners();
+  }
+
+  setupDemoEventListeners() {
+    // Main Watch Demo button
+    const watchDemoBtn = document.querySelector('a[href="#demo"]');
+    watchDemoBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.openDemoModal();
+    });
+
+    // Demo modal close events
+    document.getElementById('demo-modal-close')?.addEventListener('click', () => {
+      this.closeDemoModal();
+    });
+
+    this.demoModal?.addEventListener('click', (e) => {
+      if (e.target === this.demoModal) {
+        this.closeDemoModal();
+      }
+    });
+
+    // Create demo button
+    document.getElementById('create-demo-btn')?.addEventListener('click', () => {
+      this.createDemoBudget();
+    });
+
+    // Reset demo button
+    document.getElementById('demo-reset-btn')?.addEventListener('click', () => {
+      this.resetDemo();
+    });
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.demoModal?.classList.contains('sakura-modal--active')) {
+        this.closeDemoModal();
+      }
+    });
+  }
+
+  openDemoModal() {
+    this.demoModal?.classList.add('sakura-modal--active');
+    document.body.style.overflow = 'hidden';
+    this.resetDemo();
+  }
+
+  closeDemoModal() {
+    this.demoModal?.classList.remove('sakura-modal--active');
+    document.body.style.overflow = '';
+  }
+
+  resetDemo() {
+    // Show setup form, hide dashboard
+    this.demoSetup.style.display = 'block';
+    this.demoDashboard.style.display = 'none';
+
+    // Reset form values to defaults
+    if (this.demoIncomeInput) this.demoIncomeInput.value = '5000';
+    if (this.demoHousingInput) this.demoHousingInput.value = '1500';
+    if (this.demoFoodInput) this.demoFoodInput.value = '600';
+    if (this.demoEntertainmentInput) this.demoEntertainmentInput.value = '300';
+    if (this.demoSavingsInput) this.demoSavingsInput.value = '800';
+  }
+
+  createDemoBudget() {
+    // Get form values
+    const income = parseInt(this.demoIncomeInput?.value || '5000');
+    const housing = parseInt(this.demoHousingInput?.value || '1500');
+    const food = parseInt(this.demoFoodInput?.value || '600');
+    const entertainment = parseInt(this.demoEntertainmentInput?.value || '300');
+    const savings = parseInt(this.demoSavingsInput?.value || '800');
+
+    const totalBudgeted = housing + food + entertainment + savings;
+    const available = income - totalBudgeted;
+
+    // Update summary displays
+    if (this.demoIncomeDisplay) {
+      this.demoIncomeDisplay.textContent = `$${income.toLocaleString()}`;
+    }
+    if (this.demoBudgetedDisplay) {
+      this.demoBudgetedDisplay.textContent = `$${totalBudgeted.toLocaleString()}`;
+    }
+    if (this.demoAvailableDisplay) {
+      this.demoAvailableDisplay.textContent = `$${available.toLocaleString()}`;
+    }
+
+    // Create envelope data
+    const envelopes = [
+      {
+        category: 'Housing',
+        budget: housing,
+        spent: Math.floor(housing * 0.65), // 65% spent
+        icon: 'bi-house-door',
+        color: '#10B981'
+      },
+      {
+        category: 'Food & Dining',
+        budget: food,
+        spent: Math.floor(food * 0.80), // 80% spent
+        icon: 'bi-shop',
+        color: '#F59E0B'
+      },
+      {
+        category: 'Entertainment',
+        budget: entertainment,
+        spent: Math.floor(entertainment * 0.45), // 45% spent
+        icon: 'bi-controller',
+        color: '#8B5CF6'
+      },
+      {
+        category: 'Savings Goal',
+        budget: savings,
+        spent: Math.floor(savings * 0.90), // 90% saved
+        icon: 'bi-piggy-bank',
+        color: '#5B8BF5'
+      }
+    ];
+
+    // Generate envelope cards
+    this.generateEnvelopeCards(envelopes);
+
+    // Switch to dashboard view
+    this.demoSetup.style.display = 'none';
+    this.demoDashboard.style.display = 'block';
+  }
+
+  generateEnvelopeCards(envelopes) {
+    const envelopesHTML = envelopes.map(envelope => {
+      const remaining = envelope.budget - envelope.spent;
+      const percentSpent = (envelope.spent / envelope.budget) * 100;
+      const percentRemaining = 100 - percentSpent;
+
+      return `
+        <div class="sakura-envelope-card">
+          <div class="sakura-envelope-header">
+            <div>
+              <div class="sakura-envelope-category">${envelope.category}</div>
+              <div class="sakura-envelope-budget">Budget: $${envelope.budget.toLocaleString()}</div>
+            </div>
+            <div class="sakura-envelope-icon" style="background: linear-gradient(135deg, ${envelope.color} 0%, ${envelope.color}CC 100%);">
+              <i class="${envelope.icon}"></i>
+            </div>
+          </div>
+
+          <div class="sakura-envelope-progress">
+            <div class="sakura-progress-bar-bg">
+              <div class="sakura-progress-bar"
+                   style="width: ${percentSpent}%; background: linear-gradient(90deg, ${envelope.color} 0%, ${envelope.color}CC 100%);"></div>
+            </div>
+          </div>
+
+          <div class="sakura-envelope-remaining">
+            <span class="sakura-remaining-label">${envelope.category === 'Savings Goal' ? 'Saved' : 'Remaining'}</span>
+            <span class="sakura-remaining-amount">$${(envelope.category === 'Savings Goal' ? envelope.spent : remaining).toLocaleString()}</span>
+          </div>
+
+          <div class="sakura-envelope-actions">
+            <button class="sakura-btn sakura-btn--outline sakura-btn--envelope" onclick="sakuraFramework.simulateSpend('${envelope.category}', this)" ${remaining <= 0 && envelope.category !== 'Savings Goal' ? 'disabled' : ''}>
+              <i class="bi bi-${envelope.category === 'Savings Goal' ? 'plus' : 'dash'}-circle"></i>
+              ${envelope.category === 'Savings Goal' ? 'Save $50' : 'Spend $50'}
+            </button>
+            <button class="sakura-btn sakura-btn--primary sakura-btn--envelope" onclick="sakuraFramework.viewEnvelopeDetails('${envelope.category}')">
+              <i class="bi bi-eye"></i>
+              Details
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    if (this.demoEnvelopesGrid) {
+      this.demoEnvelopesGrid.innerHTML = envelopesHTML;
+    }
+  }
+
+  simulateSpend(category, buttonElement) {
+    // Find the envelope card
+    const card = buttonElement.closest('.sakura-envelope-card');
+    const remainingElement = card.querySelector('.sakura-remaining-amount');
+    const progressBar = card.querySelector('.sakura-progress-bar');
+
+    // Get current remaining amount
+    let currentRemaining = parseInt(remainingElement.textContent.replace(/[$,]/g, ''));
+
+    if (category === 'Savings Goal') {
+      // Add to savings
+      currentRemaining += 50;
+      remainingElement.textContent = `$${currentRemaining.toLocaleString()}`;
+
+      // Update progress bar (for savings, we show how much is saved)
+      const budgetText = card.querySelector('.sakura-envelope-budget').textContent;
+      const budget = parseInt(budgetText.replace(/[^\d]/g, ''));
+      const percentSaved = Math.min((currentRemaining / budget) * 100, 100);
+      progressBar.style.width = `${percentSaved}%`;
+
+      if (percentSaved >= 100) {
+        buttonElement.disabled = true;
+        buttonElement.innerHTML = '<i class="bi bi-check-circle"></i> Goal Reached!';
+
+        // Add celebration effect
+        setTimeout(() => {
+          card.style.transform = 'scale(1.02)';
+          setTimeout(() => {
+            card.style.transform = '';
+          }, 200);
+        }, 100);
+      }
+    } else {
+      // Spend from envelope
+      if (currentRemaining >= 50) {
+        currentRemaining -= 50;
+        remainingElement.textContent = `$${currentRemaining.toLocaleString()}`;
+
+        // Update progress bar
+        const budgetText = card.querySelector('.sakura-envelope-budget').textContent;
+        const budget = parseInt(budgetText.replace(/[^\d]/g, ''));
+        const spent = budget - currentRemaining;
+        const percentSpent = (spent / budget) * 100;
+        progressBar.style.width = `${percentSpent}%`;
+
+        // Disable button if no money left
+        if (currentRemaining < 50) {
+          buttonElement.disabled = true;
+          buttonElement.innerHTML = '<i class="bi bi-exclamation-triangle"></i> Low Funds';
+        }
+
+        // Change color if running low (less than 20% remaining)
+        if (currentRemaining / budget < 0.2) {
+          progressBar.style.background = 'linear-gradient(90deg, #EF4444 0%, #DC2626 100%)';
+        }
+      }
+    }
+
+    // Update total budgeted display
+    this.updateDemoSummary();
+  }
+
+  viewEnvelopeDetails(category) {
+    // Simple alert for demo purposes
+    alert(`In the full app, you'd see detailed transaction history and spending patterns for ${category}. This is just a preview of the budgeting experience!`);
+  }
+
+  updateDemoSummary() {
+    // Recalculate totals from current envelope states
+    const envelopeCards = this.demoEnvelopesGrid?.querySelectorAll('.sakura-envelope-card');
+    let totalSpent = 0;
+    let totalBudget = 0;
+
+    envelopeCards?.forEach(card => {
+      const budgetText = card.querySelector('.sakura-envelope-budget').textContent;
+      const budget = parseInt(budgetText.replace(/[^\d]/g, ''));
+      const remainingText = card.querySelector('.sakura-remaining-amount').textContent;
+      const remaining = parseInt(remainingText.replace(/[$,]/g, ''));
+
+      totalBudget += budget;
+
+      const category = card.querySelector('.sakura-envelope-category').textContent;
+      if (category === 'Savings Goal') {
+        totalSpent += remaining; // For savings, "remaining" is actually saved amount
+      } else {
+        totalSpent += (budget - remaining);
+      }
+    });
+
+    // Update displays
+    if (this.demoBudgetedDisplay) {
+      this.demoBudgetedDisplay.textContent = `$${totalBudget.toLocaleString()}`;
+    }
+
+    const income = parseInt(this.demoIncomeDisplay?.textContent.replace(/[$,]/g, '') || '5000');
+    const available = income - totalSpent;
+
+    if (this.demoAvailableDisplay) {
+      this.demoAvailableDisplay.textContent = `$${available.toLocaleString()}`;
+    }
+  }
+
+  // Urgency number updater - updates every Monday with a random number
+  setupUrgencyUpdater() {
+    const urgencyElement = document.querySelector('.sakura-urgency-badge span');
+    if (!urgencyElement) return;
+
+    // Check if we need to update the number
+    this.updateUrgencyNumber();
+
+    // Set up weekly update check (check every hour)
+    setInterval(() => {
+      this.updateUrgencyNumber();
+    }, 60 * 60 * 1000); // Check every hour
+  }
+
+  updateUrgencyNumber() {
+    const urgencyElement = document.querySelector('.sakura-urgency-badge span');
+    if (!urgencyElement) return;
+
+    const now = new Date();
+    const lastUpdate = localStorage.getItem('sakura-urgency-last-update');
+    const storedNumber = localStorage.getItem('sakura-urgency-number');
+
+    // Check if it's Monday and we haven't updated this week
+    const isMonday = now.getDay() === 1;
+    const lastUpdateDate = lastUpdate ? new Date(lastUpdate) : null;
+    const isNewWeek = !lastUpdateDate ||
+      (now.getTime() - lastUpdateDate.getTime()) > (7 * 24 * 60 * 60 * 1000) ||
+      (isMonday && lastUpdateDate && lastUpdateDate.getDay() !== 1);
+
+    if (isNewWeek || !storedNumber) {
+      // Generate new random number between 100 and 1000
+      const randomNumber = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
+
+      // Update the display
+      urgencyElement.textContent = `Join ${randomNumber} families who started this week`;
+
+      // Store the new number and update date
+      localStorage.setItem('sakura-urgency-number', randomNumber.toString());
+      localStorage.setItem('sakura-urgency-last-update', now.toISOString());
+    } else if (storedNumber) {
+      // Use stored number if no update needed
+      urgencyElement.textContent = `Join ${storedNumber} families who started this week`;
+    }
+  }
+
+
+}
+
+// Initialize framework when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  window.sakuraFramework = new SakuraFramework();
+});
+
+// Export for modular usage
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = SakuraFramework;
+}
