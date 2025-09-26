@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Budget - Smart Envelope Budgeting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/bootstrap-icons.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="sakura-navbar">
+        <div class="sakura-navbar-container">
+            <div class="sakura-navbar-brand">
+                <img src="src/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+            </div>
+            <div class="sakura-navbar-menu">
+                <a href="#features" class="sakura-navbar-link">Features</a>
+                <a href="#pricing" class="sakura-navbar-link">Pricing</a>
+                <a href="#about" class="sakura-navbar-link">About</a>
+                <a href="login.html" class="sakura-btn sakura-btn--outline sakura-btn--sm">Sign In</a>
+                <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--sm">Sign Up</a>
+            </div>
+            <button class="sakura-navbar-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="sakura-hero">
+        <div class="sakura-container">
+            <div class="sakura-hero-container">
+                <div class="sakura-hero-content">
+                    <h1 class="sakura-hero-title">Take control of your money with <span class="sakura-text-primary">envelope budgeting</span></h1>
+                    <p class="sakura-hero-subtitle">Stop wondering where your money went. Sakura helps you allocate every dollar with purpose, so you can spend confidently and save consistently.</p>
+                    <div class="sakura-hero-actions">
+                        <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">Start Free Trial</a>
+                        <a href="#demo" class="sakura-btn sakura-btn--outline sakura-btn--lg">Watch Demo</a>
+                    </div>
+                    <div class="sakura-hero-stats">
+                        <div class="sakura-stat">
+                            <span class="sakura-stat-number">$2.4M+</span>
+                            <span class="sakura-stat-label">Money managed</span>
+                        </div>
+                        <div class="sakura-stat">
+                            <span class="sakura-stat-number">15K+</span>
+                            <span class="sakura-stat-label">Happy families</span>
+                        </div>
+                        <div class="sakura-stat">
+                            <span class="sakura-stat-number">89%</span>
+                            <span class="sakura-stat-label">Reach their goals</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sakura-hero-visual">
+                    <div class="sakura-dashboard-preview">
+                        <img src="src/dashboard-preview.png" alt="Sakura Budget Dashboard Preview" class="sakura-dashboard-screenshot">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave Transition -->
+        <div class="sakura-hero-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="sakura-wave-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="sakura-wave-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background feathering wave -->
+                <path fill="url(#sakura-wave-gradient-2)"
+                      d="M0,40 C150,90 350,20 600,50 C850,80 1050,10 1200,40 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Main wave -->
+                <path fill="url(#sakura-wave-gradient-1)"
+                      d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Top feathering wave for smooth morphing -->
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,80 C200,30 400,110 600,70 C800,30 1000,100 1200,60 L1200,120 L0,120 Z">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="sakura-features">
+        <div class="sakura-container">
+            <div class="sakura-section-header">
+                <h2>Everything you need to budget like a pro</h2>
+                <p>Simple tools that make complex financial decisions easy</p>
+            </div>
+            <div class="sakura-features-grid">
+                <div class="sakura-feature-card">
+                    <div class="sakura-feature-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <h3>Smart Envelopes</h3>
+                    <p>Create custom spending categories and watch your money flow with purpose. Never overspend again.</p>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="smart-envelopes">Learn More <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="sakura-feature-card">
+                    <div class="sakura-feature-icon">
+                        <i class="bi bi-magic"></i>
+                    </div>
+                    <h3>Automatic Allocation</h3>
+                    <p>Set it once, relax forever. Your income automatically flows into the right envelopes.</p>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="automatic-allocation">Learn More <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="sakura-feature-card">
+                    <div class="sakura-feature-icon">
+                        <i class="bi bi-bar-chart-line"></i>
+                    </div>
+                    <h3>Visual Insights</h3>
+                    <p>Beautiful charts and reports that make your financial picture crystal clear.</p>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="visual-insights">Learn More <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="sakura-feature-card">
+                    <div class="sakura-feature-icon">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+                    <h3>Goal Tracking</h3>
+                    <p>From emergency funds to dream vacations, watch your goals become reality.</p>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="goal-tracking">Learn More <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="sakura-feature-card">
+                    <div class="sakura-feature-icon">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+                    <h3>Bank Sync</h3>
+                    <p>Connect your accounts for real-time updates. Your budget stays current automatically.</p>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="bank-sync">Learn More <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="sakura-feature-card">
+                    <div class="sakura-feature-icon">
+                        <i class="bi bi-bell"></i>
+                    </div>
+                    <h3>Smart Alerts</h3>
+                    <p>Gentle nudges when you're close to limits. Stay on track without the stress.</p>
+                    <a href="#" class="sakura-feature-learn-more" data-feature="smart-alerts">Learn More <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="sakura-testimonials">
+        <div class="sakura-container">
+            <div class="sakura-section-header">
+                <h2>Real stories from people who took control</h2>
+                <p>Every journey starts with a single step. Here's how others found their path to financial confidence.</p>
+            </div>
+
+            <div class="sakura-testimonials-carousel">
+                <div class="sakura-testimonials-track">
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I used to check my bank account and just hope there was enough money. Now I actually know where every dollar goes. It took me about 3 weeks to really get the hang of it, but once I did, the anxiety went away.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Sarah M.</div>
+                                <div class="sakura-testimonial-detail">Single mom, Teacher</div>
+                                <div class="sakura-testimonial-result">Built her first emergency fund</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>We were living paycheck to paycheck even though we both had decent jobs. Sakura helped us realize we were spending $400 a month on random stuff we didn't even remember buying. Small changes, big difference.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Mike & Lisa C.</div>
+                                <div class="sakura-testimonial-detail">Married couple, Both work retail</div>
+                                <div class="sakura-testimonial-result">Saved $1,200 in 4 months</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I tried other budgeting apps but they were too complicated or made me feel bad about my spending. This one just makes sense. I'm not perfect with it, but I'm so much better than I was.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">James R.</div>
+                                <div class="sakura-testimonial-detail">Freelance designer</div>
+                                <div class="sakura-testimonial-result">Stopped overdraft fees</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>After my divorce, I had to learn to manage money on my own for the first time. Sakura made it less scary. I went from avoiding my finances to actually looking forward to budgeting sessions.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Maria D.</div>
+                                <div class="sakura-testimonial-detail">Nurse, Recently divorced</div>
+                                <div class="sakura-testimonial-result">Gained financial confidence</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I work two part-time jobs and money was always tight. This app showed me I was spending $80 a month on coffee without realizing it. Those small leaks were drowning me.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">David K.</div>
+                                <div class="sakura-testimonial-detail">Student, Part-time worker</div>
+                                <div class="sakura-testimonial-result">Found $300 monthly savings</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>My husband and I kept fighting about money. We never knew where it went and blamed each other. Now we budget together every Sunday morning and it's actually become quality time.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Jennifer L.</div>
+                                <div class="sakura-testimonial-detail">Marketing coordinator, Married</div>
+                                <div class="sakura-testimonial-result">Improved relationship with money & spouse</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I tried spreadsheets, other apps, even cash envelopes. Nothing stuck until Sakura. It doesn't judge me when I mess up, and the visual progress keeps me motivated.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Robert T.</div>
+                                <div class="sakura-testimonial-detail">Construction worker</div>
+                                <div class="sakura-testimonial-result">First successful budget system</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>After losing my job, every dollar mattered. Sakura helped me stretch my unemployment benefits for 6 months instead of 3. It gave me the breathing room I needed to find something better.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Amanda S.</div>
+                                <div class="sakura-testimonial-detail">Former retail manager</div>
+                                <div class="sakura-testimonial-result">Extended savings during job search</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I'm 22 and everyone said I was too young to worry about budgeting. But I wanted to move out of my parents' house. Sakura showed me exactly how much I needed and helped me get there.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Tyler M.</div>
+                                <div class="sakura-testimonial-detail">Recent college grad, Server</div>
+                                <div class="sakura-testimonial-result">Achieved independence goal</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I was drowning in credit card debt and too embarrassed to ask for help. Sakura felt like having a non-judgmental friend who actually knew about money. Slowly but surely, I'm digging out.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Crystal H.</div>
+                                <div class="sakura-testimonial-detail">Administrative assistant</div>
+                                <div class="sakura-testimonial-result">Paying down debt systematically</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>Running a small business means irregular income. Some months are great, others terrible. Sakura taught me how to smooth out the ups and downs and actually plan for the slow periods.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Marcus W.</div>
+                                <div class="sakura-testimonial-detail">Food truck owner</div>
+                                <div class="sakura-testimonial-result">Stabilized irregular income</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>My teenagers thought budgeting was lame until they saw how it helped me buy their school supplies without stressing. Now they're asking me to teach them before college.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Patricia R.</div>
+                                <div class="sakura-testimonial-detail">Single mom, Office manager</div>
+                                <div class="sakura-testimonial-result">Teaching kids financial skills</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I thought I needed to make more money to solve my problems. Turns out I just needed to understand where my money was going. Same income, completely different life.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Kevin J.</div>
+                                <div class="sakura-testimonial-detail">Mechanic</div>
+                                <div class="sakura-testimonial-result">Changed financial mindset</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate testimonials for seamless loop -->
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I used to check my bank account and just hope there was enough money. Now I actually know where every dollar goes. It took me about 3 weeks to really get the hang of it, but once I did, the anxiety went away.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Sarah M.</div>
+                                <div class="sakura-testimonial-detail">Single mom, Teacher</div>
+                                <div class="sakura-testimonial-result">Built her first emergency fund</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>We were living paycheck to paycheck even though we both had decent jobs. Sakura helped us realize we were spending $400 a month on random stuff we didn't even remember buying. Small changes, big difference.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Mike & Lisa C.</div>
+                                <div class="sakura-testimonial-detail">Married couple, Both work retail</div>
+                                <div class="sakura-testimonial-result">Saved $1,200 in 4 months</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I tried other budgeting apps but they were too complicated or made me feel bad about my spending. This one just makes sense. I'm not perfect with it, but I'm so much better than I was.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">James R.</div>
+                                <div class="sakura-testimonial-detail">Freelance designer</div>
+                                <div class="sakura-testimonial-result">Stopped overdraft fees</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>After my divorce, I had to learn to manage money on my own for the first time. Sakura made it less scary. I went from avoiding my finances to actually looking forward to budgeting sessions.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Maria D.</div>
+                                <div class="sakura-testimonial-detail">Nurse, Recently divorced</div>
+                                <div class="sakura-testimonial-result">Gained financial confidence</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I work two part-time jobs and money was always tight. This app showed me I was spending $80 a month on coffee without realizing it. Those small leaks were drowning me.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">David K.</div>
+                                <div class="sakura-testimonial-detail">Student, Part-time worker</div>
+                                <div class="sakura-testimonial-result">Found $300 monthly savings</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>My husband and I kept fighting about money. We never knew where it went and blamed each other. Now we budget together every Sunday morning and it's actually become quality time.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Jennifer L.</div>
+                                <div class="sakura-testimonial-detail">Marketing coordinator, Married</div>
+                                <div class="sakura-testimonial-result">Improved relationship with money & spouse</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I tried spreadsheets, other apps, even cash envelopes. Nothing stuck until Sakura. It doesn't judge me when I mess up, and the visual progress keeps me motivated.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Robert T.</div>
+                                <div class="sakura-testimonial-detail">Construction worker</div>
+                                <div class="sakura-testimonial-result">First successful budget system</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>After losing my job, every dollar mattered. Sakura helped me stretch my unemployment benefits for 6 months instead of 3. It gave me the breathing room I needed to find something better.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Amanda S.</div>
+                                <div class="sakura-testimonial-detail">Former retail manager</div>
+                                <div class="sakura-testimonial-result">Extended savings during job search</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I'm 22 and everyone said I was too young to worry about budgeting. But I wanted to move out of my parents' house. Sakura showed me exactly how much I needed and helped me get there.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Tyler M.</div>
+                                <div class="sakura-testimonial-detail">Recent college grad, Server</div>
+                                <div class="sakura-testimonial-result">Achieved independence goal</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I was drowning in credit card debt and too embarrassed to ask for help. Sakura felt like having a non-judgmental friend who actually knew about money. Slowly but surely, I'm digging out.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Crystal H.</div>
+                                <div class="sakura-testimonial-detail">Administrative assistant</div>
+                                <div class="sakura-testimonial-result">Paying down debt systematically</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>Running a small business means irregular income. Some months are great, others terrible. Sakura taught me how to smooth out the ups and downs and actually plan for the slow periods.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Marcus W.</div>
+                                <div class="sakura-testimonial-detail">Food truck owner</div>
+                                <div class="sakura-testimonial-result">Stabilized irregular income</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>My teenagers thought budgeting was lame until they saw how it helped me buy their school supplies without stressing. Now they're asking me to teach them before college.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Patricia R.</div>
+                                <div class="sakura-testimonial-detail">Single mom, Office manager</div>
+                                <div class="sakura-testimonial-result">Teaching kids financial skills</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sakura-testimonial-card">
+                        <div class="sakura-testimonial-content">
+                            <p>I thought I needed to make more money to solve my problems. Turns out I just needed to understand where my money was going. Same income, completely different life.</p>
+                        </div>
+                        <div class="sakura-testimonial-author">
+                            <div class="sakura-testimonial-info">
+                                <div class="sakura-testimonial-name">Kevin J.</div>
+                                <div class="sakura-testimonial-detail">Mechanic</div>
+                                <div class="sakura-testimonial-result">Changed financial mindset</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="sakura-cta">
+        <!-- Top Wave -->
+        <div class="sakura-cta-wave sakura-cta-wave--top">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="sakura-cta-wave-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="sakura-cta-wave-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background feathering wave -->
+                <path fill="url(#sakura-cta-wave-gradient-2)"
+                      d="M0,80 C150,30 350,100 600,70 C850,40 1050,110 1200,80 L1200,0 L0,0 Z">
+                </path>
+
+                <!-- Main wave -->
+                <path fill="url(#sakura-cta-wave-gradient-1)"
+                      d="M0,60 C300,20 600,100 900,60 C1050,40 1150,80 1200,60 L1200,0 L0,0 Z">
+                </path>
+
+                <!-- Top feathering wave for smooth morphing -->
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,40 C200,90 400,10 600,50 C800,90 1000,20 1200,60 L1200,0 L0,0 Z">
+                </path>
+            </svg>
+        </div>
+
+        <div class="sakura-container">
+            <div class="sakura-cta-content">
+                <h2>Start budgeting like a pro in under 5 minutes</h2>
+                <p>Smart envelopes + automatic allocation + visual insights = financial peace of mind. Join 15,000+ families who've stopped wondering where their money goes.</p>
+                <div class="sakura-cta-features-recap">
+                    <div class="sakura-recap-item">
+                        <i class="bi bi-check-circle"></i>
+                        <span>Never overspend again</span>
+                    </div>
+                    <div class="sakura-recap-item">
+                        <i class="bi bi-check-circle"></i>
+                        <span>Automate your entire budget</span>
+                    </div>
+                    <div class="sakura-recap-item">
+                        <i class="bi bi-check-circle"></i>
+                        <span>Reach your financial goals faster</span>
+                    </div>
+                </div>
+                <div class="sakura-cta-buttons">
+                    <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">Start Your Free Trial</a>
+                    <a href="#demo" class="sakura-btn sakura-btn--primary sakura-btn--lg">Try Interactive Preview</a>
+                </div>
+                <p class="sakura-cta-note">No credit card required • 7-day free trial • Setup takes 3 minutes</p>
+
+                <!-- Risk Reversal Elements -->
+                <div class="sakura-risk-reversal">
+                    <div class="sakura-guarantee-badges">
+                        <div class="sakura-guarantee-item">
+                            <i class="bi bi-shield-check"></i>
+                            <span>30-day money-back guarantee</span>
+                        </div>
+                        <div class="sakura-guarantee-item">
+                            <i class="bi bi-x-circle"></i>
+                            <span>Cancel anytime, no questions asked</span>
+                        </div>
+                        <div class="sakura-guarantee-item">
+                            <i class="bi bi-download"></i>
+                            <span>Export your data at any time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Signals -->
+                <div class="sakura-trust-signals">
+                    <div class="sakura-trust-stats">
+                        <div class="sakura-trust-item">
+                            <span class="sakura-trust-number">15,000+</span>
+                            <span class="sakura-trust-label">Happy Families</span>
+                        </div>
+                        <div class="sakura-trust-item">
+                            <span class="sakura-trust-number">$2.4M+</span>
+                            <span class="sakura-trust-label">Money Managed</span>
+                        </div>
+                        <div class="sakura-trust-item">
+                            <span class="sakura-trust-number">4.9★</span>
+                            <span class="sakura-trust-label">User Rating</span>
+                        </div>
+                    </div>
+
+                    <div class="sakura-trust-badges">
+                        <div class="sakura-badge">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Bank-Level Security</span>
+                        </div>
+                        <div class="sakura-badge">
+                            <i class="bi bi-lock"></i>
+                            <span>256-bit SSL Encryption</span>
+                        </div>
+                        <div class="sakura-badge">
+                            <i class="bi bi-award"></i>
+                            <span>SOC 2 Compliant</span>
+                        </div>
+                    </div>
+
+                    <!-- Urgency Element -->
+                    <div class="sakura-urgency-element">
+                        <div class="sakura-urgency-badge">
+                            <i class="bi bi-clock"></i>
+                            <span>Join 847 families who started this week</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Wave -->
+        <div class="sakura-cta-wave sakura-cta-wave--bottom">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="sakura-cta-wave-gradient-3" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="sakura-cta-wave-gradient-4" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background feathering wave -->
+                <path fill="url(#sakura-cta-wave-gradient-4)"
+                      d="M0,40 C150,90 350,20 600,50 C850,80 1050,10 1200,40 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Main wave -->
+                <path fill="url(#sakura-cta-wave-gradient-3)"
+                      d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Top feathering wave for smooth morphing -->
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,80 C200,30 400,110 600,70 C800,30 1000,100 1200,60 L1200,120 L0,120 Z">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="sakura-footer">
+        <div class="sakura-container">
+            <div class="sakura-footer-content">
+                <div class="sakura-footer-brand">
+                    <div class="sakura-navbar-brand">
+                        <img src="src/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo">
+                        <span class="sakura-navbar-title">Sakura Budget</span>
+                    </div>
+                    <p>Making personal finance simple, one envelope at a time.</p>
+                </div>
+                <div class="sakura-footer-links">
+                    <div class="sakura-footer-column">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#pricing">Pricing</a>
+                        <a href="dashboard.html">Dashboard</a>
+                        <a href="#">Mobile App</a>
+                    </div>
+                    <div class="sakura-footer-column">
+                        <h4>Company</h4>
+                        <a href="#">About</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="sakura-footer-column">
+                        <h4>Support</h4>
+                        <a href="#">Help Center</a>
+                        <a href="#">Security</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sakura-footer-bottom">
+                <p>&copy; 2025 Sakura Budget&trade;. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Feature Explanation Modal -->
+    <div id="sakura-feature-modal" class="sakura-modal-overlay">
+        <div class="sakura-modal-container sakura-feature-modal">
+            <div class="sakura-modal-header">
+                <h3 id="feature-modal-title">Feature Title</h3>
+                <button class="sakura-modal-close" id="feature-modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+
+            <div class="sakura-modal-body">
+                <!-- Hero Visual Section -->
+                <div class="sakura-feature-hero">
+                    <div class="sakura-feature-visual" id="feature-visual">
+                        <!-- Dynamic visual content -->
+                    </div>
+                </div>
+
+                <!-- Benefits Section -->
+                <div class="sakura-feature-benefits">
+                    <h4>Why you'll love this feature</h4>
+                    <div class="sakura-benefits-grid" id="feature-benefits">
+                        <!-- Dynamic benefits content -->
+                    </div>
+                </div>
+
+                <!-- How It Works Section -->
+                <div class="sakura-feature-process">
+                    <h4>How it works</h4>
+                    <div class="sakura-process-steps" id="feature-steps">
+                        <!-- Dynamic process steps -->
+                    </div>
+                </div>
+
+                <!-- Real User Story -->
+                <div class="sakura-feature-story">
+                    <div class="sakura-story-content" id="feature-story">
+                        <!-- Dynamic user story -->
+                    </div>
+                </div>
+
+                <!-- CTA Bridge -->
+                <div class="sakura-feature-cta">
+                    <button class="sakura-btn sakura-btn--primary sakura-btn--full" id="try-demo-btn">
+                        <i class="bi bi-play-circle"></i>
+                        See it in action with your budget
+                    </button>
+                    <p class="sakura-cta-note">Try it with your own numbers - no signup required</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Demo Modal -->
+    <div id="sakura-demo-modal" class="sakura-modal-overlay">
+        <div class="sakura-modal-container sakura-demo-modal">
+            <div class="sakura-modal-header">
+                <h3 id="demo-modal-title">Interactive Budget Demo</h3>
+                <button class="sakura-modal-close" id="demo-modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+
+            <div class="sakura-modal-body">
+                <!-- Demo Setup -->
+                <div class="sakura-demo-setup" id="demo-setup">
+                    <div class="sakura-demo-welcome">
+                        <h4>Let's create your sample budget</h4>
+                        <p>Enter some basic information to see how Sakura works with your numbers</p>
+                    </div>
+
+                    <div class="sakura-demo-form">
+                        <div class="sakura-form-group">
+                            <label for="demo-income">Monthly Income</label>
+                            <div class="sakura-input-wrapper">
+                                <span class="sakura-input-prefix">$</span>
+                                <input type="number" id="demo-income" class="sakura-input" placeholder="5000" value="5000">
+                            </div>
+                        </div>
+
+                        <div class="sakura-form-row">
+                            <div class="sakura-form-group">
+                                <label for="demo-housing">Housing</label>
+                                <div class="sakura-input-wrapper">
+                                    <span class="sakura-input-prefix">$</span>
+                                    <input type="number" id="demo-housing" class="sakura-input" placeholder="1500" value="1500">
+                                </div>
+                            </div>
+                            <div class="sakura-form-group">
+                                <label for="demo-food">Food & Dining</label>
+                                <div class="sakura-input-wrapper">
+                                    <span class="sakura-input-prefix">$</span>
+                                    <input type="number" id="demo-food" class="sakura-input" placeholder="600" value="600">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sakura-form-row">
+                            <div class="sakura-form-group">
+                                <label for="demo-entertainment">Entertainment</label>
+                                <div class="sakura-input-wrapper">
+                                    <span class="sakura-input-prefix">$</span>
+                                    <input type="number" id="demo-entertainment" class="sakura-input" placeholder="300" value="300">
+                                </div>
+                            </div>
+                            <div class="sakura-form-group">
+                                <label for="demo-savings">Savings Goal</label>
+                                <div class="sakura-input-wrapper">
+                                    <span class="sakura-input-prefix">$</span>
+                                    <input type="number" id="demo-savings" class="sakura-input" placeholder="800" value="800">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="sakura-btn sakura-btn--primary sakura-btn--full" id="create-demo-btn">
+                            <i class="bi bi-magic"></i>
+                            Create My Sample Budget
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Demo Dashboard -->
+                <div class="sakura-demo-dashboard" id="demo-dashboard" style="display: none;">
+                    <div class="sakura-demo-nav">
+                        <button class="sakura-btn sakura-btn--outline sakura-btn--sm" id="demo-reset-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            Start Over
+                        </button>
+                        <div class="sakura-demo-step-indicator">
+                            <span class="sakura-step-label">Your Sample Budget</span>
+                        </div>
+                    </div>
+
+                    <!-- Budget Overview -->
+                    <div class="sakura-demo-overview">
+                        <div class="sakura-demo-summary-grid">
+                            <div class="sakura-summary-card">
+                                <div class="sakura-summary-icon">
+                                    <i class="bi bi-currency-dollar"></i>
+                                </div>
+                                <div class="sakura-summary-content">
+                                    <div class="sakura-summary-label">Monthly Income</div>
+                                    <div class="sakura-summary-value" id="demo-income-display">$5,000</div>
+                                </div>
+                            </div>
+                            <div class="sakura-summary-card">
+                                <div class="sakura-summary-icon">
+                                    <i class="bi bi-wallet"></i>
+                                </div>
+                                <div class="sakura-summary-content">
+                                    <div class="sakura-summary-label">Total Budgeted</div>
+                                    <div class="sakura-summary-value" id="demo-budgeted-display">$3,200</div>
+                                </div>
+                            </div>
+                            <div class="sakura-summary-card">
+                                <div class="sakura-summary-icon">
+                                    <i class="bi bi-piggy-bank"></i>
+                                </div>
+                                <div class="sakura-summary-content">
+                                    <div class="sakura-summary-label">Available to Save</div>
+                                    <div class="sakura-summary-value" id="demo-available-display">$1,800</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Envelope Cards -->
+                    <div class="sakura-demo-envelopes">
+                        <h4>Your Budget Envelopes</h4>
+                        <div class="sakura-envelopes-grid" id="demo-envelopes-grid">
+                            <!-- Dynamic envelope cards -->
+                        </div>
+                    </div>
+
+                    <!-- Interactive Elements -->
+                    <div class="sakura-demo-interactions">
+                        <div class="sakura-demo-section">
+                            <h4>Try spending from an envelope</h4>
+                            <p>Click the "Spend" button on any envelope to see how your budget updates in real-time</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="sakura-demo-cta">
+                        <div class="sakura-cta-content">
+                            <h4>Ready to manage your real budget?</h4>
+                            <p>This is just a preview. Create your free account to start budgeting with your actual finances.</p>
+                            <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">
+                                Get Started Free
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/sakura.js"></script>
+</body>
+</html>

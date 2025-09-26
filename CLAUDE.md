@@ -1,0 +1,209 @@
+# Sakura CSS Framework - Project Summary
+
+## CRITICAL INSTRUCTION
+**NO MENTION OF AI ASSISTANTS**: Never mention any AI assistants in code, comments, commit messages, or documentation. All work should appear as human-generated.
+**NO EMOJIS**: Never use emojis in any code, comments, commit messages, or documentation.
+
+## CRITICAL PROJECT CONTEXT
+**IMPORTANT**: We are recreating the complete Sakura Budget web application from `/Users/indy/Projects/HTML/sakura-website/` as a TailwindCSS-based framework called sakura-css. This is NOT building from scratch - we're converting an existing, sophisticated financial application into a reusable framework.
+
+## Source Material Analysis
+**Reference Location**: `/Users/indy/Projects/HTML/sakura-website/`
+
+### Complete Application Structure
+The source contains a full-featured financial dashboard application with:
+
+1. **Multiple Pages**:
+   - `index.html` - Marketing landing page
+   - `dashboard.html` - Main dashboard overview
+   - `envelope-detail.html` - Envelope budget management
+   - `transactions.html` - Transaction management
+   - `goals.html` - Goal tracking system
+   - `login.html` / `signup.html` - Authentication pages
+
+2. **Sophisticated CSS Architecture**:
+   - `budgetflow.css` - Main design system with CSS custom properties
+   - `components.css` - Complex financial components (envelope cards, account cards, charts)
+   - `dashboard.css` - Dashboard-specific layouts
+   - `auth.css`, `envelope-detail.css`, `goals.css`, `transactions.css` - Page-specific styles
+
+3. **Financial Components We Must Recreate**:
+   - **Envelope Cards**: Budget tracking cards with progress bars and custom theming
+   - **Account Cards**: Bank account display with sparkline charts
+   - **Summary Cards**: Financial overview cards with animated counters
+   - **Goal Cards**: Savings goal tracking with progress visualization
+   - **Transaction Lists**: Sophisticated transaction display with filtering
+   - **Dashboard Layout**: Complete sidebar navigation + header + main content
+   - **Charts**: Donut charts, sparklines, progress bars
+   - **Modals**: Complex forms for creating/editing financial data
+
+### Critical Design System Details from Source
+- **CSS Custom Properties**: Extensive use of `--primary`, `--secondary`, `--envelope-color` variables
+- **Class Naming Conversion**: Source uses simple names (`envelope-card`, `btn btn-primary`) → We convert to `sakura-envelope-card`, `sakura-btn sakura-btn--primary` for branding
+- **Advanced CSS**: Backdrop blur, complex pseudo-elements, CSS animations, theming system
+- **Responsive Design**: Mobile-first approach with comprehensive breakpoints
+
+## Current Status - Background Enhancement Complete
+**Latest Work**: Successfully enhanced the hero section background prominence through iterative opacity adjustments of floating blur effects.
+
+### Background Enhancement Journey
+1. **Initial Request**: User wanted site-wide gradient background (except footer)
+2. **Implementation Challenge**: Discovered sections had independent gradients instead of continuous flow
+3. **Solution**: Applied single gradient to body with `background-attachment: fixed` and transparent sections
+4. **Gradient Testing Phase**: Tested multiple gradient options but user found them all either:
+   - Too dark and clashing with other elements
+   - Too light and depressive
+5. **Final Decision**: Reverted to original hero-only background design
+6. **Enhancement**: Increased opacity of floating blur effects for more prominence:
+   - Blue blur (::before): Final opacity 0.55
+   - Purple blur (::after): Final opacity 0.45
+
+### Current Hero Background Implementation
+```css
+.sakura-hero::before {
+  background: radial-gradient(circle, rgba(91, 139, 245, 0.55) 0%, transparent 60%);
+  filter: blur(80px);
+  animation: sakuraHeroFloat 20s ease-in-out infinite;
+}
+
+.sakura-hero::after {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.45) 0%, transparent 60%);
+  filter: blur(80px);
+  animation: sakuraHeroFloat 25s ease-in-out infinite reverse;
+}
+```
+
+## Design Philosophy & Principles
+
+### Core Design Language
+- **Japanese-inspired minimalism**: Clean, uncluttered, mindful design
+- **Professional fintech standards**: Trustworthy, secure, sophisticated
+- **Component-by-component development**: Building one component at a time to satisfaction
+- **Iterative refinement**: No moving forward until quality standards met
+
+### Typography Hierarchy
+- **Brand Elements**: Playfair Display (elegant serif, brand identity only)
+- **H1 & H2 Headings**: Inter (modern sans-serif, main headings)
+- **All Other Text**: Poppins (UI, body text, code, data)
+
+### Color Palette
+- **Primary Body Background**: #F5F8FA (light blue-gray)
+- **Card/Section Backgrounds**: Pure white (#ffffff)
+- **Primary Brand Color**: #1E2A3B (deep navy)
+- **Accent Colors**: Blue (#5B8BF5) and Purple (#8B5CF6) for subtle effects
+
+## Technical Foundation
+- **Framework**: TailwindCSS v4 with custom component layer
+- **Build Tool**: Vite for development and building
+- **Structure**: Component-first architecture with sakura-* naming convention
+- **Animations**: CSS keyframes for floating effects and smooth transitions
+
+## Key Files
+- `/src/sakura.css`: Main CSS framework with all component styles
+- `/index.html`: Landing page showcasing the design system
+- `/src/sakura.js`: JavaScript for interactive components
+
+## CRITICAL DEVELOPMENT METHODOLOGY
+
+### Component-by-Component Recreation Process
+**MANDATORY APPROACH**: We work ONE component at a time through two phases:
+
+**Phase 1 - Exact Recreation** (Required First):
+1. **Select Single Component** from source material (`sakura-website`)
+2. **Analyze Original Implementation** (CSS custom properties, HTML structure, animations)
+3. **Convert to TailwindCSS Framework** while maintaining identical visual appearance
+4. **Test with Working Mockup** to ensure functionality matches original exactly
+5. **User Approval Required** - NO progression until component matches source perfectly
+
+**Phase 2 - Enhancement (Optional)**:
+6. **Evaluate Enhancement Opportunities** - Identify potential improvements
+7. **Implement Upgrades** - Design/UX/functional improvements beyond original
+8. **User Approval for Enhancements** - Confirm improvements meet vision
+
+**Then Repeat for Next Component** - systematic recreation and enhancement of entire application
+
+### Framework Conversion Requirements
+**Converting CSS Custom Properties to TailwindCSS**:
+- Original uses `--primary`, `--secondary` variables → Convert to TailwindCSS utilities + CSS custom properties
+- Original uses simple classes (`envelope-card`) → Convert to branded `sakura-envelope-card` for recognition/marketing
+- Preserve all animations, hover effects, and micro-interactions exactly
+- Maintain responsive breakpoints and mobile-first approach
+- Convert backdrop blur, complex pseudo-elements, and gradient systems
+
+### Component Recreation Priority
+**Phase 1 - Core Landing Page Components**:
+1. Navigation system (`sakura-navbar` with mobile toggle)
+2. Hero section with dashboard preview (`sakura-hero`)
+3. Feature cards grid (`sakura-feature-card`)
+4. CTA section and footer (`sakura-cta`, `sakura-footer`)
+
+**Phase 2 - Financial Dashboard Components**:
+1. Dashboard layout (`sakura-dashboard-header`, `sakura-sidebar`, etc.)
+2. Envelope cards (`sakura-envelope-card`) with progress tracking
+3. Account cards (`sakura-account-card`) with sparkline charts
+4. Summary cards (`sakura-summary-card`) with animated counters
+5. Transaction list (`sakura-transaction-list`) with filtering
+6. Goal tracking cards (`sakura-goal-card`)
+7. Chart components (`sakura-donut-chart`, `sakura-progress-bar`)
+8. Modal systems (`sakura-modal`) for editing
+
+### Quality Standards
+**Phase 1 - Exact Recreation**:
+- **Exact Visual Recreation**: Must match source pixel-perfect
+- **Functional Completeness**: All interactions and animations working identical to source
+- **Code Quality**: Clean TailwindCSS implementation
+- **Responsive Design**: Mobile-first matching original breakpoints exactly
+- **Performance**: Optimized animations and transitions
+
+**Phase 2 - Enhancement Flexibility** (After exact recreation):
+- **Design Upgrades**: May enhance/modernize visual design beyond original
+- **Functional Improvements**: May add new features or improve existing ones
+- **UX Enhancements**: May optimize user experience and interactions
+- **Performance Optimization**: May improve beyond original implementation
+
+## User Preferences Learned
+- **Gradient Colors**: Prefers subtle, light backgrounds over bold colorful gradients
+- **Visual Prominence**: Likes effects to be noticeable but not overwhelming
+- **Design Aesthetic**: Values clean, professional appearance over decorative elements
+- **Incremental Changes**: Prefers step-by-step adjustments with immediate feedback
+
+## CURRENT STATUS & CRITICAL GAP ANALYSIS
+
+### What We Have vs. What We Need
+**Current Implementation Status**:
+1. **Correct Class Naming**: Already using `sakura-` prefix correctly for branding/recognition
+2. **Missing Components**: Need financial dashboard components (envelope cards, account cards, etc.)
+3. **Incomplete Design System**: Missing CSS custom properties system from source
+4. **Basic Structure Only**: Landing page exists but needs enhancement to match original sophistication
+5. **No Dashboard Pages**: Missing dashboard.html, envelope-detail.html, goals.html, etc.
+
+### Immediate Next Steps
+**ENHANCEMENT REQUIRED**: We need to expand our current foundation:
+
+1. **Keep Current Naming** - `sakura-` prefix is correct for branding purposes
+2. **Implement CSS Custom Properties** - Add `:root` variables system from source
+3. **Choose First Component** - Select single component for exact recreation
+4. **Create Working Mockup** - Build testable version to validate accuracy
+
+### Component Selection for Next Phase
+**Recommended Starting Point**: Choose ONE component to perfect:
+- Navigation system (good foundation, needs refinement)
+- Hero section dashboard preview (needs complete rebuild)
+- Envelope card component (financial core feature)
+- Dashboard layout structure (application foundation)
+
+### Framework Architecture Needs
+**Convert from Source**:
+- `budgetflow.css` design tokens → TailwindCSS configuration
+- `components.css` financial components → Framework components
+- Multiple CSS files → Unified framework approach
+- CSS animations and interactions → TailwindCSS utilities
+
+## Next Development Focus
+**DECISION REQUIRED**: User must select which single component to recreate first from the sakura-website source material. All subsequent work depends on this choice.
+
+## Git Branch
+Current work is on the `Phase-1` branch.
+
+## Development Server
+Uses `npm run dev` for local development with hot reloading.
