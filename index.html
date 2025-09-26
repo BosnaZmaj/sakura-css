@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="src/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css">
     <link rel="stylesheet" href="src/sakura.css">
 </head>
 <body>
@@ -629,46 +629,16 @@
             </div>
         </div>
 
-        <!-- Bottom Wave -->
-        <div class="sakura-cta-wave sakura-cta-wave--bottom">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <defs>
-                    <linearGradient id="sakura-cta-wave-gradient-3" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
-                    </linearGradient>
-                    <linearGradient id="sakura-cta-wave-gradient-4" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-
-                <!-- Background feathering wave -->
-                <path fill="url(#sakura-cta-wave-gradient-4)"
-                      d="M0,40 C150,90 350,20 600,50 C850,80 1050,10 1200,40 L1200,120 L0,120 Z">
-                </path>
-
-                <!-- Main wave -->
-                <path fill="url(#sakura-cta-wave-gradient-3)"
-                      d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z">
-                </path>
-
-                <!-- Top feathering wave for smooth morphing -->
-                <path class="sakura-wave-animated" fill="white" opacity="0.8"
-                      d="M0,80 C200,30 400,110 600,70 C800,30 1000,100 1200,60 L1200,120 L0,120 Z">
-                </path>
-            </svg>
-        </div>
     </section>
 
     <!-- Footer -->
     <footer class="sakura-footer">
+
         <div class="sakura-container">
             <div class="sakura-footer-content">
                 <div class="sakura-footer-brand">
                     <div class="sakura-navbar-brand">
-                        <img src="src/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo">
-                        <span class="sakura-navbar-title">Sakura Budget</span>
+                        <img src="sakura_logo_clear.svg" alt="Sakura Budget" class="sakura-navbar-logo">
                     </div>
                     <p>Making personal finance simple, one envelope at a time.</p>
                 </div>
@@ -697,7 +667,21 @@
                 </div>
             </div>
             <div class="sakura-footer-bottom">
-                <p>&copy; 2025 Sakura Budget&trade;. All rights reserved.</p>
+                <div class="sakura-footer-social">
+                    <a href="#" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="#" aria-label="Bluesky">
+                        <i class="bi bi-bluesky"></i>
+                    </a>
+                </div>
+                <p>&copy; 2025 Sakura Financial Technologies LLC. All rights reserved.</p>
             </div>
         </div>
     </footer>
