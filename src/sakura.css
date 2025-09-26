@@ -282,6 +282,14 @@
     min-height: 60vh !important;
   }
 
+  .sakura-hero--compact .sakura-hero-title {
+    padding-top: 2rem;
+  }
+
+  .sakura-hero--compact .sakura-hero-stats {
+    padding-bottom: 4rem;
+  }
+
   .sakura-hero::before {
     content: '';
     @apply absolute w-[1000px] h-[1000px] rounded-full;
@@ -2513,7 +2521,9 @@
   .sakura-pricing-toggle {
     @apply flex items-center justify-center gap-4 text-sm font-medium;
     color: #64748b;
+    margin-bottom: 3rem;
   }
+
 
   .sakura-toggle-switch {
     position: relative;
