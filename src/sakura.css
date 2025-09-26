@@ -2763,6 +2763,7 @@
   .sakura-price-amount {
     @apply text-5xl font-bold;
     color: #1e2a3b;
+    transition: opacity 0.3s ease;
   }
 
   .sakura-price-period {
@@ -2771,6 +2772,26 @@
 
   .annual-price {
     display: none;
+  }
+
+  .monthly-price,
+  .annual-price {
+    transition: opacity 0.3s ease;
+  }
+
+  .sakura-billing-disclaimer {
+    @apply text-center mb-2;
+    opacity: 0.7;
+    font-size: 0.875rem;
+    color: #6b7280;
+    display: none;
+  }
+
+  .sakura-tax-disclaimer {
+    @apply text-center mb-2;
+    opacity: 0.7;
+    font-size: 0.875rem;
+    color: #6b7280;
   }
 
   .sakura-pricing-header p {
@@ -2840,19 +2861,19 @@
 
   .sakura-pricing-faq {
     @apply py-20 relative;
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+    background: #ffffff;
   }
 
   .sakura-pricing-faq::before {
     content: '';
     position: absolute;
-    top: 20%;
-    left: -10%;
-    width: 30%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.04) 0%, transparent 60%);
-    filter: blur(80px);
-    animation: sakuraHeroFloat 30s ease-in-out infinite;
+    top: 10%;
+    right: -15%;
+    width: 40%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(91, 139, 245, 0.03) 0%, transparent 60%);
+    filter: blur(100px);
+    animation: sakuraHeroFloat 40s ease-in-out infinite reverse;
   }
 
   .sakura-faq-header {
@@ -2893,8 +2914,6 @@
   }
 
   .sakura-faq-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     border-color: rgba(91, 139, 245, 0.3);
   }
 

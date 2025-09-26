@@ -13,6 +13,7 @@ class SakuraFramework {
     this.setupFeatureModals();
     this.setupDemoModal();
     this.setupUrgencyUpdater();
+    this.setupPricingToggle();
   }
 
   // Navigation functionality
@@ -964,6 +965,37 @@ class SakuraFramework {
     } else if (storedNumber) {
       // Use stored number if no update needed
       urgencyElement.textContent = `Join ${storedNumber} families who started this week`;
+    }
+  }
+
+  // Pricing toggle functionality
+  setupPricingToggle() {
+    const pricingToggle = document.getElementById('pricing-toggle');
+    if (!pricingToggle) return;
+
+    pricingToggle.addEventListener('change', () => {
+      this.togglePricing(pricingToggle.checked);
+    });
+
+    // Initialize with monthly pricing
+    this.togglePricing(false);
+  }
+
+  togglePricing(isAnnual) {
+    const monthlyPrices = document.querySelectorAll('.monthly-price');
+    const annualPrices = document.querySelectorAll('.annual-price');
+    const billingDisclaimers = document.querySelectorAll('.sakura-billing-disclaimer');
+
+    if (isAnnual) {
+      // Show annual prices and disclaimers
+      monthlyPrices.forEach(price => price.style.display = 'none');
+      annualPrices.forEach(price => price.style.display = 'inline');
+      billingDisclaimers.forEach(disclaimer => disclaimer.style.display = 'block');
+    } else {
+      // Show monthly prices, hide disclaimers
+      monthlyPrices.forEach(price => price.style.display = 'inline');
+      annualPrices.forEach(price => price.style.display = 'none');
+      billingDisclaimers.forEach(disclaimer => disclaimer.style.display = 'none');
     }
   }
 
