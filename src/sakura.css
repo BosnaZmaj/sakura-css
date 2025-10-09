@@ -282,12 +282,74 @@
     min-height: 60vh !important;
   }
 
+
   .sakura-hero--compact .sakura-hero-title {
     padding-top: 2rem;
   }
 
   .sakura-hero--compact .sakura-hero-stats {
     padding-bottom: 4rem;
+  }
+
+  .sakura-hero--compact-centered .sakura-hero-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding-top: 0;
+    margin-top: -2rem;
+  }
+
+  .sakura-hero--compact-centered .sakura-hero-title {
+    padding-top: 0 !important;
+  }
+
+  .sakura-hero--compact-right .sakura-hero-content {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 100%;
+    padding-top: 6rem;
+  }
+
+  .sakura-hero--compact-left .sakura-hero-content {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    padding-top: 6rem;
+  }
+
+  .sakura-hero--compact-dark {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+    color: white;
+  }
+
+  .sakura-hero--compact-dark .sakura-hero-title {
+    color: white;
+  }
+
+  .sakura-hero--compact-dark .sakura-hero-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .sakura-hero--compact-minimal {
+    background: #ffffff;
+    min-height: 40vh !important;
+  }
+
+  .sakura-hero--compact-minimal .sakura-hero-title {
+    padding-top: 1rem;
+  }
+
+  .sakura-hero--compact-minimal .sakura-hero-stats {
+    padding-bottom: 2rem;
   }
 
   .sakura-hero::before {
@@ -3232,6 +3294,540 @@
     @apply text-sm text-gray-500 font-medium;
   }
 
+  /* Timeline Journey Design - Option 1 */
+  .sakura-about-story-timeline {
+    @apply py-20;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  .sakura-timeline-header {
+    @apply text-center mb-16;
+  }
+
+  .sakura-timeline-header h2 {
+    @apply text-4xl font-bold mb-4;
+    color: #1e2a3b;
+    background: linear-gradient(135deg, #5b8bf5 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sakura-timeline-header p {
+    @apply text-xl text-gray-600;
+  }
+
+  .sakura-timeline {
+    @apply relative max-w-5xl mx-auto;
+    padding: 3rem 0;
+  }
+
+  /* Timeline center line */
+  .sakura-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #5b8bf5 0%, #8b5cf6 100%);
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+
+  .sakura-timeline-item {
+    @apply relative mb-12;
+    display: flex;
+    align-items: center;
+  }
+
+  .sakura-timeline-item--left {
+    justify-content: flex-start;
+  }
+
+  .sakura-timeline-item--right {
+    justify-content: flex-end;
+  }
+
+  .sakura-timeline-badge {
+    @apply absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #5b8bf5 0%, #8b5cf6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(91, 139, 245, 0.3);
+  }
+
+  .sakura-timeline-year {
+    @apply text-white font-bold text-xl;
+  }
+
+  .sakura-timeline-card {
+    @apply bg-white rounded-2xl p-8;
+    width: calc(50% - 80px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .sakura-timeline-card.sakura-timeline-card--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sakura-timeline-item--left .sakura-timeline-card {
+    margin-right: auto;
+  }
+
+  .sakura-timeline-item--right .sakura-timeline-card {
+    margin-left: auto;
+  }
+
+  .sakura-timeline-icon {
+    @apply w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center;
+    background: linear-gradient(135deg, #5b8bf5 0%, #8b5cf6 100%);
+  }
+
+  .sakura-timeline-icon i {
+    @apply text-3xl text-white;
+  }
+
+  .sakura-timeline-card h3 {
+    @apply text-2xl font-bold mb-4 text-center;
+    color: #1e2a3b;
+  }
+
+  .sakura-timeline-card p {
+    @apply text-gray-700 leading-relaxed mb-4;
+  }
+
+  .sakura-timeline-highlight {
+    @apply bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-xl border-l-4 italic;
+    border-color: #5b8bf5;
+    color: #475569;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+
+  .sakura-timeline-stats {
+    @apply flex gap-4 mt-4;
+  }
+
+  .sakura-timeline-stat {
+    @apply flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg flex-1;
+  }
+
+  .sakura-timeline-stat i {
+    @apply text-blue-600;
+  }
+
+  .sakura-timeline-stat span {
+    @apply text-sm font-medium text-gray-700;
+  }
+
+  .sakura-timeline-card--future {
+    background: linear-gradient(135deg, #f0f7ff 0%, #f5f3ff 100%);
+    border: 2px solid #8b5cf6;
+  }
+
+  .sakura-timeline-vision {
+    @apply mt-4 p-4 bg-white rounded-lg border-2 border-purple-200;
+  }
+
+  .sakura-timeline-vision p {
+    @apply mb-0 text-gray-800;
+  }
+
+  .sakura-timeline-closing {
+    @apply mt-24 max-w-3xl mx-auto;
+  }
+
+  .sakura-closing-card {
+    @apply bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-12 text-center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .sakura-closing-card.sakura-closing-card--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Option 4: Style Adjustments - Enhanced colors, spacing, shadows */
+  .sakura-closing-card--styled {
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(240, 247, 255, 0.98) 30%,
+      rgba(252, 231, 243, 0.98) 70%,
+      rgba(255, 255, 255, 0.95) 100%
+    );
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    padding: 3rem;
+  }
+
+  .sakura-closing-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem;
+    filter: drop-shadow(0 8px 16px rgba(91, 139, 245, 0.25))
+            drop-shadow(0 4px 8px rgba(139, 92, 246, 0.2));
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .sakura-closing-card--styled .sakura-closing-logo {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 2.5rem;
+  }
+
+  .sakura-closing-card h3 {
+    @apply text-2xl font-bold mb-4;
+    color: #1e2a3b;
+  }
+
+  .sakura-closing-card--styled h3 {
+    @apply text-3xl font-bold mb-6;
+    color: #1e2a3b;
+    letter-spacing: -0.02em;
+  }
+
+  .sakura-closing-card p {
+    @apply text-lg text-gray-700 leading-relaxed;
+  }
+
+  .sakura-closing-card--styled p {
+    @apply text-lg text-gray-800 leading-relaxed;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Closing Card Option 1: Split Layout */
+  .sakura-closing-card--split {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-left p-16;
+  }
+
+  .sakura-closing-visual {
+    @apply flex items-center justify-center lg:justify-end;
+  }
+
+  .sakura-closing-card--split .sakura-closing-logo {
+    width: 180px;
+    height: 180px;
+    margin: 0;
+  }
+
+  .sakura-closing-content h3 {
+    @apply text-3xl font-bold mb-6;
+    color: #1e2a3b;
+  }
+
+  .sakura-closing-content p {
+    @apply text-lg text-gray-700 leading-relaxed mb-4;
+  }
+
+  .sakura-closing-highlight {
+    @apply flex items-center gap-3 mt-6 p-4 bg-white rounded-xl;
+    border-left: 4px solid #8b5cf6;
+  }
+
+  .sakura-closing-highlight i {
+    @apply text-2xl;
+    color: #8b5cf6;
+  }
+
+  .sakura-closing-highlight span {
+    @apply font-semibold;
+    color: #1e2a3b;
+  }
+
+  @media (max-width: 1024px) {
+    .sakura-closing-card--split {
+      @apply text-center;
+    }
+
+    .sakura-closing-visual {
+      @apply justify-center;
+    }
+
+    .sakura-closing-highlight {
+      @apply justify-center;
+    }
+  }
+
+  /* Closing Card Option 2: Visual Enhancements with Cherry Blossom Petals */
+  .sakura-closing-card--enhanced {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg,
+      rgba(240, 247, 255, 0.9) 0%,
+      rgba(245, 243, 255, 0.9) 50%,
+      rgba(252, 231, 243, 0.9) 100%
+    );
+  }
+
+  .sakura-petal {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, rgba(139, 92, 246, 0.2) 100%);
+    border-radius: 50% 0 50% 0;
+    opacity: 0.4;
+    animation: sakuraPetalFloat 20s ease-in-out infinite;
+  }
+
+  .sakura-petal-1 {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+    animation-duration: 18s;
+  }
+
+  .sakura-petal-2 {
+    top: 20%;
+    right: 8%;
+    animation-delay: 3s;
+    animation-duration: 22s;
+  }
+
+  .sakura-petal-3 {
+    bottom: 15%;
+    left: 10%;
+    animation-delay: 6s;
+    animation-duration: 20s;
+  }
+
+  .sakura-petal-4 {
+    top: 60%;
+    right: 12%;
+    animation-delay: 9s;
+    animation-duration: 19s;
+  }
+
+  .sakura-petal-5 {
+    bottom: 25%;
+    right: 20%;
+    animation-delay: 12s;
+    animation-duration: 21s;
+  }
+
+  @keyframes sakuraPetalFloat {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translate(10px, -10px) rotate(90deg) scale(1.2);
+    }
+    50% {
+      transform: translate(-5px, 5px) rotate(180deg) scale(0.9);
+    }
+    75% {
+      transform: translate(15px, 10px) rotate(270deg) scale(1.1);
+    }
+  }
+
+  /* Closing card quote */
+  .sakura-closing-quote {
+    @apply mb-8 p-8 rounded-xl relative;
+    background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.08) 0%,
+      rgba(139, 92, 246, 0.08) 100%);
+    border-left: 5px solid;
+    border-image: linear-gradient(180deg, #ec4899 0%, #8b5cf6 100%) 1;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
+  }
+
+  .sakura-closing-card--styled .sakura-closing-quote {
+    background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.1) 0%,
+      rgba(139, 92, 246, 0.1) 100%);
+    box-shadow:
+      0 8px 20px rgba(139, 92, 246, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .sakura-closing-quote i {
+    @apply text-5xl mb-4;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    opacity: 0.9;
+  }
+
+  .sakura-closing-quote p {
+    @apply text-xl font-medium italic m-0;
+    color: #374151;
+    line-height: 1.7;
+  }
+
+  /* Closing card philosophy text */
+  .sakura-closing-philosophy {
+    @apply mt-6 p-5 rounded-xl;
+    background: linear-gradient(135deg,
+      rgba(91, 139, 245, 0.08) 0%,
+      rgba(139, 92, 246, 0.08) 100%);
+    border: 1.5px solid rgba(139, 92, 246, 0.25);
+    box-shadow: 0 4px 12px rgba(91, 139, 245, 0.08);
+  }
+
+  .sakura-closing-card--styled .sakura-closing-philosophy {
+    background: linear-gradient(135deg,
+      rgba(91, 139, 245, 0.1) 0%,
+      rgba(139, 92, 246, 0.1) 100%);
+    border: 1.5px solid rgba(139, 92, 246, 0.3);
+    box-shadow:
+      0 6px 16px rgba(91, 139, 245, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+  }
+
+  /* Pillars section */
+  .sakura-pillars-section {
+    @apply mt-10;
+    padding: 2rem;
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(240, 247, 255, 0.3) 100%);
+    border-radius: 1.5rem;
+  }
+
+  .sakura-closing-card--styled .sakura-pillars-section {
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(240, 247, 255, 0.5) 100%);
+    box-shadow: 0 4px 12px rgba(91, 139, 245, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .sakura-pillars-section h4 {
+    @apply text-2xl font-bold text-center mb-8;
+    background: linear-gradient(135deg, #1e2a3b 0%, #5b8bf5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sakura-pillars {
+    @apply flex gap-12 justify-center items-start mt-12;
+  }
+
+  .sakura-pillar {
+    @apply flex flex-col items-center gap-3 flex-1;
+    max-width: 150px;
+  }
+
+  .sakura-pillar-icon {
+    @apply w-20 h-20 rounded-full flex items-center justify-center;
+    background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.12) 0%,
+      rgba(139, 92, 246, 0.12) 100%);
+    border: 2.5px solid rgba(139, 92, 246, 0.35);
+    transition: all 0.3s ease;
+    box-shadow: none;
+  }
+
+  .sakura-closing-card--styled .sakura-pillar-icon {
+    background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.15) 0%,
+      rgba(139, 92, 246, 0.15) 100%);
+    border: 3px solid rgba(139, 92, 246, 0.4);
+    box-shadow: none;
+  }
+
+  .sakura-pillar-icon i {
+    @apply text-3xl;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .sakura-pillar-icon svg {
+    display: block;
+  }
+
+  .sakura-pillar span {
+    @apply font-bold text-gray-800 text-center text-lg;
+  }
+
+  .sakura-pillar-description {
+    @apply text-sm text-gray-600 text-center mt-1 leading-relaxed;
+  }
+
+  /* Closing CTA */
+  .sakura-closing-cta {
+    @apply mt-10 pt-8 text-center;
+    border-top: 2px solid rgba(139, 92, 246, 0.15);
+  }
+
+  .sakura-closing-card--styled .sakura-closing-cta {
+    background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.03) 0%,
+      rgba(139, 92, 246, 0.03) 100%);
+    padding: 2rem;
+    border-radius: 1rem;
+    border-top: none;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
+  }
+
+  .sakura-closing-cta p {
+    @apply text-xl font-semibold mb-6;
+    background: linear-gradient(135deg, #1e2a3b 0%, #5b8bf5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  @media (max-width: 640px) {
+    .sakura-pillars {
+      @apply flex-col gap-6;
+    }
+  }
+
+  /* Mobile responsive for timeline */
+  @media (max-width: 768px) {
+    .sakura-timeline::before {
+      left: 30px;
+    }
+
+    .sakura-timeline-badge {
+      left: 30px;
+      width: 60px;
+      height: 60px;
+    }
+
+    .sakura-timeline-year {
+      font-size: 0.9rem;
+    }
+
+    .sakura-timeline-item {
+      justify-content: flex-end !important;
+    }
+
+    .sakura-timeline-card {
+      width: calc(100% - 100px);
+      margin-left: auto !important;
+      margin-right: 0 !important;
+    }
+
+    .sakura-timeline-stats {
+      flex-direction: column;
+    }
+  }
+
   .sakura-about-values {
     @apply py-20 bg-gray-50;
   }
@@ -3255,19 +3851,23 @@
 
   .sakura-value-card {
     @apply bg-white p-8 rounded-2xl text-center;
-    transition: transform 0.3s ease;
-  }
-
-  .sakura-value-card:hover {
-    transform: translateY(-4px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   }
 
   .sakura-value-icon {
-    @apply w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center;
+    @apply w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center;
+    background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.15) 0%,
+      rgba(139, 92, 246, 0.15) 100%);
+    border: 3px solid rgba(139, 92, 246, 0.4);
   }
 
   .sakura-value-icon i {
-    @apply text-2xl text-blue-600;
+    @apply text-3xl;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .sakura-value-card h3 {

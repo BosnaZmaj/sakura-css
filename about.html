@@ -35,33 +35,191 @@
     </nav>
 
     <!-- About Hero -->
-    <section class="sakura-about-hero">
+    <section class="sakura-hero sakura-hero--compact sakura-hero--compact-centered">
         <div class="sakura-container">
-            <div class="sakura-about-hero-content">
-                <h1>Making personal finance beautiful and simple</h1>
-                <p>We believe everyone deserves to feel confident about their money. That's why we created Sakura Budget - to transform the way people think about and manage their finances.</p>
+            <div class="sakura-hero-content">
+                <h1 class="sakura-hero-title">Building the envelope budgeting app we've all been waiting for</h1>
+                <p class="sakura-hero-subtitle">Born from 16 years of frustration with complicated budgeting tools, Sakura Budget is being built to the highest security and usability standards. We're in alpha now because we refuse to launch until it's genuinely better than everything else out there.</p>
             </div>
+        </div>
+
+        <!-- Wave Transition -->
+        <div class="sakura-hero-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="sakura-wave-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="sakura-wave-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background feathering wave -->
+                <path fill="url(#sakura-wave-gradient-2)"
+                      d="M0,40 C150,90 350,20 600,50 C850,80 1050,10 1200,40 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Main wave -->
+                <path fill="url(#sakura-wave-gradient-1)"
+                      d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Top feathering wave for smooth morphing -->
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,80 C200,30 400,110 600,70 C800,30 1000,100 1200,60 L1200,120 L0,120 Z">
+                </path>
+            </svg>
         </div>
     </section>
 
-    <!-- Company Story -->
-    <section class="sakura-about-story">
+    <!-- Company Story - Timeline Journey Design -->
+    <section class="sakura-about-story-timeline">
         <div class="sakura-container">
-            <div class="sakura-story-grid">
-                <div class="sakura-story-content">
-                    <h2>Our Story</h2>
-                    <p>Sakura Budget was born from a simple frustration: traditional budgeting tools felt overwhelming, complicated, and out of touch with real life. After years of struggling with spreadsheets and apps that promised everything but delivered stress, our founders decided to create something different.</p>
+            <div class="sakura-timeline-header">
+                <h2>A 16-Year Journey to Better Budgeting</h2>
+                <p>From frustrated user to determined founder - the story of Sakura Budget</p>
+            </div>
 
-                    <p>Inspired by the Japanese philosophy of mindful simplicity - embodied by the delicate beauty of sakura blossoms - we set out to build a budgeting tool that would feel as natural as breathing. We wanted to strip away the complexity and create something that actually helps people build a healthy relationship with money.</p>
+            <!-- Timeline Container -->
+            <div class="sakura-timeline">
 
-                    <p>Today, over 15,000 families trust Sakura Budget to manage their finances. But we're just getting started. Our mission remains the same: to make personal finance beautiful, simple, and accessible to everyone.</p>
+                <!-- Milestone 1: 2009 Discovery -->
+                <div class="sakura-timeline-item sakura-timeline-item--left">
+                    <div class="sakura-timeline-badge">
+                        <span class="sakura-timeline-year">2009</span>
+                    </div>
+                    <div class="sakura-timeline-card">
+                        <div class="sakura-timeline-icon">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h3>The Discovery</h3>
+                        <p>Indy discovers envelope budgeting through a simple desktop program. For the first time, personal finance makes sense. Everything clicks.</p>
+                        <div class="sakura-timeline-highlight">
+                            "Finally, a budgeting method that actually works with how my brain thinks about money."
+                        </div>
+                    </div>
                 </div>
-                <div class="sakura-story-visual">
-                    <div class="sakura-story-image">
-                        <img src="src/sakura-logo.svg" alt="Sakura Budget Philosophy" class="sakura-story-logo">
-                        <div class="sakura-story-quote">
-                            <blockquote>"Like cherry blossoms that bloom with perfect timing, good financial habits flourish when nurtured with the right tools."</blockquote>
-                            <cite>— Sakura Budget Philosophy</cite>
+
+                <!-- Milestone 2: 2009-2022 The Long Search -->
+                <div class="sakura-timeline-item sakura-timeline-item--right">
+                    <div class="sakura-timeline-badge">
+                        <span class="sakura-timeline-year">2022</span>
+                    </div>
+                    <div class="sakura-timeline-card">
+                        <div class="sakura-timeline-icon">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <h3>The Search</h3>
+                        <p>After 13 years of loyalty, the original desktop app shows its age. The search begins for a modern replacement - YNAB, Monarch, Copilot, Goodbudget. Nothing fits.</p>
+                        <div class="sakura-timeline-highlight">
+                            "They were either too complicated, abandoned envelope budgeting, or left me more confused than before."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Milestone 3: 2022-2023 The Decision -->
+                <div class="sakura-timeline-item sakura-timeline-item--left">
+                    <div class="sakura-timeline-badge">
+                        <span class="sakura-timeline-year">2023</span>
+                    </div>
+                    <div class="sakura-timeline-card">
+                        <div class="sakura-timeline-icon">
+                            <i class="bi bi-hammer"></i>
+                        </div>
+                        <h3>The Decision</h3>
+                        <p>After trying everything available, the answer becomes clear: build it yourself. As a cybersecurity expert and Senior Software Engineer at FIS Global, Indy has the skills. Multiple iterations follow - from Excel to standalone app to full web platform.</p>
+                        <div class="sakura-timeline-stats">
+                            <div class="sakura-timeline-stat">
+                                <i class="bi bi-shield-check"></i>
+                                <span>Security-First Design</span>
+                            </div>
+                            <div class="sakura-timeline-stat">
+                                <i class="bi bi-people"></i>
+                                <span>Parent-Tested Simplicity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Milestone 4: 2025 The Alpha Stage -->
+                <div class="sakura-timeline-item sakura-timeline-item--right">
+                    <div class="sakura-timeline-badge">
+                        <span class="sakura-timeline-year">2025</span>
+                    </div>
+                    <div class="sakura-timeline-card">
+                        <div class="sakura-timeline-icon">
+                            <i class="bi bi-code-square"></i>
+                        </div>
+                        <h3>The Alpha Stage</h3>
+                        <p>Three years of development culminate in a full web platform entering final alpha. Every feature tested against one standard: "If my parents can't figure it out easily, we're doing something wrong."</p>
+                        <div class="sakura-timeline-highlight">
+                            "No accounting degree required, no complicated tutorials - just simple, secure envelope budgeting that actually works."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Milestone 5: 2026 Beta & Beyond -->
+                <div class="sakura-timeline-item sakura-timeline-item--left">
+                    <div class="sakura-timeline-badge">
+                        <span class="sakura-timeline-year">2026</span>
+                    </div>
+                    <div class="sakura-timeline-card sakura-timeline-card--future">
+                        <div class="sakura-timeline-icon">
+                            <i class="bi bi-rocket-takeoff"></i>
+                        </div>
+                        <h3>Beta & Beyond</h3>
+                        <p>Sakura Budget prepares for beta testing. Built from the ground up with security at every layer, designed to be intuitive enough that anyone can use it, and refined through years of real-world budgeting experience.</p>
+                        <div class="sakura-timeline-vision">
+                            <p><strong>The Vision:</strong> Make envelope budgeting accessible to everyone, without compromising on security or simplicity.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Cherry Blossom Meaning - Option 4: Style Adjustments (Minimal) -->
+            <div class="sakura-timeline-closing">
+                <div class="sakura-closing-card sakura-closing-card--styled">
+                    <h3>Why "Sakura"?</h3>
+                    <p>The name comes from cherry blossoms - a symbol of beauty and calm that counteracts the stress and anxiety of managing finances. Just like cherry blossoms bloom with perfect timing, good financial habits flourish when nurtured with the right tools.</p>
+
+                    <!-- Three pillars with icons only -->
+                    <div class="sakura-pillars">
+                        <div class="sakura-pillar">
+                            <div class="sakura-pillar-icon">
+                                <svg viewBox="0 0 260 260" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="cherry-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <g>
+                                        <path fill="none" stroke="url(#cherry-gradient)" stroke-width="7" stroke-miterlimit="10" d="M102.79,120.46c-.53,1.18-1.3,3.16-1.7,5.69-.67,4.24,1.44,9.16,1.44,9.16,0,0-23.31,7.73-42.77,2.07-6.15-1.79-22.14-6.43-27.19-19.12-.62-1.55-3.52-8.84,0-13.13,3.99-4.87,14.57-5.53,14.57-5.53,0,0-9.25-8.39-8.52-13.39.96-6.58,21.79-12.73,40.35-8.02,21.68,5.51,33.23,26.85,33.23,26.85,0,0-3.64,2.98-5.66,5.78-1.85,2.57-2.39,5.21-2.39,5.21,0,0-10.6-2.32-11.74-3-4.11-2.46-3.68-3.67-7.41-4.26-2.4-.38-5.43,1.54-5.9,3.95-.51,2.61,2.18,5.12,4.59,5.94,2.78.94,4.52-.61,8.16-.95,2.54-.24,6.21.08,10.93,2.76h0Z"/>
+                                        <path fill="none" stroke="url(#cherry-gradient)" stroke-width="7" stroke-miterlimit="10" d="M106.38,145.03c1.25,2.08,2.65,3.52,2.96,3.84.58.59,1.11,1.06,1.51,1.39,0,0-3.22,5.35-6.83,8.14-3.48,2.68-4.93,2.76-6.43,4.47-1.64,1.87-.56,5.51,1.65,7.21,1.82,1.4,4.47,1.56,6.33.19,2.02-1.48,1.57-3.43,3.21-8.42,1.42-4.3,5.2-8.79,5.2-8.79,1.7,1.58,4.31,3.52,7.82,4.22,3.44.69,7.14.2,7.14.2,0,0,1.18,17.91-5.11,29.93-2.29,4.38-6.88,11.62-15.26,17.65-6.11,4.39-20.06,12.32-25.54,7.65-4.6-3.92-.11-16.44-.11-16.44,0,0-14.02,6.06-17.85,2.2-4.23-4.26-4.82-17.06-1.5-27.31,3.98-12.29,12.14-19.21,17.01-23.34,8.65-7.34,22.69-11.07,22.69-11.07,0,0,.76,4.36,3.12,8.28h-.01Z"/>
+                                        <path fill="none" stroke="url(#cherry-gradient)" stroke-width="7" stroke-miterlimit="10" d="M178.82,111.59c-.84-2.53-3.85-3.42-5.8-3.11-1.72.28-2.47,1.45-4,2.93-3.13,3.04-12.08,5.53-12.08,5.53,0,0-1.42-3.15-4.04-6.27-2.29-2.72-4.52-4.79-4.52-4.79,0,0,8.43-20.68,25.48-27.01,4.61-1.71,16.21-7.23,28.83-4.27,6.12,1.43,9.5,4.06,11.44,6.04,1.59,1.62,4.74,5.47,4.84,9.61.12,5.23-8.35,8.62-8.35,8.62,0,0,9.38,2.33,12.43,6.85,3.79,5.6-1.78,15.72-2.67,17.33-7.11,12.91-20.96,16.76-25.58,17.97-16.78,4.39-37.44-4.45-37.44-4.45,0,0,2.87-5.15,2.46-9-.47-4.37-1.9-7.55-1.9-7.55,0,0,7.63-3.35,12.79-2.78,2.61.29,4.12,1.05,5.81.03,1.62-.98,3.06-3.38,2.3-5.68h0Z"/>
+                                        <path fill="none" stroke="url(#cherry-gradient)" stroke-width="7" stroke-miterlimit="10" d="M131.39,158.4s3.86.28,7.18-.72c3.5-1.05,5.9-2.91,5.9-2.91,0,0,4.36,3.95,6.21,7.72,1.78,3.64,1.54,4.94,2.83,6.62,1.41,1.83,5.08,1.62,7.17,0,1.72-1.33,2.44-3.65,1.55-5.58-.96-2.1-2.9-2.09-7.25-4.56-3.75-2.13-7.18-6.41-7.18-6.41,0,0,2.93-2.41,5.67-6.08,3.05-4.08,3.5-8.38,3.5-8.38,0,0,23.28,3.82,34.21,19.48,11.27,16.14,10.81,36.53,5.85,42.22-2.83,3.24-14.55-2.97-14.55-2.97,0,0,.02,11.13-3,14.92-4.5,5.67-25.54,1.57-37.97-11.73-14.52-15.54-10.14-41.62-10.14-41.62h.02Z"/>
+                                        <path fill="none" stroke="url(#cherry-gradient)" stroke-width="7" stroke-miterlimit="10" d="M129.99,78.64c-2.5-.02-4.2,2.52-4.5,4.45-.27,1.7.55,2.77,1.4,4.67,1.75,3.9.84,12.87.84,12.87,0,0-4.34-.62-7.91.85-3.1,1.28-5.65,3.29-5.65,3.29,0,0-14.23-13.88-14.73-31.85-.14-4.86-1.55-17.46,4.87-28.35,3.11-5.28,6.46-7.61,8.8-8.8,1.92-.98,6.52-3.32,9.99-1.48,4.23,2.23,5.93,9.27,5.93,9.27,0,0,4.11-6.76,9.04-8.19,6.11-1.77,13.43,6.65,14.59,7.99,9.33,10.74,8.58,24.93,8.27,29.64-1.15,17.1-15.03,31.77-15.03,31.77,0,0-2.52-2.21-6.06-3.05-4.02-.95-7.27-.21-7.27-.21,0,0-2.06-8.83,0-13.48,1.04-2.35,2.17-3.53,1.77-5.43-.38-1.82-2.08-3.94-4.35-3.95h0Z"/>
+                                        <path fill="none" stroke="url(#cherry-gradient)" stroke-width="7" stroke-miterlimit="10" d="M130.15,99.47h0c16.74,0,30.31,13.57,30.31,30.31h0c0,16.74-13.57,30.31-30.31,30.31h0c-16.74,0-30.31-13.57-30.31-30.31h0c0-16.74,13.57-30.31,30.31-30.31Z"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <span>Beauty</span>
+                        </div>
+                        <div class="sakura-pillar">
+                            <div class="sakura-pillar-icon">
+                                <i class="bi bi-heart-pulse"></i>
+                            </div>
+                            <span>Calm</span>
+                        </div>
+                        <div class="sakura-pillar">
+                            <div class="sakura-pillar-icon">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                            <span>Perfect Timing</span>
                         </div>
                     </div>
                 </div>
@@ -118,20 +276,20 @@
         <div class="sakura-container">
             <div class="sakura-stats-grid">
                 <div class="sakura-stat-item">
-                    <div class="sakura-stat-number">15,000+</div>
-                    <div class="sakura-stat-label">Happy Families</div>
+                    <div class="sakura-stat-number">3+ Years</div>
+                    <div class="sakura-stat-label">In Active Development</div>
                 </div>
                 <div class="sakura-stat-item">
-                    <div class="sakura-stat-number">$2.4M+</div>
-                    <div class="sakura-stat-label">Money Managed</div>
+                    <div class="sakura-stat-number">16 Years</div>
+                    <div class="sakura-stat-label">Envelope Budgeting Experience</div>
                 </div>
                 <div class="sakura-stat-item">
-                    <div class="sakura-stat-number">47%</div>
-                    <div class="sakura-stat-label">Average Savings Increase</div>
+                    <div class="sakura-stat-number">5+ Iterations</div>
+                    <div class="sakura-stat-label">From Concept to Web Platform</div>
                 </div>
                 <div class="sakura-stat-item">
-                    <div class="sakura-stat-number">4.8/5</div>
-                    <div class="sakura-stat-label">User Rating</div>
+                    <div class="sakura-stat-number">100%</div>
+                    <div class="sakura-stat-label">Focus on Security & UX</div>
                 </div>
             </div>
         </div>
@@ -141,54 +299,30 @@
     <section class="sakura-about-team">
         <div class="sakura-container">
             <div class="sakura-team-header">
-                <h2>Meet Our Team</h2>
-                <p>The passionate people behind Sakura Budget</p>
+                <h2>Meet the Founder</h2>
+                <p>Building Sakura Budget with passion and expertise</p>
             </div>
 
-            <div class="sakura-team-grid">
+            <div class="sakura-team-grid" style="max-width: 600px; margin: 0 auto;">
                 <div class="sakura-team-card">
                     <div class="sakura-team-photo">
                         <div class="sakura-team-placeholder">
                             <i class="bi bi-person-circle"></i>
                         </div>
                     </div>
-                    <h3>Sarah Chen</h3>
-                    <p class="sakura-team-role">Co-Founder & CEO</p>
-                    <p class="sakura-team-bio">Former financial advisor who experienced the pain of traditional budgeting tools firsthand. Sarah leads our mission to make finance accessible to everyone.</p>
+                    <h3>Indy Subasic</h3>
+                    <p class="sakura-team-role">Founder & Lead Developer</p>
+                    <p class="sakura-team-bio">Cybersecurity expert and Senior Software Engineer at FIS Global with 16 years of envelope budgeting experience. US Army veteran with a Master's degree in Cybersecurity from the University of Delaware. Building the budgeting tool he's always wanted to use.</p>
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0;">
+                        <p style="font-style: italic; color: #64748b; font-size: 0.95rem;">"I'm building Sakura Budget to my own high standards. If it's not good enough for me to use every day, it won't ship. Every feature, every security decision, every design choice is made with real users in mind - because I am one."</p>
+                    </div>
                 </div>
+            </div>
 
-                <div class="sakura-team-card">
-                    <div class="sakura-team-photo">
-                        <div class="sakura-team-placeholder">
-                            <i class="bi bi-person-circle"></i>
-                        </div>
-                    </div>
-                    <h3>Marcus Rodriguez</h3>
-                    <p class="sakura-team-role">Co-Founder & CTO</p>
-                    <p class="sakura-team-bio">Full-stack engineer with a passion for user experience. Marcus ensures our platform is both powerful and beautifully simple.</p>
-                </div>
-
-                <div class="sakura-team-card">
-                    <div class="sakura-team-photo">
-                        <div class="sakura-team-placeholder">
-                            <i class="bi bi-person-circle"></i>
-                        </div>
-                    </div>
-                    <h3>Elena Nakamura</h3>
-                    <p class="sakura-team-role">Head of Design</p>
-                    <p class="sakura-team-bio">Design veteran with expertise in financial UX. Elena crafts the delightful experiences that make budgeting feel effortless.</p>
-                </div>
-
-                <div class="sakura-team-card">
-                    <div class="sakura-team-photo">
-                        <div class="sakura-team-placeholder">
-                            <i class="bi bi-person-circle"></i>
-                        </div>
-                    </div>
-                    <h3>James Wright</h3>
-                    <p class="sakura-team-role">Head of Customer Success</p>
-                    <p class="sakura-team-bio">Customer advocate who ensures every user feels supported on their financial journey. James leads our world-class support team.</p>
-                </div>
+            <div style="margin-top: 4rem; text-align: center; padding: 3rem; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 1.5rem;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #1e2a3b;">Join Our Team</h3>
+                <p style="font-size: 1.1rem; color: #475569; max-width: 600px; margin: 0 auto 1.5rem;">We're in alpha and looking for passionate individuals who believe in making personal finance accessible. Interested in design, customer success, or engineering?</p>
+                <a href="mailto:contact@sakurabudget.com" class="sakura-btn sakura-btn--primary" style="display: inline-flex;">Get In Touch</a>
             </div>
         </div>
     </section>
@@ -198,28 +332,30 @@
         <div class="sakura-container">
             <div class="sakura-mission-content">
                 <h2>Our Mission</h2>
-                <p class="sakura-mission-statement">To democratize financial wellness by creating tools that are beautiful, intuitive, and empowering - making it possible for anyone to build a healthy relationship with money, regardless of their background or experience.</p>
+                <p class="sakura-mission-statement">To create the most intuitive and secure envelope budgeting platform - one that makes personal finance so simple and clear that anyone can build healthy financial habits without stress, confusion, or compromise on security.</p>
+
+                <p style="text-align: center; color: #64748b; max-width: 700px; margin: 2rem auto 3rem; font-size: 1.1rem;">Born from 16 years of frustration with existing tools, we're building Sakura Budget to the standards we'd want for ourselves. We're in alpha now because we refuse to launch until it's truly ready - security-first, beautifully simple, and genuinely better than everything else out there.</p>
 
                 <div class="sakura-mission-goals">
                     <div class="sakura-goal-item">
-                        <i class="bi bi-target"></i>
+                        <i class="bi bi-shield-lock"></i>
                         <div>
-                            <h4>Financial Literacy</h4>
-                            <p>Help people understand their money through clear, actionable insights</p>
+                            <h4>Security from Day One</h4>
+                            <p>Bank-level security built into every layer, not added as an afterthought</p>
                         </div>
                     </div>
                     <div class="sakura-goal-item">
-                        <i class="bi bi-graph-up"></i>
+                        <i class="bi bi-lightning"></i>
                         <div>
-                            <h4>Sustainable Habits</h4>
-                            <p>Build tools that encourage long-term financial health, not quick fixes</p>
+                            <h4>Intuitive Simplicity</h4>
+                            <p>No accounting degree needed - if your parents can't use it easily, it's not ready</p>
                         </div>
                     </div>
                     <div class="sakura-goal-item">
                         <i class="bi bi-heart-pulse"></i>
                         <div>
-                            <h4>Stress Reduction</h4>
-                            <p>Transform anxiety about money into confidence and peace of mind</p>
+                            <h4>Stress-Free Finances</h4>
+                            <p>Transform budgeting from anxiety-inducing to empowering and calm</p>
                         </div>
                     </div>
                 </div>
@@ -231,12 +367,13 @@
     <section class="sakura-about-cta">
         <div class="sakura-container">
             <div class="sakura-cta-content">
-                <h2>Ready to join our community?</h2>
-                <p>Join thousands of families who've transformed their financial lives with Sakura Budget</p>
+                <h2>Be part of our journey from the beginning</h2>
+                <p>We're in alpha now and preparing for beta testing. Join our waitlist to be among the first to experience envelope budgeting done right - secure, simple, and built by someone who actually uses it.</p>
                 <div class="sakura-cta-buttons">
-                    <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">Start Your Journey</a>
-                    <a href="pricing.html" class="sakura-btn sakura-btn--ghost sakura-btn--lg">View Pricing</a>
+                    <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">Join Beta Waitlist</a>
+                    <a href="index.html" class="sakura-btn sakura-btn--ghost sakura-btn--lg">Learn More</a>
                 </div>
+                <p style="margin-top: 1.5rem; color: #64748b; font-size: 0.95rem;">Early access • Priority support • Shape the future of Sakura Budget</p>
             </div>
         </div>
     </section>
