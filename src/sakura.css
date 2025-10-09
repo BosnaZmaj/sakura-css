@@ -4991,4 +4991,582 @@
     }
   }
 
+  /* ==========================================
+     Authentication Styles
+     ========================================== */
+
+  .sakura-auth-body {
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .sakura-auth-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(30, 42, 59, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(91, 139, 245, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .sakura-auth-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sakura-auth-header {
+    @apply px-6 pt-6;
+  }
+
+  .sakura-auth-header .sakura-navbar-brand {
+    display: inline-flex;
+  }
+
+  .sakura-auth-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 2rem 1.5rem 1.5rem;
+    align-items: center;
+  }
+
+  .sakura-auth-form-container {
+    max-width: 480px;
+    margin: 0 auto;
+    animation: sakuraSlideUp 0.6s ease;
+  }
+
+  .sakura-auth-form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .sakura-auth-form-header h1 {
+    @apply text-3xl font-bold mb-3;
+    color: #1e293b;
+  }
+
+  .sakura-auth-form-header p {
+    @apply text-lg;
+    color: #64748b;
+    margin-bottom: 0;
+  }
+
+  .sakura-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sakura-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sakura-form-label {
+    @apply font-medium text-sm;
+    color: #334155;
+  }
+
+  .sakura-form-input {
+    @apply px-4 py-3 rounded-lg border;
+    border-color: #e2e8f0;
+    background: #ffffff;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .sakura-form-input:focus {
+    outline: none;
+    border-color: #5b8bf5;
+    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-form-input::placeholder {
+    color: #94a3b8;
+  }
+
+  .sakura-password-input {
+    position: relative;
+  }
+
+  .sakura-password-toggle {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-password-toggle:hover {
+    color: #64748b;
+  }
+
+  .sakura-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #64748b;
+    cursor: pointer;
+    line-height: 1.5;
+  }
+
+  .sakura-checkbox-label input[type="checkbox"] {
+    display: none;
+  }
+
+  .sakura-checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e1;
+    border-radius: 0.375rem;
+    background: #ffffff;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s ease;
+    margin-top: 1px;
+  }
+
+  .sakura-checkbox-label:hover .sakura-checkmark {
+    border-color: #5b8bf5;
+  }
+
+  .sakura-checkbox-label input[type="checkbox"]:checked + .sakura-checkmark {
+    background: #5b8bf5;
+    border-color: #5b8bf5;
+  }
+
+  .sakura-checkbox-label input[type="checkbox"]:checked + .sakura-checkmark::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .sakura-form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .sakura-link {
+    color: #5b8bf5;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .sakura-link:hover {
+    color: #4f7df3;
+    text-decoration: underline;
+  }
+
+  .sakura-auth-submit {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sakura-btn-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .sakura-loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: sakuraSpin 1s linear infinite;
+  }
+
+  .sakura-auth-divider {
+    position: relative;
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+
+  .sakura-auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e2e8f0;
+  }
+
+  .sakura-auth-divider span {
+    background: #ffffff;
+    padding: 0 1rem;
+    color: #64748b;
+    font-size: 0.875rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sakura-social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .sakura-social-btn {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .sakura-auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .sakura-auth-footer p {
+    color: #64748b;
+    margin-bottom: 0;
+  }
+
+  .sakura-auth-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    animation: sakuraFadeIn 0.8s ease 0.2s both;
+  }
+
+  .sakura-visual-content {
+    max-width: 500px;
+    text-align: center;
+  }
+
+  .sakura-visual-content h2 {
+    @apply text-3xl font-bold mb-3;
+    color: #1e293b;
+    line-height: 1.2;
+  }
+
+  .sakura-auth-visual-subtitle {
+    @apply text-lg mb-8;
+    color: #64748b;
+    line-height: 1.6;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sakura-dashboard-preview--login {
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+  }
+
+  .sakura-dashboard-preview--login .sakura-dashboard-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .sakura-dashboard-preview-mini {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .sakura-mini-header {
+    background: #f8fafc;
+    padding: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sakura-mini-dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .sakura-mini-badge {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    background: rgba(91, 139, 245, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .sakura-mini-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+  }
+
+  .sakura-mini-dots span:first-child {
+    background-color: #ff5f57;
+  }
+
+  .sakura-mini-dots span:nth-child(2) {
+    background-color: #ffbd2e;
+  }
+
+  .sakura-mini-dots span:last-child {
+    background-color: #28ca42;
+  }
+
+  .sakura-mini-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .sakura-mini-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+  }
+
+  .sakura-mini-label {
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+
+  .sakura-mini-value {
+    @apply font-bold;
+    color: #5b8bf5;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .sakura-mini-envelope {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s ease;
+  }
+
+  .sakura-mini-envelope:hover {
+    background: rgba(248, 250, 252, 0.5);
+  }
+
+  .sakura-mini-env-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sakura-mini-env-header i {
+    font-size: 0.875rem;
+    color: #5b8bf5;
+  }
+
+  .sakura-mini-env-name {
+    @apply font-medium text-sm;
+    color: #334155;
+  }
+
+  .sakura-mini-env-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sakura-mini-env-amount {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .sakura-mini-progress {
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .sakura-mini-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #5b8bf5, #8b5cf6);
+    border-radius: 3px;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-mini-progress-animate {
+    animation: sakuraProgressFill 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes sakuraProgressFill {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--target-width);
+    }
+  }
+
+  .sakura-login-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sakura-benefit {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+  }
+
+  .sakura-benefit-icon {
+    font-size: 1.25rem;
+    background: linear-gradient(135deg, #5b8bf5, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sakura-benefit span {
+    color: #334155;
+    font-weight: 500;
+  }
+
+  /* Auth Animations */
+  @keyframes sakuraSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes sakuraFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes sakuraSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Auth Responsive Design */
+  @media (max-width: 1024px) {
+    .sakura-auth-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .sakura-auth-visual {
+      order: -1;
+      padding: 1rem;
+    }
+
+    .sakura-visual-content h2 {
+      @apply text-2xl;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sakura-auth-content {
+      padding: 1rem 1rem 1.5rem;
+    }
+
+    .sakura-auth-header {
+      @apply px-4 pt-4;
+    }
+
+    .sakura-auth-form-header h1 {
+      @apply text-2xl;
+    }
+
+    .sakura-form-options {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sakura-auth-content {
+      padding: 0.75rem;
+    }
+
+    .sakura-auth-header {
+      @apply px-3 pt-3;
+    }
+
+    .sakura-auth-form-container {
+      max-width: 100%;
+    }
+
+    .sakura-visual-content {
+      max-width: 100%;
+    }
+
+    .sakura-social-buttons {
+      gap: 0.5rem;
+    }
+
+    .sakura-social-btn {
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+    }
+  }
+
 }
