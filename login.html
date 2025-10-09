@@ -30,16 +30,23 @@
                 <form class="sakura-auth-form" id="loginForm">
                     <div class="sakura-form-group">
                         <label for="email" class="sakura-form-label">Email Address</label>
-                        <input type="email" id="email" name="email" class="sakura-form-input" placeholder="jane@example.com" required>
+                        <div class="sakura-input-wrapper">
+                            <input type="email" id="email" name="email" class="sakura-form-input sakura-input-with-icon" placeholder="jane@example.com" required>
+                            <i class="bi bi-envelope sakura-input-icon"></i>
+                            <i class="bi bi-check-circle-fill sakura-input-success-icon"></i>
+                        </div>
                     </div>
 
                     <div class="sakura-form-group">
                         <label for="password" class="sakura-form-label">Password</label>
                         <div class="sakura-password-input">
-                            <input type="password" id="password" name="password" class="sakura-form-input" placeholder="Enter your password" required>
-                            <button type="button" class="sakura-password-toggle" onclick="togglePassword()">
-                                <i class="bi bi-eye"></i>
-                            </button>
+                            <div class="sakura-input-wrapper">
+                                <input type="password" id="password" name="password" class="sakura-form-input sakura-input-with-icon" placeholder="Enter your password" required>
+                                <i class="bi bi-lock sakura-input-icon"></i>
+                                <button type="button" class="sakura-password-toggle" onclick="togglePassword()">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -53,7 +60,7 @@
                     </div>
 
                     <button type="submit" class="sakura-btn sakura-btn--primary sakura-btn--lg sakura-auth-submit">
-                        Sign In
+                        <span>Sign In</span>
                         <div class="sakura-btn-loading" style="display: none;">
                             <div class="sakura-loading-spinner"></div>
                         </div>
@@ -116,11 +123,57 @@
             }
         }
 
+        // Email validation
+        const emailInput = document.getElementById('email');
+        emailInput.addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(this.value)) {
+                this.classList.add('success');
+                this.classList.remove('error');
+            } else if (this.value.length > 0) {
+                this.classList.add('error');
+                this.classList.remove('success');
+            }
+        });
+
+        emailInput.addEventListener('input', function() {
+            if (this.value.length === 0) {
+                this.classList.remove('success', 'error');
+            }
+        });
+
+        // Password validation (basic length check)
+        const passwordInput = document.getElementById('password');
+        passwordInput.addEventListener('blur', function() {
+            if (this.value.length >= 8) {
+                this.classList.add('success');
+                this.classList.remove('error');
+            } else if (this.value.length > 0) {
+                this.classList.add('error');
+                this.classList.remove('success');
+            }
+        });
+
+        passwordInput.addEventListener('input', function() {
+            if (this.value.length === 0) {
+                this.classList.remove('success', 'error');
+            }
+        });
+
         // Form submission handler
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Add login logic here
-            console.log('Login form submitted');
+
+            // Add loading state
+            const submitBtn = this.querySelector('.sakura-auth-submit');
+            submitBtn.classList.add('loading');
+
+            // Simulate login
+            setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                console.log('Login form submitted');
+                // Add your login logic here
+            }, 2000);
         });
     </script>
 </body>

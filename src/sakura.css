@@ -5045,7 +5045,59 @@
   .sakura-auth-form-container {
     max-width: 480px;
     margin: 0 auto;
-    animation: sakuraSlideUp 0.6s ease;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow:
+      0 4px 12px -2px rgba(91, 139, 245, 0.08),
+      0 2px 6px -1px rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(20px) saturate(180%);
+    position: relative;
+    overflow: hidden;
+    animation: sakuraSlideUp 0.6s ease, sakuraFormFloat 6s ease-in-out 0.6s infinite;
+  }
+
+  /* Top gradient accent stripe */
+  .sakura-auth-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #5B8BF5 0%, #8B5CF6 50%, #5B8BF5 100%);
+    background-size: 200% 100%;
+    animation: sakuraGradientFlow 3s ease-in-out infinite;
+  }
+
+  /* Subtle radial glow in corner */
+  .sakura-auth-form-container::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(91, 139, 245, 0.08) 0%, transparent 60%);
+    filter: blur(40px);
+    pointer-events: none;
+    animation: sakuraGlowPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes sakuraFormFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+  }
+
+  @keyframes sakuraGradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes sakuraGlowPulse {
+    0%, 100% { opacity: 0.08; transform: scale(1); }
+    50% { opacity: 0.15; transform: scale(1.1); }
   }
 
   .sakura-auth-form-header {
@@ -5056,6 +5108,26 @@
   .sakura-auth-form-header h1 {
     @apply text-3xl font-bold mb-3;
     color: #1e293b;
+    position: relative;
+    display: inline-block;
+  }
+
+  .sakura-auth-form-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #5B8BF5, #8B5CF6);
+    border-radius: 2px;
+    animation: sakuraUnderlineGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes sakuraUnderlineGlow {
+    0%, 100% { opacity: 1; width: 60px; }
+    50% { opacity: 0.6; width: 80px; }
   }
 
   .sakura-auth-form-header p {
@@ -5084,20 +5156,130 @@
   .sakura-form-input {
     @apply px-4 py-3 rounded-lg border;
     border-color: #e2e8f0;
-    background: #ffffff;
+    border-width: 2px;
+    background: rgba(255, 255, 255, 0.9);
     font-size: 1rem;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: 'Poppins', sans-serif;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    position: relative;
+    width: 100%;
+  }
+
+  .sakura-form-input:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 6px rgba(91, 139, 245, 0.06);
   }
 
   .sakura-form-input:focus {
     outline: none;
-    border-color: #5b8bf5;
-    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
+    border-color: #5B8BF5;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow:
+      0 0 0 4px rgba(91, 139, 245, 0.08),
+      0 4px 12px rgba(91, 139, 245, 0.12);
+  }
+
+  /* Success state */
+  .sakura-form-input.success {
+    border-color: #10b981;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .sakura-form-input.success:focus {
+    box-shadow:
+      0 0 0 4px rgba(16, 185, 129, 0.08),
+      0 4px 12px rgba(16, 185, 129, 0.12);
+  }
+
+  /* Error state */
+  .sakura-form-input.error {
+    border-color: #ef4444;
+    animation: sakuraShake 0.4s ease-in-out;
+  }
+
+  @keyframes sakuraShake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-8px); }
+    40%, 80% { transform: translateX(8px); }
+  }
+
+  .sakura-form-error {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: sakuraErrorSlideIn 0.3s ease-out;
+  }
+
+  .sakura-form-error::before {
+    content: '⚠';
+    font-size: 1rem;
+  }
+
+  @keyframes sakuraErrorSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .sakura-form-input::placeholder {
     color: #94a3b8;
+  }
+
+  /* Input wrapper for icons */
+  .sakura-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .sakura-input-icon {
+    position: absolute;
+    left: 1rem;
+    color: #94a3b8;
+    font-size: 1.125rem;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+  }
+
+  .sakura-input-with-icon {
+    padding-left: 3rem;
+  }
+
+  .sakura-input-with-icon:focus ~ .sakura-input-icon,
+  .sakura-input-with-icon:not(:placeholder-shown) ~ .sakura-input-icon {
+    color: #5b8bf5;
+    transform: scale(1.1);
+  }
+
+  .sakura-input-with-icon.success ~ .sakura-input-icon {
+    color: #10b981;
+  }
+
+  /* Success checkmark icon */
+  .sakura-input-success-icon {
+    position: absolute;
+    right: 1rem;
+    color: #10b981;
+    font-size: 1.25rem;
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+  }
+
+  .sakura-form-input.success ~ .sakura-input-success-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
   }
 
   .sakura-password-input {
@@ -5115,11 +5297,22 @@
     cursor: pointer;
     padding: 0.25rem;
     border-radius: 0.375rem;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
   }
 
   .sakura-password-toggle:hover {
     color: #64748b;
+    background: rgba(148, 163, 184, 0.1);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .sakura-password-input .sakura-input-icon {
+    z-index: 1;
+  }
+
+  .sakura-password-input .sakura-input-with-icon {
+    padding-right: 3rem;
   }
 
   .sakura-checkbox-label {
@@ -5144,17 +5337,20 @@
     background: #ffffff;
     flex-shrink: 0;
     position: relative;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     margin-top: 1px;
   }
 
   .sakura-checkbox-label:hover .sakura-checkmark {
+    transform: scale(1.1);
     border-color: #5b8bf5;
+    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
   }
 
   .sakura-checkbox-label input[type="checkbox"]:checked + .sakura-checkmark {
-    background: #5b8bf5;
+    background: linear-gradient(135deg, #5b8bf5 0%, #4f7df3 100%);
     border-color: #5b8bf5;
+    transform: scale(1.05);
   }
 
   .sakura-checkbox-label input[type="checkbox"]:checked + .sakura-checkmark::after {
@@ -5167,6 +5363,13 @@
     border: solid #ffffff;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
+    animation: sakuraCheckPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  @keyframes sakuraCheckPop {
+    0% { transform: rotate(45deg) scale(0); }
+    50% { transform: rotate(45deg) scale(1.2); }
+    100% { transform: rotate(45deg) scale(1); }
   }
 
   .sakura-form-options {
@@ -5192,6 +5395,31 @@
   .sakura-auth-submit {
     position: relative;
     overflow: hidden;
+    background: #1e2a3b;
+    color: #ffffff;
+    border-color: #1e2a3b;
+    box-shadow: 0 4px 12px -2px rgba(30, 42, 59, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-auth-submit:hover {
+    background: transparent;
+    color: #1e2a3b;
+    border-color: #1e2a3b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px -4px rgba(30, 42, 59, 0.2);
+  }
+
+  .sakura-auth-submit:active {
+    transform: translateY(0);
+  }
+
+  .sakura-auth-submit.loading {
+    pointer-events: none;
+  }
+
+  .sakura-auth-submit.loading > span {
+    opacity: 0;
   }
 
   .sakura-btn-loading {
@@ -5202,12 +5430,12 @@
   }
 
   .sakura-loading-spinner {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top: 2px solid #ffffff;
+    width: 22px;
+    height: 22px;
+    border: 2.5px solid rgba(255, 255, 255, 0.2);
+    border-top: 2.5px solid #ffffff;
     border-radius: 50%;
-    animation: sakuraSpin 1s linear infinite;
+    animation: sakuraSpin 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
   }
 
   .sakura-auth-divider {
@@ -5244,6 +5472,38 @@
   .sakura-social-btn {
     justify-content: center;
     gap: 0.75rem;
+    position: relative;
+    background: rgba(255, 255, 255, 0.9);
+    border-width: 1.5px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-social-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .sakura-social-btn:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px -4px rgba(91, 139, 245, 0.15);
+  }
+
+  .sakura-social-btn:hover::before {
+    opacity: 1;
+  }
+
+  .sakura-social-btn svg {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-social-btn:hover svg {
+    transform: scale(1.1) rotate(-5deg);
   }
 
   .sakura-auth-footer {
