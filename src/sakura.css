@@ -3942,7 +3942,8 @@
   }
 
   .sakura-about-team {
-    @apply py-20 bg-gray-50;
+    @apply py-20;
+    background: rgb(255, 255, 255);
   }
 
   .sakura-team-header {
