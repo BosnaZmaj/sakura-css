@@ -4039,11 +4039,30 @@
   }
 
   .sakura-goal-item {
-    @apply flex gap-4;
+    @apply flex gap-4 items-start;
   }
 
   .sakura-goal-item i {
-    @apply text-2xl text-blue-600 mt-1 flex-shrink-0;
+    @apply text-2xl flex-shrink-0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.15) 0%,
+      rgba(139, 92, 246, 0.15) 100%);
+    border: 3px solid rgba(139, 92, 246, 0.4);
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+  }
+
+  .sakura-goal-item i::before {
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .sakura-goal-item h4 {
