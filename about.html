@@ -342,7 +342,38 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="sakura-about-cta">
+    <section class="sakura-cta">
+        <!-- Top Wave -->
+        <div class="sakura-cta-wave sakura-cta-wave--top">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="sakura-cta-wave-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="sakura-cta-wave-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background feathering wave -->
+                <path fill="url(#sakura-cta-wave-gradient-2)"
+                      d="M0,80 C150,30 350,100 600,70 C850,40 1050,110 1200,80 L1200,0 L0,0 Z">
+                </path>
+
+                <!-- Main wave -->
+                <path fill="url(#sakura-cta-wave-gradient-1)"
+                      d="M0,60 C300,20 600,100 900,60 C1050,40 1150,80 1200,60 L1200,0 L0,0 Z">
+                </path>
+
+                <!-- Top feathering wave for smooth morphing -->
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,40 C200,90 400,10 600,50 C800,90 1000,20 1200,60 L1200,0 L0,0 Z">
+                </path>
+            </svg>
+        </div>
+
         <div class="sakura-container">
             <div class="sakura-cta-content">
                 <h2>Be part of our journey from the beginning</h2>
@@ -351,8 +382,28 @@
                     <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--lg">Join Beta Waitlist</a>
                     <a href="index.html" class="sakura-btn sakura-btn--ghost sakura-btn--lg">Learn More</a>
                 </div>
-                <p style="margin-top: 1.5rem; color: #64748b; font-size: 0.95rem;">Early access • Priority support • Shape the future of Sakura Budget</p>
+                <p class="sakura-cta-note">Early access • Priority support • Shape the future of Sakura Budget</p>
             </div>
+        </div>
+
+        <!-- Bottom Wave -->
+        <div class="sakura-cta-wave sakura-cta-wave--bottom">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <!-- Background feathering wave -->
+                <path fill="url(#sakura-cta-wave-gradient-2)"
+                      d="M0,40 C150,90 350,20 600,50 C850,80 1050,10 1200,40 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Main wave -->
+                <path fill="url(#sakura-cta-wave-gradient-1)"
+                      d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z">
+                </path>
+
+                <!-- Top feathering wave for smooth morphing -->
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,80 C200,30 400,110 600,70 C800,30 1000,100 1200,60 L1200,120 L0,120 Z">
+                </path>
+            </svg>
         </div>
     </section>
 

@@ -1846,7 +1846,7 @@
 
   /* Sakura CTA Section */
   .sakura-cta {
-    @apply py-24 text-center relative overflow-hidden;
+    @apply py-32 text-center relative overflow-hidden;
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
     color: #1e293b;
   }
@@ -2103,7 +2103,7 @@
   }
 
   .sakura-cta-wave--bottom {
-    bottom: 0;
+    bottom: -90px;
   }
 
   .sakura-cta-wave svg {
