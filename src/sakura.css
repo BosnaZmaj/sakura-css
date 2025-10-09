@@ -3297,7 +3297,7 @@
   /* Timeline Journey Design - Option 1 */
   .sakura-about-story-timeline {
     @apply py-20;
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    background: rgb(255, 255, 255);
   }
 
   .sakura-timeline-header {
@@ -3829,7 +3829,8 @@
   }
 
   .sakura-about-values {
-    @apply py-20 bg-gray-50;
+    @apply py-20;
+    background: rgb(255, 255, 255);
   }
 
   .sakura-values-header {
@@ -3881,12 +3882,55 @@
 
   .sakura-about-stats {
     @apply py-20;
-    background: linear-gradient(135deg, #1e2a3b 0%, #5b8bf5 100%);
-    color: white;
+    background: rgb(255, 255, 255);
+    color: #1e293b;
   }
 
-  .sakura-stats-grid {
-    @apply grid grid-cols-2 lg:grid-cols-4 gap-8 text-center;
+  .sakura-stats-timeline {
+    @apply relative flex flex-col lg:flex-row items-start justify-between max-w-5xl mx-auto gap-12 lg:gap-8;
+    padding: 3rem 1rem;
+  }
+
+  .sakura-stats-timeline-line {
+    @apply absolute bg-gradient-to-r from-pink-500 to-purple-500;
+    height: 3px;
+    left: 0;
+    right: 0;
+    top: calc(3rem + 2rem);
+    width: 100%;
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .sakura-stats-timeline-line {
+      display: block;
+    }
+  }
+
+  .sakura-stat-milestone {
+    @apply flex flex-col items-center text-center relative z-10;
+    flex: 1;
+  }
+
+  .sakura-stat-milestone .sakura-stat-icon {
+    background: white;
+    box-shadow: 0 0 0 4px white;
+  }
+
+  .sakura-stat-icon {
+    @apply w-16 h-16 mb-4 rounded-full flex items-center justify-center;
+    background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.15) 0%,
+      rgba(139, 92, 246, 0.15) 100%);
+    border: 3px solid rgba(139, 92, 246, 0.4);
+  }
+
+  .sakura-stat-icon i {
+    @apply text-2xl;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .sakura-stat-number {
