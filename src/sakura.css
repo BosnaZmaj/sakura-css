@@ -3962,38 +3962,57 @@
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
   }
 
-  .sakura-team-card {
-    @apply bg-white p-6 rounded-2xl text-center;
-    transition: transform 0.3s ease;
+  .sakura-founder-split {
+    @apply flex flex-col md:flex-row gap-8 items-center max-w-4xl mx-auto;
   }
 
-  .sakura-team-card:hover {
-    transform: translateY(-4px);
+  .sakura-founder-photo-section {
+    @apply flex-shrink-0;
   }
 
-  .sakura-team-photo {
-    @apply mb-4;
+  .sakura-founder-photo-section .sakura-team-placeholder {
+    @apply w-48 h-48 bg-gray-100 rounded-full flex items-center justify-center;
+    background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.15) 0%,
+      rgba(139, 92, 246, 0.15) 100%);
+    border: 4px solid rgba(139, 92, 246, 0.4);
   }
 
-  .sakura-team-placeholder {
-    @apply w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center;
+  .sakura-founder-photo-section .sakura-team-placeholder i {
+    @apply text-7xl;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .sakura-team-placeholder i {
-    @apply text-4xl text-gray-400;
+  .sakura-founder-info-section {
+    @apply flex-1 text-left;
   }
 
-  .sakura-team-card h3 {
-    @apply text-xl font-bold mb-2;
+  .sakura-founder-info-section h3 {
+    @apply text-3xl font-bold mb-2;
     color: #1e2a3b;
   }
 
   .sakura-team-role {
-    @apply text-blue-600 font-medium mb-3;
+    @apply font-medium mb-4 text-lg;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .sakura-team-bio {
-    @apply text-gray-600 text-sm leading-relaxed;
+    @apply text-gray-600 leading-relaxed mb-6;
+  }
+
+  .sakura-founder-quote {
+    @apply pt-6 mt-6 border-t border-gray-200;
+  }
+
+  .sakura-founder-quote p {
+    @apply italic text-gray-600 leading-relaxed;
   }
 
   .sakura-about-mission {
