@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview - Sakura Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body class="sakura-dashboard-body">
+    <!-- Dashboard Header -->
+    <header class="sakura-dashboard-header">
+        <div class="sakura-dashboard-header-container">
+            <div class="sakura-header-left">
+                <div class="sakura-navbar-brand">
+                    <img src="dist/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+                </div>
+                <nav class="sakura-breadcrumb">
+                    <span class="sakura-breadcrumb-item">Overview</span>
+                </nav>
+            </div>
+            <div class="sakura-header-right">
+                <button class="sakura-notification-btn">
+                    <i class="bi bi-bell"></i>
+                    <span class="sakura-notification-badge">3</span>
+                </button>
+                <div class="sakura-user-menu">
+                    <img src="https://avatar.iran.liara.run/public" alt="User" class="sakura-user-avatar">
+                    <div class="sakura-user-info">
+                        <span class="sakura-user-name">Pablo Peso</span>
+                        <span class="sakura-user-email">pablo@sakura.com</span>
+                    </div>
+                    <button class="sakura-user-menu-toggle">
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="sakura-dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sakura-dashboard-sidebar">
+            <nav class="sakura-sidebar-nav">
+                <a href="dashboard.html" class="sakura-nav-item sakura-nav-item--active">
+                    <i class="bi bi-grid"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="envelope-detail.html" class="sakura-nav-item">
+                    <i class="bi bi-envelope"></i>
+                    <span>Envelopes</span>
+                </a>
+                <a href="transactions.html" class="sakura-nav-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Transactions</span>
+                </a>
+                <a href="goals.html" class="sakura-nav-item">
+                    <i class="bi bi-bullseye"></i>
+                    <span>Goals</span>
+                </a>
+                <a href="#" class="sakura-nav-item">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Reports</span>
+                </a>
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Settings</span>
+                    <a href="#" class="sakura-nav-item">
+                        <i class="bi bi-gear"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="sakura-dashboard-main">
+            <!-- Welcome Section -->
+            <section class="sakura-welcome-section">
+                <div class="sakura-welcome-content">
+                    <h1>Good morning, Pablo! 👋</h1>
+                    <p>Here's your financial overview for January 25th, 2025</p>
+                </div>
+                <div class="sakura-quick-actions">
+                    <button class="sakura-btn sakura-btn--primary">Add Transaction</button>
+                    <button class="sakura-btn sakura-btn--outline">Create Envelope</button>
+                </div>
+            </section>
+
+            <!-- Budget Summary Cards - Phase 5 -->
+
+            <!-- Dashboard Grid - Phases 6, 7, 8 -->
+
+            <!-- Alerts - Phase 9 -->
+        </main>
+    </div>
+
+    <script src="src/sakura.js"></script>
+</body>
+</html>

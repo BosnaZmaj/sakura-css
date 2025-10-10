@@ -8303,4 +8303,441 @@
     }
   }
 
+  /* =================================
+     DASHBOARD COMPONENTS
+     ================================= */
+
+  /* Dashboard Body */
+  .sakura-dashboard-body {
+    background: #f5f8fa;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Dashboard Header */
+  .sakura-dashboard-header {
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    padding: 1.25rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(30px) saturate(180%);
+    box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .sakura-dashboard-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .sakura-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .sakura-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+
+  .sakura-breadcrumb-item {
+    color: #334155;
+    font-weight: 500;
+  }
+
+  .sakura-header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .sakura-notification-btn {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-notification-btn i {
+    font-size: 20px;
+  }
+
+  .sakura-notification-btn:hover {
+    background-color: rgba(30, 42, 59, 0.04);
+    color: #1e293b;
+    transform: scale(1.05);
+  }
+
+  .sakura-notification-btn:active {
+    transform: scale(0.95);
+  }
+
+  .sakura-notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+  }
+
+  .sakura-user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+  }
+
+  .sakura-user-menu:hover {
+    background-color: rgba(30, 42, 59, 0.04);
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+  }
+
+  .sakura-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .sakura-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sakura-user-name {
+    font-weight: 500;
+    color: #0f172a;
+    font-size: 0.875rem;
+  }
+
+  .sakura-user-email {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  .sakura-user-menu-toggle {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-user-menu-toggle i {
+    font-size: 16px;
+  }
+
+  .sakura-user-menu-toggle:hover {
+    color: #475569;
+    background-color: #f1f5f9;
+  }
+
+  /* Dashboard Layout */
+  .sakura-dashboard-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: calc(100vh - 80px);
+  }
+
+  /* Dashboard Sidebar */
+  .sakura-dashboard-sidebar {
+    background: rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(226, 232, 240, 0.6);
+    padding: 2rem 0;
+    position: sticky;
+    top: 120px;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    backdrop-filter: blur(30px) saturate(180%);
+  }
+
+  .sakura-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .sakura-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    color: #475569;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .sakura-nav-item i {
+    font-size: 20px;
+  }
+
+  .sakura-nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 28px;
+    background: linear-gradient(135deg, #5b8bf5, #7ba5ff);
+    border-radius: 0 6px 6px 0;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-nav-item:hover {
+    background: rgba(91, 139, 245, 0.08);
+    color: #5b8bf5;
+    transform: translateX(6px);
+  }
+
+  .sakura-nav-item:hover::before {
+    width: 5px;
+  }
+
+  .sakura-nav-item--active {
+    background: linear-gradient(135deg, #5b8bf5, #7ba5ff);
+    color: white;
+    box-shadow: 0 4px 12px -2px rgba(91, 139, 245, 0.25);
+  }
+
+  .sakura-nav-item--active::before {
+    width: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  .sakura-nav-section {
+    margin-top: 2rem;
+  }
+
+  .sakura-section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0 1rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  /* Dashboard Main Content */
+  .sakura-dashboard-main {
+    padding: 2rem 2.5rem;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Welcome Section */
+  .sakura-welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+    padding: 2.5rem 3rem;
+    background: linear-gradient(135deg, #1e2a3b 0%, #5b8bf5 50%, #8b5cf6 100%);
+    border-radius: 1.75rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 24px -6px rgba(30, 42, 59, 0.2);
+  }
+
+  .sakura-welcome-section::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -15%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: sakura-welcomeFloat 25s ease-in-out infinite;
+  }
+
+  .sakura-welcome-section::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(50px);
+    animation: sakura-welcomeFloat 20s ease-in-out infinite reverse;
+  }
+
+  @keyframes sakura-welcomeFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.05); }
+    66% { transform: translate(-30px, 40px) scale(0.95); }
+  }
+
+  .sakura-welcome-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sakura-welcome-content h1 {
+    font-size: 1.875rem;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  .sakura-welcome-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 0;
+  }
+
+  .sakura-quick-actions {
+    display: flex;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sakura-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+  }
+
+  .sakura-btn--primary {
+    background-color: white;
+    color: #1e2a3b;
+    border-color: white;
+  }
+
+  .sakura-btn--primary:hover {
+    background-color: #f1f5f9;
+    border-color: #f1f5f9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.1);
+  }
+
+  .sakura-btn--outline {
+    background: transparent;
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .sakura-btn--outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-2px);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 1024px) {
+    .sakura-dashboard-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-dashboard-sidebar {
+      position: fixed;
+      top: 80px;
+      left: -260px;
+      width: 260px;
+      height: calc(100vh - 80px);
+      z-index: 999;
+      transition: left 0.3s ease;
+    }
+
+    .sakura-dashboard-sidebar.open {
+      left: 0;
+    }
+
+    .sakura-dashboard-main {
+      grid-column: 1;
+    }
+
+    .sakura-welcome-section {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .sakura-quick-actions {
+      width: 100%;
+    }
+
+    .sakura-quick-actions .sakura-btn {
+      flex: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sakura-dashboard-main {
+      padding: 1rem;
+    }
+
+    .sakura-dashboard-header-container {
+      padding: 0 1rem;
+    }
+
+    .sakura-header-right .sakura-user-info {
+      display: none;
+    }
+
+    .sakura-welcome-section {
+      padding: 1rem;
+    }
+
+    .sakura-welcome-content h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sakura-dashboard-header-container {
+      padding: 0 0.75rem;
+    }
+
+    .sakura-welcome-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .sakura-quick-actions {
+      flex-direction: column;
+    }
+  }
+
 }
