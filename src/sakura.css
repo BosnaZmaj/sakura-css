@@ -6358,6 +6358,19 @@
       flex-direction: column;
       align-items: flex-start;
     }
+
+    .sakura-feature-highlights {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .sakura-auth-container--signup .sakura-visual-content {
+      margin-top: 2rem;
+    }
+
+    .sakura-auth-container--signup .sakura-auth-form-container {
+      padding: 2rem 1.5rem;
+    }
   }
 
   @media (max-width: 480px) {
@@ -6377,6 +6390,14 @@
       max-width: 100%;
     }
 
+    .sakura-visual-content h2 {
+      font-size: 1.5rem;
+    }
+
+    .sakura-auth-visual-subtitle {
+      font-size: 0.875rem;
+    }
+
     .sakura-social-buttons {
       gap: 0.5rem;
     }
@@ -6384,6 +6405,151 @@
     .sakura-social-btn {
       padding: 0.75rem 1rem;
       font-size: 0.875rem;
+    }
+
+    .sakura-feature-highlights {
+      gap: 1rem;
+    }
+
+    .sakura-highlight {
+      gap: 1rem;
+    }
+
+    .sakura-highlight-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+    }
+
+    .sakura-highlight-icon i {
+      font-size: 1.25rem;
+    }
+
+    .sakura-highlight-text h3 {
+      font-size: 1rem;
+    }
+
+    .sakura-highlight-text p {
+      font-size: 0.875rem;
+    }
+
+    .sakura-auth-container--signup .sakura-auth-form-container {
+      padding: 1.5rem 1rem;
+    }
+
+    .sakura-auth-container--signup .sakura-visual-content {
+      margin-top: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .sakura-signup-footer-note {
+      font-size: 0.875rem;
+    }
+  }
+
+  /* Legal Pages Styling */
+  .sakura-legal-container {
+    min-height: calc(100vh - 200px);
+    padding: 4rem 0;
+    background: #ffffff;
+  }
+
+  .sakura-legal-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .sakura-legal-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .sakura-legal-meta {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .sakura-legal-content {
+    font-family: 'Poppins', sans-serif;
+    color: #475569;
+    line-height: 1.8;
+  }
+
+  .sakura-legal-section {
+    margin-bottom: 3rem;
+  }
+
+  .sakura-legal-section h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .sakura-legal-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #334155;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .sakura-legal-section p {
+    margin-bottom: 1rem;
+    font-size: 0.9375rem;
+  }
+
+  .sakura-legal-section ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    list-style: disc;
+  }
+
+  .sakura-legal-section li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .sakura-legal-section a {
+    color: #5b8bf5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .sakura-legal-section a:hover {
+    color: #4f7df3;
+    text-decoration: underline;
+  }
+
+  .sakura-legal-section strong {
+    color: #1e293b;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .sakura-legal-container {
+      padding: 2rem 0;
+    }
+
+    .sakura-legal-header h1 {
+      font-size: 2rem;
+    }
+
+    .sakura-legal-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .sakura-legal-section h3 {
+      font-size: 1.125rem;
     }
   }
 
