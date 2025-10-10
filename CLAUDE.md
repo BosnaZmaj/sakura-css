@@ -84,29 +84,32 @@ We are taking a careful, step-by-step approach to avoid breaking changes:
 - [x] Migrate breakpoints
 - [x] Convert plugins to v4 format
 
-**Phase 4: CSS Migration**
-- [ ] Update main CSS file imports
-- [ ] Migrate @apply directives if deprecated
-- [ ] Update custom utility classes
-- [ ] Test all responsive utilities
-- [ ] Verify all animations work
+**Phase 4: CSS Migration & Testing**
+- [x] Update main CSS file imports
+- [x] Migrate @apply directives if deprecated
+- [x] Update custom utility classes
+- [x] Test all responsive utilities
+- [x] Verify all animations work
+- [x] Fix node_modules cache issue (v3 → v4)
+- [x] Test development server
+- [x] Verify CSS applying correctly
 
-**Phase 5: Testing & Validation**
-- [ ] Test all pages visually
-- [ ] Verify responsive behavior on all breakpoints
+**Phase 5: Final Testing & Validation**
+- [x] Test all pages visually
+- [x] Verify responsive behavior on all breakpoints
 - [ ] Check all interactive components
 - [ ] Validate custom components (sakura-*)
-- [ ] Test production build
-- [ ] Performance check
+- [x] Test production build
+- [x] Performance check
 
 **Phase 6: Final Steps**
 - [ ] Document breaking changes encountered
-- [ ] Update CLAUDE.md with new v4 info
+- [ ] Update CLAUDE.md with final v4 info
 - [ ] Commit changes with detailed message
 - [ ] Merge to main branch
 
 ### Current Step Details
-**Step**: Phase 3 Complete - Phase 4 Testing
+**Step**: Phase 4 Complete - Phase 5 in Progress
 **Completed**:
 - Phase 1: Full v3 documentation and backup
 - Phase 2: Package upgrades and PostCSS migration
@@ -117,19 +120,27 @@ We are taking a careful, step-by-step approach to avoid breaking changes:
   * Production build: SUCCESSFUL
   * Dev server: Running without errors
   * All 240 @apply directives: Functional
+- Phase 4: Fixed critical node_modules cache issue:
+  * Identified v3 packages still in node_modules despite package.json upgrade
+  * Removed node_modules and package-lock.json
+  * Fresh npm install with v4 packages
+  * Dev server now running successfully on port 5173
+  * CSS applying correctly in browser
+  * User confirmed: "Looks great"
 
 **Current Status**:
 - Build working with Tailwind v4.1.14
 - All custom Sakura utilities recognized
 - Theme fully migrated to CSS-first approach
-- Ready for comprehensive testing
+- Dev server running cleanly with no errors
+- CSS properly applying in browser
+- Ready for final validation and merge
 
 **Next Steps**:
-1. Test all pages visually in browser
-2. Verify responsive behavior on all breakpoints
-3. Check all interactive components
-4. Validate all custom sakura-* components
-5. Performance check on production build
+1. Commit the node_modules fix
+2. Complete final validation testing
+3. Document breaking changes encountered
+4. Merge to main branch
 
 ### Important Notes
 - Dev server auto-reloads when switching branches
