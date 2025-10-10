@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Sakura Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="sakura-navbar">
+        <div class="sakura-navbar-container">
+            <div class="sakura-navbar-brand">
+                <a href="index.html">
+                    <img src="src/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+                </a>
+            </div>
+            <div class="sakura-navbar-menu">
+                <a href="index.html#features" class="sakura-navbar-link">Features</a>
+                <a href="pricing.html" class="sakura-navbar-link">Pricing</a>
+                <a href="about.html" class="sakura-navbar-link">About</a>
+                <a href="login.html" class="sakura-btn sakura-btn--outline sakura-btn--sm">Sign In</a>
+                <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--sm">Sign Up</a>
+            </div>
+            <button class="sakura-navbar-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Blog Hero -->
+    <section class="sakura-hero sakura-hero--compact sakura-hero--compact-centered">
+        <div class="sakura-container">
+            <div class="sakura-hero-content">
+                <h1 class="sakura-hero-title">The Sakura Budget Blog</h1>
+                <p class="sakura-hero-subtitle">Practical advice, insights, and stories about personal finance, budgeting, and building better money habits</p>
+            </div>
+        </div>
+
+        <!-- Wave Transition -->
+        <div class="sakura-hero-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="sakura-wave-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="sakura-wave-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path fill="url(#sakura-wave-gradient-2)"
+                      d="M0,40 C150,90 350,20 600,50 C850,80 1050,10 1200,40 L1200,120 L0,120 Z">
+                </path>
+                <path fill="url(#sakura-wave-gradient-1)"
+                      d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z">
+                </path>
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,80 C200,30 400,110 600,70 C800,30 1000,100 1200,60 L1200,120 L0,120 Z">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="sakura-blog-filters">
+        <div class="sakura-container">
+            <div class="sakura-filter-tabs">
+                <button class="sakura-filter-tab sakura-filter-tab--active" data-category="all">All Posts</button>
+                <button class="sakura-filter-tab" data-category="personal-finance">Personal Finance</button>
+                <button class="sakura-filter-tab" data-category="budgeting-tips">Budgeting Tips</button>
+                <button class="sakura-filter-tab" data-category="money-mindset">Money Mindset</button>
+                <button class="sakura-filter-tab" data-category="product-updates">Product Updates</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="sakura-blog-featured">
+        <div class="sakura-container">
+            <div class="sakura-section-header">
+                <h2>Featured Article</h2>
+            </div>
+
+            <a href="blog-envelope-budgeting.html" class="sakura-featured-post">
+                <div class="sakura-featured-post-image">
+                    <img src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=1200&q=80" alt="Financial planning and budget organization" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="sakura-featured-post-content">
+                    <div class="sakura-featured-post-meta">
+                        <span class="sakura-blog-category">Personal Finance</span>
+                        <span class="sakura-post-date"><i class="bi bi-calendar3"></i> January 8, 2025</span>
+                    </div>
+                    <h2>Why Envelope Budgeting Works When Other Methods Fail</h2>
+                    <p>After trying every budgeting app and spreadsheet template available, I finally found a method that actually stuck. Here's why envelope budgeting succeeds where other approaches fall short.</p>
+                    <div class="sakura-featured-post-footer">
+                        <div class="sakura-post-author">
+                            <div class="sakura-post-author-avatar">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                            <span>Indy Subašić</span>
+                        </div>
+                        <span class="sakura-post-read-time"><i class="bi bi-clock"></i> 8 min read</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Latest Posts -->
+    <section class="sakura-blog-posts">
+        <div class="sakura-container">
+            <div class="sakura-section-header">
+                <h2>Latest Articles</h2>
+                <p>Insights and practical tips for better money management</p>
+            </div>
+
+            <div class="sakura-blog-grid">
+                <!-- Blog Post Card 1 -->
+                <article class="sakura-blog-card">
+                    <div class="sakura-blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=500&fit=crop&q=80" alt="Pink piggy bank representing savings and emergency fund" style="width: 100%; height: 100%; object-fit: cover;">
+                        <span class="sakura-blog-category">Budgeting Tips</span>
+                    </div>
+                    <div class="sakura-blog-card-content">
+                        <div class="sakura-blog-card-meta">
+                            <span class="sakura-post-date"><i class="bi bi-calendar3"></i> January 5, 2025</span>
+                            <span class="sakura-post-read-time"><i class="bi bi-clock"></i> 6 min read</span>
+                        </div>
+                        <h3>Building an emergency fund that actually works</h3>
+                        <p>Learn the proven strategies for building an emergency fund that you won't be tempted to raid, plus how much you really need.</p>
+                        <div class="sakura-blog-card-footer">
+                            <div class="sakura-post-author">
+                                <div class="sakura-post-author-avatar">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <span>Indy Subašić</span>
+                            </div>
+                            <a href="#" class="sakura-read-more">
+                                Read more <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post Card 2 -->
+                <article class="sakura-blog-card">
+                    <div class="sakura-blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop&q=80" alt="Person holding credit card making spending decision" style="width: 100%; height: 100%; object-fit: cover;">
+                        <span class="sakura-blog-category">Money Mindset</span>
+                    </div>
+                    <div class="sakura-blog-card-content">
+                        <div class="sakura-blog-card-meta">
+                            <span class="sakura-post-date"><i class="bi bi-calendar3"></i> January 2, 2025</span>
+                            <span class="sakura-post-read-time"><i class="bi bi-clock"></i> 5 min read</span>
+                        </div>
+                        <h3>The psychology of spending money</h3>
+                        <p>Understanding the emotional and psychological factors that drive spending decisions can help you make better financial choices.</p>
+                        <div class="sakura-blog-card-footer">
+                            <div class="sakura-post-author">
+                                <div class="sakura-post-author-avatar">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <span>Indy Subašić</span>
+                            </div>
+                            <a href="#" class="sakura-read-more">
+                                Read more <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post Card 3 -->
+                <article class="sakura-blog-card">
+                    <div class="sakura-blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&q=80" alt="Financial planning notebook and coffee on desk" style="width: 100%; height: 100%; object-fit: cover;">
+                        <span class="sakura-blog-category">Personal Finance</span>
+                    </div>
+                    <div class="sakura-blog-card-content">
+                        <div class="sakura-blog-card-meta">
+                            <span class="sakura-post-date"><i class="bi bi-calendar3"></i> December 28, 2024</span>
+                            <span class="sakura-post-read-time"><i class="bi bi-clock"></i> 7 min read</span>
+                        </div>
+                        <h3>Common budgeting mistakes and how to avoid them</h3>
+                        <p>These five budgeting mistakes trip up even experienced budgeters. Here's how to recognize and avoid them.</p>
+                        <div class="sakura-blog-card-footer">
+                            <div class="sakura-post-author">
+                                <div class="sakura-post-author-avatar">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <span>Indy Subašić</span>
+                            </div>
+                            <a href="#" class="sakura-read-more">
+                                Read more <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post Card 4 -->
+                <article class="sakura-blog-card">
+                    <div class="sakura-blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=500&fit=crop&q=80" alt="Freelancer workspace with laptop and coffee for irregular income" style="width: 100%; height: 100%; object-fit: cover;">
+                        <span class="sakura-blog-category">Budgeting Tips</span>
+                    </div>
+                    <div class="sakura-blog-card-content">
+                        <div class="sakura-blog-card-meta">
+                            <span class="sakura-post-date"><i class="bi bi-calendar3"></i> December 22, 2024</span>
+                            <span class="sakura-post-read-time"><i class="bi bi-clock"></i> 4 min read</span>
+                        </div>
+                        <h3>How to budget with irregular income</h3>
+                        <p>Freelancers, contractors, and gig workers face unique budgeting challenges. Here's a system that actually works.</p>
+                        <div class="sakura-blog-card-footer">
+                            <div class="sakura-post-author">
+                                <div class="sakura-post-author-avatar">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <span>Indy Subašić</span>
+                            </div>
+                            <a href="#" class="sakura-read-more">
+                                Read more <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post Card 5 -->
+                <article class="sakura-blog-card">
+                    <div class="sakura-blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=500&fit=crop&q=80" alt="Software developer coding workspace with multiple screens" style="width: 100%; height: 100%; object-fit: cover;">
+                        <span class="sakura-blog-category">Product Updates</span>
+                    </div>
+                    <div class="sakura-blog-card-content">
+                        <div class="sakura-blog-card-meta">
+                            <span class="sakura-post-date"><i class="bi bi-calendar3"></i> December 18, 2024</span>
+                            <span class="sakura-post-read-time"><i class="bi bi-clock"></i> 3 min read</span>
+                        </div>
+                        <h3>How we built Sakura Budget</h3>
+                        <p>A behind-the-scenes look at the technology, design decisions, and security measures that power Sakura Budget.</p>
+                        <div class="sakura-blog-card-footer">
+                            <div class="sakura-post-author">
+                                <div class="sakura-post-author-avatar">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <span>Indy Subašić</span>
+                            </div>
+                            <a href="#" class="sakura-read-more">
+                                Read more <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post Card 6 -->
+                <article class="sakura-blog-card">
+                    <div class="sakura-blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=800&h=500&fit=crop&q=80" alt="Financial freedom and relief from paycheck stress" style="width: 100%; height: 100%; object-fit: cover;">
+                        <span class="sakura-blog-category">Money Mindset</span>
+                    </div>
+                    <div class="sakura-blog-card-content">
+                        <div class="sakura-blog-card-meta">
+                            <span class="sakura-post-date"><i class="bi bi-calendar3"></i> December 15, 2024</span>
+                            <span class="sakura-post-read-time"><i class="bi bi-clock"></i> 6 min read</span>
+                        </div>
+                        <h3>Breaking the paycheck-to-paycheck cycle</h3>
+                        <p>Practical strategies for building financial breathing room, even when money feels impossibly tight.</p>
+                        <div class="sakura-blog-card-footer">
+                            <div class="sakura-post-author">
+                                <div class="sakura-post-author-avatar">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <span>Indy Subašić</span>
+                            </div>
+                            <a href="#" class="sakura-read-more">
+                                Read more <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Load More -->
+            <div class="sakura-blog-load-more">
+                <button class="sakura-btn sakura-btn--outline sakura-btn--lg">Load More Articles</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="sakura-blog-newsletter">
+        <div class="sakura-container">
+            <div class="sakura-newsletter-card">
+                <div class="sakura-newsletter-icon">
+                    <i class="bi bi-envelope-heart"></i>
+                </div>
+                <h2>Get budget tips in your inbox</h2>
+                <p>Join 5,000+ readers getting weekly insights on budgeting, saving, and building better money habits. No spam, unsubscribe anytime.</p>
+                <form class="sakura-newsletter-form">
+                    <div class="sakura-newsletter-input-group">
+                        <input type="email" placeholder="Enter your email address" class="sakura-newsletter-input" required>
+                        <button type="submit" class="sakura-btn sakura-btn--primary">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="sakura-footer">
+        <div class="sakura-container">
+            <div class="sakura-footer-content">
+                <div class="sakura-footer-brand">
+                    <div class="sakura-navbar-brand">
+                        <img src="sakura_logo_clear.svg" alt="Sakura Budget" class="sakura-navbar-logo">
+                    </div>
+                    <p>Making personal finance simple, one envelope at a time.</p>
+                </div>
+                <div class="sakura-footer-links">
+                    <div class="sakura-footer-column">
+                        <h4>Product</h4>
+                        <a href="index.html#features">Features</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="login.html">Login</a>
+                    </div>
+                    <div class="sakura-footer-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="sakura-footer-column">
+                        <h4>Support</h4>
+                        <a href="help.html">Help Center</a>
+                        <a href="#">Security</a>
+                        <a href="privacy.html">Privacy</a>
+                        <a href="terms.html">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sakura-footer-bottom">
+                <div class="sakura-footer-social">
+                    <a href="#" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="#" aria-label="Bluesky">
+                        <i class="bi bi-bluesky"></i>
+                    </a>
+                </div>
+                <p>&copy; 2025 Sakura Financial Technologies LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/sakura.js"></script>
+</body>
+</html>

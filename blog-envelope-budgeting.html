@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Envelope Budgeting Works When Other Methods Fail - Sakura Budget Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="sakura-navbar">
+        <div class="sakura-navbar-container">
+            <div class="sakura-navbar-brand">
+                <a href="index.html">
+                    <img src="src/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+                </a>
+            </div>
+            <div class="sakura-navbar-menu">
+                <a href="index.html#features" class="sakura-navbar-link">Features</a>
+                <a href="pricing.html" class="sakura-navbar-link">Pricing</a>
+                <a href="about.html" class="sakura-navbar-link">About</a>
+                <a href="login.html" class="sakura-btn sakura-btn--outline sakura-btn--sm">Sign In</a>
+                <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--sm">Sign Up</a>
+            </div>
+            <button class="sakura-navbar-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Article Container -->
+    <article class="sakura-article sakura-article--blog">
+        <div class="sakura-container">
+            <div class="sakura-article-layout">
+                <!-- Sidebar -->
+                <aside class="sakura-article-sidebar">
+                    <!-- Author Card -->
+                    <div class="sakura-article-author">
+                        <div class="sakura-author-avatar">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <div class="sakura-author-info">
+                            <h4>Indy Subašić</h4>
+                            <p class="sakura-author-role">Founder & Developer</p>
+                            <p class="sakura-author-bio">Cybersecurity expert with 16 years of envelope budgeting experience.</p>
+                        </div>
+                    </div>
+
+                    <!-- Table of Contents -->
+                    <div class="sakura-article-toc">
+                        <h4>In this article</h4>
+                        <ul>
+                            <li><a href="#problem">The budgeting problem</a></li>
+                            <li><a href="#why-fail">Why most budgets fail</a></li>
+                            <li><a href="#envelope-different">What makes envelopes different</a></li>
+                            <li><a href="#psychology">The psychology behind it</a></li>
+                            <li><a href="#getting-started">Getting started today</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="sakura-article-share">
+                        <h4>Share this article</h4>
+                        <div class="sakura-share-buttons">
+                            <button class="sakura-share-btn sakura-share-btn--bluesky">
+                                <i class="bi bi-bluesky"></i>
+                            </button>
+                            <button class="sakura-share-btn sakura-share-btn--facebook">
+                                <i class="bi bi-facebook"></i>
+                            </button>
+                            <button class="sakura-share-btn sakura-share-btn--linkedin">
+                                <i class="bi bi-linkedin"></i>
+                            </button>
+                            <button class="sakura-share-btn sakura-share-btn--link">
+                                <i class="bi bi-link-45deg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Related Posts -->
+                    <div class="sakura-article-related">
+                        <h4>Related articles</h4>
+                        <ul>
+                            <li><a href="#">Building an emergency fund with envelopes</a></li>
+                            <li><a href="#">The psychology of spending money</a></li>
+                            <li><a href="#">How we built Sakura Budget</a></li>
+                            <li><a href="#">Common budgeting mistakes to avoid</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="sakura-article-content">
+                    <!-- Article Header -->
+                    <header class="sakura-article-header">
+                        <div class="sakura-article-meta">
+                            <span class="sakura-blog-category">Personal Finance</span>
+                            <span class="sakura-article-read-time"><i class="bi bi-clock"></i> 8 min read</span>
+                        </div>
+                        <h1>Why Envelope Budgeting Works When Other Methods Fail</h1>
+                        <p class="sakura-article-intro">After trying every budgeting app and spreadsheet template available, I finally found a method that actually stuck. Here's why envelope budgeting succeeds where other approaches fall short.</p>
+
+                        <!-- Author byline -->
+                        <div class="sakura-article-byline">
+                            <div class="sakura-byline-avatar">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                            <div class="sakura-byline-info">
+                                <span class="sakura-byline-author">Indy Subašić</span>
+                                <span class="sakura-byline-date">
+                                    <i class="bi bi-calendar3"></i> January 8, 2025
+                                </span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Featured Image -->
+                    <div class="sakura-article-featured-image">
+                        <img src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=1200&q=80" alt="Financial planning and budget organization" style="width: 100%; height: auto; border-radius: 1rem;">
+                    </div>
+
+                    <!-- Article Body -->
+                    <div class="sakura-article-body">
+                        <section id="problem">
+                            <h2>The budgeting problem nobody talks about</h2>
+                            <p>If you've ever started a budget only to abandon it, you're not alone. According to <a href="https://wallethub.com/edu/budgeting-statistics/146387" target="_blank" rel="noopener">recent data from WalletHub</a>, while 86% of Americans have a budget, 74% struggle to stick to it due to increasing costs and unexpected expenses. But here's the thing: it's not your fault.</p>
+
+                            <p>Most budgeting methods fail because they're built on a fundamentally flawed premise - they focus on tracking where your money went, not managing where it should go. That's like trying to lose weight by simply writing down everything you eat without changing your habits.</p>
+
+                            <div class="sakura-article-quote">
+                                <p>"Financial success is not a hard science. It's a soft skill, where how you behave is more important than what you know."</p>
+                                <cite>Morgan Housel, The Psychology of Money</cite>
+                            </div>
+
+                            <p>Over my 16 years using envelope budgeting, I've tried nearly every other system first. Zero-based budgeting, the 50/30/20 rule, detailed spreadsheets that got way too complicated, apps that promised to "automate everything." They all had the same problem: they required constant vigilance without providing immediate feedback when I was about to overspend.</p>
+                        </section>
+
+                        <section id="why-fail">
+                            <h2>Why most budgets fail</h2>
+                            <p>Traditional budgeting fails for three core reasons. Financial experts have identified these patterns across millions of budgeters (see <a href="https://www.cnbc.com/select/why-budgets-dont-work-for-people/" target="_blank" rel="noopener">CNBC's research on budget failures</a>):</p>
+
+                            <h3>1. They're reactive, not proactive</h3>
+                            <p>Most budgets work like this: You spend money throughout the month, categorize your transactions at the end, then feel guilty about overspending. It's the financial equivalent of getting on the scale after Thanksgiving dinner.</p>
+
+                            <p>By the time you realize you've overspent on dining out, the damage is done. You can't un-eat those restaurant meals. The best you can do is promise to do better next month, a promise that rarely sticks.</p>
+
+                            <h3>2. Too many categories create decision fatigue</h3>
+                            <p>In my early budgeting days, I once created separate categories for "Groceries," "Restaurants," "Fast Food," "Coffee Shops," and "Meal Delivery." Every single purchase required a mental decision: "Is Chipotle fast food or a restaurant? Does the coffee I bought at the grocery store count as groceries or coffee shops?"</p>
+
+                            <p>Death by a thousand decisions. No wonder I couldn't stick with it.</p>
+
+                            <h3>3. No immediate consequence for overspending</h3>
+                            <p>When you overspend in traditional budgets, nothing happens. The app might show red numbers, but you can still swipe your card. It's like a speed limit with no speed cameras - technically there, practically irrelevant.</p>
+
+                            <div class="sakura-article-callout sakura-article-callout--warning">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                <div>
+                                    <strong>The Fundamental Problem:</strong>
+                                    <p>Traditional budgets tell you what you should have done. Envelope budgeting shows you what you can do right now.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="envelope-different">
+                            <h2>What makes envelope budgeting different</h2>
+                            <p>Envelope budgeting flips the entire paradigm. Instead of tracking where money went, you decide where it should go before you spend it.</p>
+
+                            <p>Here's how it works:</p>
+
+                            <ol class="sakura-article-steps">
+                                <li>
+                                    <strong>Divide your income into envelopes</strong>
+                                    <p>Each envelope represents a spending category. When you get paid, you allocate money to each envelope based on your priorities.</p>
+                                </li>
+                                <li>
+                                    <strong>Spend only what's in the envelope</strong>
+                                    <p>Want to grab lunch? Check your "Dining Out" envelope. If it has $50, you can spend. If it's empty, you can't.</p>
+                                </li>
+                                <li>
+                                    <strong>When it's gone, it's gone</strong>
+                                    <p>No borrowing from next month. No credit card float. When an envelope is empty, you either stop spending in that category or consciously move money from another envelope.</p>
+                                </li>
+                            </ol>
+
+                            <h3>Why this simple shift changes everything</h3>
+                            <p>The brilliance of envelope budgeting is in its simplicity. You're not making 50 micro-decisions every day about whether you can afford something. You make one decision: how much goes in each envelope at the start of the month.</p>
+
+                            <p>After that, spending becomes almost automatic. You check the envelope before buying. If the money's there, buy it. If not, don't. No guilt, no complex calculations, no spreadsheet updates required.</p>
+                        </section>
+
+                        <section id="psychology">
+                            <h2>The psychology behind why it works</h2>
+                            <p>Envelope budgeting succeeds because it works with human psychology, not against it.</p>
+
+                            <div class="sakura-article-callout sakura-article-callout--info">
+                                <i class="bi bi-lightbulb"></i>
+                                <div>
+                                    <strong>Behavioral Economics Insight:</strong>
+                                    <p>Nobel Prize winner Richard Thaler's research on <a href="https://www.behavioraleconomics.com/resources/mini-encyclopedia-of-be/mental-accounting/" target="_blank" rel="noopener">"mental accounting"</a> shows that people treat money differently based on how it's categorized, even when the total amount is the same. Envelope budgeting leverages this psychological principle perfectly.</p>
+                                </div>
+                            </div>
+
+                            <h3>Visual representation reduces abstract thinking</h3>
+                            <p>Looking at "$2,487.32" in a checking account requires mental math to know if you can afford a $100 dinner. Looking at a "Dining Out" envelope with $50 remaining requires zero calculation.</p>
+
+                            <p>Our brains are terrible at abstract number manipulation but excellent at visual comparison. Envelope budgeting uses visual, concrete amounts instead of forcing mathematical reasoning for every purchase.</p>
+
+                            <h3>Scarcity creates intentionality</h3>
+                            <p>When an envelope is running low, you naturally become more intentional about spending. Not because someone told you to feel guilty, but because you can physically see the limitation.</p>
+
+                            <p>I've experienced this countless times over the years: Early in the month when my dining envelope is well-funded, I'm casual about grabbing lunch. But with a week left and the balance getting low, I suddenly remember those leftovers in my fridge. The envelope creates natural guardrails without requiring willpower.</p>
+
+                            <h3>Guilt-free spending within boundaries</h3>
+                            <p>Here's the counterintuitive part: envelope budgeting actually increases spending satisfaction. When you spend from a well-funded envelope, there's no guilt. You allocated that money for this purpose. Enjoy it.</p>
+
+                            <p>Compare that to the traditional budget guilt spiral: "I spent $200 on entertainment this month, but I'm not sure if that's good or bad because I didn't check my budget before buying those concert tickets, and now I feel anxious."</p>
+                        </section>
+
+                        <section id="getting-started">
+                            <h2>Getting started with envelope budgeting today</h2>
+                            <p>The beauty of envelope budgeting is that you can start immediately. You don't need perfect categories or exact amounts.</p>
+
+                            <h3>Start with five envelopes</h3>
+                            <p>Don't overcomplicate it. Begin with these five categories:</p>
+
+                            <ul>
+                                <li><strong>Essential Bills</strong> - Rent, utilities, insurance</li>
+                                <li><strong>Food</strong> - Groceries and dining out combined</li>
+                                <li><strong>Transportation</strong> - Gas, parking, public transit</li>
+                                <li><strong>Personal</strong> - Everything else (clothes, entertainment, hobbies)</li>
+                                <li><strong>Savings</strong> - Emergency fund and goals</li>
+                            </ul>
+
+                            <p>That's it. Five envelopes cover 95% of most people's spending. You can always add more later, but start simple.</p>
+
+                            <div class="sakura-article-callout sakura-article-callout--success">
+                                <i class="bi bi-check-circle"></i>
+                                <div>
+                                    <strong>Pro Tip:</strong>
+                                    <p>Your first month won't be perfect. That's expected. The goal isn't perfection - it's learning your actual spending patterns so you can budget accurately next month.</p>
+                                </div>
+                            </div>
+
+                            <h3>Fund your envelopes from your next paycheck</h3>
+                            <p>When you get paid, immediately divide the money into your envelopes before spending anything. Pay yourself first by funding your Savings envelope, then allocate to Essential Bills, then everything else.</p>
+
+                            <h3>Adjust and iterate</h3>
+                            <p>After a month, you'll have real data. Did you run out of food money too quickly? Increase that envelope next month. Have $200 left in personal spending? Reduce it and allocate more to savings.</p>
+
+                            <p>The system works because it adapts to your actual life, not an idealized version of it.</p>
+                        </section>
+
+                        <section>
+                            <h2>Why I built Sakura Budget</h2>
+                            <p>After 13 years using the same desktop envelope budgeting program (you know the one), I went searching for a modern replacement in 2022. I tried YNAB, Monarch Money, Copilot, and Goodbudget. Nothing captured the simplicity and directness of true envelope budgeting the way I needed it to.</p>
+
+                            <p>Everything had morphed into either:</p>
+                            <ul>
+                                <li>Complex financial dashboards with dozens of features I didn't need</li>
+                                <li>Oversimplified apps that abandoned the core envelope concept</li>
+                                <li>Tools requiring accounting knowledge or linking all my accounts</li>
+                            </ul>
+
+                            <p>As a cybersecurity professional and Senior Software Engineer at FIS Global, I decided to build what I wanted to use: envelope budgeting that works exactly like the physical method, but modern, secure by design, and actually pleasant to use daily.</p>
+
+                            <div class="sakura-article-callout sakura-article-callout--info">
+                                <i class="bi bi-info-circle"></i>
+                                <div>
+                                    <strong>Currently in Alpha:</strong>
+                                    <p>Sakura Budget is in final alpha testing before beta launch. Three years of development have gone into getting it right. We're building deliberately because we refuse to launch until it's genuinely better than the alternatives. <a href="signup.html">Join the waitlist</a> to be notified when beta testing opens.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2>The bottom line</h2>
+                            <p>Envelope budgeting works because it's simple, visual, and immediate. It doesn't require perfect discipline or complex calculations. It just requires deciding your priorities once per month, then checking an envelope before spending.</p>
+
+                            <p>After 16 years of envelope budgeting—from 2009 when I first discovered it through today—I can confidently say this is the only budgeting method that's actually stuck for me. Not because someone told me it should work, but because it naturally aligns with how I think about and use money day-to-day.</p>
+
+                            <p>Give it a month. Start with five envelopes. See what happens. I think you'll be surprised at how quickly it becomes second nature. And if you want a modern tool built specifically for this method, that's exactly why I'm building Sakura Budget.</p>
+                        </section>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="sakura-article-tags">
+                        <h4>Tagged:</h4>
+                        <div class="sakura-tags-list">
+                            <a href="#" class="sakura-tag">Envelope Budgeting</a>
+                            <a href="#" class="sakura-tag">Personal Finance</a>
+                            <a href="#" class="sakura-tag">Money Management</a>
+                            <a href="#" class="sakura-tag">Behavioral Economics</a>
+                        </div>
+                    </div>
+
+                    <!-- Article Footer Navigation -->
+                    <nav class="sakura-article-nav">
+                        <a href="#" class="sakura-article-nav-link sakura-article-nav-link--prev">
+                            <i class="bi bi-arrow-left"></i>
+                            <div>
+                                <span>Previous Post</span>
+                                <strong>Building an emergency fund that actually works</strong>
+                            </div>
+                        </a>
+                        <a href="#" class="sakura-article-nav-link sakura-article-nav-link--next">
+                            <div>
+                                <span>Next Post</span>
+                                <strong>The psychology of spending money</strong>
+                            </div>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="sakura-footer">
+        <div class="sakura-container">
+            <div class="sakura-footer-content">
+                <div class="sakura-footer-brand">
+                    <div class="sakura-navbar-brand">
+                        <img src="sakura_logo_clear.svg" alt="Sakura Budget" class="sakura-navbar-logo">
+                    </div>
+                    <p>Making personal finance simple, one envelope at a time.</p>
+                </div>
+                <div class="sakura-footer-links">
+                    <div class="sakura-footer-column">
+                        <h4>Product</h4>
+                        <a href="index.html#features">Features</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="login.html">Login</a>
+                    </div>
+                    <div class="sakura-footer-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="sakura-footer-column">
+                        <h4>Support</h4>
+                        <a href="help.html">Help Center</a>
+                        <a href="#">Security</a>
+                        <a href="privacy.html">Privacy</a>
+                        <a href="terms.html">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sakura-footer-bottom">
+                <div class="sakura-footer-social">
+                    <a href="#" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="#" aria-label="Bluesky">
+                        <i class="bi bi-bluesky"></i>
+                    </a>
+                </div>
+                <p>&copy; 2025 Sakura Financial Technologies LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/sakura.js"></script>
+</body>
+</html>
