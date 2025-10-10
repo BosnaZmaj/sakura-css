@@ -44,6 +44,92 @@ Technical details if needed:
 
 **VIOLATION CONSEQUENCES**: Adding AI attribution pollutes the git history and GitHub contributor graphs. This requires force-pushing to fix and can take 24+ hours for GitHub to update cached data.
 
+## TAILWIND V4 UPGRADE PROGRESS TRACKER
+**CURRENT TASK**: Upgrading from Tailwind CSS v3.4.0 to v4.1.14
+**BRANCH**: `tailwind-v4-upgrade`
+**STATUS**: In Progress - Step-by-step methodical migration
+
+### Upgrade Methodology
+We are taking a careful, step-by-step approach to avoid breaking changes:
+
+1. Document current state
+2. Backup existing configuration
+3. Upgrade packages
+4. Migrate configuration to v4 format
+5. Test and fix breaking changes
+6. Verify everything works
+7. Merge to main when stable
+
+### Progress Checklist
+
+**Phase 1: Preparation & Documentation**
+- [ ] Document current Tailwind v3 setup
+- [ ] Backup tailwind.config.js
+- [ ] Document all custom utilities and plugins in use
+- [ ] List all files using @apply directives
+- [ ] Identify potential breaking changes
+
+**Phase 2: Package Upgrade**
+- [ ] Update tailwindcss to v4.1.14
+- [ ] Update @tailwindcss/forms plugin
+- [ ] Update @tailwindcss/typography plugin
+- [ ] Update PostCSS if needed
+- [ ] Run npm install and verify no conflicts
+
+**Phase 3: Configuration Migration**
+- [ ] Migrate tailwind.config.js to CSS-first configuration
+- [ ] Update theme customizations
+- [ ] Migrate custom colors
+- [ ] Migrate custom fonts
+- [ ] Migrate breakpoints
+- [ ] Convert plugins to v4 format
+
+**Phase 4: CSS Migration**
+- [ ] Update main CSS file imports
+- [ ] Migrate @apply directives if deprecated
+- [ ] Update custom utility classes
+- [ ] Test all responsive utilities
+- [ ] Verify all animations work
+
+**Phase 5: Testing & Validation**
+- [ ] Test all pages visually
+- [ ] Verify responsive behavior on all breakpoints
+- [ ] Check all interactive components
+- [ ] Validate custom components (sakura-*)
+- [ ] Test production build
+- [ ] Performance check
+
+**Phase 6: Final Steps**
+- [ ] Document breaking changes encountered
+- [ ] Update CLAUDE.md with new v4 info
+- [ ] Commit changes with detailed message
+- [ ] Merge to main branch
+
+### Current Step Details
+**Step**: Creating branch and documenting approach
+**Completed**:
+- Created `tailwind-v4-upgrade` branch
+- Switched to new branch
+- Confirmed browser shows current branch (hot-reloads on branch switch)
+
+**Next Steps**:
+1. Audit current Tailwind v3 configuration
+2. Document all customizations
+3. Identify files using Tailwind features
+
+### Important Notes
+- Dev server auto-reloads when switching branches
+- Browser always displays current branch code
+- All changes isolated to upgrade branch
+- Can switch back to main anytime with `git checkout main`
+
+### Breaking Changes to Watch For
+- CSS-first configuration (no more tailwind.config.js)
+- Some utility class changes
+- Plugin API changes
+- @apply directive changes
+- Build process differences
+
 ## CRITICAL PROJECT CONTEXT
 **IMPORTANT**: We are recreating the complete Sakura Budget web application from `/Users/indy/Projects/HTML/sakura-website/` as a TailwindCSS-based framework called sakura-css. This is NOT building from scratch - we're converting an existing, sophisticated financial application into a reusable framework.
 
