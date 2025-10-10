@@ -4,6 +4,46 @@
 **NO MENTION OF AI ASSISTANTS**: Never mention any AI assistants in code, comments, commit messages, or documentation. All work should appear as human-generated.
 **NO EMOJIS**: Never use emojis in any code, comments, commit messages, or documentation.
 
+## GIT COMMIT PROTOCOL - MANDATORY
+**CRITICAL**: These rules are non-negotiable and must be followed for every commit:
+
+### Commit Message Requirements
+1. **ALWAYS DISPLAY COMMIT MESSAGE BEFORE COMMITTING**: Show the full commit message to the user for review before executing any git commit command
+2. **NEVER REFERENCE AI**: Do not include any references to AI assistants, AI tools, Claude, Claude Code, or any automated assistance
+3. **NO AI ATTRIBUTION**: Never add "Generated with", "Co-Authored-By: Claude", or any similar attribution lines
+4. **NO AI SIGNATURES**: Do not append any signatures, footers, or metadata mentioning AI assistance
+5. **HUMAN-GENERATED APPEARANCE**: All commit messages must appear as if written by a human developer
+
+### Prohibited Content in Commits
+- ❌ "Generated with [Claude Code]"
+- ❌ "Co-Authored-By: Claude"
+- ❌ Any mention of AI, assistants, or automated tools
+- ❌ Emojis (as per project standards)
+
+### Correct Commit Process
+1. Draft commit message following conventional commit format
+2. **Show the complete message to user for review**
+3. Wait for user approval or edits
+4. Only then execute the git commit command
+5. If user requests changes, revise and show again before committing
+
+### Example Commit Message Format
+```
+Brief descriptive title
+
+Detailed explanation of changes:
+- Bullet point of change 1
+- Bullet point of change 2
+- Bullet point of change 3
+
+Technical details if needed:
+- Implementation notes
+- File changes
+- Reasoning for approach
+```
+
+**VIOLATION CONSEQUENCES**: Adding AI attribution pollutes the git history and GitHub contributor graphs. This requires force-pushing to fix and can take 24+ hours for GitHub to update cached data.
+
 ## CRITICAL PROJECT CONTEXT
 **IMPORTANT**: We are recreating the complete Sakura Budget web application from `/Users/indy/Projects/HTML/sakura-website/` as a TailwindCSS-based framework called sakura-css. This is NOT building from scratch - we're converting an existing, sophisticated financial application into a reusable framework.
 
