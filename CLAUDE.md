@@ -207,3 +207,23 @@ Current work is on the `Phase-1` branch.
 
 ## Development Server
 Uses `npm run dev` for local development with hot reloading.
+
+## About Page Story - COMPLETED
+**STATUS**: Company story successfully implemented in about.html
+
+### Implemented Content
+The About page now features a comprehensive timeline design showing the 16-year journey from 2009 to 2026:
+
+**Timeline Milestones**:
+- **2009 - The Discovery**: Indy discovers envelope budgeting through a desktop program
+- **2022 - The Search**: After 13 years, searches for modern replacement (YNAB, Monarch, Copilot, Goodbudget)
+- **2023 - The Decision**: Decides to build it himself as cybersecurity expert and Senior Software Engineer at FIS Global
+- **2025 - The Alpha Stage**: Three years of development culminate in final alpha testing
+- **2026 - Beta & Beyond**: Preparing for beta testing with security-first design
+
+**Additional Sections**:
+- "Why Sakura?" explanation with cherry blossom symbolism (beauty, calm, perfect timing)
+- Values section (Simplicity, Trust, Empowerment, Innovation)
+- Founder profile for Indy Subašić (cybersecurity background, 16 years envelope budgeting experience)
+- Mission statement emphasizing security-first, intuitive simplicity, and stress-free finances
+- Alpha status messaging throughout explaining the deliberate development approach
