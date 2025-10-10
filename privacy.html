@@ -62,20 +62,21 @@
                     <h3>2.1 Information You Provide Directly</h3>
                     <ul>
                         <li><strong>Account Information:</strong> Email address, password (encrypted), and account preferences</li>
-                        <li><strong>Financial Data:</strong> Budget categories, envelope allocations, spending goals, and manual transaction entries</li>
+                        <li><strong>Financial Data (Manual):</strong> Budget categories you create, envelope allocations, spending goals, and transactions you manually enter</li>
                         <li><strong>Communication Data:</strong> Support requests, feedback, and correspondence with us</li>
                         <li><strong>Payment Information:</strong> Billing details for subscription payments (processed securely through third-party payment processors)</li>
                     </ul>
+                    <p><em>Note: Automated financial data collected from your bank accounts is covered separately in Section 2.2 below.</em></p>
 
-                    <h3>2.2 Financial Account Information via Plaid</h3>
-                    <p>When you connect your bank accounts using our bank connection feature, we use Plaid Inc. ("Plaid"), a third-party financial data aggregation service, to retrieve:</p>
+                    <h3>2.2 Financial Account Information via Third-Party Services</h3>
+                    <p>When you connect your bank accounts using our bank connection feature, we use third-party financial data aggregation services (currently Plaid Inc.) to securely retrieve:</p>
                     <ul>
                         <li><strong>Account Information:</strong> Account names, types, balances, and account numbers (last 4 digits)</li>
-                        <li><strong>Transaction Data:</strong> Transaction descriptions, amounts, dates, and categories</li>
+                        <li><strong>Transaction Data (Automated):</strong> Transaction descriptions, amounts, dates, merchants, and categories from your connected financial institutions</li>
                         <li><strong>Identity Information:</strong> Account holder names and basic account details</li>
                     </ul>
-                    <p><strong>Important Security Note:</strong> We NEVER see or store your bank login credentials (username and password). These credentials are handled exclusively by Plaid using bank-level encryption. Sakura cannot access your bank login information at any time.</p>
-                    <p>By connecting your financial accounts, you agree to Plaid's privacy practices as described in their <a href="https://plaid.com/legal/#end-user-privacy-policy" target="_blank" rel="noopener">End User Privacy Policy</a>.</p>
+                    <p><strong>Important Security Note:</strong> We NEVER see or store your bank login credentials (username and password). These credentials are handled exclusively by our financial data provider using bank-level encryption. Sakura cannot access your bank login information at any time.</p>
+                    <p>By connecting your financial accounts, you agree to the privacy practices of our financial data providers. You can view the current provider's privacy policy and manage access through your account settings or their dedicated portals.</p>
 
                     <h3>2.3 Automatically Collected Information</h3>
                     <ul>
@@ -102,8 +103,8 @@
                     <ul>
                         <li>Create and manage your account</li>
                         <li>Display your budgets, envelopes, and financial data</li>
-                        <li>Connect to your financial institutions through Plaid</li>
-                        <li>Categorize and track your transactions</li>
+                        <li>Connect to your financial institutions through third-party financial data services</li>
+                        <li>Categorize and track your transactions (both manual and automated)</li>
                         <li>Calculate budget allocations and financial goals</li>
                         <li>Provide spending insights and reports</li>
                     </ul>
@@ -154,15 +155,26 @@
                 <section class="sakura-legal-section">
                     <h2>4. Third-Party Services and Data Sharing</h2>
 
-                    <h3>4.1 Plaid (Financial Data Aggregation)</h3>
-                    <p>We partner with Plaid Inc. to securely connect your financial accounts. When you use our bank connection feature:</p>
+                    <h3>4.1 Financial Data Aggregation Services</h3>
+                    <p>We partner with third-party financial data aggregation services to securely connect your financial accounts. <strong>We currently use Plaid Inc. as our financial data provider.</strong></p>
+
+                    <p>When you use our bank connection feature:</p>
                     <ul>
-                        <li>You authorize Plaid to access your financial account information on our behalf</li>
-                        <li>Your bank credentials are transmitted directly to Plaid using encryption</li>
+                        <li>You authorize our financial data provider to access your financial account information on our behalf</li>
+                        <li>Your bank credentials are transmitted directly to the provider using encryption</li>
                         <li>Sakura receives only the financial data necessary to provide our budgeting services</li>
-                        <li>Plaid's use of your information is governed by their <a href="https://plaid.com/legal/#end-user-privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></li>
-                        <li>You can revoke Plaid's access at any time through the <a href="https://my.plaid.com/" target="_blank" rel="noopener">Plaid Portal</a> or within Sakura Budget settings</li>
+                        <li>The provider's use of your information is governed by their own privacy policy</li>
+                        <li>You can revoke access at any time through the provider's portal or within Sakura Budget settings</li>
                     </ul>
+
+                    <p><strong>Current Provider Information:</strong></p>
+                    <ul>
+                        <li>Provider: Plaid Inc.</li>
+                        <li>Privacy Policy: <a href="https://plaid.com/legal/#end-user-privacy-policy" target="_blank" rel="noopener">Plaid End User Privacy Policy</a></li>
+                        <li>Manage Access: <a href="https://my.plaid.com/" target="_blank" rel="noopener">Plaid Portal</a></li>
+                    </ul>
+
+                    <p><strong>Important Security Note:</strong> We NEVER see or store your bank login credentials (username and password). These credentials are handled exclusively by our financial data provider using bank-level encryption. Sakura cannot access your bank login information at any time.</p>
 
                     <h3>4.2 Service Providers</h3>
                     <p>We share information with trusted service providers who assist in operating our Services:</p>
@@ -304,7 +316,7 @@
                     <p>In the past 12 months, we have collected the following categories of personal information:</p>
                     <ul>
                         <li><strong>Identifiers:</strong> Email address, account username, IP address</li>
-                        <li><strong>Financial Information:</strong> Bank account information, transaction data, budget allocations (through Plaid)</li>
+                        <li><strong>Financial Information:</strong> Bank account information, transaction data, budget allocations (through third-party financial data providers)</li>
                         <li><strong>Commercial Information:</strong> Subscription and payment history</li>
                         <li><strong>Internet Activity:</strong> Browsing history on our platform, usage patterns</li>
                         <li><strong>Geolocation Data:</strong> General location from IP address (not precise location)</li>
@@ -384,7 +396,7 @@
                     <ul>
                         <li>Information you provide on applications and forms (email, name)</li>
                         <li>Information about your transactions with us (subscription payments, service usage)</li>
-                        <li>Information from third parties (Plaid provides your financial account and transaction data)</li>
+                        <li>Information from third-party financial data providers (financial account and transaction data)</li>
                     </ul>
 
                     <h3>9.2 What Information Can We Disclose?</h3>
@@ -392,7 +404,7 @@
                     <ul>
                         <li>Information you provide (email, account preferences)</li>
                         <li>Information about your transactions (budget data, transaction categorizations)</li>
-                        <li>Information from third parties (account balances, transaction details from Plaid)</li>
+                        <li>Information from third-party providers (account balances, transaction details)</li>
                     </ul>
 
                     <h3>9.3 How We Protect Your Information</h3>
@@ -561,7 +573,7 @@
                     <p>This Privacy Policy governs our collection, use, and protection of your personal information. Key points:</p>
                     <ul>
                         <li>We do NOT sell your financial data or budget information</li>
-                        <li>We never see or store your bank login credentials (handled by Plaid)</li>
+                        <li>We never see or store your bank login credentials (handled by third-party financial data providers)</li>
                         <li>We use bank-level 256-bit encryption to protect your data</li>
                         <li>You can access, correct, export, or delete your data at any time</li>
                         <li>California residents have additional rights under CCPA/CPRA</li>
