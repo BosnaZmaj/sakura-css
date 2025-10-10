@@ -5594,13 +5594,17 @@
   }
 
   .sakura-auth-container--signup .sakura-auth-visual {
-    display: none;
+    display: flex;
   }
 
   .sakura-auth-container--signup .sakura-auth-form-container {
     max-width: 540px;
     margin: 0 auto;
     padding: 3rem;
+  }
+
+  .sakura-auth-container--signup .sakura-visual-content {
+    margin-top: 4rem;
   }
 
   .sakura-auth-container--signup .sakura-auth-form-header h1 {
@@ -5991,6 +5995,112 @@
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  /* Trust Badge */
+  .sakura-trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(91, 139, 245, 0.1);
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #5b8bf5;
+  }
+
+  .sakura-trust-badge i {
+    font-size: 1rem;
+  }
+
+  /* Feature Highlights */
+  .sakura-feature-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .sakura-highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    text-align: left;
+  }
+
+  .sakura-highlight-icon {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .sakura-highlight-icon i {
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #5b8bf5 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sakura-highlight:hover .sakura-highlight-icon {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  }
+
+  .sakura-highlight-text h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.375rem;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .sakura-highlight-text p {
+    font-size: 0.9375rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Animated icon variant */
+  .sakura-highlight-icon--animated {
+    animation: sakuraIconFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes sakuraIconFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Signup footer note */
+  .sakura-signup-footer-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #10b981;
+  }
+
+  .sakura-signup-footer-note i {
+    font-size: 1rem;
   }
 
   .sakura-dashboard-preview--login {
