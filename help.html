@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - Sakura Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="sakura-navbar">
+        <div class="sakura-navbar-container">
+            <div class="sakura-navbar-brand">
+                <a href="index.html">
+                    <img src="src/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+                </a>
+            </div>
+            <div class="sakura-navbar-menu">
+                <a href="index.html#features" class="sakura-navbar-link">Features</a>
+                <a href="pricing.html" class="sakura-navbar-link">Pricing</a>
+                <a href="about.html" class="sakura-navbar-link">About</a>
+                <a href="login.html" class="sakura-btn sakura-btn--outline sakura-btn--sm">Sign In</a>
+                <a href="signup.html" class="sakura-btn sakura-btn--primary sakura-btn--sm">Sign Up</a>
+            </div>
+            <button class="sakura-navbar-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Help Center Hero -->
+    <section class="sakura-hero sakura-hero--compact sakura-hero--compact-centered">
+        <div class="sakura-container">
+            <div class="sakura-hero-content">
+                <h1 class="sakura-hero-title">How can we help you today?</h1>
+                <p class="sakura-hero-subtitle">Search our help articles or browse by category to find answers to your questions</p>
+
+                <!-- Search Bar -->
+                <div class="sakura-help-search">
+                    <div class="sakura-search-wrapper">
+                        <i class="bi bi-search"></i>
+                        <input type="text" id="helpSearch" placeholder="Search help articles..." class="sakura-search-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave Transition -->
+        <div class="sakura-hero-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="sakura-wave-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.9);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="sakura-wave-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(248,250,252,0.4);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path fill="url(#sakura-wave-gradient-2)"
+                      d="M0,40 C150,90 350,20 600,50 C850,80 1050,10 1200,40 L1200,120 L0,120 Z">
+                </path>
+                <path fill="url(#sakura-wave-gradient-1)"
+                      d="M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,120 L0,120 Z">
+                </path>
+                <path class="sakura-wave-animated" fill="white" opacity="0.8"
+                      d="M0,80 C200,30 400,110 600,70 C800,30 1000,100 1200,60 L1200,120 L0,120 Z">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Help Categories -->
+    <section class="sakura-help-categories">
+        <div class="sakura-container">
+            <div class="sakura-help-categories-grid">
+                <a href="#getting-started" class="sakura-help-category-card">
+                    <div class="sakura-help-category-icon">
+                        <i class="bi bi-rocket-takeoff"></i>
+                    </div>
+                    <h3>Getting Started</h3>
+                    <p>New to Sakura Budget? Learn the basics and set up your first budget in minutes.</p>
+                    <span class="sakura-help-article-count">8 articles</span>
+                </a>
+
+                <a href="#envelopes" class="sakura-help-category-card">
+                    <div class="sakura-help-category-icon">
+                        <i class="bi bi-envelope-heart"></i>
+                    </div>
+                    <h3>Managing Envelopes</h3>
+                    <p>Create, organize, and manage your budget envelopes effectively.</p>
+                    <span class="sakura-help-article-count">12 articles</span>
+                </a>
+
+                <a href="#transactions" class="sakura-help-category-card">
+                    <div class="sakura-help-category-icon">
+                        <i class="bi bi-arrow-left-right"></i>
+                    </div>
+                    <h3>Transactions</h3>
+                    <p>Track spending, categorize transactions, and keep your budget current.</p>
+                    <span class="sakura-help-article-count">10 articles</span>
+                </a>
+
+                <a href="#bank-connections" class="sakura-help-category-card">
+                    <div class="sakura-help-category-icon">
+                        <i class="bi bi-bank"></i>
+                    </div>
+                    <h3>Bank Connections</h3>
+                    <p>Connect your accounts securely and troubleshoot connection issues.</p>
+                    <span class="sakura-help-article-count">9 articles</span>
+                </a>
+
+                <a href="#goals" class="sakura-help-category-card">
+                    <div class="sakura-help-category-icon">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+                    <h3>Goals & Savings</h3>
+                    <p>Set financial goals, track progress, and achieve your savings targets.</p>
+                    <span class="sakura-help-article-count">7 articles</span>
+                </a>
+
+                <a href="#reports" class="sakura-help-category-card">
+                    <div class="sakura-help-category-icon">
+                        <i class="bi bi-graph-up"></i>
+                    </div>
+                    <h3>Reports & Insights</h3>
+                    <p>Understand your spending patterns with visual reports and analytics.</p>
+                    <span class="sakura-help-article-count">6 articles</span>
+                </a>
+
+                <a href="#account" class="sakura-help-category-card">
+                    <div class="sakura-help-category-icon">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    <h3>Account Settings</h3>
+                    <p>Manage your profile, notifications, and account preferences.</p>
+                    <span class="sakura-help-article-count">11 articles</span>
+                </a>
+
+                <a href="#billing" class="sakura-help-category-card">
+                    <div class="sakura-help-category-icon">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+                    <h3>Billing & Plans</h3>
+                    <p>Subscription management, payment methods, and plan upgrades.</p>
+                    <span class="sakura-help-article-count">8 articles</span>
+                </a>
+
+                <a href="#security" class="sakura-help-category-card">
+                    <div class="sakura-help-category-icon">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+                    <h3>Security & Privacy</h3>
+                    <p>Learn how we protect your data and manage your privacy settings.</p>
+                    <span class="sakura-help-article-count">5 articles</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Articles -->
+    <section class="sakura-help-popular">
+        <div class="sakura-container">
+            <div class="sakura-section-header">
+                <h2>Popular Articles</h2>
+                <p>The most viewed help articles from our community</p>
+            </div>
+
+            <div class="sakura-help-articles-grid">
+                <a href="help-first-budget.html" class="sakura-help-article">
+                    <div class="sakura-help-article-header">
+                        <div class="sakura-help-article-icon sakura-help-article-icon--getting-started">
+                            <i class="bi bi-rocket-takeoff"></i>
+                        </div>
+                        <span class="sakura-help-badge sakura-help-badge--getting-started">Getting Started</span>
+                    </div>
+                    <h3>How to create your first budget</h3>
+                    <p>Learn the fundamentals of envelope budgeting and set up your first budget in under 5 minutes.</p>
+                    <div class="sakura-help-article-meta">
+                        <span><i class="bi bi-eye"></i> 2,341 views</span>
+                        <span><i class="bi bi-clock"></i> 4 min read</span>
+                    </div>
+                </a>
+
+                <article class="sakura-help-article">
+                    <div class="sakura-help-article-header">
+                        <div class="sakura-help-article-icon sakura-help-article-icon--bank">
+                            <i class="bi bi-bank"></i>
+                        </div>
+                        <span class="sakura-help-badge sakura-help-badge--bank">Bank Connections</span>
+                    </div>
+                    <h3>Connecting your bank accounts</h3>
+                    <p>Step-by-step guide to securely connecting your checking and savings accounts to Sakura Budget.</p>
+                    <div class="sakura-help-article-meta">
+                        <span><i class="bi bi-eye"></i> 1,892 views</span>
+                        <span><i class="bi bi-clock"></i> 3 min read</span>
+                    </div>
+                </article>
+
+                <article class="sakura-help-article">
+                    <div class="sakura-help-article-header">
+                        <div class="sakura-help-article-icon sakura-help-article-icon--envelopes">
+                            <i class="bi bi-envelope-heart"></i>
+                        </div>
+                        <span class="sakura-help-badge sakura-help-badge--envelopes">Envelopes</span>
+                    </div>
+                    <h3>Understanding envelope categories</h3>
+                    <p>How to organize your spending into effective envelope categories that match your lifestyle.</p>
+                    <div class="sakura-help-article-meta">
+                        <span><i class="bi bi-eye"></i> 1,654 views</span>
+                        <span><i class="bi bi-clock"></i> 5 min read</span>
+                    </div>
+                </article>
+
+                <article class="sakura-help-article">
+                    <div class="sakura-help-article-header">
+                        <div class="sakura-help-article-icon sakura-help-article-icon--transactions">
+                            <i class="bi bi-arrow-left-right"></i>
+                        </div>
+                        <span class="sakura-help-badge sakura-help-badge--transactions">Transactions</span>
+                    </div>
+                    <h3>Categorizing transactions automatically</h3>
+                    <p>Set up smart rules to automatically sort transactions into the correct envelopes.</p>
+                    <div class="sakura-help-article-meta">
+                        <span><i class="bi bi-eye"></i> 1,423 views</span>
+                        <span><i class="bi bi-clock"></i> 6 min read</span>
+                    </div>
+                </article>
+
+                <article class="sakura-help-article">
+                    <div class="sakura-help-article-header">
+                        <div class="sakura-help-article-icon sakura-help-article-icon--goals">
+                            <i class="bi bi-bullseye"></i>
+                        </div>
+                        <span class="sakura-help-badge sakura-help-badge--goals">Goals</span>
+                    </div>
+                    <h3>Creating and tracking savings goals</h3>
+                    <p>Set up financial goals, allocate monthly contributions, and watch your savings grow.</p>
+                    <div class="sakura-help-article-meta">
+                        <span><i class="bi bi-eye"></i> 1,287 views</span>
+                        <span><i class="bi bi-clock"></i> 4 min read</span>
+                    </div>
+                </article>
+
+                <article class="sakura-help-article">
+                    <div class="sakura-help-article-header">
+                        <div class="sakura-help-article-icon sakura-help-article-icon--troubleshooting">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <span class="sakura-help-badge sakura-help-badge--troubleshooting">Troubleshooting</span>
+                    </div>
+                    <h3>My bank connection stopped working</h3>
+                    <p>Common reasons why bank connections disconnect and how to reconnect them quickly.</p>
+                    <div class="sakura-help-article-meta">
+                        <span><i class="bi bi-eye"></i> 1,156 views</span>
+                        <span><i class="bi bi-clock"></i> 3 min read</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Help Topics -->
+    <section class="sakura-help-quick-topics">
+        <div class="sakura-container">
+            <div class="sakura-section-header">
+                <h2>Quick Help Topics</h2>
+            </div>
+
+            <div class="sakura-help-topics-grid">
+                <div class="sakura-help-topic-section">
+                    <h3><i class="bi bi-rocket-takeoff"></i> Getting Started</h3>
+                    <ul class="sakura-help-topic-list">
+                        <li><a href="#">Creating your Sakura Budget account</a></li>
+                        <li><a href="#">Your first budget in 5 minutes</a></li>
+                        <li><a href="#">Understanding the dashboard</a></li>
+                        <li><a href="#">Navigating the mobile app</a></li>
+                        <li><a href="#">Importing from other budgeting apps</a></li>
+                    </ul>
+                </div>
+
+                <div class="sakura-help-topic-section">
+                    <h3><i class="bi bi-envelope-heart"></i> Managing Envelopes</h3>
+                    <ul class="sakura-help-topic-list">
+                        <li><a href="#">What is envelope budgeting?</a></li>
+                        <li><a href="#">Creating a new envelope</a></li>
+                        <li><a href="#">Setting envelope spending limits</a></li>
+                        <li><a href="#">Moving money between envelopes</a></li>
+                        <li><a href="#">Envelope colors and customization</a></li>
+                        <li><a href="#">Archiving unused envelopes</a></li>
+                    </ul>
+                </div>
+
+                <div class="sakura-help-topic-section">
+                    <h3><i class="bi bi-arrow-left-right"></i> Transactions</h3>
+                    <ul class="sakura-help-topic-list">
+                        <li><a href="#">Adding transactions manually</a></li>
+                        <li><a href="#">Editing transaction details</a></li>
+                        <li><a href="#">Splitting transactions across envelopes</a></li>
+                        <li><a href="#">Setting up recurring transactions</a></li>
+                        <li><a href="#">Searching and filtering transactions</a></li>
+                        <li><a href="#">Exporting transaction history</a></li>
+                    </ul>
+                </div>
+
+                <div class="sakura-help-topic-section">
+                    <h3><i class="bi bi-bank"></i> Bank Connections</h3>
+                    <ul class="sakura-help-topic-list">
+                        <li><a href="#">How bank sync works</a></li>
+                        <li><a href="#">Supported financial institutions</a></li>
+                        <li><a href="#">Reconnecting a disconnected account</a></li>
+                        <li><a href="#">Removing a bank connection</a></li>
+                        <li><a href="#">Security and data protection</a></li>
+                        <li><a href="#">Troubleshooting connection errors</a></li>
+                    </ul>
+                </div>
+
+                <div class="sakura-help-topic-section">
+                    <h3><i class="bi bi-bullseye"></i> Goals & Savings</h3>
+                    <ul class="sakura-help-topic-list">
+                        <li><a href="#">Creating a savings goal</a></li>
+                        <li><a href="#">Setting monthly contribution amounts</a></li>
+                        <li><a href="#">Tracking goal progress</a></li>
+                        <li><a href="#">Pausing or adjusting goals</a></li>
+                        <li><a href="#">Multiple goal management strategies</a></li>
+                    </ul>
+                </div>
+
+                <div class="sakura-help-topic-section">
+                    <h3><i class="bi bi-graph-up"></i> Reports & Insights</h3>
+                    <ul class="sakura-help-topic-list">
+                        <li><a href="#">Understanding spending reports</a></li>
+                        <li><a href="#">Monthly budget performance</a></li>
+                        <li><a href="#">Trend analysis over time</a></li>
+                        <li><a href="#">Category breakdown charts</a></li>
+                        <li><a href="#">Exporting reports to CSV</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Support -->
+    <section class="sakura-help-contact">
+        <div class="sakura-container">
+            <div class="sakura-help-contact-card">
+                <div class="sakura-help-contact-content">
+                    <h2>Can't find what you're looking for?</h2>
+                    <p>Our support team is here to help. We typically respond within 24 hours.</p>
+                    <div class="sakura-help-contact-methods">
+                        <div class="sakura-contact-method">
+                            <i class="bi bi-envelope"></i>
+                            <div>
+                                <h4>Email Support</h4>
+                                <p>support@sakurabudget.com</p>
+                            </div>
+                        </div>
+                        <div class="sakura-contact-method">
+                            <i class="bi bi-chat-dots"></i>
+                            <div>
+                                <h4>Live Chat</h4>
+                                <p>Available Mon-Fri, 9am-5pm EST</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="sakura-btn sakura-btn--primary sakura-btn--lg">Contact Support</a>
+                </div>
+                <div class="sakura-help-contact-visual">
+                    <i class="bi bi-headset"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="sakura-footer">
+        <div class="sakura-container">
+            <div class="sakura-footer-content">
+                <div class="sakura-footer-brand">
+                    <div class="sakura-navbar-brand">
+                        <img src="sakura_logo_clear.svg" alt="Sakura Budget" class="sakura-navbar-logo">
+                    </div>
+                    <p>Making personal finance simple, one envelope at a time.</p>
+                </div>
+                <div class="sakura-footer-links">
+                    <div class="sakura-footer-column">
+                        <h4>Product</h4>
+                        <a href="index.html#features">Features</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="login.html">Login</a>
+                    </div>
+                    <div class="sakura-footer-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="sakura-footer-column">
+                        <h4>Support</h4>
+                        <a href="help.html">Help Center</a>
+                        <a href="#">Security</a>
+                        <a href="privacy.html">Privacy</a>
+                        <a href="terms.html">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sakura-footer-bottom">
+                <div class="sakura-footer-social">
+                    <a href="#" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="#" aria-label="Bluesky">
+                        <i class="bi bi-bluesky"></i>
+                    </a>
+                </div>
+                <p>&copy; 2025 Sakura Financial Technologies LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/sakura.js"></script>
+    <script>
+        // Simple search functionality
+        const helpSearch = document.getElementById('helpSearch');
+        if (helpSearch) {
+            helpSearch.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                // This would connect to a real search in production
+                console.log('Searching for:', searchTerm);
+            });
+        }
+    </script>
+</body>
+</html>
