@@ -103,9 +103,9 @@ We are taking a careful, step-by-step approach to avoid breaking changes:
 - [x] Performance check
 
 **Phase 6: Final Steps**
-- [ ] Document breaking changes encountered
-- [ ] Update CLAUDE.md with final v4 info
-- [ ] Commit changes with detailed message
+- [x] Document breaking changes encountered
+- [x] Update CLAUDE.md with final v4 info
+- [ ] Commit final documentation
 - [ ] Merge to main branch
 
 ### Current Step Details
@@ -148,12 +148,72 @@ We are taking a careful, step-by-step approach to avoid breaking changes:
 - All changes isolated to upgrade branch
 - Can switch back to main anytime with `git checkout main`
 
-### Breaking Changes to Watch For
-- CSS-first configuration (no more tailwind.config.js)
-- Some utility class changes
-- Plugin API changes
-- @apply directive changes
-- Build process differences
+### Breaking Changes Encountered
+
+**1. PostCSS Plugin Migration (BREAKING)**
+- **v3**: `tailwindcss` plugin in postcss.config.js
+- **v4**: `@tailwindcss/postcss` separate package required
+- **Fix**: Install `@tailwindcss/postcss@4.1.14` and update config
+```javascript
+// OLD (v3)
+plugins: { tailwindcss: {} }
+
+// NEW (v4)
+plugins: { '@tailwindcss/postcss': {} }
+```
+
+**2. CSS Import Syntax (BREAKING)**
+- **v3**: `@tailwind base`, `@tailwind components`, `@tailwind utilities`
+- **v4**: `@import "tailwindcss"`
+- **Fix**: Replace all three @tailwind directives with single @import
+```css
+/* OLD (v3) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* NEW (v4) */
+@import "tailwindcss";
+```
+
+**3. Theme Configuration Migration (BREAKING)**
+- **v3**: JavaScript-based `tailwind.config.js` with theme object
+- **v4**: CSS-first configuration using `@theme` directive
+- **Fix**: Migrate all theme customizations to CSS variables
+```css
+/* NEW (v4) */
+@theme {
+  --color-sakura-primary: #1e2a3b;
+  --font-heading: Inter, system-ui, sans-serif;
+  --spacing-18: 4.5rem;
+  --radius-xl: 0.75rem;
+  --shadow-subtle: 0 1px 2px 0 rgb(0 0 0 / 0.02);
+}
+```
+
+**4. Node Modules Cache Issue (CRITICAL)**
+- **Issue**: Upgrading package.json alone doesn't update node_modules
+- **Symptom**: PostCSS errors about `@tailwind base` directive despite using v4 syntax
+- **Root Cause**: node_modules contained Tailwind v3 even after package.json upgrade
+- **Fix**:
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**5. Package Updates Required**
+- `tailwindcss`: 3.4.0 → 4.1.14
+- `@tailwindcss/postcss`: New package (4.1.14)
+- `@tailwindcss/forms`: 0.5.7 → 0.5.10
+- `@tailwindcss/typography`: 0.5.10 → 0.5.19
+
+**Non-Breaking Changes:**
+- ✅ `@apply` directive: Still works (240 instances tested)
+- ✅ `@layer base/components`: Still functional
+- ✅ Custom components: All sakura-* classes working
+- ✅ Responsive utilities: No changes needed
+- ✅ Animations: All working correctly
+- ✅ Build process: Same Vite configuration works
 
 ## CRITICAL PROJECT CONTEXT
 **IMPORTANT**: We are recreating the complete Sakura Budget web application from `/Users/indy/Projects/HTML/sakura-website/` as a TailwindCSS-based framework called sakura-css. This is NOT building from scratch - we're converting an existing, sophisticated financial application into a reusable framework.
@@ -244,10 +304,12 @@ The source contains a full-featured financial dashboard application with:
 - **Accent Colors**: Blue (#5B8BF5) and Purple (#8B5CF6) for subtle effects
 
 ## Technical Foundation
-- **Framework**: TailwindCSS v4 with custom component layer
+- **Framework**: TailwindCSS v4.1.14 with CSS-first configuration
 - **Build Tool**: Vite for development and building
 - **Structure**: Component-first architecture with sakura-* naming convention
 - **Animations**: CSS keyframes for floating effects and smooth transitions
+- **Theme System**: CSS @theme directive with custom properties
+- **Plugins**: @tailwindcss/forms, @tailwindcss/typography (v4 compatible)
 
 ## Key Files
 - `/src/sakura.css`: Main CSS framework with all component styles
