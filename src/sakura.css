@@ -455,6 +455,11 @@
     letter-spacing: 0.01em;
   }
 
+  /* Hero stats specific override for better alignment */
+  .sakura-hero-stats .sakura-stat-number {
+    @apply text-xl sm:text-4xl;
+  }
+
   /* Sakura Wave Transition */
   .sakura-hero-wave {
     position: absolute;
