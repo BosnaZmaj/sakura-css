@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Sakura Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/sakura.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="sakura-auth-body">
+    <div class="sakura-auth-container sakura-auth-container--signup">
+        <header class="sakura-auth-header">
+            <a href="index.html" class="sakura-navbar-brand">
+                <img src="src/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo">
+            </a>
+        </header>
+
+        <div class="sakura-auth-content">
+            <div class="sakura-auth-form-container">
+                <div class="sakura-auth-form-header">
+                    <h1>Create your account</h1>
+                    <p>Start budgeting smarter in under 60 seconds</p>
+                </div>
+
+                <form class="sakura-auth-form sakura-auth-form--simple" id="signupForm">
+                    <div class="sakura-form-group">
+                        <label for="email" class="sakura-form-label">Email Address</label>
+                        <div class="sakura-input-wrapper">
+                            <input type="email" id="email" name="email" class="sakura-form-input sakura-input-with-icon" placeholder="jane@example.com" required autocomplete="email">
+                            <i class="bi bi-envelope sakura-input-icon"></i>
+                            <i class="bi bi-check-circle-fill sakura-input-success-icon"></i>
+                        </div>
+                        <span class="sakura-form-error" id="emailError"></span>
+                    </div>
+
+                    <div class="sakura-form-group">
+                        <label for="password" class="sakura-form-label">Password</label>
+                        <div class="sakura-password-input">
+                            <div class="sakura-input-wrapper">
+                                <input type="password" id="password" name="password" class="sakura-form-input sakura-input-with-icon" placeholder="Create a strong password" required autocomplete="new-password">
+                                <i class="bi bi-lock sakura-input-icon"></i>
+                                <i class="bi bi-check-circle-fill sakura-input-success-icon"></i>
+                                <button type="button" class="sakura-password-toggle" onclick="togglePassword('password')">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <div class="sakura-password-requirements">
+                                <div class="sakura-requirement" id="req-length">
+                                    <i class="bi bi-circle"></i>
+                                    <span>At least 8 characters</span>
+                                </div>
+                                <div class="sakura-requirement" id="req-uppercase">
+                                    <i class="bi bi-circle"></i>
+                                    <span>One uppercase letter</span>
+                                </div>
+                                <div class="sakura-requirement" id="req-number">
+                                    <i class="bi bi-circle"></i>
+                                    <span>One number</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sakura-password-strength">
+                            <div class="sakura-strength-bar">
+                                <div class="sakura-strength-fill" id="strengthFill"></div>
+                            </div>
+                            <span class="sakura-strength-text" id="strengthText">Password strength</span>
+                        </div>
+                    </div>
+
+                    <div class="sakura-form-group">
+                        <label class="sakura-checkbox-label">
+                            <input type="checkbox" name="terms" required>
+                            <span class="sakura-checkmark"></span>
+                            I agree to the <a href="#" class="sakura-link">Terms of Service</a> and <a href="#" class="sakura-link">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="sakura-btn sakura-btn--primary sakura-btn--lg sakura-auth-submit">
+                        <span>Create Account</span>
+                        <div class="sakura-btn-loading" style="display: none;">
+                            <div class="sakura-loading-spinner"></div>
+                        </div>
+                    </button>
+
+                    <div class="sakura-auth-security-note">
+                        <i class="bi bi-shield-check"></i>
+                        <span>Bank-level encryption protects your data</span>
+                    </div>
+                </form>
+
+                <div class="sakura-auth-divider">
+                    <span>Or sign up with</span>
+                </div>
+
+                <div class="sakura-social-buttons">
+                    <button class="sakura-btn sakura-btn--outline sakura-social-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        Continue with Google
+                    </button>
+                    <button class="sakura-btn sakura-btn--outline sakura-social-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                        </svg>
+                        Continue with Apple
+                    </button>
+                </div>
+
+                <div class="sakura-auth-footer">
+                    <p>Already have an account? <a href="login.html" class="sakura-link">Sign in</a></p>
+                </div>
+            </div>
+
+            <div class="sakura-auth-visual">
+                <p>Visual content goes here</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Email validation
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+
+        emailInput.addEventListener('blur', function() {
+            validateEmail();
+        });
+
+        emailInput.addEventListener('input', function() {
+            if (this.classList.contains('error')) {
+                validateEmail();
+            }
+        });
+
+        function validateEmail() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const value = emailInput.value.trim();
+
+            if (value.length === 0) {
+                emailInput.classList.remove('success', 'error');
+                emailError.classList.remove('active');
+                emailError.textContent = '';
+                return false;
+            }
+
+            if (!emailRegex.test(value)) {
+                emailInput.classList.add('error');
+                emailInput.classList.remove('success');
+                emailError.classList.add('active');
+                emailError.textContent = 'Please enter a valid email address';
+                return false;
+            }
+
+            emailInput.classList.add('success');
+            emailInput.classList.remove('error');
+            emailError.classList.remove('active');
+            emailError.textContent = '';
+            return true;
+        }
+
+        // Password validation
+        const passwordInput = document.getElementById('password');
+        const passwordRequirements = document.querySelector('.sakura-password-requirements');
+
+        // Show requirements when field is focused
+        passwordInput.addEventListener('focus', function() {
+            passwordRequirements.classList.add('show');
+        });
+
+        // Hide requirements when field loses focus
+        passwordInput.addEventListener('blur', function() {
+            passwordRequirements.classList.remove('show');
+        });
+
+        passwordInput.addEventListener('input', function() {
+            validatePassword();
+            updatePasswordStrength();
+        });
+
+        function validatePassword() {
+            const password = passwordInput.value;
+
+            // Check length
+            const lengthReq = document.getElementById('req-length');
+            if (password.length >= 8) {
+                lengthReq.classList.add('met');
+            } else {
+                lengthReq.classList.remove('met');
+            }
+
+            // Check uppercase
+            const uppercaseReq = document.getElementById('req-uppercase');
+            if (/[A-Z]/.test(password)) {
+                uppercaseReq.classList.add('met');
+            } else {
+                uppercaseReq.classList.remove('met');
+            }
+
+            // Check number
+            const numberReq = document.getElementById('req-number');
+            if (/\d/.test(password)) {
+                numberReq.classList.add('met');
+            } else {
+                numberReq.classList.remove('met');
+            }
+
+            // Check overall validity and update success state
+            const isValid = password.length >= 8 && /[A-Z]/.test(password) && /\d/.test(password);
+
+            if (password.length === 0) {
+                passwordInput.classList.remove('success', 'error');
+            } else if (isValid) {
+                passwordInput.classList.add('success');
+                passwordInput.classList.remove('error');
+            } else {
+                passwordInput.classList.remove('success');
+            }
+
+            return isValid;
+        }
+
+        function updatePasswordStrength() {
+            const password = passwordInput.value;
+            const strengthFill = document.getElementById('strengthFill');
+            const strengthText = document.getElementById('strengthText');
+
+            let strength = 0;
+            if (password.length >= 8) strength += 25;
+            if (password.length >= 12) strength += 25;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 25;
+            if (/\d/.test(password)) strength += 12.5;
+            if (/[^a-zA-Z0-9]/.test(password)) strength += 12.5;
+
+            let strengthInfo;
+            if (strength <= 25) {
+                strengthInfo = { percent: 25, class: 'weak', text: 'Weak password' };
+            } else if (strength <= 50) {
+                strengthInfo = { percent: 50, class: 'medium', text: 'Medium password' };
+            } else if (strength <= 75) {
+                strengthInfo = { percent: 75, class: 'medium', text: 'Good password' };
+            } else {
+                strengthInfo = { percent: 100, class: 'strong', text: 'Strong password' };
+            }
+
+            strengthFill.style.width = strengthInfo.percent + '%';
+            strengthFill.className = 'sakura-strength-fill ' + strengthInfo.class;
+            strengthText.textContent = strengthInfo.text;
+        }
+
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const toggleButton = passwordField.parentElement.querySelector('.sakura-password-toggle i');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleButton.classList.remove('bi-eye');
+                toggleButton.classList.add('bi-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleButton.classList.remove('bi-eye-slash');
+                toggleButton.classList.add('bi-eye');
+            }
+        }
+
+        // Form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate all fields
+            const emailValid = validateEmail();
+            const passwordValid = validatePassword();
+
+            if (!emailValid || !passwordValid) {
+                // Show error if validation fails
+                if (!emailValid) {
+                    emailInput.focus();
+                } else if (!passwordValid) {
+                    passwordInput.focus();
+                }
+                return;
+            }
+
+            // All valid, proceed with submission
+            const submitBtn = this.querySelector('.sakura-auth-submit');
+            submitBtn.classList.add('loading');
+
+            // Simulate signup API call
+            setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                console.log('Signup successful!');
+                // Redirect to dashboard or next step
+                // window.location.href = '/dashboard';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
