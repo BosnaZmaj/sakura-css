@@ -1,5 +1,60 @@
 @import "tailwindcss";
 
+/* Tailwind v4 Theme Configuration */
+@theme {
+  /* Sakura Brand Colors */
+  --color-sakura-primary: #1e2a3b;
+  --color-sakura-primary-light: #2d3f5a;
+  --color-sakura-primary-dark: #0f1419;
+  --color-sakura-secondary: #5b8bf5;
+  --color-sakura-secondary-light: #7ba5ff;
+  --color-sakura-accent: #10b981;
+  --color-sakura-accent-light: #34d399;
+  --color-sakura-warning: #f59e0b;
+  --color-sakura-danger: #ef4444;
+  --color-sakura-success: #10b981;
+  --color-sakura-purple: #8b5cf6;
+  --color-sakura-purple-light: #a78bfa;
+  --color-sakura-pink: #ec4899;
+  --color-sakura-pink-light: #f472b6;
+  --color-sakura-white: #ffffff;
+
+  /* Sakura Gray Scale */
+  --color-sakura-gray-50: #f8fafc;
+  --color-sakura-gray-100: #f1f5f9;
+  --color-sakura-gray-200: #e2e8f0;
+  --color-sakura-gray-300: #cbd5e1;
+  --color-sakura-gray-400: #94a3b8;
+  --color-sakura-gray-500: #64748b;
+  --color-sakura-gray-600: #475569;
+  --color-sakura-gray-700: #334155;
+  --color-sakura-gray-800: #1e293b;
+  --color-sakura-gray-900: #0f172a;
+
+  /* Custom Fonts */
+  --font-heading: Inter, system-ui, sans-serif;
+  --font-body: Poppins, system-ui, sans-serif;
+
+  /* Custom Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-88: 22rem;
+
+  /* Extended Border Radius */
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.25rem;
+  --radius-4xl: 1.75rem;
+  --radius-5xl: 2rem;
+  --radius-6xl: 2.5rem;
+
+  /* Custom Shadows */
+  --shadow-subtle: 0 1px 2px 0 rgb(0 0 0 / 0.02);
+  --shadow-soft: 0 2px 4px 0 rgb(0 0 0 / 0.03), 0 1px 2px 0 rgb(0 0 0 / 0.02);
+  --shadow-medium: 0 4px 8px -2px rgb(0 0 0 / 0.04), 0 2px 4px -1px rgb(0 0 0 / 0.03);
+  --shadow-elevated: 0 10px 20px -5px rgb(0 0 0 / 0.06), 0 4px 8px -2px rgb(0 0 0 / 0.04);
+  --shadow-high: 0 20px 30px -10px rgb(0 0 0 / 0.08), 0 8px 12px -4px rgb(0 0 0 / 0.05);
+}
+
 /* Sakura CSS Framework - Custom Components */
 
 @layer base {
