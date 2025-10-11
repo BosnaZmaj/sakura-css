@@ -18,6 +18,7 @@ class SakuraFramework {
     this.setupSparklineTooltips();
     this.setupUserDropdown();
     this.setupNotificationDropdown();
+    this.setupNotificationsPage();
   }
 
   // Navigation functionality
@@ -1186,6 +1187,17 @@ class SakuraFramework {
     // Toggle dropdown when clicking notification button
     notificationBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+
+      // Check if there are any unread notifications
+      const unreadCount = document.querySelectorAll('.sakura-notification-item.unread').length;
+
+      // If no unread notifications, go to notifications page
+      if (unreadCount === 0) {
+        window.location.href = 'notifications.html';
+        return;
+      }
+
+      // Otherwise, toggle the dropdown
       notificationContainer.classList.toggle('active');
     });
 
@@ -1263,6 +1275,164 @@ class SakuraFramework {
         notificationBadge.style.display = 'block';
       }
     }
+  }
+
+  // Notifications Page functionality
+  setupNotificationsPage() {
+    // Check if we're on the notifications page
+    const notificationsPage = document.querySelector('.sakura-notifications-page-list');
+    if (!notificationsPage) return;
+
+    const filterTabs = document.querySelectorAll('.sakura-filter-tab');
+    const pageNotifications = document.querySelectorAll('.sakura-notification-page-item');
+    const markAllReadBtn = document.getElementById('mark-all-read-page');
+    const deleteAllBtn = document.getElementById('delete-all-page');
+    const markReadButtons = document.querySelectorAll('.sakura-notification-page-item .sakura-notification-mark-read');
+    const deleteButtons = document.querySelectorAll('.sakura-notification-page-item .sakura-notification-delete');
+
+    // Filter functionality
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const filter = tab.getAttribute('data-filter');
+
+        // Update active tab
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Filter notifications
+        pageNotifications.forEach(notification => {
+          const type = notification.getAttribute('data-type');
+          const isUnread = notification.classList.contains('unread');
+
+          if (filter === 'all') {
+            notification.style.display = 'flex';
+          } else if (filter === 'unread') {
+            notification.style.display = isUnread ? 'flex' : 'none';
+          } else {
+            notification.style.display = type === filter ? 'flex' : 'none';
+          }
+        });
+
+        // Update date group visibility
+        this.updateDateGroupVisibility();
+      });
+    });
+
+    // Mark all as read on page
+    if (markAllReadBtn) {
+      markAllReadBtn.addEventListener('click', () => {
+        const unreadPageItems = document.querySelectorAll('.sakura-notification-page-item.unread');
+        unreadPageItems.forEach(item => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateX(20px)';
+
+          setTimeout(() => {
+            item.classList.remove('unread');
+            item.style.opacity = '';
+            item.style.transform = '';
+          }, 200);
+        });
+
+        // Update filter counts
+        this.updateNotificationFilterCounts();
+        this.updateNotificationBadge();
+      });
+    }
+
+    // Delete all notifications on page
+    if (deleteAllBtn) {
+      deleteAllBtn.addEventListener('click', () => {
+        const allPageItems = document.querySelectorAll('.sakura-notification-page-item');
+        allPageItems.forEach((item, index) => {
+          // Stagger the animation slightly for visual effect
+          setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(30px)';
+
+            // Remove from DOM after animation
+            setTimeout(() => {
+              item.remove();
+              // Update counts after last item is removed
+              if (index === allPageItems.length - 1) {
+                this.updateNotificationFilterCounts();
+                this.updateNotificationBadge();
+                this.updateDateGroupVisibility();
+              }
+            }, 200);
+          }, index * 50); // 50ms delay between each item
+        });
+      });
+    }
+
+    // Individual mark as read on page
+    markReadButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const notificationItem = button.closest('.sakura-notification-page-item');
+        if (notificationItem && notificationItem.classList.contains('unread')) {
+          notificationItem.style.opacity = '0';
+          notificationItem.style.transform = 'translateX(20px)';
+
+          setTimeout(() => {
+            notificationItem.classList.remove('unread');
+            notificationItem.style.opacity = '';
+            notificationItem.style.transform = '';
+            this.updateNotificationFilterCounts();
+            this.updateNotificationBadge();
+          }, 200);
+        }
+      });
+    });
+
+    // Delete button functionality
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const notificationItem = button.closest('.sakura-notification-page-item');
+        if (notificationItem) {
+          // Animate out
+          notificationItem.style.opacity = '0';
+          notificationItem.style.transform = 'translateX(30px)';
+
+          // Remove from DOM after animation
+          setTimeout(() => {
+            notificationItem.remove();
+            this.updateNotificationFilterCounts();
+            this.updateNotificationBadge();
+            this.updateDateGroupVisibility();
+          }, 200);
+        }
+      });
+    });
+
+    // Initialize counts
+    this.updateNotificationFilterCounts();
+  }
+
+  // Update date group visibility based on filtered notifications
+  updateDateGroupVisibility() {
+    const dateGroups = document.querySelectorAll('.sakura-notification-date-group');
+
+    dateGroups.forEach(group => {
+      const visibleNotifications = Array.from(group.querySelectorAll('.sakura-notification-page-item'))
+        .filter(item => item.style.display !== 'none');
+
+      group.style.display = visibleNotifications.length > 0 ? 'flex' : 'none';
+    });
+  }
+
+  // Update notification filter counts
+  updateNotificationFilterCounts() {
+    const allCount = document.querySelectorAll('.sakura-notification-page-item').length;
+    const unreadCount = document.querySelectorAll('.sakura-notification-page-item.unread').length;
+
+    // Update All filter count
+    const allTab = document.querySelector('[data-filter="all"] .sakura-filter-count');
+    if (allTab) allTab.textContent = allCount.toString();
+
+    // Update Unread filter count
+    const unreadTab = document.querySelector('[data-filter="unread"] .sakura-filter-count');
+    if (unreadTab) unreadTab.textContent = unreadCount.toString();
   }
 
 }

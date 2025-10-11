@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Sakura Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body class="sakura-dashboard-body">
+    <!-- Dashboard Header -->
+    <header class="sakura-dashboard-header">
+        <div class="sakura-dashboard-header-container">
+            <div class="sakura-header-left">
+                <div class="sakura-navbar-brand">
+                    <img src="dist/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+                </div>
+                <nav class="sakura-breadcrumb">
+                    <a href="dashboard.html" class="sakura-breadcrumb-link">Overview</a>
+                    <span class="sakura-breadcrumb-separator">/</span>
+                    <span class="sakura-breadcrumb-item">Notifications</span>
+                </nav>
+            </div>
+            <div class="sakura-header-right">
+                <div class="sakura-notification-container">
+                    <button class="sakura-notification-btn">
+                        <i class="bi bi-bell"></i>
+                        <span class="sakura-notification-badge">3</span>
+                    </button>
+                    <div class="sakura-notification-dropdown">
+                        <div class="sakura-notification-header">
+                            <h3>Notifications</h3>
+                            <button class="sakura-notification-mark-all">Mark all as read</button>
+                        </div>
+                        <div class="sakura-notification-list">
+                            <!-- Budget Alert -->
+                            <div class="sakura-notification-item unread" data-type="budget">
+                                <div class="sakura-notification-icon budget">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Entertainment envelope at 90%</div>
+                                    <div class="sakura-notification-message">You have $50 remaining in your Entertainment budget</div>
+                                    <div class="sakura-notification-time">2 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+
+                            <!-- Goal Update -->
+                            <div class="sakura-notification-item unread" data-type="goal">
+                                <div class="sakura-notification-icon goal">
+                                    <i class="bi bi-bullseye"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Emergency Fund milestone reached</div>
+                                    <div class="sakura-notification-message">Congratulations! Your Emergency Fund is now 50% complete</div>
+                                    <div class="sakura-notification-time">5 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+
+                            <!-- Income Notification -->
+                            <div class="sakura-notification-item unread" data-type="income">
+                                <div class="sakura-notification-icon income">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Salary deposited</div>
+                                    <div class="sakura-notification-message">$3,500.00 has been added to your Chase Bank account</div>
+                                    <div class="sakura-notification-time">Yesterday at 9:15 AM</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="sakura-notification-footer">
+                            <a href="notifications.html" class="sakura-notification-view-all">
+                                View All Notifications
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sakura-user-menu">
+                    <img src="https://avatar.iran.liara.run/public" alt="User" class="sakura-user-avatar">
+                    <div class="sakura-user-info">
+                        <span class="sakura-user-name">Pablo Peso</span>
+                        <span class="sakura-user-email">pablo@sakura.com</span>
+                    </div>
+                    <button class="sakura-user-menu-toggle">
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="sakura-user-dropdown">
+                        <button class="sakura-dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Settings
+                        </button>
+                        <div class="sakura-dropdown-divider"></div>
+                        <button class="sakura-dropdown-item danger">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Log Off
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="sakura-dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sakura-dashboard-sidebar">
+            <nav class="sakura-sidebar-nav">
+                <a href="dashboard.html" class="sakura-nav-item">
+                    <i class="bi bi-grid"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="envelope-detail.html" class="sakura-nav-item">
+                    <i class="bi bi-envelope"></i>
+                    <span>Envelopes</span>
+                </a>
+                <a href="transactions.html" class="sakura-nav-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Transactions</span>
+                </a>
+                <a href="goals.html" class="sakura-nav-item">
+                    <i class="bi bi-bullseye"></i>
+                    <span>Goals</span>
+                </a>
+                <a href="#" class="sakura-nav-item">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Reports</span>
+                </a>
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Settings</span>
+                    <a href="#" class="sakura-nav-item">
+                        <i class="bi bi-gear"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="sakura-dashboard-main">
+            <!-- Notifications Page Header -->
+            <div class="sakura-notifications-page-header">
+                <div class="sakura-notifications-title-section">
+                    <h1>Notifications</h1>
+                    <p class="sakura-notifications-subtitle">Stay updated with your financial activities</p>
+                </div>
+                <div class="sakura-notifications-actions">
+                    <button class="sakura-btn sakura-btn--success" id="mark-all-read-page">
+                        <i class="bi bi-check-all"></i>
+                        Mark all as read
+                    </button>
+                    <button class="sakura-btn sakura-btn--danger" id="delete-all-page">
+                        <i class="bi bi-trash"></i>
+                        Delete all
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notification Filters -->
+            <div class="sakura-notifications-filters">
+                <button class="sakura-filter-tab active" data-filter="all">
+                    All
+                    <span class="sakura-filter-count">8</span>
+                </button>
+                <button class="sakura-filter-tab" data-filter="unread">
+                    Unread
+                    <span class="sakura-filter-count">3</span>
+                </button>
+                <button class="sakura-filter-tab" data-filter="budget">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Budget
+                </button>
+                <button class="sakura-filter-tab" data-filter="goal">
+                    <i class="bi bi-bullseye"></i>
+                    Goals
+                </button>
+                <button class="sakura-filter-tab" data-filter="transaction">
+                    <i class="bi bi-receipt"></i>
+                    Transactions
+                </button>
+                <button class="sakura-filter-tab" data-filter="income">
+                    <i class="bi bi-cash-coin"></i>
+                    Income
+                </button>
+            </div>
+
+            <!-- Notifications List -->
+            <div class="sakura-notifications-page-list">
+                <!-- Unread Section -->
+                <div class="sakura-notification-section">
+                    <h2 class="sakura-notification-section-title">Unread</h2>
+
+                    <!-- Unread - Today -->
+                    <div class="sakura-notification-date-group">
+                        <h3 class="sakura-notification-date-title">Today</h3>
+
+                        <div class="sakura-notification-page-item unread" data-type="budget">
+                            <div class="sakura-notification-icon budget">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                            <div class="sakura-notification-content">
+                                <div class="sakura-notification-title">Entertainment envelope at 90%</div>
+                                <div class="sakura-notification-message">You have $50 remaining in your Entertainment budget</div>
+                                <div class="sakura-notification-time">2 hours ago</div>
+                            </div>
+                            <div class="sakura-notification-actions">
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                                <button class="sakura-notification-delete">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="sakura-notification-page-item unread" data-type="goal">
+                            <div class="sakura-notification-icon goal">
+                                <i class="bi bi-bullseye"></i>
+                            </div>
+                            <div class="sakura-notification-content">
+                                <div class="sakura-notification-title">Emergency Fund milestone reached</div>
+                                <div class="sakura-notification-message">Congratulations! Your Emergency Fund is now 50% complete</div>
+                                <div class="sakura-notification-time">5 hours ago</div>
+                            </div>
+                            <div class="sakura-notification-actions">
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                                <button class="sakura-notification-delete">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unread - Yesterday -->
+                    <div class="sakura-notification-date-group">
+                        <h3 class="sakura-notification-date-title">Yesterday</h3>
+
+                        <div class="sakura-notification-page-item unread" data-type="income">
+                            <div class="sakura-notification-icon income">
+                                <i class="bi bi-cash-coin"></i>
+                            </div>
+                            <div class="sakura-notification-content">
+                                <div class="sakura-notification-title">Salary deposited</div>
+                                <div class="sakura-notification-message">$3,500.00 has been added to your Chase Bank account</div>
+                                <div class="sakura-notification-time">Yesterday at 9:15 AM</div>
+                            </div>
+                            <div class="sakura-notification-actions">
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                                <button class="sakura-notification-delete">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Read Section -->
+                <div class="sakura-notification-section">
+                    <h2 class="sakura-notification-section-title">Read</h2>
+
+                    <!-- Read - Yesterday -->
+                    <div class="sakura-notification-date-group">
+                        <h3 class="sakura-notification-date-title">Yesterday</h3>
+
+                        <div class="sakura-notification-page-item" data-type="transaction">
+                        <div class="sakura-notification-icon transaction">
+                            <i class="bi bi-receipt"></i>
+                        </div>
+                        <div class="sakura-notification-content">
+                            <div class="sakura-notification-title">Large purchase detected</div>
+                            <div class="sakura-notification-message">$245.00 spent at Best Buy - Electronics category</div>
+                            <div class="sakura-notification-time">Yesterday at 3:45 PM</div>
+                        </div>
+                        <div class="sakura-notification-actions">
+                            <button class="sakura-notification-mark-read">
+                                <i class="bi bi-check"></i>
+                            </button>
+                            <button class="sakura-notification-delete">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- Read - This Week -->
+                    <div class="sakura-notification-date-group">
+                        <h3 class="sakura-notification-date-title">This Week</h3>
+
+                        <div class="sakura-notification-page-item" data-type="bill">
+                        <div class="sakura-notification-icon bill">
+                            <i class="bi bi-calendar-event"></i>
+                        </div>
+                        <div class="sakura-notification-content">
+                            <div class="sakura-notification-title">Bill due in 3 days</div>
+                            <div class="sakura-notification-message">Electric Company - $89.23 due on January 28th</div>
+                            <div class="sakura-notification-time">2 days ago</div>
+                        </div>
+                        <div class="sakura-notification-actions">
+                            <button class="sakura-notification-mark-read">
+                                <i class="bi bi-check"></i>
+                            </button>
+                            <button class="sakura-notification-delete">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sakura-notification-page-item" data-type="goal">
+                        <div class="sakura-notification-icon goal">
+                            <i class="bi bi-bullseye"></i>
+                        </div>
+                        <div class="sakura-notification-content">
+                            <div class="sakura-notification-title">Vacation Fund progress update</div>
+                            <div class="sakura-notification-message">You're 40% of the way to your $3,000 goal</div>
+                            <div class="sakura-notification-time">3 days ago</div>
+                        </div>
+                        <div class="sakura-notification-actions">
+                            <button class="sakura-notification-mark-read">
+                                <i class="bi bi-check"></i>
+                            </button>
+                            <button class="sakura-notification-delete">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sakura-notification-page-item" data-type="budget">
+                        <div class="sakura-notification-icon budget">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+                        <div class="sakura-notification-content">
+                            <div class="sakura-notification-title">Groceries envelope low</div>
+                            <div class="sakura-notification-message">Only $150 remaining in your Groceries budget for this month</div>
+                            <div class="sakura-notification-time">4 days ago</div>
+                        </div>
+                        <div class="sakura-notification-actions">
+                            <button class="sakura-notification-mark-read">
+                                <i class="bi bi-check"></i>
+                            </button>
+                            <button class="sakura-notification-delete">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sakura-notification-page-item" data-type="transaction">
+                        <div class="sakura-notification-icon transaction">
+                            <i class="bi bi-receipt"></i>
+                        </div>
+                        <div class="sakura-notification-content">
+                            <div class="sakura-notification-title">Unusual spending pattern</div>
+                            <div class="sakura-notification-message">Your dining spending is 25% higher than usual this week</div>
+                            <div class="sakura-notification-time">5 days ago</div>
+                        </div>
+                        <div class="sakura-notification-actions">
+                            <button class="sakura-notification-mark-read">
+                                <i class="bi bi-check"></i>
+                            </button>
+                            <button class="sakura-notification-delete">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="src/sakura.js"></script>
+</body>
+</html>
