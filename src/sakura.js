@@ -16,6 +16,7 @@ class SakuraFramework {
     this.setupPricingToggle();
     this.setupTimelineAnimations();
     this.setupSparklineTooltips();
+    this.setupUserDropdown();
   }
 
   // Navigation functionality
@@ -1131,6 +1132,44 @@ class SakuraFramework {
     if (closingCard) {
       observer.observe(closingCard);
     }
+  }
+
+  // User dropdown menu functionality
+  setupUserDropdown() {
+    const userMenu = document.querySelector('.sakura-user-menu');
+    const userMenuToggle = document.querySelector('.sakura-user-menu-toggle');
+    const dropdown = document.querySelector('.sakura-user-dropdown');
+
+    if (!userMenu || !userMenuToggle) return;
+
+    // Toggle dropdown when clicking anywhere on the user menu (except dropdown items)
+    userMenu.addEventListener('click', (e) => {
+      // Don't toggle if clicking on dropdown items
+      if (dropdown && dropdown.contains(e.target)) {
+        return;
+      }
+
+      e.stopPropagation();
+      userMenu.classList.toggle('active');
+      userMenuToggle.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!userMenu.contains(e.target)) {
+        userMenu.classList.remove('active');
+        userMenuToggle.classList.remove('active');
+      }
+    });
+
+    // Close dropdown when clicking on a menu item
+    const dropdownItems = document.querySelectorAll('.sakura-dropdown-item');
+    dropdownItems.forEach(item => {
+      item.addEventListener('click', () => {
+        userMenu.classList.remove('active');
+        userMenuToggle.classList.remove('active');
+      });
+    });
   }
 
 }
