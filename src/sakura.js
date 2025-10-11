@@ -15,6 +15,7 @@ class SakuraFramework {
     this.setupUrgencyUpdater();
     this.setupPricingToggle();
     this.setupTimelineAnimations();
+    this.setupSparklineTooltips();
   }
 
   // Navigation functionality
@@ -998,6 +999,106 @@ class SakuraFramework {
       annualPrices.forEach(price => price.style.display = 'none');
       billingDisclaimers.forEach(disclaimer => disclaimer.style.display = 'none');
     }
+  }
+
+  // Sparkline hover functionality
+  setupSparklineTooltips() {
+    const charts = document.querySelectorAll('.sakura-account-sparkline-chart, .sakura-summary-sparkline-chart');
+
+    charts.forEach((chart, index) => {
+      const hoverArea = chart.querySelector('.sakura-account-sparkline-hover-area, .sakura-summary-sparkline-hover-area');
+      const hoverDot = chart.querySelector('.sakura-account-sparkline-hover-dot, .sakura-summary-sparkline-hover-dot');
+      const svg = chart.querySelector('svg');
+
+      if (!hoverArea || !hoverDot || !svg) return;
+
+      // Sample data points - in real app this would come from API
+      const dataPoints = [
+        { x: 0, y: 32, value: '$7,950.00', date: 'Dec 15', change: '+$200.00', transaction: 'Deposit' },
+        { x: 40, y: 28, value: '$8,100.00', date: 'Dec 20', change: '+$150.00', transaction: 'Transfer in' },
+        { x: 80, y: 25, value: '$8,100.00', date: 'Dec 25', change: '-$50.00', transaction: 'Utility bill' },
+        { x: 120, y: 20, value: '$8,250.00', date: 'Jan 5', change: '+$150.00', transaction: 'Freelance' },
+        { x: 160, y: 15, value: '$8,400.00', date: 'Jan 15', change: '+$150.00', transaction: 'Bonus' },
+        { x: 200, y: 13, value: '$8,480.00', date: 'Jan 20', change: '+$80.00', transaction: 'Refund' },
+        { x: 240, y: 12, value: '$8,520.00', date: 'Jan 23', change: '+$40.00', transaction: 'Interest' },
+        { x: 280, y: 10, value: '$8,547.00', date: 'Jan 25', change: '+$27.00', transaction: 'Cash back' }
+      ];
+
+      let tooltip = null;
+
+      hoverArea.addEventListener('mousemove', (e) => {
+        const rect = svg.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 280;
+
+        // Find closest data point
+        let closest = dataPoints[0];
+        let minDistance = Math.abs(x - closest.x);
+
+        dataPoints.forEach(point => {
+          const distance = Math.abs(x - point.x);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closest = point;
+          }
+        });
+
+        // Update hover dot position
+        hoverDot.setAttribute('cx', closest.x);
+        hoverDot.setAttribute('cy', closest.y);
+        hoverDot.classList.add('active');
+
+        // Create or update tooltip
+        if (!tooltip) {
+          tooltip = document.createElement('div');
+          tooltip.className = chart.classList.contains('sakura-account-sparkline-chart')
+            ? 'sakura-account-sparkline-tooltip'
+            : 'sakura-summary-sparkline-tooltip';
+          chart.appendChild(tooltip);
+        }
+
+        let changeIcon = '';
+        let changeColor = '';
+        if (closest.change && closest.change.startsWith('+')) {
+          changeIcon = '↑';
+          changeColor = 'color: #10b981;';
+        } else if (closest.change && closest.change.startsWith('-')) {
+          changeIcon = '↓';
+          changeColor = 'color: #ef4444;';
+        }
+
+        tooltip.innerHTML = `
+          <div style="font-weight: 600; margin-bottom: 2px;">${closest.date}</div>
+          <div style="margin-bottom: 2px;">${closest.value}</div>
+          ${closest.change ? `<div style="${changeColor}"><span>${changeIcon}</span> ${closest.change}</div>` : ''}
+          ${closest.transaction ? `<div style="color: #9ca3af; font-size: 11px; margin-top: 2px;">${closest.transaction}</div>` : ''}
+        `;
+
+        tooltip.style.opacity = '1';
+
+        const chartRect = chart.getBoundingClientRect();
+        let left = e.clientX - chartRect.left - (tooltip.offsetWidth / 2);
+        const top = e.clientY - chartRect.top - tooltip.offsetHeight - 10;
+
+        // Keep tooltip within bounds
+        if (left + tooltip.offsetWidth > chartRect.width) {
+          left = chartRect.width - tooltip.offsetWidth - 10;
+        }
+        if (left < 0) {
+          left = 10;
+        }
+
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+      });
+
+      hoverArea.addEventListener('mouseleave', () => {
+        hoverDot.classList.remove('active');
+        if (tooltip) {
+          tooltip.remove();
+          tooltip = null;
+        }
+      });
+    });
   }
 
   // Timeline scroll animations

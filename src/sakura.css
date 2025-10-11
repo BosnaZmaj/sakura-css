@@ -8923,6 +8923,44 @@
     fill: url(#sparkline-gradient);
   }
 
+  .sakura-account-sparkline-hover-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: crosshair;
+  }
+
+  .sakura-account-sparkline-hover-dot {
+    fill: #5b8bf5;
+    stroke: white;
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .sakura-account-sparkline-hover-dot.active {
+    opacity: 1;
+  }
+
+  .sakura-account-sparkline-tooltip,
+  .sakura-summary-sparkline-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: var(--radius-lg);
+    font-size: var(--text-xs);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    z-index: 100;
+    line-height: 1.4;
+  }
+
   /* Summary Cards */
   .sakura-summary-card {
     background: rgba(255, 255, 255, 0.85);
@@ -9169,6 +9207,28 @@
 
   .sakura-summary-card:nth-child(4) .sakura-summary-sparkline-fill {
     fill: url(#summary-gradient-3);
+  }
+
+  .sakura-summary-sparkline-hover-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: crosshair;
+  }
+
+  .sakura-summary-sparkline-hover-dot {
+    fill: var(--summary-color, #5b8bf5);
+    stroke: white;
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .sakura-summary-sparkline-hover-dot.active {
+    opacity: 1;
   }
 
   /* Envelopes Section */
