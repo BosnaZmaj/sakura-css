@@ -8649,7 +8649,7 @@
   .sakura-welcome-section {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 2.5rem;
     padding: 2.5rem 3rem;
     background: linear-gradient(135deg, #1e2a3b 0%, #5b8bf5 50%, #8b5cf6 100%);
@@ -8714,6 +8714,7 @@
     gap: 0.75rem;
     position: relative;
     z-index: 1;
+    justify-content: center;
   }
 
   /* Budget Summary Section */
