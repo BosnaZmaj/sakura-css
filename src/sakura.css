@@ -9771,7 +9771,17 @@
     }
   }
 
-  /* Transaction List Component */
+  /* Hover-to-reveal buttons for Envelopes and Transactions sections */
+  .sakura-envelopes-section .sakura-section-header button,
+  .sakura-transactions-section .sakura-section-header button {
+    @apply opacity-0 transition-opacity duration-300;
+  }
+
+  .sakura-envelopes-section:hover .sakura-section-header button,
+  .sakura-transactions-section:hover .sakura-section-header button {
+    @apply opacity-100;
+  }
+
   .sakura-transaction-list {
     @apply bg-white/80 border border-gray-200 rounded-2xl overflow-hidden;
     backdrop-filter: blur(20px) saturate(180%);
@@ -9905,7 +9915,7 @@
     grid-area: goals;
   }
 
-  .sakura-transaction-list {
+  .sakura-transactions-section {
     grid-area: transactions;
   }
 
