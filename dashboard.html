@@ -23,10 +23,70 @@
                 </nav>
             </div>
             <div class="sakura-header-right">
-                <button class="sakura-notification-btn">
-                    <i class="bi bi-bell"></i>
-                    <span class="sakura-notification-badge">3</span>
-                </button>
+                <div class="sakura-notification-container">
+                    <button class="sakura-notification-btn">
+                        <i class="bi bi-bell"></i>
+                        <span class="sakura-notification-badge">3</span>
+                    </button>
+                    <div class="sakura-notification-dropdown">
+                        <div class="sakura-notification-header">
+                            <h3>Notifications</h3>
+                            <button class="sakura-notification-mark-all">Mark all as read</button>
+                        </div>
+                        <div class="sakura-notification-list">
+                            <!-- Budget Alert -->
+                            <div class="sakura-notification-item unread" data-type="budget">
+                                <div class="sakura-notification-icon budget">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Entertainment envelope at 90%</div>
+                                    <div class="sakura-notification-message">You have $50 remaining in your Entertainment budget</div>
+                                    <div class="sakura-notification-time">2 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+
+                            <!-- Goal Update -->
+                            <div class="sakura-notification-item unread" data-type="goal">
+                                <div class="sakura-notification-icon goal">
+                                    <i class="bi bi-bullseye"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Emergency Fund milestone reached</div>
+                                    <div class="sakura-notification-message">Congratulations! Your Emergency Fund is now 50% complete</div>
+                                    <div class="sakura-notification-time">5 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+
+                            <!-- Income Notification -->
+                            <div class="sakura-notification-item unread" data-type="income">
+                                <div class="sakura-notification-icon income">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Salary deposited</div>
+                                    <div class="sakura-notification-message">$3,500.00 has been added to your Chase Bank account</div>
+                                    <div class="sakura-notification-time">Yesterday at 9:15 AM</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="sakura-notification-footer">
+                            <a href="notifications.html" class="sakura-notification-view-all">
+                                View All Notifications
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="sakura-user-menu">
                     <img src="https://avatar.iran.liara.run/public" alt="User" class="sakura-user-avatar">
                     <div class="sakura-user-info">

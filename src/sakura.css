@@ -8485,6 +8485,222 @@
     text-align: center;
   }
 
+  /* Notification Dropdown */
+  .sakura-notification-container {
+    position: relative;
+  }
+
+  .sakura-notification-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    width: 360px;
+    max-height: 500px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.15s ease;
+    overflow: hidden;
+  }
+
+  .sakura-notification-container.active .sakura-notification-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  .sakura-notification-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .sakura-notification-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+  }
+
+  .sakura-notification-mark-all {
+    background: none;
+    border: none;
+    color: #5b8bf5;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-mark-all:hover {
+    background: #eff6ff;
+    color: #3b82f6;
+  }
+
+  .sakura-notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .sakura-notification-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-item:hover {
+    background: #f8fafc;
+  }
+
+  .sakura-notification-item:last-child {
+    border-bottom: none;
+  }
+
+  .sakura-notification-item.unread {
+    background: #f0f9ff;
+  }
+
+  .sakura-notification-item.unread:hover {
+    background: #e0f2fe;
+  }
+
+  .sakura-notification-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .sakura-notification-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-notification-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+  }
+
+  .sakura-notification-message {
+    font-size: 0.8125rem;
+    color: #64748b;
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+  }
+
+  .sakura-notification-time {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  .sakura-notification-mark-read {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-item:hover .sakura-notification-mark-read {
+    opacity: 1;
+  }
+
+  .sakura-notification-mark-read:hover {
+    background: #f1f5f9;
+    color: #5b8bf5;
+  }
+
+  /* Notification Icon Types */
+  .sakura-notification-icon.budget {
+    background: #fef3c7;
+    color: #d97706;
+  }
+
+  .sakura-notification-icon.goal {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+
+  .sakura-notification-icon.transaction {
+    background: #f3e8ff;
+    color: #9333ea;
+  }
+
+  .sakura-notification-icon.bill {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+
+  .sakura-notification-icon.income {
+    background: #d1fae5;
+    color: #059669;
+  }
+
+  .sakura-notification-icon.system {
+    background: #f1f5f9;
+    color: #475569;
+  }
+
+  /* Notification Footer */
+  .sakura-notification-footer {
+    border-top: 1px solid #e2e8f0;
+    padding: 0.75rem 1.25rem 1rem 1.25rem;
+  }
+
+  .sakura-notification-view-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.625rem 1rem;
+    background: none;
+    border: none;
+    color: #5b8bf5;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-view-all:hover {
+    background: #eff6ff;
+    color: #3b82f6;
+  }
+
+  .sakura-notification-view-all i {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  .sakura-notification-view-all:hover i {
+    transform: translateX(3px);
+  }
+
   .sakura-user-menu {
     position: relative;
     display: flex;

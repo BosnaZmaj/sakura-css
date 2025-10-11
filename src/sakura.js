@@ -17,6 +17,7 @@ class SakuraFramework {
     this.setupTimelineAnimations();
     this.setupSparklineTooltips();
     this.setupUserDropdown();
+    this.setupNotificationDropdown();
   }
 
   // Navigation functionality
@@ -1170,6 +1171,98 @@ class SakuraFramework {
         userMenuToggle.classList.remove('active');
       });
     });
+  }
+
+  // Notification dropdown functionality
+  setupNotificationDropdown() {
+    const notificationContainer = document.querySelector('.sakura-notification-container');
+    const notificationBtn = document.querySelector('.sakura-notification-btn');
+    const notificationDropdown = document.querySelector('.sakura-notification-dropdown');
+    const notificationBadge = document.querySelector('.sakura-notification-badge');
+    const markAllBtn = document.querySelector('.sakura-notification-mark-all');
+
+    if (!notificationContainer || !notificationBtn) return;
+
+    // Toggle dropdown when clicking notification button
+    notificationBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      notificationContainer.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!notificationContainer.contains(e.target)) {
+        notificationContainer.classList.remove('active');
+      }
+    });
+
+    // Prevent dropdown from closing when clicking inside it
+    if (notificationDropdown) {
+      notificationDropdown.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
+
+    // Mark all as read functionality
+    if (markAllBtn) {
+      markAllBtn.addEventListener('click', () => {
+        const unreadItems = document.querySelectorAll('.sakura-notification-item.unread');
+        unreadItems.forEach(item => {
+          // Add fade out animation
+          item.style.opacity = '0';
+          item.style.transform = 'translateX(20px)';
+
+          // Remove from DOM after animation
+          setTimeout(() => {
+            item.remove();
+            this.updateNotificationBadge();
+          }, 200);
+        });
+
+        // Update badge immediately
+        this.updateNotificationBadge();
+      });
+    }
+
+    // Individual mark as read functionality
+    const markReadButtons = document.querySelectorAll('.sakura-notification-mark-read');
+    markReadButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const notificationItem = button.closest('.sakura-notification-item');
+        if (notificationItem) {
+          // Add fade out animation
+          notificationItem.style.opacity = '0';
+          notificationItem.style.transform = 'translateX(20px)';
+
+          // Remove from DOM after animation
+          setTimeout(() => {
+            notificationItem.remove();
+            this.updateNotificationBadge();
+          }, 200);
+        }
+      });
+    });
+
+    // Update badge count
+    this.updateNotificationBadge();
+  }
+
+  // Update notification badge count
+  updateNotificationBadge() {
+    const notificationBadge = document.querySelector('.sakura-notification-badge');
+    const unreadItems = document.querySelectorAll('.sakura-notification-item.unread');
+
+    if (notificationBadge) {
+      const count = unreadItems.length;
+      notificationBadge.textContent = count.toString();
+
+      if (count === 0) {
+        notificationBadge.style.display = 'none';
+      } else {
+        notificationBadge.style.display = 'block';
+      }
+    }
   }
 
 }
