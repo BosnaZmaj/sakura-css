@@ -10925,8 +10925,48 @@
     @apply flex gap-2;
   }
 
+  /* Disabled state - stay gray, no transform */
   .sakura-bulk-actions .sakura-btn:disabled {
-    @apply opacity-50 cursor-not-allowed;
+    @apply cursor-not-allowed;
+    color: #9ca3af;
+    border-color: #d1d5db;
+    background: transparent;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .sakura-bulk-actions .sakura-btn:disabled:hover {
+    color: #9ca3af;
+    border-color: #d1d5db;
+    background: transparent;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Edit Selected button - secondary style when enabled */
+  .sakura-bulk-actions #bulkEdit:not(:disabled) {
+    background: white;
+    color: #1e2a3b;
+    border-color: #1e2a3b;
+  }
+
+  .sakura-bulk-actions #bulkEdit:not(:disabled):hover {
+    background: #1e2a3b;
+    color: white;
+    border-color: #1e2a3b;
+  }
+
+  /* Delete Selected button - red outline when enabled, filled on hover */
+  .sakura-bulk-actions #bulkDelete:not(:disabled) {
+    color: #ef4444;
+    border-color: #ef4444;
+    background: transparent;
+  }
+
+  .sakura-bulk-actions #bulkDelete:not(:disabled):hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
   }
 
   /* Transaction Views */
@@ -11181,7 +11221,7 @@
   }
 
   .sakura-transaction-envelope {
-    @apply px-3 py-1 rounded text-xs font-medium bg-gray-100 text-gray-700;
+    @apply px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700;
     font-family: var(--font-body);
   }
 
@@ -11227,11 +11267,15 @@
   }
 
   .sakura-tag {
-    @apply px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-600;
+    @apply px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600;
     font-family: var(--font-body);
   }
 
   .sakura-tag.recurring {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-tag--recurring {
     @apply bg-green-100 text-green-700;
   }
 
@@ -11391,7 +11435,7 @@
   }
 
   .sakura-table-action-btn {
-    @apply px-3 py-1 bg-transparent border border-gray-300 rounded text-xs text-gray-600 cursor-pointer;
+    @apply px-3 py-1 bg-transparent border border-gray-300 rounded-full text-xs text-gray-600 cursor-pointer;
     font-family: var(--font-body);
     transition: all 0.2s ease;
   }
