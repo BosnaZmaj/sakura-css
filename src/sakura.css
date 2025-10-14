@@ -10778,8 +10778,19 @@
 
   .sakura-summary-icon {
     @apply w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4;
-    background: rgba(var(--summary-color), 0.1);
-    color: var(--summary-color);
+    background: white;
+    color: white;
+  }
+
+  .sakura-summary-icon:has(i, svg) {
+    background: var(--summary-color);
+  }
+
+  .sakura-summary-icon i,
+  .sakura-summary-icon svg {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    line-height: 1;
   }
 
   .sakura-summary-amount {
