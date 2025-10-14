@@ -11465,17 +11465,35 @@
   }
 
   .sakura-calendar-transaction {
-    @apply px-2 py-1 rounded-xl text-xs bg-gray-100 text-gray-700 overflow-hidden whitespace-nowrap;
+    @apply px-2 py-1 rounded-xl text-xs bg-gray-100 text-gray-700 flex justify-between items-center gap-2;
     font-family: var(--font-body);
+  }
+
+  .sakura-calendar-transaction-name {
+    @apply overflow-hidden whitespace-nowrap flex-1;
     text-overflow: ellipsis;
   }
 
+  .sakura-calendar-transaction-amount {
+    @apply font-semibold whitespace-nowrap;
+    font-family: var(--font-heading);
+  }
+
   .sakura-calendar-transaction.income {
-    @apply bg-green-200 text-green-700;
+    @apply bg-green-100 text-green-700;
   }
 
   .sakura-calendar-transaction.expense {
-    @apply bg-red-200 text-red-700;
+    @apply bg-red-100 text-red-700;
+  }
+
+  .sakura-calendar-more {
+    @apply text-xs text-gray-500 text-center py-1 font-medium cursor-pointer transition-colors;
+    font-family: var(--font-body);
+  }
+
+  .sakura-calendar-more:hover {
+    @apply text-gray-700 bg-gray-50 rounded;
   }
 
   /* Responsive Design */

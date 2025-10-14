@@ -214,6 +214,33 @@ class TransactionsManager {
         tags: ['Gas'],
         category: 'Transportation',
         logo: 'https://logo.clearbit.com/shell.com'
+      },
+      {
+        id: 101,
+        date: new Date('2025-01-15'),
+        name: 'Chipotle',
+        merchant: 'Downtown',
+        amount: -18.50,
+        type: 'expense',
+        envelope: 'Dining',
+        method: 'Credit Card',
+        tags: ['Lunch'],
+        category: 'Dining',
+        icon: 'bi-egg-fried',
+        iconClass: 'dining-icon'
+      },
+      {
+        id: 102,
+        date: new Date('2025-01-15'),
+        name: 'CVS Pharmacy',
+        merchant: 'Store #2341',
+        amount: -24.99,
+        type: 'expense',
+        envelope: 'Healthcare',
+        method: 'Debit Card',
+        tags: ['Medical'],
+        category: 'Healthcare',
+        logo: 'https://logo.clearbit.com/cvs.com'
       }
     ];
 
@@ -751,6 +778,8 @@ class TransactionsManager {
 
       const dayElement = document.createElement('div');
       dayElement.className = 'sakura-calendar-day';
+      dayElement.dataset.date = currentDate.toDateString();
+      dayElement.dataset.expanded = 'false';
 
       if (currentDate.getMonth() !== month) {
         dayElement.classList.add('other-month');
@@ -764,20 +793,94 @@ class TransactionsManager {
         t.date.toDateString() === currentDate.toDateString()
       );
 
-      const transactionsHTML = dayTransactions.map(t => `
+      // Show only first 3 transactions initially
+      const maxVisible = 3;
+      const visibleTransactions = dayTransactions.slice(0, maxVisible);
+      const remainingCount = dayTransactions.length - maxVisible;
+
+      const transactionsHTML = visibleTransactions.map(t => `
         <div class="sakura-calendar-transaction ${t.type}">
-          ${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toFixed(2)}
+          <span class="sakura-calendar-transaction-name">${t.name}</span>
+          <span class="sakura-calendar-transaction-amount">${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toFixed(2)}</span>
         </div>
       `).join('');
+
+      // Add "X more" indicator if there are more transactions
+      const moreIndicator = remainingCount > 0
+        ? `<div class="sakura-calendar-more" data-action="expand">+${remainingCount} more</div>`
+        : '';
 
       dayElement.innerHTML = `
         <div class="sakura-calendar-day-number">${currentDate.getDate()}</div>
         <div class="sakura-calendar-transactions">
           ${transactionsHTML}
+          ${moreIndicator}
         </div>
       `;
 
+      // Add click handler for "+X more" indicator
+      if (remainingCount > 0) {
+        const moreBtn = dayElement.querySelector('.sakura-calendar-more');
+        moreBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.toggleCalendarDay(dayElement, dayTransactions);
+        });
+      }
+
       calendarDays.appendChild(dayElement);
+    }
+  }
+
+  toggleCalendarDay(dayElement, allTransactions) {
+    const isExpanded = dayElement.dataset.expanded === 'true';
+    const transactionsContainer = dayElement.querySelector('.sakura-calendar-transactions');
+
+    if (isExpanded) {
+      // Collapse: show only first 3
+      const maxVisible = 3;
+      const visibleTransactions = allTransactions.slice(0, maxVisible);
+      const remainingCount = allTransactions.length - maxVisible;
+
+      const transactionsHTML = visibleTransactions.map(t => `
+        <div class="sakura-calendar-transaction ${t.type}">
+          <span class="sakura-calendar-transaction-name">${t.name}</span>
+          <span class="sakura-calendar-transaction-amount">${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toFixed(2)}</span>
+        </div>
+      `).join('');
+
+      const moreIndicator = `<div class="sakura-calendar-more" data-action="expand">+${remainingCount} more</div>`;
+
+      transactionsContainer.innerHTML = transactionsHTML + moreIndicator;
+
+      // Re-attach click handler
+      const moreBtn = transactionsContainer.querySelector('.sakura-calendar-more');
+      moreBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleCalendarDay(dayElement, allTransactions);
+      });
+
+      dayElement.dataset.expanded = 'false';
+    } else {
+      // Expand: show all transactions
+      const transactionsHTML = allTransactions.map(t => `
+        <div class="sakura-calendar-transaction ${t.type}">
+          <span class="sakura-calendar-transaction-name">${t.name}</span>
+          <span class="sakura-calendar-transaction-amount">${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toFixed(2)}</span>
+        </div>
+      `).join('');
+
+      const showLess = `<div class="sakura-calendar-more" data-action="collapse">Show less</div>`;
+
+      transactionsContainer.innerHTML = transactionsHTML + showLess;
+
+      // Re-attach click handler
+      const moreBtn = transactionsContainer.querySelector('.sakura-calendar-more');
+      moreBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleCalendarDay(dayElement, allTransactions);
+      });
+
+      dayElement.dataset.expanded = 'true';
     }
   }
 
