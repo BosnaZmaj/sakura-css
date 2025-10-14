@@ -10536,7 +10536,8 @@
 
   /* Page Header */
   .sakura-page-header {
-    @apply flex justify-between items-center mb-8;
+    @apply flex justify-between mb-8;
+    align-items: center;
   }
 
   .sakura-page-header-content h1 {
@@ -10550,6 +10551,7 @@
 
   .sakura-page-header-actions {
     @apply flex gap-3;
+    align-self: center;
   }
 
   @media (max-width: 768px) {
