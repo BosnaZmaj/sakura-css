@@ -10530,4 +10530,211 @@
     }
   }
 
+  /* ============================================
+     ENVELOPES PAGE STYLES
+     ============================================ */
+
+  /* Page Header */
+  .sakura-page-header {
+    @apply flex justify-between items-center mb-8;
+  }
+
+  .sakura-page-header-content h1 {
+    @apply text-3xl font-bold text-gray-900 mb-2;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-page-header-content p {
+    @apply text-gray-600 m-0;
+  }
+
+  .sakura-page-header-actions {
+    @apply flex gap-3;
+  }
+
+  @media (max-width: 768px) {
+    .sakura-page-header {
+      @apply flex-col items-stretch gap-4;
+    }
+
+    .sakura-page-header-actions {
+      @apply w-full;
+    }
+
+    .sakura-page-header-actions .sakura-btn {
+      @apply w-full justify-center;
+    }
+  }
+
+  /* Envelopes Grid Layout */
+  .sakura-envelopes-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  /* Featured Available Envelope */
+  .sakura-envelope-card--featured {
+    grid-column: span 2;
+  }
+
+  .sakura-envelope-card--featured .sakura-envelope-header {
+    @apply items-start;
+  }
+
+  .sakura-envelope-card--featured .sakura-envelope-title {
+    @apply text-3xl;
+  }
+
+  .sakura-envelope-card--featured .sakura-envelope-category {
+    @apply text-sm;
+  }
+
+  .sakura-envelope-featured-amount {
+    @apply flex flex-col items-end text-right ml-auto;
+  }
+
+  .sakura-envelope-featured-amount .sakura-envelope-current {
+    @apply text-3xl font-bold mb-1;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-envelope-featured-amount .sakura-envelope-current.positive {
+    @apply text-green-600;
+  }
+
+  .sakura-envelope-featured-amount .sakura-envelope-current.negative {
+    @apply text-red-600;
+  }
+
+  .sakura-envelope-featured-amount .sakura-envelope-budget {
+    @apply text-sm text-gray-500;
+  }
+
+  .sakura-envelope-card--featured .sakura-envelope-chart {
+    @apply mt-6 pt-6 border-t border-gray-100;
+  }
+
+  .sakura-envelope-sparkline-header {
+    @apply flex justify-between items-center mb-2;
+  }
+
+  .sakura-envelope-sparkline-label {
+    @apply text-xs font-semibold text-gray-600 uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sakura-envelope-sparkline-period {
+    @apply text-xs text-gray-400;
+  }
+
+  .sakura-envelope-sparkline-chart {
+    @apply relative flex items-center gap-2;
+    height: 80px;
+  }
+
+  .sakura-envelope-sparkline-chart svg {
+    @apply flex-1;
+    height: 100%;
+  }
+
+  .sakura-envelope-sparkline-value {
+    @apply text-xs font-medium text-gray-500;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .sakura-envelope-sparkline-value.min {
+    text-align: left;
+  }
+
+  .sakura-envelope-sparkline-value.max {
+    text-align: right;
+  }
+
+  .sakura-envelope-sparkline-path {
+    fill: none;
+    stroke: var(--envelope-color);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.8;
+  }
+
+  /* Default neutral state */
+  .sakura-envelope-sparkline-chart--neutral .sakura-envelope-sparkline-fill {
+    fill: url(#available-gradient-neutral);
+  }
+
+  .sakura-envelope-sparkline-chart--neutral .sakura-envelope-sparkline-path {
+    stroke: #1e2a3b;
+  }
+
+  .sakura-envelope-sparkline-chart--neutral .sakura-envelope-sparkline-hover-dot {
+    fill: #1e2a3b;
+  }
+
+  /* Positive state - above starting balance */
+  .sakura-envelope-sparkline-chart--positive .sakura-envelope-sparkline-fill {
+    fill: url(#available-gradient-positive);
+  }
+
+  .sakura-envelope-sparkline-chart--positive .sakura-envelope-sparkline-path {
+    stroke: #10b981;
+  }
+
+  .sakura-envelope-sparkline-chart--positive .sakura-envelope-sparkline-hover-dot {
+    fill: #10b981;
+  }
+
+  /* Negative state - below starting balance */
+  .sakura-envelope-sparkline-chart--negative .sakura-envelope-sparkline-fill {
+    fill: url(#available-gradient-negative);
+  }
+
+  .sakura-envelope-sparkline-chart--negative .sakura-envelope-sparkline-path {
+    stroke: #ef4444;
+  }
+
+  .sakura-envelope-sparkline-chart--negative .sakura-envelope-sparkline-hover-dot {
+    fill: #ef4444;
+  }
+
+  .sakura-envelope-sparkline-hover-area {
+    @apply absolute top-0 left-0 right-0 bottom-0 cursor-crosshair;
+  }
+
+  .sakura-envelope-sparkline-hover-dot {
+    stroke: white;
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .sakura-envelope-sparkline-hover-dot.active {
+    opacity: 1;
+  }
+
+  .sakura-envelope-sparkline-tooltip {
+    @apply absolute bg-gray-900 text-white px-3 py-2 text-xs pointer-events-none opacity-0 whitespace-nowrap;
+    border-radius: var(--radius-lg);
+    transition: opacity 0.2s ease;
+    z-index: 100;
+    line-height: 1.4;
+  }
+
+  .sakura-envelope-sparkline-tooltip.active {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    .sakura-envelopes-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-envelope-card--featured {
+      grid-column: span 1;
+    }
+  }
+
 }

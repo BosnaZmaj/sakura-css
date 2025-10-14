@@ -1006,26 +1006,44 @@ class SakuraFramework {
 
   // Sparkline hover functionality
   setupSparklineTooltips() {
-    const charts = document.querySelectorAll('.sakura-account-sparkline-chart, .sakura-summary-sparkline-chart');
+    const charts = document.querySelectorAll('.sakura-account-sparkline-chart, .sakura-summary-sparkline-chart, .sakura-envelope-sparkline-chart');
 
     charts.forEach((chart, index) => {
-      const hoverArea = chart.querySelector('.sakura-account-sparkline-hover-area, .sakura-summary-sparkline-hover-area');
-      const hoverDot = chart.querySelector('.sakura-account-sparkline-hover-dot, .sakura-summary-sparkline-hover-dot');
+      const hoverArea = chart.querySelector('.sakura-account-sparkline-hover-area, .sakura-summary-sparkline-hover-area, .sakura-envelope-sparkline-hover-area');
+      const hoverDot = chart.querySelector('.sakura-account-sparkline-hover-dot, .sakura-summary-sparkline-hover-dot, .sakura-envelope-sparkline-hover-dot');
       const svg = chart.querySelector('svg');
 
       if (!hoverArea || !hoverDot || !svg) return;
 
       // Sample data points - in real app this would come from API
-      const dataPoints = [
-        { x: 0, y: 32, value: '$7,950.00', date: 'Dec 15', change: '+$200.00', transaction: 'Deposit' },
-        { x: 40, y: 28, value: '$8,100.00', date: 'Dec 20', change: '+$150.00', transaction: 'Transfer in' },
-        { x: 80, y: 25, value: '$8,100.00', date: 'Dec 25', change: '-$50.00', transaction: 'Utility bill' },
-        { x: 120, y: 20, value: '$8,250.00', date: 'Jan 5', change: '+$150.00', transaction: 'Freelance' },
-        { x: 160, y: 15, value: '$8,400.00', date: 'Jan 15', change: '+$150.00', transaction: 'Bonus' },
-        { x: 200, y: 13, value: '$8,480.00', date: 'Jan 20', change: '+$80.00', transaction: 'Refund' },
-        { x: 240, y: 12, value: '$8,520.00', date: 'Jan 23', change: '+$40.00', transaction: 'Interest' },
-        { x: 280, y: 10, value: '$8,547.00', date: 'Jan 25', change: '+$27.00', transaction: 'Cash back' }
-      ];
+      let dataPoints;
+
+      // Different data for envelope sparkline vs account/summary sparklines
+      if (chart.classList.contains('sakura-envelope-sparkline-chart')) {
+        // Available balance data (matching 1.5k to 1.8k range)
+        dataPoints = [
+          { x: 0, y: 35, value: '$1,500.00', date: 'Dec 15', change: '+$50.00', transaction: 'Paycheck allocated' },
+          { x: 40, y: 32, value: '$1,550.00', date: 'Dec 20', change: '+$50.00', transaction: 'Income received' },
+          { x: 80, y: 30, value: '$1,600.00', date: 'Dec 25', change: '+$50.00', transaction: 'Bonus deposited' },
+          { x: 120, y: 28, value: '$1,650.00', date: 'Jan 5', change: '+$50.00', transaction: 'Paycheck received' },
+          { x: 160, y: 25, value: '$1,715.00', date: 'Jan 15', change: '+$65.00', transaction: 'Freelance income' },
+          { x: 200, y: 22, value: '$1,765.00', date: 'Jan 20', change: '+$50.00', transaction: 'Weekly income' },
+          { x: 240, y: 20, value: '$1,800.00', date: 'Jan 23', change: '+$35.00', transaction: 'Side project' },
+          { x: 280, y: 18, value: '$1,834.00', date: 'Jan 25', change: '+$34.00', transaction: 'Cash back rewards' }
+        ];
+      } else {
+        // Account/Summary balance data (original data for 8k range)
+        dataPoints = [
+          { x: 0, y: 32, value: '$7,950.00', date: 'Dec 15', change: '+$200.00', transaction: 'Deposit' },
+          { x: 40, y: 28, value: '$8,100.00', date: 'Dec 20', change: '+$150.00', transaction: 'Transfer in' },
+          { x: 80, y: 25, value: '$8,100.00', date: 'Dec 25', change: '-$50.00', transaction: 'Utility bill' },
+          { x: 120, y: 20, value: '$8,250.00', date: 'Jan 5', change: '+$150.00', transaction: 'Freelance' },
+          { x: 160, y: 15, value: '$8,400.00', date: 'Jan 15', change: '+$150.00', transaction: 'Bonus' },
+          { x: 200, y: 13, value: '$8,480.00', date: 'Jan 20', change: '+$80.00', transaction: 'Refund' },
+          { x: 240, y: 12, value: '$8,520.00', date: 'Jan 23', change: '+$40.00', transaction: 'Interest' },
+          { x: 280, y: 10, value: '$8,547.00', date: 'Jan 25', change: '+$27.00', transaction: 'Cash back' }
+        ];
+      }
 
       let tooltip = null;
 
@@ -1053,9 +1071,13 @@ class SakuraFramework {
         // Create or update tooltip
         if (!tooltip) {
           tooltip = document.createElement('div');
-          tooltip.className = chart.classList.contains('sakura-account-sparkline-chart')
-            ? 'sakura-account-sparkline-tooltip'
-            : 'sakura-summary-sparkline-tooltip';
+          if (chart.classList.contains('sakura-account-sparkline-chart')) {
+            tooltip.className = 'sakura-account-sparkline-tooltip';
+          } else if (chart.classList.contains('sakura-envelope-sparkline-chart')) {
+            tooltip.className = 'sakura-envelope-sparkline-tooltip';
+          } else {
+            tooltip.className = 'sakura-summary-sparkline-tooltip';
+          }
           chart.appendChild(tooltip);
         }
 

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envelopes - Sakura Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body class="sakura-dashboard-body">
+    <!-- Dashboard Header -->
+    <header class="sakura-dashboard-header">
+        <div class="sakura-dashboard-header-container">
+            <div class="sakura-header-left">
+                <div class="sakura-navbar-brand">
+                    <img src="dist/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+                </div>
+                <nav class="sakura-breadcrumb">
+                    <span class="sakura-breadcrumb-item">Envelopes</span>
+                </nav>
+            </div>
+            <div class="sakura-header-right">
+                <div class="sakura-notification-container">
+                    <button class="sakura-notification-btn">
+                        <i class="bi bi-bell"></i>
+                        <span class="sakura-notification-badge">3</span>
+                    </button>
+                </div>
+                <div class="sakura-user-menu">
+                    <img src="https://avatar.iran.liara.run/public" alt="User" class="sakura-user-avatar">
+                    <div class="sakura-user-info">
+                        <span class="sakura-user-name">Pablo Peso</span>
+                        <span class="sakura-user-email">pablo@sakura.com</span>
+                    </div>
+                    <button class="sakura-user-menu-toggle">
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="sakura-dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sakura-dashboard-sidebar">
+            <nav class="sakura-sidebar-nav">
+                <a href="dashboard.html" class="sakura-nav-item">
+                    <i class="bi bi-grid"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="envelopes.html" class="sakura-nav-item sakura-nav-item--active">
+                    <i class="bi bi-envelope"></i>
+                    <span>Envelopes</span>
+                </a>
+                <a href="transactions.html" class="sakura-nav-item">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Transactions</span>
+                </a>
+                <a href="goals.html" class="sakura-nav-item">
+                    <i class="bi bi-bullseye"></i>
+                    <span>Goals</span>
+                </a>
+                <a href="#" class="sakura-nav-item">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Reports</span>
+                </a>
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Settings</span>
+                    <a href="#" class="sakura-nav-item">
+                        <i class="bi bi-gear"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="sakura-dashboard-main">
+            <!-- Page Header -->
+            <section class="sakura-page-header">
+                <div class="sakura-page-header-content">
+                    <h1>Your Envelopes</h1>
+                    <p>Manage your budget categories and track spending</p>
+                </div>
+                <div class="sakura-page-header-actions">
+                    <button class="sakura-btn sakura-btn--primary">
+                        <i class="bi bi-plus-lg"></i>
+                        Create Envelope
+                    </button>
+                </div>
+            </section>
+
+            <!-- Envelopes Grid -->
+            <section class="sakura-envelopes-grid">
+                <!-- Envelope Card: Available (Special) -->
+                <div class="sakura-envelope-card sakura-envelope-card--featured" style="--envelope-color: #1e2a3b; --envelope-color-light: #2d3e50; --envelope-color-rgb: 30, 42, 59">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-cash-stack"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Available</h3>
+                            <span class="sakura-envelope-category">Unallocated Funds</span>
+                        </div>
+                        <div class="sakura-envelope-featured-amount">
+                            <span class="sakura-envelope-current positive">$1,834</span>
+                            <span class="sakura-envelope-budget">ready to allocate</span>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-chart" data-start-balance="1500" data-current-balance="1834">
+                        <div class="sakura-envelope-sparkline-header">
+                            <span class="sakura-envelope-sparkline-label">Trend</span>
+                            <span class="sakura-envelope-sparkline-period">Last 30 days</span>
+                        </div>
+                        <div class="sakura-envelope-sparkline-chart sakura-envelope-sparkline-chart--positive" data-sparkline-id="available-envelope">
+                            <span class="sakura-envelope-sparkline-value min">1.5</span>
+                            <svg viewBox="0 0 280 40" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="available-gradient-positive" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.4" />
+                                        <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.05" />
+                                    </linearGradient>
+                                    <linearGradient id="available-gradient-negative" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.4" />
+                                        <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.05" />
+                                    </linearGradient>
+                                    <linearGradient id="available-gradient-neutral" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#1e2a3b;stop-opacity:0.4" />
+                                        <stop offset="100%" style="stop-color:#1e2a3b;stop-opacity:0.05" />
+                                    </linearGradient>
+                                </defs>
+                                <path class="sakura-envelope-sparkline-fill" d="M0,40 L0,35 L40,32 L80,30 L120,28 L160,25 L200,22 L240,20 L280,18 L280,40 Z"/>
+                                <path class="sakura-envelope-sparkline-path" d="M0,35 L40,32 L80,30 L120,28 L160,25 L200,22 L240,20 L280,18"/>
+                                <circle class="sakura-envelope-sparkline-hover-dot" cx="0" cy="0" r="2.5"/>
+                            </svg>
+                            <span class="sakura-envelope-sparkline-value max">1.8</span>
+                            <div class="sakura-envelope-sparkline-hover-area"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Envelope Card 1: Groceries -->
+                <div class="sakura-envelope-card" style="--envelope-color: #8b5cf6; --envelope-color-light: #a78bfa; --envelope-color-rgb: 139, 92, 246">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-cart"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Groceries</h3>
+                            <span class="sakura-envelope-category">Food & Dining</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$847</span>
+                        <span class="sakura-envelope-budget">of $1,200</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 71%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        On track
+                    </div>
+                </div>
+
+                <!-- Envelope Card 2: Entertainment -->
+                <div class="sakura-envelope-card" style="--envelope-color: #3b82f6; --envelope-color-light: #60a5fa; --envelope-color-rgb: 59, 130, 246">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-tv"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Entertainment</h3>
+                            <span class="sakura-envelope-category">Leisure & Fun</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$450</span>
+                        <span class="sakura-envelope-budget">of $500</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-warning">
+                        <i class="bi bi-exclamation-triangle sakura-envelope-status-icon"></i>
+                        Near limit
+                    </div>
+                </div>
+
+                <!-- Envelope Card 3: Transportation -->
+                <div class="sakura-envelope-card" style="--envelope-color: #06b6d4; --envelope-color-light: #22d3ee; --envelope-color-rgb: 6, 182, 212">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-car-front"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Transportation</h3>
+                            <span class="sakura-envelope-category">Travel & Commute</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$234</span>
+                        <span class="sakura-envelope-budget">of $600</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 39%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        Doing great
+                    </div>
+                </div>
+
+                <!-- Envelope Card 4: Utilities -->
+                <div class="sakura-envelope-card" style="--envelope-color: #ec4899; --envelope-color-light: #f472b6; --envelope-color-rgb: 236, 72, 153">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-house"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Utilities</h3>
+                            <span class="sakura-envelope-category">Home & Bills</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$156</span>
+                        <span class="sakura-envelope-budget">of $300</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 52%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        On track
+                    </div>
+                </div>
+
+                <!-- Envelope Card 5: Rent -->
+                <div class="sakura-envelope-card" style="--envelope-color: #f59e0b; --envelope-color-light: #fbbf24; --envelope-color-rgb: 245, 158, 11">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Rent</h3>
+                            <span class="sakura-envelope-category">Housing</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$2,000</span>
+                        <span class="sakura-envelope-budget">of $2,000</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        Paid in full
+                    </div>
+                </div>
+
+                <!-- Envelope Card 6: Healthcare -->
+                <div class="sakura-envelope-card" style="--envelope-color: #10b981; --envelope-color-light: #34d399; --envelope-color-rgb: 16, 185, 129">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Healthcare</h3>
+                            <span class="sakura-envelope-category">Medical</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$187</span>
+                        <span class="sakura-envelope-budget">of $400</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 47%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        On track
+                    </div>
+                </div>
+
+                <!-- Envelope Card 7: Dining Out -->
+                <div class="sakura-envelope-card" style="--envelope-color: #ef4444; --envelope-color-light: #f87171; --envelope-color-rgb: 239, 68, 68">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-cup-hot"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Dining Out</h3>
+                            <span class="sakura-envelope-category">Food & Dining</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$278</span>
+                        <span class="sakura-envelope-budget">of $300</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 93%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-warning">
+                        <i class="bi bi-exclamation-triangle sakura-envelope-status-icon"></i>
+                        Near limit
+                    </div>
+                </div>
+
+                <!-- Envelope Card 8: Shopping -->
+                <div class="sakura-envelope-card" style="--envelope-color: #a855f7; --envelope-color-light: #c084fc; --envelope-color-rgb: 168, 85, 247">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-bag"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Shopping</h3>
+                            <span class="sakura-envelope-category">Personal</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$312</span>
+                        <span class="sakura-envelope-budget">of $250</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-danger">
+                        <i class="bi bi-exclamation-circle sakura-envelope-status-icon"></i>
+                        Over budget
+                    </div>
+                </div>
+
+                <!-- Envelope Card 9: Insurance -->
+                <div class="sakura-envelope-card" style="--envelope-color: #0ea5e9; --envelope-color-light: #38bdf8; --envelope-color-rgb: 14, 165, 233">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Insurance</h3>
+                            <span class="sakura-envelope-category">Protection</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$450</span>
+                        <span class="sakura-envelope-budget">of $450</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        Paid in full
+                    </div>
+                </div>
+
+                <!-- Envelope Card 10: Phone & Internet -->
+                <div class="sakura-envelope-card" style="--envelope-color: #6366f1; --envelope-color-light: #818cf8; --envelope-color-rgb: 99, 102, 241">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Phone & Internet</h3>
+                            <span class="sakura-envelope-category">Communication</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$123</span>
+                        <span class="sakura-envelope-budget">of $150</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 82%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        On track
+                    </div>
+                </div>
+
+                <!-- Envelope Card 11: Fitness -->
+                <div class="sakura-envelope-card" style="--envelope-color: #14b8a6; --envelope-color-light: #2dd4bf; --envelope-color-rgb: 20, 184, 166">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-activity"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Fitness</h3>
+                            <span class="sakura-envelope-category">Health & Wellness</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$89</span>
+                        <span class="sakura-envelope-budget">of $100</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 89%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-warning">
+                        <i class="bi bi-exclamation-triangle sakura-envelope-status-icon"></i>
+                        Near limit
+                    </div>
+                </div>
+
+                <!-- Envelope Card 12: Subscriptions -->
+                <div class="sakura-envelope-card" style="--envelope-color: #f97316; --envelope-color-light: #fb923c; --envelope-color-rgb: 249, 115, 22">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Subscriptions</h3>
+                            <span class="sakura-envelope-category">Digital Services</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$67</span>
+                        <span class="sakura-envelope-budget">of $120</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 56%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        On track
+                    </div>
+                </div>
+
+                <!-- Envelope Card 13: Pet Care -->
+                <div class="sakura-envelope-card" style="--envelope-color: #84cc16; --envelope-color-light: #a3e635; --envelope-color-rgb: 132, 204, 22">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Pet Care</h3>
+                            <span class="sakura-envelope-category">Pets</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$145</span>
+                        <span class="sakura-envelope-budget">of $200</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 73%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        On track
+                    </div>
+                </div>
+
+                <!-- Envelope Card 14: Education -->
+                <div class="sakura-envelope-card" style="--envelope-color: #d946ef; --envelope-color-light: #e879f9; --envelope-color-rgb: 217, 70, 239">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Education</h3>
+                            <span class="sakura-envelope-category">Learning</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$78</span>
+                        <span class="sakura-envelope-budget">of $150</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 52%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        On track
+                    </div>
+                </div>
+
+                <!-- Envelope Card 15: Gifts -->
+                <div class="sakura-envelope-card" style="--envelope-color: #fb7185; --envelope-color-light: #fda4af; --envelope-color-rgb: 251, 113, 133">
+                    <div class="sakura-envelope-header">
+                        <div class="sakura-envelope-icon">
+                            <i class="bi bi-gift"></i>
+                        </div>
+                        <div class="sakura-envelope-title-section">
+                            <h3 class="sakura-envelope-title">Gifts</h3>
+                            <span class="sakura-envelope-category">Special Occasions</span>
+                        </div>
+                        <button class="sakura-envelope-menu">⋯</button>
+                    </div>
+                    <div class="sakura-envelope-amounts">
+                        <span class="sakura-envelope-current">$34</span>
+                        <span class="sakura-envelope-budget">of $100</span>
+                    </div>
+                    <div class="sakura-envelope-progress">
+                        <div class="sakura-envelope-progress-bar">
+                            <div class="sakura-envelope-progress-fill" style="width: 34%"></div>
+                        </div>
+                    </div>
+                    <div class="sakura-envelope-status status-good">
+                        <i class="bi bi-check-circle sakura-envelope-status-icon"></i>
+                        Doing great
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="src/sakura.js"></script>
+</body>
+</html>
