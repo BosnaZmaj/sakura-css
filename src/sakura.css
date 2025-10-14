@@ -10737,4 +10737,840 @@
     }
   }
 
+  /* ===========================
+     TRANSACTIONS PAGE STYLES
+     =========================== */
+
+  /* Page Header */
+  .sakura-page-header {
+    @apply flex justify-between items-start mb-8 p-6 bg-white border border-gray-200 rounded-2xl;
+  }
+
+  .sakura-page-title h1 {
+    @apply mb-2 text-gray-900 text-3xl;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-page-title p {
+    @apply text-gray-600 mb-0 text-lg;
+    font-family: var(--font-body);
+  }
+
+  .sakura-page-actions {
+    @apply flex gap-3;
+  }
+
+  /* Transaction Summary */
+  .sakura-transaction-summary {
+    @apply grid gap-4 mb-8;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .sakura-summary-card {
+    @apply bg-white p-6 rounded-xl border border-gray-200 shadow-sm;
+    transition: all 0.3s ease;
+  }
+
+  .sakura-summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .sakura-summary-icon {
+    @apply w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4;
+    background: rgba(var(--summary-color), 0.1);
+    color: var(--summary-color);
+  }
+
+  .sakura-summary-amount {
+    @apply text-3xl font-bold mb-2;
+    font-family: var(--font-heading);
+    color: var(--summary-color);
+  }
+
+  .sakura-summary-label {
+    @apply text-sm text-gray-600 mb-2 font-medium;
+    font-family: var(--font-body);
+  }
+
+  .sakura-summary-change {
+    @apply text-xs font-medium;
+    font-family: var(--font-body);
+  }
+
+  .sakura-summary-change.positive {
+    @apply text-green-600;
+  }
+
+  .sakura-summary-change.negative {
+    @apply text-red-600;
+  }
+
+  .sakura-summary-change.neutral {
+    @apply text-gray-500;
+  }
+
+  /* Transaction Controls */
+  .sakura-transaction-controls {
+    @apply bg-white border border-gray-200 rounded-2xl p-6 mb-6;
+  }
+
+  .sakura-search-and-filters {
+    @apply mb-6;
+  }
+
+  .sakura-search-box-large {
+    @apply relative mb-4;
+  }
+
+  .sakura-search-input-large {
+    @apply w-full py-4 pr-4 border border-gray-300 rounded-lg text-lg bg-gray-50;
+    padding-left: 3rem;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+
+  .sakura-search-input-large:focus {
+    @apply outline-none border-blue-600 bg-white;
+    box-shadow: 0 0 0 3px rgba(30, 42, 59, 0.1);
+  }
+
+  .sakura-search-box-large .sakura-search-icon {
+    @apply absolute top-1/2 text-gray-400;
+    left: 1rem;
+    transform: translateY(-50%);
+  }
+
+  .sakura-filter-controls {
+    @apply grid gap-4 items-end;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .sakura-filter-group {
+    @apply flex flex-col gap-2;
+  }
+
+  .sakura-filter-label {
+    @apply text-sm font-medium text-gray-700;
+    font-family: var(--font-body);
+  }
+
+  .sakura-filter-select {
+    @apply px-4 py-3 border border-gray-300 rounded-lg text-sm bg-white cursor-pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+
+  .sakura-filter-select:focus {
+    @apply outline-none border-blue-600;
+    box-shadow: 0 0 0 2px rgba(30, 42, 59, 0.1);
+  }
+
+  .sakura-filter-clear {
+    align-self: end;
+  }
+
+  .sakura-view-controls {
+    @apply flex justify-between items-center pt-6 border-t border-gray-200;
+  }
+
+  .sakura-view-toggle {
+    @apply flex bg-gray-100 rounded-lg p-1;
+  }
+
+  .sakura-view-btn {
+    @apply flex items-center gap-2 px-4 py-2 bg-transparent border-0 rounded text-sm text-gray-600 cursor-pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+
+  .sakura-view-btn.active {
+    @apply bg-white text-blue-600 shadow-sm;
+  }
+
+  .sakura-sort-controls {
+    @apply flex items-center gap-3;
+  }
+
+  /* Transaction Results */
+  .sakura-transaction-results {
+    @apply bg-white border border-gray-200 rounded-2xl overflow-hidden;
+  }
+
+  .sakura-results-header {
+    @apply flex justify-between items-center p-6 border-b border-gray-200 bg-gray-50;
+  }
+
+  .sakura-results-info {
+    @apply flex items-center gap-2 text-sm text-gray-600;
+    font-family: var(--font-body);
+  }
+
+  .sakura-results-count {
+    @apply font-semibold text-gray-900;
+  }
+
+  .sakura-bulk-actions {
+    @apply flex gap-2;
+  }
+
+  .sakura-bulk-actions .sakura-btn:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  /* Transaction Views */
+  .sakura-transaction-view {
+    display: none;
+  }
+
+  .sakura-transaction-view.active {
+    display: block;
+  }
+
+  /* ========================================
+     TIMELINE LAYOUT SYSTEM
+     ======================================== */
+
+  /* Timeline Container */
+  .sakura-transaction-timeline {
+    position: relative;
+    padding-left: 4rem;
+  }
+
+  /* Main Timeline Vertical Line */
+  .sakura-transaction-timeline::before {
+    content: '';
+    position: absolute;
+    left: 2rem;
+    top: calc(2.25rem + 20px);
+    bottom: 0;
+    width: 2px;
+    @apply bg-gray-200;
+    z-index: 1;
+  }
+
+  /* Date Group Container */
+  .sakura-date-group {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  /* Date Group Header */
+  .sakura-date-group-header {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    z-index: 2;
+    @apply flex items-center justify-between;
+  }
+
+  /* Date Bubble on Timeline */
+  .sakura-date-bubble {
+    position: absolute;
+    left: calc(-2rem - 20px);
+    top: calc(0.75rem + 50%);
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    @apply bg-white border-blue-600 rounded-full flex items-center justify-center font-bold text-xs text-blue-600 shadow-sm;
+    border-width: 3px;
+    z-index: 3;
+  }
+
+  /* Date Group Title Layout */
+  .sakura-date-group-title {
+    @apply flex items-center gap-3 ml-4;
+  }
+
+  /* Date Label Styling */
+  .sakura-date-group-date {
+    @apply font-semibold text-gray-900 text-lg;
+    font-family: var(--font-heading);
+  }
+
+  /* Transaction Count Badge */
+  .sakura-date-group-count {
+    @apply text-sm text-gray-500;
+    font-family: var(--font-body);
+  }
+
+  /* Date Group Summary */
+  .sakura-date-group-summary {
+    @apply flex items-center gap-4 text-sm ml-4;
+    font-family: var(--font-body);
+  }
+
+  /* Date Group Total Styling */
+  .sakura-date-group-total {
+    @apply font-semibold text-gray-900;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-date-group-total.negative {
+    @apply text-red-600;
+  }
+
+  .sakura-date-group-total.positive {
+    @apply text-green-600;
+  }
+
+  /* Transactions Container within Date Group */
+  .sakura-date-group-transactions {
+    position: relative;
+  }
+
+  /* Timeline Connection Lines from Items to Main Line */
+  .sakura-transaction-timeline .sakura-transaction-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-2rem - 2px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 2px;
+    @apply bg-gray-300;
+    z-index: 2;
+  }
+
+  /* Timeline Item Hover Effects */
+  .sakura-transaction-timeline .sakura-transaction-item {
+    @apply relative p-4 border border-gray-200 rounded-lg shadow-sm mb-4 bg-white;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-transaction-timeline .sakura-transaction-item:hover {
+    transform: translateX(4px);
+    @apply shadow-md border-blue-600;
+  }
+
+  .sakura-transaction-timeline .sakura-transaction-item:hover::before {
+    @apply bg-blue-600;
+    width: 16px;
+  }
+
+  /* Responsive Timeline Design */
+  @media (max-width: 768px) {
+    .sakura-transaction-timeline {
+      padding-left: 3rem;
+    }
+
+    .sakura-transaction-timeline::before {
+      left: 1.5rem;
+    }
+
+    .sakura-date-bubble {
+      left: calc(-3rem + 1rem);
+      width: 32px;
+      height: 32px;
+      @apply text-xs;
+    }
+
+    .sakura-date-group-title {
+      @apply ml-2;
+    }
+
+    .sakura-date-group-summary {
+      @apply ml-2;
+    }
+
+    .sakura-transaction-timeline .sakura-transaction-item::before {
+      left: calc(-1.5rem - 2px);
+      width: 10px;
+    }
+
+    .sakura-transaction-timeline .sakura-transaction-item:hover::before {
+      width: 12px;
+    }
+  }
+
+  /* Transaction List */
+  .sakura-transaction-list.advanced .sakura-transaction-item {
+    @apply relative p-4 border border-gray-200 rounded-lg shadow-sm mb-4 ml-6 mr-6;
+    background: white;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-transaction-list.advanced .sakura-transaction-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #1e2a3b;
+  }
+
+  .sakura-transaction-item {
+    @apply flex items-center gap-4;
+  }
+
+  .sakura-transaction-item.selectable {
+    padding-left: 3rem;
+  }
+
+  .sakura-transaction-checkbox {
+    @apply absolute flex items-center opacity-0;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.2s ease;
+  }
+
+  .sakura-transaction-item:hover .sakura-transaction-checkbox,
+  .sakura-transaction-item.selected .sakura-transaction-checkbox {
+    opacity: 1;
+  }
+
+  .sakura-transaction-select {
+    @apply w-4 h-4 border-2 border-gray-300 rounded bg-white cursor-pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-transaction-select:checked {
+    @apply bg-blue-600 border-blue-600;
+  }
+
+  .sakura-transaction-icon {
+    @apply w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden bg-gray-100;
+  }
+
+  .sakura-transaction-icon img {
+    @apply w-full h-full object-cover;
+  }
+
+  .sakura-transaction-icon.income-icon {
+    @apply bg-green-100 text-green-600 text-2xl;
+  }
+
+  .sakura-transaction-icon.utilities-icon {
+    @apply bg-yellow-100 text-yellow-600 text-2xl;
+  }
+
+  .sakura-transaction-icon.health-icon {
+    @apply bg-purple-100 text-purple-600 text-2xl;
+  }
+
+  .sakura-transaction-details {
+    @apply flex flex-col gap-2 flex-1 min-w-0;
+  }
+
+  .sakura-transaction-main {
+    @apply flex flex-col gap-1;
+  }
+
+  .sakura-transaction-name {
+    @apply text-sm font-semibold text-gray-900;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-merchant {
+    @apply text-sm text-gray-500;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-meta {
+    @apply flex items-center gap-3 flex-wrap;
+  }
+
+  .sakura-transaction-envelope {
+    @apply px-3 py-1 rounded text-xs font-medium bg-gray-100 text-gray-700;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-envelope.envelope-groceries {
+    @apply bg-red-100 text-red-700;
+  }
+
+  .sakura-transaction-envelope.envelope-entertainment {
+    @apply bg-blue-100 text-blue-700;
+  }
+
+  .sakura-transaction-envelope.envelope-transportation {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-transaction-envelope.envelope-utilities {
+    @apply bg-yellow-100 text-yellow-700;
+  }
+
+  .sakura-transaction-envelope.envelope-shopping {
+    @apply bg-pink-100 text-pink-700;
+  }
+
+  .sakura-transaction-envelope.envelope-income {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-transaction-envelope.envelope-health {
+    @apply bg-purple-100 text-purple-700;
+  }
+
+  .sakura-transaction-envelope.envelope-dining {
+    @apply bg-orange-100 text-orange-700;
+  }
+
+  .sakura-transaction-method {
+    @apply text-xs text-gray-500;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-tags {
+    @apply flex gap-1;
+  }
+
+  .sakura-tag {
+    @apply px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-600;
+    font-family: var(--font-body);
+  }
+
+  .sakura-tag.recurring {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-transaction-amount {
+    @apply text-lg font-bold flex-shrink-0;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-transaction-amount.income {
+    @apply text-green-600;
+  }
+
+  .sakura-transaction-amount.expense {
+    @apply text-red-600;
+  }
+
+  .sakura-transaction-amount.transfer {
+    @apply text-purple-600;
+  }
+
+  .sakura-transaction-date {
+    @apply text-xs text-gray-500 mt-1 font-normal;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-actions {
+    @apply flex gap-2 flex-shrink-0 opacity-0;
+    transition: opacity 0.2s ease;
+  }
+
+  .sakura-transaction-item:hover .sakura-transaction-actions {
+    opacity: 1;
+  }
+
+  .sakura-action-btn {
+    @apply w-8 h-8 rounded flex items-center justify-center text-gray-500 border border-gray-300 bg-transparent cursor-pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-action-btn:hover {
+    @apply bg-gray-100 text-gray-700;
+  }
+
+  .sakura-action-btn.danger {
+    @apply text-red-600;
+  }
+
+  .sakura-action-btn.danger:hover {
+    @apply bg-red-100 border-red-600;
+  }
+
+  .sakura-load-more-container {
+    @apply flex flex-col items-center p-8 border-t border-gray-200;
+  }
+
+  .sakura-load-more-btn {
+    @apply mb-4;
+  }
+
+  .sakura-load-more-info {
+    @apply text-sm text-gray-500;
+    font-family: var(--font-body);
+  }
+
+  /* Table View */
+  .sakura-transaction-table-container {
+    @apply overflow-x-auto;
+  }
+
+  .sakura-transaction-table {
+    @apply w-full border-collapse;
+  }
+
+  .sakura-transaction-table th {
+    @apply p-4 text-left font-semibold text-gray-700 bg-gray-50 border-b border-gray-200 relative select-none;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-table th.sortable {
+    @apply cursor-pointer;
+    transition: color 0.2s ease;
+  }
+
+  .sakura-transaction-table th.sortable:hover {
+    @apply text-blue-600;
+  }
+
+  .sakura-sort-icon {
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  .sakura-transaction-table th.sortable.asc .sakura-sort-icon {
+    transform: rotate(180deg);
+  }
+
+  .sakura-transaction-table td {
+    @apply p-4 border-b border-gray-100 align-middle;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-table tbody tr:hover {
+    @apply bg-gray-50;
+  }
+
+  .sakura-table-description {
+    @apply flex flex-col gap-1;
+  }
+
+  .sakura-table-name {
+    @apply font-medium text-gray-900;
+  }
+
+  .sakura-table-merchant {
+    @apply text-sm text-gray-500;
+  }
+
+  .sakura-table-envelope {
+    @apply px-3 py-1 rounded text-xs font-medium bg-gray-100 text-gray-700 inline-block;
+  }
+
+  .sakura-table-envelope.sakura-income-envelope {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-table-envelope.sakura-groceries-envelope {
+    @apply bg-red-100 text-red-700;
+  }
+
+  .sakura-table-envelope.sakura-entertainment-envelope {
+    @apply bg-blue-100 text-blue-700;
+  }
+
+  .sakura-table-envelope.sakura-utilities-envelope {
+    @apply bg-yellow-100 text-yellow-700;
+  }
+
+  .sakura-table-envelope.sakura-transportation-envelope {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-table-amount {
+    @apply font-semibold;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-table-amount.income {
+    @apply text-green-600;
+  }
+
+  .sakura-table-amount.expense {
+    @apply text-red-600;
+  }
+
+  .sakura-table-actions {
+    @apply flex gap-2;
+  }
+
+  .sakura-table-action-btn {
+    @apply px-3 py-1 bg-transparent border border-gray-300 rounded text-xs text-gray-600 cursor-pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+
+  .sakura-table-action-btn:hover {
+    @apply bg-gray-100 text-gray-800;
+  }
+
+  /* Calendar View */
+  .sakura-calendar-header {
+    @apply flex justify-between items-center p-6 border-b border-gray-200;
+  }
+
+  .sakura-calendar-title {
+    @apply m-0 text-xl text-gray-900;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-calendar-nav-btn {
+    @apply w-10 h-10 bg-transparent border border-gray-300 rounded text-gray-600 cursor-pointer flex items-center justify-center text-lg;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-calendar-nav-btn:hover {
+    @apply bg-gray-100 text-gray-800;
+  }
+
+  .sakura-calendar-grid {
+    @apply p-6;
+  }
+
+  .sakura-calendar-weekdays {
+    @apply grid gap-2 mb-4;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .sakura-calendar-weekday {
+    @apply p-2 text-center text-sm font-semibold text-gray-600;
+    font-family: var(--font-body);
+  }
+
+  .sakura-calendar-days {
+    @apply grid gap-2;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .sakura-calendar-day {
+    @apply min-h-[100px] p-2 border border-gray-200 rounded bg-white cursor-pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-calendar-day:hover {
+    @apply bg-gray-50 border-blue-600;
+  }
+
+  .sakura-calendar-day.other-month {
+    @apply bg-gray-50 text-gray-400;
+  }
+
+  .sakura-calendar-day.today {
+    @apply bg-blue-600 text-white;
+  }
+
+  .sakura-calendar-day-number {
+    @apply font-semibold mb-2;
+    font-family: var(--font-body);
+  }
+
+  .sakura-calendar-transactions {
+    @apply flex flex-col gap-1;
+  }
+
+  .sakura-calendar-transaction {
+    @apply px-2 py-1 rounded text-xs bg-gray-100 text-gray-700 overflow-hidden whitespace-nowrap;
+    font-family: var(--font-body);
+    text-overflow: ellipsis;
+  }
+
+  .sakura-calendar-transaction.income {
+    @apply bg-green-200 text-green-700;
+  }
+
+  .sakura-calendar-transaction.expense {
+    @apply bg-red-200 text-red-700;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .sakura-filter-controls {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sakura-view-controls {
+      @apply flex-col gap-4 items-stretch;
+    }
+
+    .sakura-transaction-table-container {
+      margin: 0 -1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sakura-page-header {
+      @apply flex-col gap-4 items-stretch;
+    }
+
+    .sakura-page-actions {
+      justify-content: stretch;
+    }
+
+    .sakura-page-actions .sakura-btn {
+      flex: 1;
+    }
+
+    .sakura-transaction-summary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sakura-filter-controls {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-view-toggle {
+      @apply w-full justify-center;
+    }
+
+    .sakura-view-btn {
+      flex: 1;
+      justify-content: center;
+    }
+
+    .sakura-results-header {
+      @apply flex-col gap-4 items-stretch;
+    }
+
+    .sakura-bulk-actions {
+      justify-content: center;
+    }
+
+    .sakura-transaction-list.advanced .sakura-transaction-item {
+      @apply p-4;
+    }
+
+    .sakura-transaction-item.selectable {
+      padding-left: 2rem;
+    }
+
+    .sakura-transaction-meta {
+      @apply flex-col items-start gap-2;
+    }
+
+    .sakura-calendar-days {
+      gap: 0.25rem;
+    }
+
+    .sakura-calendar-day {
+      min-height: 80px;
+      padding: 0.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sakura-transaction-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-transaction-controls {
+      @apply p-4;
+    }
+
+    .sakura-search-input-large {
+      @apply py-3 text-base;
+      padding-left: 2.5rem;
+    }
+
+    .sakura-view-btn {
+      @apply px-3 py-2 text-xs;
+    }
+
+    .sakura-transaction-item.selectable {
+      padding-left: 1.5rem;
+    }
+
+    .sakura-transaction-actions {
+      opacity: 1;
+    }
+
+    .sakura-action-btn {
+      padding: 0.25rem;
+    }
+  }
+
 }
