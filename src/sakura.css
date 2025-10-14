@@ -8496,7 +8496,6 @@
     top: calc(100% + 0.5rem);
     right: 0;
     width: 360px;
-    max-height: 500px;
     background: white;
     border: 1px solid #e2e8f0;
     border-radius: 0.75rem;
@@ -8676,7 +8675,10 @@
   /* Notification Footer */
   .sakura-notification-footer {
     border-top: 1px solid #e2e8f0;
-    padding: 0.75rem 1.25rem 1rem 1.25rem;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .sakura-notification-view-all {
@@ -8684,8 +8686,6 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    width: 100%;
-    padding: 0.625rem 1rem;
     background: none;
     border: none;
     color: #5b8bf5;

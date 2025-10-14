@@ -366,6 +366,75 @@ Continue with Phase 9: Implement alerts and interactive elements for dashboard
 - **Component-by-component development**: Building one component at a time to satisfaction
 - **Iterative refinement**: No moving forward until quality standards met
 
+### CRITICAL: Component Modifier Pattern (BEM)
+**MANDATORY RULE**: Never modify base component classes directly. Always use modifiers for variations.
+
+**The Pattern:**
+When you need to change an existing component's appearance or behavior, DO NOT edit the base class. Instead, create a modifier using the `--modifier` naming convention:
+
+```css
+/* Base component - NEVER MODIFY THIS */
+.sakura-cta-wave {
+  /* Base styles that apply to all instances */
+}
+
+/* Modifier for specific variant - ADD THIS INSTEAD */
+.sakura-cta-wave--top {
+  /* Only the differences for this variant */
+}
+```
+
+**Real Example from CTA Component:**
+```html
+<!-- Base class + modifier for variation -->
+<div class="sakura-cta-wave sakura-cta-wave--top">
+```
+
+**Why This Matters:**
+- Changing the base class breaks ALL instances across the entire site
+- Modifiers keep components reusable and maintainable
+- Each component can have multiple variants without conflicts
+- Other developers (or future you) can safely use base components
+
+**Common Modifier Patterns:**
+- Position: `--top`, `--bottom`, `--left`, `--right`
+- Size: `--sm`, `--md`, `--lg`, `--xl`
+- Style: `--primary`, `--secondary`, `--outline`, `--ghost`
+- State: `--active`, `--disabled`, `--loading`, `--error`
+- Theme: `--dark`, `--light`, `--compact`, `--expanded`
+
+**Button Example:**
+```css
+.sakura-btn { /* Base button */ }
+.sakura-btn--primary { /* Blue primary button */ }
+.sakura-btn--outline { /* Outlined button */ }
+.sakura-btn--sm { /* Small size */ }
+.sakura-btn--lg { /* Large size */ }
+```
+
+**Usage:**
+```html
+<button class="sakura-btn sakura-btn--primary sakura-btn--lg">
+  Large Primary Button
+</button>
+```
+
+**VIOLATION EXAMPLE - NEVER DO THIS:**
+```css
+/* WRONG - Modifying base class breaks all buttons */
+.sakura-btn {
+  background: red; /* This affects EVERY button on the site! */
+}
+```
+
+**CORRECT APPROACH:**
+```css
+/* RIGHT - Create a new modifier */
+.sakura-btn--danger {
+  background: red; /* Only danger buttons are affected */
+}
+```
+
 ### Typography Hierarchy
 - **Brand Elements**: Playfair Display (elegant serif, brand identity only)
 - **H1 & H2 Headings**: Inter (modern sans-serif, main headings)
