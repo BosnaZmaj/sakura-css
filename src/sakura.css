@@ -11156,7 +11156,7 @@
   }
 
   .sakura-transaction-name {
-    @apply text-sm font-semibold text-gray-900;
+    @apply text-base font-semibold text-gray-900;
     font-family: var(--font-body);
   }
 
