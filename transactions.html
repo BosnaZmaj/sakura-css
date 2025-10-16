@@ -160,49 +160,134 @@
                     <div class="sakura-filter-controls">
                         <div class="sakura-filter-group">
                             <label class="sakura-filter-label">Type</label>
-                            <select class="sakura-filter-select" id="typeFilter">
-                                <option value="">All Types</option>
-                                <option value="income">Income</option>
-                                <option value="expense">Expense</option>
-                                <option value="transfer">Transfer</option>
-                            </select>
+                            <div class="sakura-custom-select">
+                                <div class="sakura-custom-select-trigger placeholder">All Types</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="">
+                                        <i class="bi bi-funnel sakura-option-icon"></i>
+                                        All Types
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="income">
+                                        <i class="bi bi-arrow-up-circle sakura-option-icon"></i>
+                                        Income
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="expense">
+                                        <i class="bi bi-arrow-down-circle sakura-option-icon"></i>
+                                        Expense
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="transfer">
+                                        <i class="bi bi-arrow-left-right sakura-option-icon"></i>
+                                        Transfer
+                                    </div>
+                                </div>
+                                <input type="hidden" id="typeFilter">
+                            </div>
                         </div>
 
                         <div class="sakura-filter-group">
                             <label class="sakura-filter-label">Envelope</label>
-                            <select class="sakura-filter-select" id="envelopeFilter">
-                                <option value="">All Envelopes</option>
-                                <option value="groceries">Groceries</option>
-                                <option value="entertainment">Entertainment</option>
-                                <option value="transportation">Transportation</option>
-                                <option value="utilities">Utilities</option>
-                                <option value="housing">Housing</option>
-                                <option value="healthcare">Healthcare</option>
-                            </select>
+                            <div class="sakura-custom-select">
+                                <div class="sakura-custom-select-trigger placeholder">All Envelopes</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="">
+                                        <i class="bi bi-funnel sakura-option-icon"></i>
+                                        All Envelopes
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="groceries">
+                                        <i class="bi bi-cart sakura-option-icon"></i>
+                                        Groceries
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="entertainment">
+                                        <i class="bi bi-film sakura-option-icon"></i>
+                                        Entertainment
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="transportation">
+                                        <i class="bi bi-car-front sakura-option-icon"></i>
+                                        Transportation
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="utilities">
+                                        <i class="bi bi-lightning-charge sakura-option-icon"></i>
+                                        Utilities
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="housing">
+                                        <i class="bi bi-house sakura-option-icon"></i>
+                                        Housing
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="healthcare">
+                                        <i class="bi bi-heart-pulse sakura-option-icon"></i>
+                                        Healthcare
+                                    </div>
+                                </div>
+                                <input type="hidden" id="envelopeFilter">
+                            </div>
                         </div>
 
                         <div class="sakura-filter-group">
                             <label class="sakura-filter-label">Date Range</label>
-                            <select class="sakura-filter-select" id="dateFilter">
-                                <option value="all">All Time</option>
-                                <option value="today">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month" selected>This Month</option>
-                                <option value="quarter">This Quarter</option>
-                                <option value="year">This Year</option>
-                                <option value="custom">Custom Range</option>
-                            </select>
+                            <div class="sakura-custom-select">
+                                <div class="sakura-custom-select-trigger">This Month</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="all">
+                                        <i class="bi bi-calendar4-range sakura-option-icon"></i>
+                                        All Time
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="today">
+                                        <i class="bi bi-calendar-day sakura-option-icon"></i>
+                                        Today
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="week">
+                                        <i class="bi bi-calendar-week sakura-option-icon"></i>
+                                        This Week
+                                    </div>
+                                    <div class="sakura-custom-select-option selected" data-value="month">
+                                        <i class="bi bi-calendar-month sakura-option-icon"></i>
+                                        This Month
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="quarter">
+                                        <i class="bi bi-calendar3 sakura-option-icon"></i>
+                                        This Quarter
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="year">
+                                        <i class="bi bi-calendar sakura-option-icon"></i>
+                                        This Year
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="custom">
+                                        <i class="bi bi-calendar-range sakura-option-icon"></i>
+                                        Custom Range
+                                    </div>
+                                </div>
+                                <input type="hidden" id="dateFilter" value="month">
+                            </div>
                         </div>
 
                         <div class="sakura-filter-group">
                             <label class="sakura-filter-label">Amount</label>
-                            <select class="sakura-filter-select" id="amountFilter">
-                                <option value="">Any Amount</option>
-                                <option value="0-25">$0 - $25</option>
-                                <option value="25-100">$25 - $100</option>
-                                <option value="100-500">$100 - $500</option>
-                                <option value="500+">$500+</option>
-                            </select>
+                            <div class="sakura-custom-select">
+                                <div class="sakura-custom-select-trigger placeholder">Any Amount</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="">
+                                        <i class="bi bi-currency-dollar sakura-option-icon"></i>
+                                        Any Amount
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="0-25">
+                                        <i class="bi bi-1-circle sakura-option-icon"></i>
+                                        $0 - $25
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="25-100">
+                                        <i class="bi bi-2-circle sakura-option-icon"></i>
+                                        $25 - $100
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="100-500">
+                                        <i class="bi bi-3-circle sakura-option-icon"></i>
+                                        $100 - $500
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="500+">
+                                        <i class="bi bi-4-circle sakura-option-icon"></i>
+                                        $500+
+                                    </div>
+                                </div>
+                                <input type="hidden" id="amountFilter">
+                            </div>
                         </div>
 
                         <button class="sakura-btn sakura-btn--outline sakura-filter-clear" id="clearFilters">Clear</button>
@@ -227,14 +312,36 @@
 
                     <div class="sakura-sort-controls">
                         <label class="sakura-filter-label">Sort by:</label>
-                        <select class="sakura-filter-select" id="sortBy">
-                            <option value="date-desc">Newest First</option>
-                            <option value="date-asc">Oldest First</option>
-                            <option value="amount-desc">Highest Amount</option>
-                            <option value="amount-asc">Lowest Amount</option>
-                            <option value="name-asc">Name A-Z</option>
-                            <option value="name-desc">Name Z-A</option>
-                        </select>
+                        <div class="sakura-custom-select">
+                            <div class="sakura-custom-select-trigger">Newest First</div>
+                            <div class="sakura-custom-select-dropdown">
+                                <div class="sakura-custom-select-option selected" data-value="date-desc">
+                                    <i class="bi bi-arrow-down sakura-option-icon"></i>
+                                    Newest First
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="date-asc">
+                                    <i class="bi bi-arrow-up sakura-option-icon"></i>
+                                    Oldest First
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="amount-desc">
+                                    <i class="bi bi-sort-down-alt sakura-option-icon"></i>
+                                    Highest Amount
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="amount-asc">
+                                    <i class="bi bi-sort-up-alt sakura-option-icon"></i>
+                                    Lowest Amount
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="name-asc">
+                                    <i class="bi bi-sort-alpha-down sakura-option-icon"></i>
+                                    Name A-Z
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="name-desc">
+                                    <i class="bi bi-sort-alpha-up-alt sakura-option-icon"></i>
+                                    Name Z-A
+                                </div>
+                            </div>
+                            <input type="hidden" id="sortBy" value="date-desc">
+                        </div>
                     </div>
                 </div>
             </section>

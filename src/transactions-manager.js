@@ -1048,4 +1048,10 @@ class TransactionsManager {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   window.transactionsManager = new TransactionsManager();
+
+  // Initialize all custom dropdowns
+  const customSelects = document.querySelectorAll('.sakura-custom-select');
+  customSelects.forEach(select => {
+    new CustomSelect(select);
+  });
 });
