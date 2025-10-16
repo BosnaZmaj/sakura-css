@@ -10865,7 +10865,7 @@
 
   /* Page Header */
   .sakura-page-header {
-    @apply flex justify-between items-start mb-8 p-6 bg-white border border-gray-200 rounded-2xl;
+    @apply flex justify-between items-center mb-8 p-6 bg-white border border-gray-200 rounded-2xl;
   }
 
   .sakura-page-title h1 {
