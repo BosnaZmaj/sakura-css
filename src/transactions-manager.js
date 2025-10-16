@@ -1,6 +1,131 @@
 // Transactions Manager - Full-featured transaction management system for Sakura CSS
 // Adapted from original implementation with Sakura CSS naming conventions
 
+// Custom Dropdown Component
+class CustomSelect {
+  constructor(element) {
+    this.element = element;
+    this.trigger = element.querySelector('.sakura-custom-select-trigger');
+    this.dropdown = element.querySelector('.sakura-custom-select-dropdown');
+    this.options = element.querySelectorAll('.sakura-custom-select-option');
+    this.hiddenInput = element.querySelector('input[type="hidden"]');
+    this.icon = element.querySelector('.sakura-input-icon');
+
+    this.selectedValue = '';
+    this.selectedText = '';
+
+    this.init();
+  }
+
+  init() {
+    // Toggle dropdown on trigger click
+    this.trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggle();
+    });
+
+    // Select option on click
+    this.options.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.selectOption(option);
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!this.element.contains(e.target)) {
+        this.close();
+      }
+    });
+
+    // Keyboard navigation
+    this.trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.toggle();
+      } else if (e.key === 'Escape') {
+        this.close();
+      }
+    });
+  }
+
+  toggle() {
+    this.element.classList.toggle('active');
+
+    if (this.element.classList.contains('active')) {
+      // Focus on selected option or first option
+      const selectedOption = this.dropdown.querySelector('.sakura-custom-select-option.selected');
+      if (selectedOption) {
+        selectedOption.scrollIntoView({ block: 'nearest' });
+      }
+    }
+  }
+
+  open() {
+    this.element.classList.add('active');
+  }
+
+  close() {
+    this.element.classList.remove('active');
+  }
+
+  selectOption(option) {
+    // Remove selected class from all options
+    this.options.forEach(opt => opt.classList.remove('selected'));
+
+    // Add selected class to clicked option
+    option.classList.add('selected');
+
+    // Update trigger with icon and text
+    this.selectedValue = option.dataset.value;
+
+    // Get the icon from the option if it exists
+    const optionIcon = option.querySelector('.sakura-option-icon');
+    if (optionIcon) {
+      const iconClone = optionIcon.cloneNode(true);
+      this.trigger.innerHTML = '';
+      this.trigger.appendChild(iconClone);
+
+      const textNode = document.createTextNode(option.textContent.trim());
+      this.trigger.appendChild(textNode);
+    } else {
+      this.trigger.textContent = option.textContent.trim();
+    }
+
+    this.trigger.classList.remove('placeholder');
+
+    // Update hidden input
+    if (this.hiddenInput) {
+      this.hiddenInput.value = this.selectedValue;
+    }
+
+    // Update icon color
+    if (this.icon) {
+      this.icon.style.color = '#5b8bf5';
+      this.icon.style.transform = 'translateY(-50%) scale(1.1)';
+    }
+
+    // Close dropdown
+    this.close();
+
+    // Trigger change event
+    const event = new Event('change', { bubbles: true });
+    this.element.dispatchEvent(event);
+  }
+
+  getValue() {
+    return this.selectedValue;
+  }
+
+  setValue(value) {
+    const option = Array.from(this.options).find(opt => opt.dataset.value === value);
+    if (option) {
+      this.selectOption(option);
+    }
+  }
+}
+
 class TransactionsManager {
   constructor() {
     this.currentView = 'list';
@@ -36,6 +161,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Groceries',
         method: 'Debit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Organic'],
         category: 'Groceries',
         logo: 'https://logo.clearbit.com/wholefoodsmarket.com'
@@ -49,6 +175,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Entertainment',
         method: 'Credit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Recurring', 'Subscription'],
         category: 'Entertainment',
         logo: 'https://logo.clearbit.com/netflix.com'
@@ -62,6 +189,7 @@ class TransactionsManager {
         type: 'income',
         envelope: 'Income',
         method: 'Direct Deposit',
+        bankAccount: 'Chase Bank',
         tags: ['Recurring', 'Verified'],
         category: 'Income',
         icon: 'bi-cash-coin',
@@ -76,6 +204,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Utilities',
         method: 'Auto Pay',
+        bankAccount: 'Chase Bank',
         tags: ['Recurring'],
         category: 'Utilities',
         icon: 'bi-lightning-charge',
@@ -90,6 +219,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Transportation',
         method: 'Credit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Gas'],
         category: 'Transportation',
         logo: 'https://logo.clearbit.com/shell.com'
@@ -103,6 +233,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Dining',
         method: 'Debit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Coffee'],
         category: 'Dining',
         logo: 'https://logo.clearbit.com/starbucks.com'
@@ -116,6 +247,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Groceries',
         method: 'Debit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Household'],
         category: 'Groceries',
         logo: 'https://logo.clearbit.com/target.com'
@@ -129,6 +261,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Dining',
         method: 'Credit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Takeout'],
         category: 'Dining',
         icon: 'bi-egg-fried',
@@ -143,6 +276,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Shopping',
         method: 'Credit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Online'],
         category: 'Shopping',
         logo: 'https://logo.clearbit.com/amazon.com'
@@ -156,6 +290,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Health',
         method: 'Auto Pay',
+        bankAccount: 'Chase Bank',
         tags: ['Recurring', 'Health'],
         category: 'Health',
         icon: 'bi-heart-pulse',
@@ -170,6 +305,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Dining',
         method: 'Credit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Lunch'],
         category: 'Dining',
         logo: 'https://logo.clearbit.com/subway.com'
@@ -183,6 +319,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Healthcare',
         method: 'Credit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Medical'],
         category: 'Healthcare',
         icon: 'bi-heart-pulse',
@@ -197,6 +334,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Dining',
         method: 'Credit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Coffee'],
         category: 'Dining',
         icon: 'bi-cup-hot',
@@ -211,6 +349,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Transportation',
         method: 'Debit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Gas'],
         category: 'Transportation',
         logo: 'https://logo.clearbit.com/shell.com'
@@ -224,6 +363,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Dining',
         method: 'Credit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Lunch'],
         category: 'Dining',
         icon: 'bi-egg-fried',
@@ -238,6 +378,7 @@ class TransactionsManager {
         type: 'expense',
         envelope: 'Healthcare',
         method: 'Debit Card',
+        bankAccount: 'Chase Bank',
         tags: ['Medical'],
         category: 'Healthcare',
         logo: 'https://logo.clearbit.com/cvs.com'
@@ -285,6 +426,7 @@ class TransactionsManager {
         type: isIncome ? 'income' : 'expense',
         envelope: merchant.category,
         method: isIncome ? 'Direct Deposit' : (Math.random() > 0.5 ? 'Credit Card' : 'Debit Card'),
+        bankAccount: 'Chase Bank',
         tags: isIncome ? ['Income'] : [merchant.category],
         category: merchant.category,
         logo: merchant.logo,
@@ -715,6 +857,10 @@ class TransactionsManager {
           <div class="sakura-transaction-merchant">${transaction.merchant}</div>
         </div>
         <div class="sakura-transaction-meta">
+          <span class="sakura-transaction-bank-account">
+            <img src="https://logo.clearbit.com/chase.com" alt="Chase Bank" class="sakura-bank-logo">
+            ${transaction.bankAccount}
+          </span>
           <span class="sakura-transaction-envelope ${envelopeClass}">${transaction.envelope}</span>
           <span class="sakura-transaction-method">${transaction.method}</span>
           <span class="sakura-transaction-tags">

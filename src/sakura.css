@@ -4362,92 +4362,178 @@
   }
 
   /* Feature Explanation Modal System */
-  .sakura-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
+
+  /* Custom Dropdown Component */
+  .sakura-custom-select {
+    position: relative;
+    width: 100%;
+  }
+
+  .sakura-custom-select-trigger {
+    @apply px-4 py-3 rounded-lg;
+    border: 2px solid #e2e8f0;
+    border-style: solid;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    padding-right: 3rem;
+    font-size: 1rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-  }
-
-  .sakura-modal-overlay.sakura-modal--active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  .sakura-modal-container {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(40px);
-    border-radius: 24px;
-    max-width: 800px;
-    max-height: 90vh;
-    width: 90%;
-    overflow-y: auto;
-    box-shadow:
-      0 25px 100px -20px rgba(0, 0, 0, 0.4),
-      0 15px 60px -15px rgba(0, 0, 0, 0.25),
-      0 0 0 1px rgba(255, 255, 255, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    transform: scale(0.9) translateY(30px);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .sakura-modal-overlay.sakura-modal--active .sakura-modal-container {
-    transform: scale(1) translateY(0);
-  }
-
-  .sakura-modal-header {
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    width: 100%;
+    cursor: pointer;
+    color: #1e293b;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 24px 32px;
-    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-    background: linear-gradient(135deg, rgba(91, 139, 245, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%);
-    border-radius: 24px 24px 0 0;
+    user-select: none;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .sakura-modal-header h3 {
-    @apply text-2xl font-bold mb-0 font-heading;
-    color: #0f172a;
-    color: #1e2a3b;
+  .sakura-custom-select-trigger.placeholder {
+    color: #94a3b8;
   }
 
-  .sakura-modal-close {
-    background: rgba(75, 85, 99, 0.1);
-    border: none;
-    color: #6b7280;
-    font-size: 20px;
+  .sakura-custom-select-trigger:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 6px rgba(91, 139, 245, 0.06);
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235B8BF5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .sakura-custom-select.active .sakura-custom-select-trigger {
+    outline: none !important;
+    border: 2px solid #5B8BF5 !important;
+    border-style: solid !important;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235B8BF5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    box-shadow:
+      0 0 0 4px rgba(91, 139, 245, 0.08),
+      0 4px 12px rgba(91, 139, 245, 0.12);
+  }
+
+  .sakura-custom-select-trigger-with-icon {
+    padding-left: 3rem;
+  }
+
+  .sakura-custom-select-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow:
+      0 10px 40px -8px rgba(0, 0, 0, 0.12),
+      0 4px 16px -4px rgba(0, 0, 0, 0.08);
+    max-height: 280px;
+    overflow-y: auto;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-custom-select.active .sakura-custom-select-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .sakura-custom-select-option {
+    padding: 12px 16px;
     cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #1e293b;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
+    gap: 8px;
   }
 
-  .sakura-modal-close:hover {
-    background: rgba(75, 85, 99, 0.2);
-    color: #374151;
-    transform: scale(1.05);
+  .sakura-custom-select-option:first-child {
+    margin-top: 4px;
   }
 
-  .sakura-modal-body {
-    padding: 0;
+  .sakura-custom-select-option:last-child {
+    margin-bottom: 4px;
   }
+
+  .sakura-custom-select-option:hover {
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.08) 0%, rgba(139, 92, 246, 0.06) 100%);
+    color: #5B8BF5;
+  }
+
+  .sakura-custom-select-option.selected {
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%);
+    color: #5B8BF5;
+    font-weight: 500;
+  }
+
+  .sakura-custom-select-option.selected::after {
+    content: '✓';
+    margin-left: auto;
+    font-weight: bold;
+    color: #5B8BF5;
+  }
+
+  /* Option icons */
+  .sakura-option-icon {
+    font-size: 1.1rem;
+    color: #64748b;
+    transition: color 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .sakura-option-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .sakura-custom-select-option:hover .sakura-option-icon {
+    color: #5B8BF5;
+  }
+
+  .sakura-custom-select-option.selected .sakura-option-icon {
+    color: #5B8BF5;
+  }
+
+  /* Icons in trigger */
+  .sakura-custom-select-trigger .sakura-option-icon {
+    margin-right: 8px;
+  }
+
+  /* Scrollbar styling for dropdown */
+  .sakura-custom-select-dropdown::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .sakura-custom-select-dropdown::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+    margin: 8px 0;
+  }
+
+  .sakura-custom-select-dropdown::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+
+  .sakura-custom-select-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
 
   /* Hero Visual Section */
   .sakura-feature-hero {
@@ -4861,6 +4947,40 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
+  }
+
+  .sakura-form-row-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* First row with date, amount, merchant - optimized widths */
+  .sakura-form-row-compact {
+    grid-template-columns: 155px 140px 1fr;
+  }
+
+  /* Compact inputs for date field - very tight */
+  .sakura-form-row-compact .sakura-form-group:nth-child(1) .sakura-form-input.sakura-input-with-icon {
+    padding-left: 2.25rem !important;
+    padding-right: 0.5rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  /* Compact inputs for amount field */
+  .sakura-form-row-compact .sakura-form-group:nth-child(2) .sakura-form-input.sakura-input-with-icon {
+    padding-left: 2.5rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Adjust icon position for date field */
+  .sakura-form-row-compact .sakura-form-group:nth-child(1) .sakura-input-icon {
+    left: 0.625rem;
+    font-size: 0.9rem;
+  }
+
+  /* Adjust icon position for amount field */
+  .sakura-form-row-compact .sakura-form-group:nth-child(2) .sakura-input-icon {
+    left: 0.75rem;
   }
 
   /* Demo Dashboard */
@@ -10892,13 +11012,30 @@
   }
 
   .sakura-view-btn {
-    @apply flex items-center gap-2 px-4 py-2 bg-transparent border-0 rounded text-sm text-gray-600 cursor-pointer;
+    @apply flex items-center gap-2 px-4 py-2 bg-transparent border-0 text-sm text-gray-600 cursor-pointer;
     font-family: var(--font-body);
     transition: all 0.2s ease;
+    border-radius: 0.75rem;
   }
 
+  /* Active button styling */
   .sakura-view-btn.active {
     @apply bg-white text-blue-600 shadow-sm;
+  }
+
+  /* Active left button: round left corners, square right */
+  .sakura-view-btn:first-child.active {
+    border-radius: 0.75rem 0 0 0.75rem;
+  }
+
+  /* Active middle button: square corners */
+  .sakura-view-btn:not(:first-child):not(:last-child).active {
+    border-radius: 0;
+  }
+
+  /* Active right button: square left, round right corners */
+  .sakura-view-btn:last-child.active {
+    border-radius: 0 0.75rem 0.75rem 0;
   }
 
   .sakura-sort-controls {
@@ -11262,6 +11399,16 @@
   .sakura-transaction-method {
     @apply text-xs text-gray-500;
     font-family: var(--font-body);
+  }
+
+  .sakura-transaction-bank-account {
+    @apply text-xs text-blue-700 font-semibold flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 border border-blue-200;
+    font-family: var(--font-body);
+  }
+
+  .sakura-bank-logo {
+    @apply w-5 h-5 rounded-full;
+    object-fit: contain;
   }
 
   .sakura-transaction-tags {
