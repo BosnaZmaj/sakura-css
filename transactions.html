@@ -519,8 +519,8 @@
             </div>
             <div class="sakura-modal-body">
                 <form class="sakura-transaction-form">
-                    <!-- Date Field -->
-                    <div class="sakura-form-row">
+                    <!-- Date and Envelope -->
+                    <div class="sakura-form-row sakura-form-row--split">
                         <div class="sakura-form-field sakura-form-field--date">
                             <label for="transactionDate">Date</label>
                             <div class="sakura-datepicker" id="modalDatepicker">
@@ -548,6 +548,47 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="sakura-form-field sakura-form-field--envelope">
+                            <label for="transactionEnvelope">Envelope</label>
+                            <div class="sakura-custom-select" id="transactionEnvelopeSelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select envelope...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="groceries">
+                                        <i class="bi bi-cart sakura-option-icon"></i>
+                                        Groceries
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="entertainment">
+                                        <i class="bi bi-film sakura-option-icon"></i>
+                                        Entertainment
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="transportation">
+                                        <i class="bi bi-car-front sakura-option-icon"></i>
+                                        Transportation
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="utilities">
+                                        <i class="bi bi-lightning-charge sakura-option-icon"></i>
+                                        Utilities
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="dining">
+                                        <i class="bi bi-egg-fried sakura-option-icon"></i>
+                                        Dining Out
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="healthcare">
+                                        <i class="bi bi-heart-pulse sakura-option-icon"></i>
+                                        Healthcare
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="personal">
+                                        <i class="bi bi-person sakura-option-icon"></i>
+                                        Personal Care
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="savings">
+                                        <i class="bi bi-piggy-bank sakura-option-icon"></i>
+                                        Savings
+                                    </div>
+                                </div>
+                                <input type="hidden" id="transactionEnvelope" required>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Merchant Name and Amount -->
@@ -565,8 +606,33 @@
                         </div>
                     </div>
 
-                    <!-- Transaction Type and Envelope -->
+                    <!-- Account and Transaction Type -->
                     <div class="sakura-form-row sakura-form-row--split">
+                        <div class="sakura-form-field sakura-form-field--account">
+                            <label for="transactionAccount">Account</label>
+                            <div class="sakura-custom-select" id="transactionAccountSelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select account...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="chase-checking">
+                                        <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                        Chase Checking
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="chase-savings">
+                                        <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                        Chase Savings
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="capitalone-checking">
+                                        <img src="https://logo.clearbit.com/capitalone.com" alt="Capital One" class="sakura-bank-logo">
+                                        Capital One Checking
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="amex-credit">
+                                        <img src="https://logo.clearbit.com/americanexpress.com" alt="American Express" class="sakura-bank-logo">
+                                        American Express
+                                    </div>
+                                </div>
+                                <input type="hidden" id="transactionAccount" required>
+                            </div>
+                        </div>
                         <div class="sakura-form-field sakura-form-field--type">
                             <label for="transactionType">Type</label>
                             <div class="sakura-custom-select" id="transactionTypeSelect">
@@ -588,33 +654,34 @@
                                 <input type="hidden" id="transactionType" required>
                             </div>
                         </div>
-                        <div class="sakura-form-field sakura-form-field--envelope">
-                            <label for="transactionEnvelope">Envelope</label>
-                            <select id="transactionEnvelope" class="sakura-input" required>
-                                <option value="">Select envelope...</option>
-                                <option value="groceries">Groceries</option>
-                                <option value="entertainment">Entertainment</option>
-                                <option value="transportation">Transportation</option>
-                                <option value="utilities">Utilities</option>
-                                <option value="dining">Dining Out</option>
-                                <option value="healthcare">Healthcare</option>
-                                <option value="personal">Personal Care</option>
-                                <option value="savings">Savings</option>
-                            </select>
-                        </div>
                     </div>
 
                     <!-- Payment Method and Merchant Description -->
                     <div class="sakura-form-row sakura-form-row--split">
                         <div class="sakura-form-field sakura-form-field--payment">
                             <label for="paymentMethod">Payment Method</label>
-                            <select id="paymentMethod" class="sakura-input" required>
-                                <option value="">Select payment method...</option>
-                                <option value="debit">Debit Card</option>
-                                <option value="credit">Credit Card</option>
-                                <option value="bank-transfer">Bank Transfer</option>
-                                <option value="check">Check</option>
-                            </select>
+                            <div class="sakura-custom-select" id="paymentMethodSelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select payment method...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="debit">
+                                        <i class="bi bi-credit-card sakura-option-icon"></i>
+                                        Debit Card
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="credit">
+                                        <i class="bi bi-credit-card-2-front sakura-option-icon"></i>
+                                        Credit Card
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="bank-transfer">
+                                        <i class="bi bi-bank sakura-option-icon"></i>
+                                        Bank Transfer
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="check">
+                                        <i class="bi bi-receipt sakura-option-icon"></i>
+                                        Check
+                                    </div>
+                                </div>
+                                <input type="hidden" id="paymentMethod" required>
+                            </div>
                         </div>
                         <div class="sakura-form-field sakura-form-field--merchant-desc">
                             <label for="merchantDescription">Merchant Description</label>

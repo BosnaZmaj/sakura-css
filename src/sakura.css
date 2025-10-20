@@ -12263,7 +12263,7 @@
     border: 1px solid rgba(226, 232, 240, 0.8);
     border-top: none;
     border-radius: 24px;
-    max-width: 540px;
+    max-width: 680px;
     width: 100%;
     max-height: 90vh;
     overflow: hidden;
@@ -12449,15 +12449,122 @@
     position: relative;
   }
 
+  /* Reduce input padding to match original dropdown size */
+  .sakura-modal .sakura-input {
+    @apply px-3 py-2 rounded-2xl;
+  }
+
+  /* Match custom select trigger to reduced input styling */
+  .sakura-modal .sakura-custom-select-trigger {
+    @apply px-3 py-2 rounded-2xl;
+    border: 2px solid #e2e8f0;
+    font-size: 0.9375rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: #1e293b;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .sakura-modal .sakura-custom-select-trigger:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(91, 139, 245, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .sakura-modal .sakura-custom-select.active .sakura-custom-select-trigger {
+    border-color: #5B8BF5;
+    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1), 0 4px 12px rgba(91, 139, 245, 0.15);
+  }
+
+  .sakura-modal .sakura-custom-select-trigger.placeholder {
+    color: #94a3b8;
+  }
+
   .sakura-modal .sakura-custom-select-dropdown {
     position: absolute;
-    z-index: 10001;
+    z-index: 100000 !important;
   }
 
   .sakura-modal .sakura-custom-select.active .sakura-custom-select-dropdown {
     opacity: 1 !important;
     visibility: visible !important;
     display: block !important;
+    z-index: 100000 !important;
+  }
+
+  /* Colorize icons in modal custom selects */
+  .sakura-modal .sakura-custom-select-option .bi-arrow-down-circle {
+    color: #ef4444;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-arrow-up-circle {
+    color: #10b981;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-arrow-left-right {
+    color: #3b82f6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-cart {
+    color: #10b981;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-film {
+    color: #8b5cf6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-car-front {
+    color: #3b82f6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-lightning-charge {
+    color: #f59e0b;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-egg-fried {
+    color: #ec4899;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-heart-pulse {
+    color: #ef4444;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-person {
+    color: #06b6d4;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-piggy-bank {
+    color: #10b981;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-credit-card,
+  .sakura-modal .sakura-custom-select-option .bi-credit-card-2-front {
+    color: #3b82f6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-bank {
+    color: #10b981;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-receipt {
+    color: #8b5cf6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-cash-coin {
+    color: #10b981;
+  }
+
+  /* Bank logo styling */
+  .sakura-bank-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 8px;
+    flex-shrink: 0;
   }
 
   .sakura-form-field label {
