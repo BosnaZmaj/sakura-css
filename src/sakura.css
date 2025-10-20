@@ -12238,7 +12238,8 @@
     position: relative;
     z-index: 10000;
     background: white;
-    border-radius: 16px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 24px;
     max-width: 540px;
     width: 100%;
     max-height: 90vh;
@@ -12247,16 +12248,52 @@
     flex-direction: column;
     animation: modalSlideIn 0.3s ease;
     box-shadow:
-      0 20px 60px rgba(30, 42, 59, 0.3),
-      0 0 0 1px rgba(30, 42, 59, 0.05);
+      0 20px 60px rgba(30, 42, 59, 0.25),
+      0 0 0 1px rgba(30, 42, 59, 0.05),
+      0 0 80px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-modal-header {
+    position: relative;
+    z-index: 1;
+    padding: 32px 32px 28px;
+    border-bottom: none;
+    background: white;
+    text-align: center;
   }
 
   .sakura-modal-header h2 {
-    margin: 0;
+    margin: 0 0 1.5rem 0;
     font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary);
+    font-weight: 700;
+    color: #1e293b;
     font-family: var(--font-heading);
+    position: relative;
+    display: inline-block;
+  }
+
+  .sakura-modal-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #5B8BF5, #8B5CF6);
+    border-radius: 2px;
+    animation: sakuraUnderlineGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes sakuraUnderlineGlow {
+    0%, 100% { opacity: 1; width: 60px; }
+    50% { opacity: 0.6; width: 80px; }
+  }
+
+  .sakura-modal-body,
+  .sakura-modal-footer {
+    position: relative;
+    z-index: 1;
   }
 
   .sakura-modal-body {
@@ -12269,32 +12306,32 @@
     gap: 12px;
     justify-content: flex-end;
     padding: 20px 32px;
-    border-top: 1px solid var(--gray-200);
-    background: var(--gray-50);
+    border-top: 1px solid rgba(226, 232, 240, 0.6);
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(248, 250, 252, 0.8) 100%);
   }
 
   /* Transaction Form Styles */
   .sakura-transaction-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
   }
 
   .sakura-form-row {
     display: flex;
-    gap: 16px;
+    gap: 20px;
   }
 
   .sakura-form-row--split {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 16px;
+    gap: 20px;
   }
 
   .sakura-form-field {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
 
   .sakura-form-field--date {
@@ -12328,31 +12365,46 @@
   }
 
   .sakura-form-field label {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 600;
-    color: var(--gray-700);
+    color: #475569;
     font-family: var(--font-body);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
   }
 
   .sakura-input {
-    padding: 10px 14px;
-    border: 1px solid var(--gray-300);
-    border-radius: 8px;
+    @apply px-4 py-3 rounded-xl;
+    border: 2px solid #e2e8f0;
     font-size: 0.9375rem;
     font-family: var(--font-body);
-    color: var(--gray-900);
-    transition: all 0.2s ease;
+    font-weight: 500;
+    color: #1e293b;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+
+  .sakura-input:hover:not(:focus) {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(91, 139, 245, 0.08);
+    transform: translateY(-1px);
   }
 
   .sakura-input:focus {
     outline: none;
-    border-color: var(--secondary);
-    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
+    border-color: #5B8BF5;
+    background: white;
+    box-shadow:
+      0 0 0 4px rgba(91, 139, 245, 0.1),
+      0 8px 16px rgba(91, 139, 245, 0.15);
+    transform: translateY(-1px);
   }
 
   .sakura-input::placeholder {
-    color: var(--gray-400);
+    color: #94a3b8;
+    font-weight: 400;
   }
 
   /* Date input specific styling */
@@ -12369,23 +12421,63 @@
   select.sakura-input {
     width: 100%;
     cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 12px 8px !important;
     padding-right: 40px;
   }
 
+  select.sakura-input:hover {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 12px 8px !important;
+  }
+
   select.sakura-input:focus {
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%235b8bf5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 12px 8px !important;
+  }
+
+  select.sakura-input:active {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 12px 8px !important;
+  }
+
+  /* Fix for Firefox */
+  select.sakura-input::-moz-focus-inner {
+    border: 0;
+  }
+
+  /* Fix for IE */
+  select.sakura-input::-ms-expand {
+    display: none;
   }
 
   /* Textarea styling */
   .sakura-textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 90px;
     font-family: var(--font-body);
-    line-height: 1.5;
+    font-weight: 400;
+    line-height: 1.6;
+    padding: 14px 16px !important;
+  }
+
+  .sakura-textarea:focus {
+    min-height: 90px;
   }
 
 }
