@@ -569,12 +569,24 @@
                     <div class="sakura-form-row sakura-form-row--split">
                         <div class="sakura-form-field sakura-form-field--type">
                             <label for="transactionType">Type</label>
-                            <select id="transactionType" class="sakura-input" required>
-                                <option value="">Select type...</option>
-                                <option value="expense">Expense</option>
-                                <option value="income">Income</option>
-                                <option value="transfer">Transfer</option>
-                            </select>
+                            <div class="sakura-custom-select" id="transactionTypeSelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select type...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="expense">
+                                        <i class="bi bi-arrow-down-circle sakura-option-icon"></i>
+                                        Expense
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="income">
+                                        <i class="bi bi-arrow-up-circle sakura-option-icon"></i>
+                                        Income
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="transfer">
+                                        <i class="bi bi-arrow-left-right sakura-option-icon"></i>
+                                        Transfer
+                                    </div>
+                                </div>
+                                <input type="hidden" id="transactionType" required>
+                            </div>
                         </div>
                         <div class="sakura-form-field sakura-form-field--envelope">
                             <label for="transactionEnvelope">Envelope</label>

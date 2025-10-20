@@ -12439,6 +12439,27 @@
     width: 100%;
   }
 
+  /* Custom select in modal - ensure dropdown is visible */
+  .sakura-modal .sakura-form-row,
+  .sakura-modal .sakura-form-field {
+    overflow: visible !important;
+  }
+
+  .sakura-modal .sakura-custom-select {
+    position: relative;
+  }
+
+  .sakura-modal .sakura-custom-select-dropdown {
+    position: absolute;
+    z-index: 10001;
+  }
+
+  .sakura-modal .sakura-custom-select.active .sakura-custom-select-dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+
   .sakura-form-field label {
     font-size: 0.8125rem;
     font-weight: 600;
