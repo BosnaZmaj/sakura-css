@@ -12324,6 +12324,12 @@
 
   .sakura-form-row--split {
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .sakura-form-row--merchant-amount {
+    display: grid;
     grid-template-columns: 1fr auto;
     gap: 20px;
   }
@@ -12345,10 +12351,12 @@
 
   .sakura-form-field--amount {
     width: 140px;
+    flex-shrink: 0;
   }
 
   .sakura-form-field--type {
-    width: 160px;
+    flex: 1;
+    min-width: 0;
   }
 
   .sakura-form-field--envelope {
@@ -12357,7 +12365,13 @@
   }
 
   .sakura-form-field--payment {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-form-field--merchant-desc {
+    flex: 1;
+    min-width: 0;
   }
 
   .sakura-form-field--notes {

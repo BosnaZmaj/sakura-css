@@ -528,7 +528,7 @@
                     </div>
 
                     <!-- Merchant Name and Amount -->
-                    <div class="sakura-form-row sakura-form-row--split">
+                    <div class="sakura-form-row sakura-form-row--merchant-amount">
                         <div class="sakura-form-field sakura-form-field--merchant">
                             <label for="merchantName">Merchant Name</label>
                             <input type="text" id="merchantName" class="sakura-input" placeholder="e.g., Starbucks" required>
@@ -566,8 +566,8 @@
                         </div>
                     </div>
 
-                    <!-- Payment Method -->
-                    <div class="sakura-form-row">
+                    <!-- Payment Method and Merchant Description -->
+                    <div class="sakura-form-row sakura-form-row--split">
                         <div class="sakura-form-field sakura-form-field--payment">
                             <label for="paymentMethod">Payment Method</label>
                             <select id="paymentMethod" class="sakura-input" required>
@@ -577,6 +577,10 @@
                                 <option value="bank-transfer">Bank Transfer</option>
                                 <option value="check">Check</option>
                             </select>
+                        </div>
+                        <div class="sakura-form-field sakura-form-field--merchant-desc">
+                            <label for="merchantDescription">Merchant Description</label>
+                            <input type="text" id="merchantDescription" class="sakura-input" placeholder="e.g., Coffee shop">
                         </div>
                     </div>
 

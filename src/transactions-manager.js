@@ -1276,6 +1276,7 @@ document.addEventListener('DOMContentLoaded', function() {
         type: document.getElementById('transactionType')?.value,
         envelope: document.getElementById('transactionEnvelope')?.value,
         paymentMethod: document.getElementById('paymentMethod')?.value,
+        merchantDescription: document.getElementById('merchantDescription')?.value,
         notes: document.getElementById('transactionNotes')?.value
       };
 
