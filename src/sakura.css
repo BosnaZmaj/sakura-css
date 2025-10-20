@@ -12265,7 +12265,8 @@
     border-radius: 24px;
     max-width: 680px;
     width: 100%;
-    max-height: 90vh;
+    min-height: 800px;
+    max-height: 94vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -12332,8 +12333,9 @@
   }
 
   .sakura-modal-body {
-    padding: 24px 32px;
+    padding: 26px 32px;
     overflow-y: auto;
+    flex: 1;
   }
 
   .sakura-modal-footer {
