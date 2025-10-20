@@ -1054,4 +1054,245 @@ document.addEventListener('DOMContentLoaded', () => {
   customSelects.forEach(select => {
     new CustomSelect(select);
   });
+
+  // Modal functionality
+  const modal = document.getElementById('addTransactionModal');
+  const openModalBtn = document.getElementById('openAddTransactionModal');
+  const closeModalBtn = document.getElementById('closeAddTransactionModal');
+  const modalOverlay = modal?.querySelector('.sakura-modal-overlay');
+
+  // Open modal
+  if (openModalBtn && modal) {
+    openModalBtn.addEventListener('click', () => {
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // Prevent body scroll
+    });
+  }
+
+  // Close modal functions
+  const closeModal = () => {
+    if (modal) {
+      modal.classList.remove('show');
+      document.body.style.overflow = ''; // Restore body scroll
+    }
+  };
+
+  // Close on close button click
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+  }
+
+  // Close on overlay click
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', closeModal);
+  }
+
+  // Close on ESC key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('show')) {
+      closeModal();
+    }
+  });
+
+  // Custom Datepicker functionality
+  const datepicker = document.querySelector('.sakura-datepicker');
+  if (datepicker) {
+    const input = datepicker.querySelector('.sakura-datepicker-input');
+    const inputField = datepicker.querySelector('#transactionDate');
+    const hiddenInput = datepicker.querySelector('#transactionDateValue');
+    const dropdown = datepicker.querySelector('.sakura-datepicker-dropdown');
+    const daysContainer = datepicker.querySelector('.sakura-datepicker-days');
+    const monthDisplay = datepicker.querySelector('.sakura-datepicker-month');
+    const prevBtn = datepicker.querySelector('.sakura-datepicker-prev');
+    const nextBtn = datepicker.querySelector('.sakura-datepicker-next');
+
+    let currentDate = new Date(2025, 0, 15); // January 15, 2025
+    let selectedDate = new Date(currentDate);
+
+    // Toggle dropdown
+    input.addEventListener('click', (e) => {
+      e.stopPropagation();
+      datepicker.classList.toggle('active');
+      if (datepicker.classList.contains('active')) {
+        renderCalendar();
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!datepicker.contains(e.target)) {
+        datepicker.classList.remove('active');
+      }
+    });
+
+    // Previous month
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar();
+    });
+
+    // Next month
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar();
+    });
+
+    function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+
+      // Update month display
+      monthDisplay.textContent = new Date(year, month, 1).toLocaleDateString('en-US', {
+        month: 'long',
+        year: 'numeric'
+      });
+
+      // Clear days
+      daysContainer.innerHTML = '';
+
+      // Get first day of month and calculate start date
+      const firstDay = new Date(year, month, 1);
+      const startDate = new Date(firstDay);
+      startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+      // Generate 42 days (6 weeks)
+      for (let i = 0; i < 42; i++) {
+        const day = new Date(startDate);
+        day.setDate(startDate.getDate() + i);
+
+        const dayElement = document.createElement('div');
+        dayElement.className = 'sakura-datepicker-day';
+        dayElement.textContent = day.getDate();
+
+        // Add classes
+        if (day.getMonth() !== month) {
+          dayElement.classList.add('other-month');
+        }
+
+        const today = new Date();
+        if (day.toDateString() === today.toDateString()) {
+          dayElement.classList.add('today');
+        }
+
+        if (day.toDateString() === selectedDate.toDateString()) {
+          dayElement.classList.add('selected');
+        }
+
+        // Click handler
+        dayElement.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectedDate = new Date(day);
+
+          // Update input display
+          inputField.value = selectedDate.toLocaleDateString('en-US', {
+            month: '2-digit',
+            day: '2-digit',
+            year: 'numeric'
+          });
+
+          // Update hidden input (YYYY-MM-DD format)
+          const yyyy = selectedDate.getFullYear();
+          const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+          const dd = String(selectedDate.getDate()).padStart(2, '0');
+          hiddenInput.value = `${yyyy}-${mm}-${dd}`;
+
+          // Close dropdown
+          datepicker.classList.remove('active');
+        });
+
+        daysContainer.appendChild(dayElement);
+      }
+    }
+
+    // Initial render
+    renderCalendar();
+  }
+});
+
+// Add Transaction Modal Management
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('addTransactionModal');
+  const openButton = document.getElementById('openAddTransactionModal');
+  const closeButton = document.getElementById('closeAddTransactionModal');
+  const cancelButton = document.getElementById('cancelTransactionModal');
+  const overlay = modal?.querySelector('.sakura-modal-overlay');
+  const form = modal?.querySelector('.sakura-transaction-form');
+
+  // Open modal
+  if (openButton && modal) {
+    openButton.addEventListener('click', function() {
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    });
+  }
+
+  // Close modal function
+  function closeModal() {
+    if (modal) {
+      modal.classList.remove('show');
+      document.body.style.overflow = ''; // Restore scrolling
+      // Reset form
+      if (form) {
+        form.reset();
+      }
+    }
+  }
+
+  // Close button
+  if (closeButton) {
+    closeButton.addEventListener('click', closeModal);
+  }
+
+  // Cancel button
+  if (cancelButton) {
+    cancelButton.addEventListener('click', closeModal);
+  }
+
+  // Close when clicking overlay
+  if (overlay) {
+    overlay.addEventListener('click', closeModal);
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal?.classList.contains('show')) {
+      closeModal();
+    }
+  });
+
+  // Handle form submission (placeholder for now)
+  const submitButton = document.getElementById('submitTransaction');
+  if (submitButton) {
+    submitButton.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const formData = {
+        date: document.getElementById('transactionDate')?.value,
+        merchant: document.getElementById('merchantName')?.value,
+        amount: document.getElementById('transactionAmount')?.value,
+        type: document.getElementById('transactionType')?.value,
+        envelope: document.getElementById('transactionEnvelope')?.value,
+        paymentMethod: document.getElementById('paymentMethod')?.value,
+        notes: document.getElementById('transactionNotes')?.value
+      };
+
+      // Validate required fields
+      if (!formData.date || !formData.merchant || !formData.amount || !formData.type || !formData.envelope || !formData.paymentMethod) {
+        alert('Please fill in all required fields');
+        return;
+      }
+
+      // TODO: Add transaction to the list
+      console.log('Transaction data:', formData);
+
+      // Close modal
+      closeModal();
+
+      // Show success message (placeholder)
+      alert('Transaction added successfully!');
+    });
+  }
 });

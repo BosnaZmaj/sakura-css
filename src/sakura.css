@@ -4511,6 +4511,73 @@
     color: #5B8BF5;
   }
 
+  /* Bank logo in dropdown options */
+  .sakura-bank-logo-option {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  /* Colored envelope/category icons */
+  .sakura-custom-select-option[data-value="groceries"] .sakura-option-icon {
+    color: #10b981 !important;
+  }
+
+  .sakura-custom-select-option[data-value="entertainment"] .sakura-option-icon {
+    color: #8b5cf6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="transportation"] .sakura-option-icon {
+    color: #3b82f6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="utilities"] .sakura-option-icon {
+    color: #f59e0b !important;
+  }
+
+  .sakura-custom-select-option[data-value="dining"] .sakura-option-icon {
+    color: #ef4444 !important;
+  }
+
+  .sakura-custom-select-option[data-value="healthcare"] .sakura-option-icon {
+    color: #ec4899 !important;
+  }
+
+  /* Transaction Type colored icons */
+  .sakura-custom-select-option[data-value="expense"] .sakura-option-icon {
+    color: #ef4444 !important;
+  }
+
+  .sakura-custom-select-option[data-value="income"] .sakura-option-icon {
+    color: #10b981 !important;
+  }
+
+  .sakura-custom-select-option[data-value="transfer"] .sakura-option-icon {
+    color: #3b82f6 !important;
+  }
+
+  /* Payment Method colored icons */
+  .sakura-custom-select-option[data-value="credit-card"] .sakura-option-icon {
+    color: #8b5cf6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="debit-card"] .sakura-option-icon {
+    color: #3b82f6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="cash"] .sakura-option-icon {
+    color: #10b981 !important;
+  }
+
+  .sakura-custom-select-option[data-value="direct-deposit"] .sakura-option-icon {
+    color: #0891b2 !important;
+  }
+
+  .sakura-custom-select-option[data-value="auto-pay"] .sakura-option-icon {
+    color: #f59e0b !important;
+  }
+
   /* Icons in trigger */
   .sakura-custom-select-trigger .sakura-option-icon {
     margin-right: 8px;
@@ -11001,6 +11068,10 @@
     box-shadow: 0 0 0 2px rgba(30, 42, 59, 0.1);
   }
 
+  .sakura-filter-clear {
+    border-width: 2px !important;
+  }
+
   .sakura-view-controls {
     @apply flex justify-between items-center pt-6 border-t border-gray-200;
   }
@@ -11791,6 +11862,530 @@
     .sakura-action-btn {
       padding: 0.25rem;
     }
+  }
+
+  /* ========================================
+     MODAL COMPONENT
+     ======================================== */
+
+  /* Modal Wrapper - Hidden by default */
+  .sakura-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  /* Show state */
+  .sakura-modal.show {
+    display: flex;
+  }
+
+  /* Home page modal wrapper - uses sakura-modal-overlay as wrapper */
+  #sakura-feature-modal,
+  #sakura-demo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+  }
+
+  #sakura-feature-modal.sakura-modal--active,
+  #sakura-demo-modal.sakura-modal--active {
+    display: flex;
+  }
+
+  /* Transactions modal overlay - child element inside sakura-modal wrapper */
+  .sakura-modal .sakura-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(30, 42, 59, 0.7) 0%, rgba(91, 139, 245, 0.3) 100%);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.3s ease;
+  }
+
+  /* Modal Container - White content box with enhanced shadow */
+  .sakura-modal-container {
+    position: relative;
+    z-index: 10000;
+    @apply bg-white rounded-2xl;
+    max-width: 600px;
+    width: 100%;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow:
+      0 20px 60px rgba(30, 42, 59, 0.3),
+      0 0 0 1px rgba(30, 42, 59, 0.05),
+      0 0 80px rgba(91, 139, 245, 0.15);
+  }
+
+  /* Modal slide in animation */
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-30px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Base Modal Header - Original style for home page modals */
+  .sakura-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%);
+    border-radius: 24px 24px 0 0;
+  }
+
+  .sakura-modal-header h3 {
+    @apply text-2xl font-bold mb-0 font-heading;
+    color: #1e2a3b;
+  }
+
+  .sakura-modal-close {
+    background: rgba(75, 85, 99, 0.1);
+    border: none;
+    color: #6b7280;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-modal-close:hover {
+    background: rgba(75, 85, 99, 0.2);
+    color: #374151;
+  }
+
+
+  /* Modal Form Styles */
+  .sakura-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .sakura-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .sakura-form-row--merchant-amount {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .sakura-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+
+  .sakura-form-label {
+    @apply text-sm font-semibold text-gray-700;
+    font-family: var(--font-body);
+    letter-spacing: -0.01em;
+  }
+
+  .sakura-form-input {
+    @apply rounded-lg border-2 transition-all;
+    font-family: var(--font-body);
+    border-color: #e5e7eb;
+    background: white;
+    color: #1e2a3b;
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+  }
+
+  .sakura-form-input:focus {
+    outline: none;
+    border-color: #5b8bf5;
+    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-form-input:hover:not(:focus) {
+    border-color: #d1d5db;
+  }
+
+  /* Amount Input with Dollar Sign */
+  .sakura-amount-input {
+    position: relative;
+    width: 100%;
+  }
+
+  .sakura-amount-prefix {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .sakura-form-input--amount {
+    padding-left: 1.75rem;
+  }
+
+  /* Custom Datepicker */
+  .sakura-datepicker {
+    position: relative;
+    width: 200px;
+  }
+
+  .sakura-datepicker-input {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .sakura-datepicker-input i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5b8bf5;
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .sakura-datepicker-input .sakura-form-input {
+    padding-left: 2.5rem;
+    cursor: pointer;
+  }
+
+  .sakura-datepicker-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    padding: 1rem;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+  }
+
+  .sakura-datepicker.active .sakura-datepicker-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .sakura-datepicker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .sakura-datepicker-month {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #1e2a3b;
+  }
+
+  .sakura-datepicker-nav {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-datepicker-nav:hover {
+    background: #f3f4f6;
+    color: #1e2a3b;
+  }
+
+  .sakura-datepicker-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .sakura-datepicker-weekdays div {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #9ca3af;
+    padding: 4px;
+    font-family: var(--font-body);
+  }
+
+  .sakura-datepicker-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .sakura-datepicker-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-family: var(--font-body);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: #374151;
+    border: 1px solid transparent;
+  }
+
+  .sakura-datepicker-day:hover {
+    background: #f3f4f6;
+    color: #1e2a3b;
+  }
+
+  .sakura-datepicker-day.other-month {
+    color: #d1d5db;
+  }
+
+  .sakura-datepicker-day.selected {
+    background: linear-gradient(135deg, #5b8bf5 0%, #8b5cf6 100%);
+    color: white;
+    font-weight: 600;
+  }
+
+  .sakura-datepicker-day.today {
+    border-color: #5b8bf5;
+    color: #5b8bf5;
+    font-weight: 600;
+  }
+
+  .sakura-datepicker-day.today.selected {
+    border-color: transparent;
+    color: white;
+  }
+
+  /* Responsive adjustments for modal */
+  @media (max-width: 768px) {
+    .sakura-modal {
+      padding: 0;
+    }
+
+    .sakura-modal-container {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 0;
+    }
+
+    .sakura-modal-header,
+    .sakura-modal-body,
+    .sakura-modal-footer {
+      padding: 1rem;
+    }
+
+    .sakura-modal-footer {
+      flex-direction: column;
+    }
+
+    .sakura-modal-footer .sakura-btn {
+      width: 100%;
+    }
+  }
+
+  /* Add Transaction Modal Specific Styles */
+  .sakura-modal-content {
+    position: relative;
+    z-index: 10000;
+    background: white;
+    border-radius: 16px;
+    max-width: 540px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow:
+      0 20px 60px rgba(30, 42, 59, 0.3),
+      0 0 0 1px rgba(30, 42, 59, 0.05);
+  }
+
+  .sakura-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+    font-family: var(--font-heading);
+  }
+
+  .sakura-modal-body {
+    padding: 24px 32px;
+    overflow-y: auto;
+  }
+
+  .sakura-modal-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding: 20px 32px;
+    border-top: 1px solid var(--gray-200);
+    background: var(--gray-50);
+  }
+
+  /* Transaction Form Styles */
+  .sakura-transaction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sakura-form-row {
+    display: flex;
+    gap: 16px;
+  }
+
+  .sakura-form-row--split {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+
+  .sakura-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sakura-form-field--date {
+    width: 180px;
+  }
+
+  .sakura-form-field--merchant {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-form-field--amount {
+    width: 140px;
+  }
+
+  .sakura-form-field--type {
+    width: 160px;
+  }
+
+  .sakura-form-field--envelope {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-form-field--payment {
+    width: 100%;
+  }
+
+  .sakura-form-field--notes {
+    width: 100%;
+  }
+
+  .sakura-form-field label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-700);
+    font-family: var(--font-body);
+  }
+
+  .sakura-input {
+    padding: 10px 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    font-family: var(--font-body);
+    color: var(--gray-900);
+    transition: all 0.2s ease;
+    background: white;
+  }
+
+  .sakura-input:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-input::placeholder {
+    color: var(--gray-400);
+  }
+
+  /* Date input specific styling */
+  input[type="date"].sakura-input {
+    width: 100%;
+  }
+
+  /* Number input specific styling */
+  input[type="number"].sakura-input {
+    width: 100%;
+  }
+
+  /* Select dropdown styling */
+  select.sakura-input {
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+
+  select.sakura-input:focus {
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%235b8bf5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  /* Textarea styling */
+  .sakura-textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: var(--font-body);
+    line-height: 1.5;
   }
 
 }

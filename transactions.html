@@ -120,7 +120,7 @@
                 <div class="sakura-page-actions">
                     <button class="sakura-btn sakura-btn--outline">Import CSV</button>
                     <button class="sakura-btn sakura-btn--outline">Export</button>
-                    <button class="sakura-btn sakura-btn--primary">Add Transaction</button>
+                    <button class="sakura-btn sakura-btn--primary" id="openAddTransactionModal">Add Transaction</button>
                 </div>
             </section>
 
@@ -505,6 +505,96 @@
             </section>
 
         </main>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div class="sakura-modal" id="addTransactionModal">
+        <div class="sakura-modal-overlay"></div>
+        <div class="sakura-modal-content">
+            <div class="sakura-modal-header">
+                <h2>Add Transaction</h2>
+                <button class="sakura-modal-close" id="closeAddTransactionModal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="sakura-modal-body">
+                <form class="sakura-transaction-form">
+                    <!-- Date Field -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field sakura-form-field--date">
+                            <label for="transactionDate">Date</label>
+                            <input type="date" id="transactionDate" class="sakura-input" required>
+                        </div>
+                    </div>
+
+                    <!-- Merchant Name and Amount -->
+                    <div class="sakura-form-row sakura-form-row--split">
+                        <div class="sakura-form-field sakura-form-field--merchant">
+                            <label for="merchantName">Merchant Name</label>
+                            <input type="text" id="merchantName" class="sakura-input" placeholder="e.g., Starbucks" required>
+                        </div>
+                        <div class="sakura-form-field sakura-form-field--amount">
+                            <label for="transactionAmount">Amount</label>
+                            <input type="number" id="transactionAmount" class="sakura-input" placeholder="0.00" step="0.01" required>
+                        </div>
+                    </div>
+
+                    <!-- Transaction Type and Envelope -->
+                    <div class="sakura-form-row sakura-form-row--split">
+                        <div class="sakura-form-field sakura-form-field--type">
+                            <label for="transactionType">Type</label>
+                            <select id="transactionType" class="sakura-input" required>
+                                <option value="">Select type...</option>
+                                <option value="expense">Expense</option>
+                                <option value="income">Income</option>
+                                <option value="transfer">Transfer</option>
+                            </select>
+                        </div>
+                        <div class="sakura-form-field sakura-form-field--envelope">
+                            <label for="transactionEnvelope">Envelope</label>
+                            <select id="transactionEnvelope" class="sakura-input" required>
+                                <option value="">Select envelope...</option>
+                                <option value="groceries">Groceries</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="transportation">Transportation</option>
+                                <option value="utilities">Utilities</option>
+                                <option value="dining">Dining Out</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="personal">Personal Care</option>
+                                <option value="savings">Savings</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field sakura-form-field--payment">
+                            <label for="paymentMethod">Payment Method</label>
+                            <select id="paymentMethod" class="sakura-input" required>
+                                <option value="">Select payment method...</option>
+                                <option value="cash">Cash</option>
+                                <option value="debit">Debit Card</option>
+                                <option value="credit">Credit Card</option>
+                                <option value="bank-transfer">Bank Transfer</option>
+                                <option value="check">Check</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Notes/Description -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field sakura-form-field--notes">
+                            <label for="transactionNotes">Notes (Optional)</label>
+                            <textarea id="transactionNotes" class="sakura-input sakura-textarea" rows="3" placeholder="Add any additional details..."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="sakura-modal-footer">
+                <button type="button" class="sakura-btn sakura-btn--outline" id="cancelTransactionModal">Cancel</button>
+                <button type="submit" class="sakura-btn sakura-btn--primary" id="submitTransaction">Add Transaction</button>
+            </div>
+        </div>
     </div>
 
     <script src="src/sakura.js"></script>
