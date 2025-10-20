@@ -1093,123 +1093,169 @@ document.addEventListener('DOMContentLoaded', () => {
       closeModal();
     }
   });
+});
 
-  // Custom Datepicker functionality
-  const datepicker = document.querySelector('.sakura-datepicker');
-  if (datepicker) {
-    const input = datepicker.querySelector('.sakura-datepicker-input');
-    const inputField = datepicker.querySelector('#transactionDate');
-    const hiddenInput = datepicker.querySelector('#transactionDateValue');
-    const dropdown = datepicker.querySelector('.sakura-datepicker-dropdown');
-    const daysContainer = datepicker.querySelector('.sakura-datepicker-days');
-    const monthDisplay = datepicker.querySelector('.sakura-datepicker-month');
-    const prevBtn = datepicker.querySelector('.sakura-datepicker-prev');
-    const nextBtn = datepicker.querySelector('.sakura-datepicker-next');
+// Initialize Modal Datepicker
+function initializeModalDatepicker() {
+  const datepicker = document.getElementById('modalDatepicker');
+  if (!datepicker) return;
 
-    let currentDate = new Date(2025, 0, 15); // January 15, 2025
-    let selectedDate = new Date(currentDate);
+  const input = datepicker.querySelector('.sakura-datepicker-input');
+  const inputField = datepicker.querySelector('#transactionDate');
+  const hiddenInput = datepicker.querySelector('#transactionDateValue');
+  const dropdown = datepicker.querySelector('.sakura-datepicker-dropdown');
+  const daysContainer = datepicker.querySelector('.sakura-datepicker-days');
+  const monthDisplay = datepicker.querySelector('.sakura-datepicker-month');
+  const prevBtn = datepicker.querySelector('.sakura-datepicker-prev');
+  const nextBtn = datepicker.querySelector('.sakura-datepicker-next');
 
-    // Toggle dropdown
-    input.addEventListener('click', (e) => {
+  let currentDate = new Date();
+  let selectedDate = null;
+
+  // Open dropdown when clicking on calendar icon
+  const calendarIcon = input.querySelector('i');
+  if (calendarIcon) {
+    calendarIcon.addEventListener('click', (e) => {
       e.stopPropagation();
-      datepicker.classList.toggle('active');
-      if (datepicker.classList.contains('active')) {
-        renderCalendar();
-      }
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!datepicker.contains(e.target)) {
-        datepicker.classList.remove('active');
-      }
-    });
-
-    // Previous month
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentDate.setMonth(currentDate.getMonth() - 1);
+      datepicker.classList.add('active');
       renderCalendar();
     });
+  }
 
-    // Next month
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentDate.setMonth(currentDate.getMonth() + 1);
-      renderCalendar();
-    });
+  // Open dropdown when clicking on input field (but allow typing)
+  inputField.addEventListener('focus', () => {
+    datepicker.classList.add('active');
+    renderCalendar();
+  });
 
-    function renderCalendar() {
-      const year = currentDate.getFullYear();
-      const month = currentDate.getMonth();
+  // Handle manual date input
+  inputField.addEventListener('input', (e) => {
+    const value = e.target.value;
+    // Try to parse the date (MM/DD/YYYY format)
+    const dateMatch = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
 
-      // Update month display
-      monthDisplay.textContent = new Date(year, month, 1).toLocaleDateString('en-US', {
-        month: 'long',
-        year: 'numeric'
-      });
+    if (dateMatch) {
+      const month = parseInt(dateMatch[1]) - 1; // Month is 0-indexed
+      const day = parseInt(dateMatch[2]);
+      const year = parseInt(dateMatch[3]);
 
-      // Clear days
-      daysContainer.innerHTML = '';
+      const parsedDate = new Date(year, month, day);
 
-      // Get first day of month and calculate start date
-      const firstDay = new Date(year, month, 1);
-      const startDate = new Date(firstDay);
-      startDate.setDate(startDate.getDate() - firstDay.getDay());
+      // Validate the date is real
+      if (parsedDate.getMonth() === month &&
+          parsedDate.getDate() === day &&
+          parsedDate.getFullYear() === year) {
+        selectedDate = parsedDate;
+        currentDate = new Date(parsedDate);
 
-      // Generate 42 days (6 weeks)
-      for (let i = 0; i < 42; i++) {
-        const day = new Date(startDate);
-        day.setDate(startDate.getDate() + i);
+        // Update hidden input
+        const yyyy = selectedDate.getFullYear();
+        const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(selectedDate.getDate()).padStart(2, '0');
+        hiddenInput.value = `${yyyy}-${mm}-${dd}`;
 
-        const dayElement = document.createElement('div');
-        dayElement.className = 'sakura-datepicker-day';
-        dayElement.textContent = day.getDate();
-
-        // Add classes
-        if (day.getMonth() !== month) {
-          dayElement.classList.add('other-month');
+        // Update calendar if open
+        if (datepicker.classList.contains('active')) {
+          renderCalendar();
         }
-
-        const today = new Date();
-        if (day.toDateString() === today.toDateString()) {
-          dayElement.classList.add('today');
-        }
-
-        if (day.toDateString() === selectedDate.toDateString()) {
-          dayElement.classList.add('selected');
-        }
-
-        // Click handler
-        dayElement.addEventListener('click', (e) => {
-          e.stopPropagation();
-          selectedDate = new Date(day);
-
-          // Update input display
-          inputField.value = selectedDate.toLocaleDateString('en-US', {
-            month: '2-digit',
-            day: '2-digit',
-            year: 'numeric'
-          });
-
-          // Update hidden input (YYYY-MM-DD format)
-          const yyyy = selectedDate.getFullYear();
-          const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
-          const dd = String(selectedDate.getDate()).padStart(2, '0');
-          hiddenInput.value = `${yyyy}-${mm}-${dd}`;
-
-          // Close dropdown
-          datepicker.classList.remove('active');
-        });
-
-        daysContainer.appendChild(dayElement);
       }
     }
+  });
 
-    // Initial render
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!datepicker.contains(e.target)) {
+      datepicker.classList.remove('active');
+    }
+  });
+
+  // Previous month
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentDate.setMonth(currentDate.getMonth() - 1);
     renderCalendar();
+  });
+
+  // Next month
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+  });
+
+  function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    // Update month display
+    monthDisplay.textContent = new Date(year, month, 1).toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric'
+    });
+
+    // Clear days
+    daysContainer.innerHTML = '';
+
+    // Get first day of month and calculate start date
+    const firstDay = new Date(year, month, 1);
+    const startDate = new Date(firstDay);
+    startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+    // Generate 42 days (6 weeks)
+    for (let i = 0; i < 42; i++) {
+      const day = new Date(startDate);
+      day.setDate(startDate.getDate() + i);
+
+      const dayElement = document.createElement('div');
+      dayElement.className = 'sakura-datepicker-day';
+      dayElement.textContent = day.getDate();
+
+      // Add classes
+      if (day.getMonth() !== month) {
+        dayElement.classList.add('other-month');
+      }
+
+      const today = new Date();
+      if (day.toDateString() === today.toDateString()) {
+        dayElement.classList.add('today');
+      }
+
+      if (selectedDate && day.toDateString() === selectedDate.toDateString()) {
+        dayElement.classList.add('selected');
+      }
+
+      // Click handler
+      dayElement.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectedDate = new Date(day);
+
+        // Update input display
+        inputField.value = selectedDate.toLocaleDateString('en-US', {
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric'
+        });
+
+        // Update hidden input (YYYY-MM-DD format)
+        const yyyy = selectedDate.getFullYear();
+        const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(selectedDate.getDate()).padStart(2, '0');
+        hiddenInput.value = `${yyyy}-${mm}-${dd}`;
+
+        // Close dropdown
+        datepicker.classList.remove('active');
+
+        // Re-render to update selected state
+        renderCalendar();
+      });
+
+      daysContainer.appendChild(dayElement);
+    }
   }
-});
+
+  // Initial render
+  renderCalendar();
+}
 
 // Add Transaction Modal Management
 document.addEventListener('DOMContentLoaded', function() {
@@ -1219,6 +1265,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const cancelButton = document.getElementById('cancelTransactionModal');
   const overlay = modal?.querySelector('.sakura-modal-overlay');
   const form = modal?.querySelector('.sakura-transaction-form');
+
+  // Initialize modal datepicker
+  initializeModalDatepicker();
 
   // Open modal
   if (openButton && modal) {

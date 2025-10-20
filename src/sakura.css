@@ -12084,8 +12084,9 @@
     z-index: 1;
   }
 
+  .sakura-datepicker-input input.sakura-input,
   .sakura-datepicker-input .sakura-form-input {
-    padding-left: 2.5rem;
+    padding-left: 2.75rem;
     cursor: pointer;
   }
 
@@ -12140,6 +12141,27 @@
   }
 
   .sakura-datepicker-nav:hover {
+    background: #f3f4f6;
+    color: #1e2a3b;
+  }
+
+  .sakura-datepicker-prev,
+  .sakura-datepicker-next {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-datepicker-prev:hover,
+  .sakura-datepicker-next:hover {
     background: #f3f4f6;
     color: #1e2a3b;
   }
@@ -12365,6 +12387,32 @@
   .sakura-form-field--amount {
     width: 140px;
     flex-shrink: 0;
+  }
+
+  /* Input with prefix (currency indicator) */
+  .sakura-input-with-prefix {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .sakura-input-prefix {
+    position: absolute;
+    left: 16px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: #475569;
+    font-size: 0.9375rem;
+    font-family: var(--font-body);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .sakura-input--with-prefix {
+    padding-left: 2rem !important;
   }
 
   .sakura-form-field--type {

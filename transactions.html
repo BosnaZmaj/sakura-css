@@ -523,7 +523,30 @@
                     <div class="sakura-form-row">
                         <div class="sakura-form-field sakura-form-field--date">
                             <label for="transactionDate">Date</label>
-                            <input type="date" id="transactionDate" class="sakura-input" required>
+                            <div class="sakura-datepicker" id="modalDatepicker">
+                                <div class="sakura-datepicker-input">
+                                    <i class="bi bi-calendar3"></i>
+                                    <input type="text" id="transactionDate" class="sakura-input" placeholder="MM/DD/YYYY" required>
+                                    <input type="hidden" id="transactionDateValue">
+                                </div>
+                                <div class="sakura-datepicker-dropdown">
+                                    <div class="sakura-datepicker-header">
+                                        <button type="button" class="sakura-datepicker-prev"><i class="bi bi-chevron-left"></i></button>
+                                        <div class="sakura-datepicker-month"></div>
+                                        <button type="button" class="sakura-datepicker-next"><i class="bi bi-chevron-right"></i></button>
+                                    </div>
+                                    <div class="sakura-datepicker-weekdays">
+                                        <div class="sakura-datepicker-weekday">Sun</div>
+                                        <div class="sakura-datepicker-weekday">Mon</div>
+                                        <div class="sakura-datepicker-weekday">Tue</div>
+                                        <div class="sakura-datepicker-weekday">Wed</div>
+                                        <div class="sakura-datepicker-weekday">Thu</div>
+                                        <div class="sakura-datepicker-weekday">Fri</div>
+                                        <div class="sakura-datepicker-weekday">Sat</div>
+                                    </div>
+                                    <div class="sakura-datepicker-days"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -535,7 +558,10 @@
                         </div>
                         <div class="sakura-form-field sakura-form-field--amount">
                             <label for="transactionAmount">Amount</label>
-                            <input type="number" id="transactionAmount" class="sakura-input" placeholder="0.00" step="0.01" required>
+                            <div class="sakura-input-with-prefix">
+                                <span class="sakura-input-prefix">$</span>
+                                <input type="number" id="transactionAmount" class="sakura-input sakura-input--with-prefix" placeholder="0.00" step="0.01" required>
+                            </div>
                         </div>
                     </div>
 
