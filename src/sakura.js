@@ -1031,8 +1031,8 @@ class SakuraFramework {
           { x: 240, y: 20, value: '$1,800.00', date: 'Jan 23', change: '+$35.00', transaction: 'Side project' },
           { x: 280, y: 18, value: '$1,834.00', date: 'Jan 25', change: '+$34.00', transaction: 'Cash back rewards' }
         ];
-      } else {
-        // Account/Summary balance data (original data for 8k range)
+      } else if (chart.classList.contains('sakura-account-sparkline-chart')) {
+        // Account balance data (8k range)
         dataPoints = [
           { x: 0, y: 32, value: '$7,950.00', date: 'Dec 15', change: '+$200.00', transaction: 'Deposit' },
           { x: 40, y: 28, value: '$8,100.00', date: 'Dec 20', change: '+$150.00', transaction: 'Transfer in' },
@@ -1043,6 +1043,47 @@ class SakuraFramework {
           { x: 240, y: 12, value: '$8,520.00', date: 'Jan 23', change: '+$40.00', transaction: 'Interest' },
           { x: 280, y: 10, value: '$8,547.00', date: 'Jan 25', change: '+$27.00', transaction: 'Cash back' }
         ];
+      } else {
+        // Summary card sparklines - determine which card by ID
+        const sparklineId = chart.getAttribute('data-sparkline-id');
+
+        if (sparklineId === 'available-summary') {
+          // First summary card (Available) - upward trend
+          dataPoints = [
+            { x: 0, y: 35, value: '$1,700.00', date: 'Dec 15', change: '+$50.00', transaction: 'Paycheck allocated' },
+            { x: 40, y: 32, value: '$1,734.00', date: 'Dec 20', change: '+$34.00', transaction: 'Income received' },
+            { x: 80, y: 30, value: '$1,750.00', date: 'Dec 25', change: '+$16.00', transaction: 'Bonus deposited' },
+            { x: 120, y: 28, value: '$1,766.00', date: 'Jan 5', change: '+$16.00', transaction: 'Paycheck received' },
+            { x: 160, y: 25, value: '$1,784.00', date: 'Jan 15', change: '+$18.00', transaction: 'Freelance income' },
+            { x: 200, y: 22, value: '$1,800.00', date: 'Jan 20', change: '+$16.00', transaction: 'Weekly income' },
+            { x: 240, y: 20, value: '$1,817.00', date: 'Jan 23', change: '+$17.00', transaction: 'Side project' },
+            { x: 280, y: 18, value: '$1,834.00', date: 'Jan 25', change: '+$17.00', transaction: 'Cash back rewards' }
+          ];
+        } else if (sparklineId === 'top-envelope-summary') {
+          // Second summary card (Top Envelope) - downward trend
+          dataPoints = [
+            { x: 0, y: 15, value: '$900.00', date: 'Dec 15', change: '-$10.00', transaction: 'Grocery purchase' },
+            { x: 40, y: 18, value: '$890.00', date: 'Dec 20', change: '-$10.00', transaction: 'Shopping' },
+            { x: 80, y: 20, value: '$880.00', date: 'Dec 25', change: '-$10.00', transaction: 'Groceries' },
+            { x: 120, y: 22, value: '$870.00', date: 'Jan 5', change: '-$10.00', transaction: 'Market trip' },
+            { x: 160, y: 25, value: '$860.00', date: 'Jan 15', change: '-$10.00', transaction: 'Weekly shop' },
+            { x: 200, y: 28, value: '$850.00', date: 'Jan 20', change: '-$10.00', transaction: 'Supermarket' },
+            { x: 240, y: 30, value: '$848.00', date: 'Jan 23', change: '-$2.00', transaction: 'Convenience store' },
+            { x: 280, y: 32, value: '$847.00', date: 'Jan 25', change: '-$1.00', transaction: 'Snacks' }
+          ];
+        } else {
+          // Third summary card (Envelope Balance) - flat trend
+          dataPoints = [
+            { x: 0, y: 20, value: '$2,650.00', date: 'Dec 15' },
+            { x: 40, y: 20, value: '$2,650.00', date: 'Dec 20' },
+            { x: 80, y: 20, value: '$2,650.00', date: 'Dec 25' },
+            { x: 120, y: 20, value: '$2,650.00', date: 'Jan 5' },
+            { x: 160, y: 20, value: '$2,650.00', date: 'Jan 15' },
+            { x: 200, y: 20, value: '$2,650.00', date: 'Jan 20' },
+            { x: 240, y: 20, value: '$2,650.00', date: 'Jan 23' },
+            { x: 280, y: 20, value: '$2,650.00', date: 'Jan 25' }
+          ];
+        }
       }
 
       let tooltip = null;
