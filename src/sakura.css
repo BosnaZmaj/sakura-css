@@ -5687,18 +5687,6 @@
     pointer-events: none;
   }
 
-  .sakura-checkbox-label:focus-within .sakura-checkmark {
-    outline: 2px solid #5b8bf5;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
-  }
-
-  .sakura-checkbox-label input[type="checkbox"]:focus + .sakura-checkmark {
-    outline: 2px solid #5b8bf5;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
-  }
-
   .sakura-checkbox-label:hover .sakura-checkmark {
     transform: translateY(-50%) scale(1.1);
     border-color: #5b8bf5;
@@ -12289,6 +12277,12 @@
     z-index: 10;
   }
 
+  /* Import Modal Modifier - More compact for simpler import form */
+  .sakura-modal-content--import {
+    min-height: auto;
+    max-width: 600px;
+  }
+
   .sakura-modal-header {
     position: relative;
     z-index: 1;
@@ -12683,6 +12677,164 @@
 
   .sakura-textarea:focus {
     min-height: 90px;
+  }
+
+  /* Import Form Styles */
+  .sakura-import-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* File Upload */
+  .sakura-file-upload {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sakura-file-upload label {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--gray-900);
+    white-space: nowrap;
+  }
+
+  /* Form Inline - Label and input on same line */
+  .sakura-form-inline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sakura-form-inline label {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--gray-900);
+    white-space: nowrap;
+    min-width: 120px;
+  }
+
+  .sakura-form-inline .sakura-custom-select {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .sakura-file-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px -2px rgba(91, 139, 245, 0.3);
+  }
+
+  .sakura-file-upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px -2px rgba(91, 139, 245, 0.4);
+  }
+
+  .sakura-file-upload-btn:active {
+    transform: translateY(0);
+  }
+
+  .sakura-file-upload-btn i {
+    font-size: 1.1em;
+  }
+
+  .sakura-file-upload-name {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-style: italic;
+  }
+
+
+  /* Form Help Text */
+  .sakura-form-help {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  .sakura-form-help i {
+    margin-top: 2px;
+    color: var(--secondary);
+    font-size: 1em;
+    flex-shrink: 0;
+  }
+
+  /* CSV Format Help */
+  .sakura-csv-format-help {
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border: 1px solid rgba(91, 139, 245, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .sakura-help-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--primary);
+    font-size: var(--text-base);
+  }
+
+  .sakura-help-header i {
+    font-size: 1.3em;
+    color: var(--secondary);
+  }
+
+  .sakura-help-content {
+    font-size: var(--text-sm);
+    color: var(--gray-700);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .sakura-help-content p {
+    margin: 0 0 8px 0;
+  }
+
+  .sakura-help-content code {
+    display: block;
+    background: rgba(30, 42, 59, 0.05);
+    border: 1px solid rgba(30, 42, 59, 0.1);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    margin: 12px auto;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: var(--text-xs);
+    color: var(--primary);
+    text-align: center;
+  }
+
+  .sakura-help-example {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(91, 139, 245, 0.15);
+    text-align: left;
+  }
+
+  .sakura-help-example strong {
+    color: var(--gray-900);
   }
 
 }

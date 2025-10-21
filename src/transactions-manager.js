@@ -1346,3 +1346,120 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Import CSV Modal Management
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('importCSVModal');
+  const openButton = document.getElementById('openImportCSVModal');
+  const closeButton = document.getElementById('closeImportCSVModal');
+  const cancelButton = document.getElementById('cancelImportCSVModal');
+  const overlay = modal?.querySelector('.sakura-modal-overlay');
+  const form = modal?.querySelector('.sakura-import-form');
+  const fileInput = document.getElementById('csvFile');
+  const fileNameDisplay = document.getElementById('csvFileName');
+
+  // File upload handling
+  if (fileInput && fileNameDisplay) {
+    fileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        fileNameDisplay.textContent = file.name;
+        fileNameDisplay.style.fontStyle = 'normal';
+        fileNameDisplay.style.color = 'var(--gray-900)';
+      } else {
+        fileNameDisplay.textContent = 'No file selected';
+        fileNameDisplay.style.fontStyle = 'italic';
+        fileNameDisplay.style.color = 'var(--gray-600)';
+      }
+    });
+  }
+
+  // Open modal
+  if (openButton && modal) {
+    openButton.addEventListener('click', function() {
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // Close modal function
+  function closeModal() {
+    if (modal) {
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+      // Reset form and file display
+      if (form) {
+        form.reset();
+      }
+      if (fileNameDisplay) {
+        fileNameDisplay.textContent = 'No file selected';
+        fileNameDisplay.style.fontStyle = 'italic';
+        fileNameDisplay.style.color = 'var(--gray-600)';
+      }
+    }
+  }
+
+  // Close button
+  if (closeButton) {
+    closeButton.addEventListener('click', closeModal);
+  }
+
+  // Cancel button
+  if (cancelButton) {
+    cancelButton.addEventListener('click', closeModal);
+  }
+
+  // Close when clicking overlay
+  if (overlay) {
+    overlay.addEventListener('click', closeModal);
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal?.classList.contains('show')) {
+      closeModal();
+    }
+  });
+
+  // Handle form submission
+  const submitButton = document.getElementById('submitImportCSV');
+  if (submitButton) {
+    submitButton.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const file = fileInput?.files[0];
+      const account = document.getElementById('importAccount')?.value;
+      const dateFormat = document.getElementById('dateFormat')?.value;
+      const skipDuplicates = document.getElementById('skipDuplicates')?.checked;
+
+      // Validate required fields
+      if (!file) {
+        alert('Please select a CSV file');
+        return;
+      }
+      if (!account) {
+        alert('Please select an account');
+        return;
+      }
+      if (!dateFormat) {
+        alert('Please select a date format');
+        return;
+      }
+
+      // TODO: Process CSV file
+      console.log('Import data:', {
+        fileName: file.name,
+        account: account,
+        dateFormat: dateFormat,
+        skipDuplicates: skipDuplicates
+      });
+
+      // Close modal
+      closeModal();
+
+      // Show success message (placeholder)
+      alert('CSV import started! This would process ' + file.name);
+    });
+  }
+});

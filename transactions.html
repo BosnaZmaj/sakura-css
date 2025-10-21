@@ -113,12 +113,12 @@
         <main class="sakura-dashboard-main">
             <!-- Page Header -->
             <section class="sakura-page-header">
-                <div class="sakura-page-title">
+                <div class="sakura-page-header-content">
                     <h1>Transactions</h1>
                     <p>Track and manage all your financial activity</p>
                 </div>
-                <div class="sakura-page-actions">
-                    <button class="sakura-btn sakura-btn--outline">Import CSV</button>
+                <div class="sakura-page-header-actions">
+                    <button class="sakura-btn sakura-btn--outline" id="openImportCSVModal">Import CSV</button>
                     <button class="sakura-btn sakura-btn--outline">Export</button>
                     <button class="sakura-btn sakura-btn--primary" id="openAddTransactionModal">Add Transaction</button>
                 </div>
@@ -701,6 +701,137 @@
             <div class="sakura-modal-footer">
                 <button type="button" class="sakura-btn sakura-btn--outline" id="cancelTransactionModal">Cancel</button>
                 <button type="submit" class="sakura-btn sakura-btn--primary" id="submitTransaction">Add Transaction</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import CSV Modal -->
+    <div class="sakura-modal" id="importCSVModal">
+        <div class="sakura-modal-overlay"></div>
+        <div class="sakura-modal-content sakura-modal-content--import">
+            <div class="sakura-modal-header">
+                <h2>Import Transactions from CSV</h2>
+                <button class="sakura-modal-close" id="closeImportCSVModal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="sakura-modal-body">
+                <form class="sakura-import-form">
+                    <!-- CSV File Upload -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field">
+                            <div class="sakura-file-upload">
+                                <label for="csvFile">CSV File:</label>
+                                <input type="file" id="csvFile" accept=".csv" required hidden>
+                                <button type="button" class="sakura-file-upload-btn" onclick="document.getElementById('csvFile').click()">
+                                    <i class="bi bi-cloud-upload"></i>
+                                    <span class="sakura-file-upload-text">Choose CSV file</span>
+                                </button>
+                                <span class="sakura-file-upload-name" id="csvFileName">No file selected</span>
+                            </div>
+                            <p class="sakura-form-help">
+                                <i class="bi bi-info-circle"></i>
+                                Select a CSV file containing your transaction data
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Account Selection -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field">
+                            <div class="sakura-form-inline">
+                                <label for="importAccount">Account:</label>
+                                <div class="sakura-custom-select" id="importAccountSelect">
+                                    <div class="sakura-custom-select-trigger placeholder">Select account...</div>
+                                    <div class="sakura-custom-select-dropdown">
+                                        <div class="sakura-custom-select-option" data-value="chase-checking">
+                                            <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                            Chase Checking
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="chase-savings">
+                                            <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                            Chase Savings
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="capitalone-checking">
+                                            <img src="https://logo.clearbit.com/capitalone.com" alt="Capital One" class="sakura-bank-logo">
+                                            Capital One Checking
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="amex-credit">
+                                            <img src="https://logo.clearbit.com/americanexpress.com" alt="American Express" class="sakura-bank-logo">
+                                            American Express
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="importAccount" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date Format -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field">
+                            <div class="sakura-form-inline">
+                                <label for="dateFormat">Date Format:</label>
+                                <div class="sakura-custom-select" id="dateFormatSelect">
+                                    <div class="sakura-custom-select-trigger placeholder">Select date format...</div>
+                                    <div class="sakura-custom-select-dropdown">
+                                        <div class="sakura-custom-select-option" data-value="mm-dd-yyyy">
+                                            MM/DD/YYYY (e.g., 01/25/2025)
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="dd-mm-yyyy">
+                                            DD/MM/YYYY (e.g., 25/01/2025)
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="yyyy-mm-dd">
+                                            YYYY-MM-DD (e.g., 2025-01-25)
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="dateFormat" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Import Options -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field">
+                            <label class="sakura-checkbox-label">
+                                <input type="checkbox" id="skipDuplicates" checked>
+                                <span class="sakura-checkmark"></span>
+                                Skip duplicate transactions
+                            </label>
+                            <p class="sakura-form-help">
+                                <i class="bi bi-info-circle"></i>
+                                Automatically detect and skip transactions that already exist
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CSV Format Help -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-csv-format-help">
+                            <div class="sakura-help-header">
+                                <i class="bi bi-file-earmark-spreadsheet"></i>
+                                <strong>Expected CSV Format</strong>
+                            </div>
+                            <div class="sakura-help-content">
+                                <p>Your CSV file should contain the following columns:</p>
+                                <code>Date, Description, Amount, Category</code>
+                                <p class="sakura-help-example">
+                                    <strong>Example:</strong><br>
+                                    01/25/2025, Starbucks, -4.50, Dining Out<br>
+                                    01/24/2025, Salary Deposit, 3500.00, Income
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="sakura-modal-footer">
+                <button type="button" class="sakura-btn sakura-btn--outline" id="cancelImportCSVModal">Cancel</button>
+                <button type="submit" class="sakura-btn sakura-btn--primary" id="submitImportCSV">
+                    <i class="bi bi-upload"></i>
+                    Import Transactions
+                </button>
             </div>
         </div>
     </div>

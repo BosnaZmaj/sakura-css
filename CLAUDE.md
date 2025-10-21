@@ -4,6 +4,65 @@
 **NO MENTION OF AI ASSISTANTS**: Never mention any AI assistants in code, comments, commit messages, or documentation. All work should appear as human-generated.
 **NO EMOJIS**: Never use emojis in any code, comments, commit messages, or documentation.
 
+## BREAKING CHANGES PREVENTION PROTOCOL - MANDATORY
+**CRITICAL**: Before making ANY code changes, you MUST analyze existing code to prevent breaking changes.
+
+### Pre-Change Analysis Requirements
+**MANDATORY STEPS** before modifying or adding any code:
+
+1. **Identify All Affected Components**
+   - Search for all instances of the class/component you plan to modify
+   - Check all HTML files that use the component
+   - Review all CSS that styles the component
+   - Find all JavaScript that interacts with the component
+
+2. **Analyze Impact**
+   - Will changing this break existing functionality?
+   - Are there other components that depend on this?
+   - Does this component have variants that need preservation?
+   - Will this affect other pages or sections?
+
+3. **Follow Component Modifier Pattern (BEM)**
+   - NEVER modify base classes (`.sakura-btn`, `.sakura-modal`, etc.)
+   - ALWAYS use modifiers for variations (`.sakura-modal--import`)
+   - See "Component Modifier Pattern (BEM)" section below for details
+
+4. **Document Your Analysis**
+   - List what you checked
+   - Confirm no breaking changes found, OR
+   - Document what will break and get user approval
+
+### Example Analysis Process
+```
+Task: Add import CSV modal
+
+Step 1: Search existing modals
+- Found: .sakura-modal in dashboard.html, transactions.html
+- Count: 2 existing transaction modals
+
+Step 2: Analyze base classes
+- .sakura-modal has max-width: 680px, min-height: 800px
+- Used by transaction modals which need that height
+
+Step 3: Impact assessment
+- Import modal is simpler, doesn't need min-height: 800px
+- Should NOT modify .sakura-modal (would break transaction modals)
+- Should ADD .sakura-modal--import modifier
+
+Step 4: Decision
+- Use base .sakura-modal structure
+- Add .sakura-modal--import modifier for size adjustment
+- No breaking changes to existing modals
+```
+
+### Violation Consequences
+- Breaking existing functionality requires rollback
+- Wastes development time fixing preventable issues
+- Creates frustration and loss of trust
+- May corrupt git history with revert commits
+
+**REMEMBER**: Prevention is faster than fixing. ALWAYS analyze before changing.
+
 ## GIT COMMIT PROTOCOL - MANDATORY
 **CRITICAL**: These rules are non-negotiable and must be followed for every commit:
 
