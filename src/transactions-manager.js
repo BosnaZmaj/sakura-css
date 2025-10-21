@@ -1463,3 +1463,99 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// ============================================================================
+// Export Modal Management
+// ============================================================================
+document.addEventListener('DOMContentLoaded', function() {
+  const exportModal = document.getElementById('exportModal');
+  const openExportBtn = document.getElementById('openExportModal');
+  const closeExportBtn = document.getElementById('closeExportModal');
+  const cancelExportBtn = document.getElementById('cancelExportModal');
+  const submitExportBtn = document.getElementById('submitExport');
+  const exportModalOverlay = exportModal?.querySelector('.sakura-modal-overlay');
+
+  // Open modal
+  if (openExportBtn) {
+    openExportBtn.addEventListener('click', function() {
+      exportModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // Close modal function
+  function closeExportModalFunc() {
+    exportModal.classList.remove('show');
+    document.body.style.overflow = '';
+
+    // Reset form
+    const formatSelect = document.getElementById('exportFormatSelect');
+    const dateRangeSelect = document.getElementById('exportDateRangeSelect');
+    const accountSelect = document.getElementById('exportAccountSelect');
+
+    if (formatSelect) {
+      const trigger = formatSelect.querySelector('.sakura-custom-select-trigger');
+      trigger.textContent = 'Select format...';
+      trigger.classList.add('placeholder');
+      document.getElementById('exportFormat').value = '';
+    }
+
+    if (dateRangeSelect) {
+      const trigger = dateRangeSelect.querySelector('.sakura-custom-select-trigger');
+      trigger.textContent = 'Select date range...';
+      trigger.classList.add('placeholder');
+      document.getElementById('exportDateRange').value = '';
+    }
+
+    if (accountSelect) {
+      const trigger = accountSelect.querySelector('.sakura-custom-select-trigger');
+      trigger.textContent = 'All accounts...';
+      trigger.classList.add('placeholder');
+      document.getElementById('exportAccount').value = '';
+    }
+
+    // Reset checkboxes
+    document.getElementById('includeHeaders').checked = true;
+    document.getElementById('includeBalance').checked = true;
+  }
+
+  // Close button
+  if (closeExportBtn) {
+    closeExportBtn.addEventListener('click', closeExportModalFunc);
+  }
+
+  // Cancel button
+  if (cancelExportBtn) {
+    cancelExportBtn.addEventListener('click', closeExportModalFunc);
+  }
+
+  // Overlay click
+  if (exportModalOverlay) {
+    exportModalOverlay.addEventListener('click', closeExportModalFunc);
+  }
+
+  // Submit export
+  if (submitExportBtn) {
+    submitExportBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const format = document.getElementById('exportFormat').value;
+      const dateRange = document.getElementById('exportDateRange').value;
+      const account = document.getElementById('exportAccount').value || 'all';
+      const includeHeaders = document.getElementById('includeHeaders').checked;
+      const includeBalance = document.getElementById('includeBalance').checked;
+
+      // Validate required fields
+      if (!format || !dateRange) {
+        alert('Please select file format and date range');
+        return;
+      }
+
+      // Close modal
+      closeExportModalFunc();
+
+      // Show success message (placeholder)
+      alert('Export started!\nFormat: ' + format + '\nDate Range: ' + dateRange + '\nAccount: ' + account);
+    });
+  }
+});

@@ -119,7 +119,7 @@
                 </div>
                 <div class="sakura-page-header-actions">
                     <button class="sakura-btn sakura-btn--outline" id="openImportCSVModal">Import CSV</button>
-                    <button class="sakura-btn sakura-btn--outline">Export</button>
+                    <button class="sakura-btn sakura-btn--outline" id="openExportModal">Export</button>
                     <button class="sakura-btn sakura-btn--primary" id="openAddTransactionModal">Add Transaction</button>
                 </div>
             </section>
@@ -831,6 +831,148 @@
                 <button type="submit" class="sakura-btn sakura-btn--primary" id="submitImportCSV">
                     <i class="bi bi-upload"></i>
                     Import Transactions
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="sakura-modal" id="exportModal">
+        <div class="sakura-modal-overlay"></div>
+        <div class="sakura-modal-content sakura-modal-content--import">
+            <div class="sakura-modal-header">
+                <h2>Export Transactions</h2>
+                <button class="sakura-modal-close" id="closeExportModal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="sakura-modal-body">
+                <form class="sakura-import-form">
+                    <!-- File Format -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field">
+                            <div class="sakura-form-inline">
+                                <label for="exportFormat">File Format:</label>
+                                <div class="sakura-custom-select" id="exportFormatSelect">
+                                    <div class="sakura-custom-select-trigger placeholder">Select format...</div>
+                                    <div class="sakura-custom-select-dropdown">
+                                        <div class="sakura-custom-select-option" data-value="csv">
+                                            <i class="bi bi-filetype-csv sakura-option-icon"></i>
+                                            CSV (Comma Separated Values)
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="excel">
+                                            <i class="bi bi-filetype-xlsx sakura-option-icon"></i>
+                                            Excel (.xlsx)
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="pdf">
+                                            <i class="bi bi-filetype-pdf sakura-option-icon"></i>
+                                            PDF Document
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="exportFormat" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date Range -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field">
+                            <div class="sakura-form-inline">
+                                <label for="exportDateRange">Date Range:</label>
+                                <div class="sakura-custom-select" id="exportDateRangeSelect">
+                                    <div class="sakura-custom-select-trigger placeholder">Select date range...</div>
+                                    <div class="sakura-custom-select-dropdown">
+                                        <div class="sakura-custom-select-option" data-value="all">
+                                            <i class="bi bi-infinity sakura-option-icon"></i>
+                                            All Time
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="this-month">
+                                            <i class="bi bi-calendar-month sakura-option-icon"></i>
+                                            This Month
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="last-month">
+                                            <i class="bi bi-calendar-minus sakura-option-icon"></i>
+                                            Last Month
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="this-quarter">
+                                            <i class="bi bi-calendar3 sakura-option-icon"></i>
+                                            This Quarter
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="this-year">
+                                            <i class="bi bi-calendar-check sakura-option-icon"></i>
+                                            This Year
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="custom">
+                                            <i class="bi bi-calendar-range sakura-option-icon"></i>
+                                            Custom Range
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="exportDateRange" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Filter -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field">
+                            <div class="sakura-form-inline">
+                                <label for="exportAccount">Account:</label>
+                                <div class="sakura-custom-select" id="exportAccountSelect">
+                                    <div class="sakura-custom-select-trigger placeholder">All accounts...</div>
+                                    <div class="sakura-custom-select-dropdown">
+                                        <div class="sakura-custom-select-option" data-value="all">All Accounts</div>
+                                        <div class="sakura-custom-select-option" data-value="chase-checking">
+                                            <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                            Chase Checking
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="chase-savings">
+                                            <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                            Chase Savings
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="capitalone-checking">
+                                            <img src="https://logo.clearbit.com/capitalone.com" alt="Capital One" class="sakura-bank-logo">
+                                            Capital One Checking
+                                        </div>
+                                        <div class="sakura-custom-select-option" data-value="amex-credit">
+                                            <img src="https://logo.clearbit.com/americanexpress.com" alt="American Express" class="sakura-bank-logo">
+                                            American Express
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="exportAccount">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Export Options -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field">
+                            <label class="sakura-checkbox-label">
+                                <input type="checkbox" id="includeHeaders" checked>
+                                <span class="sakura-checkmark"></span>
+                                Include column headers
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field">
+                            <label class="sakura-checkbox-label">
+                                <input type="checkbox" id="includeBalance" checked>
+                                <span class="sakura-checkmark"></span>
+                                Include running balance
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="sakura-modal-footer">
+                <button type="button" class="sakura-btn sakura-btn--outline" id="cancelExportModal">Cancel</button>
+                <button type="submit" class="sakura-btn sakura-btn--primary" id="submitExport">
+                    <i class="bi bi-download"></i>
+                    Export Transactions
                 </button>
             </div>
         </div>

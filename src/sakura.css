@@ -4578,6 +4578,44 @@
     color: #f59e0b !important;
   }
 
+  /* Export file format colored icons */
+  .sakura-custom-select-option[data-value="csv"] .sakura-option-icon {
+    color: #10b981 !important;
+  }
+
+  .sakura-custom-select-option[data-value="excel"] .sakura-option-icon {
+    color: #059669 !important;
+  }
+
+  .sakura-custom-select-option[data-value="pdf"] .sakura-option-icon {
+    color: #ef4444 !important;
+  }
+
+  /* Date range colored icons */
+  .sakura-custom-select-option[data-value="all"] .sakura-option-icon {
+    color: #8b5cf6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="this-month"] .sakura-option-icon {
+    color: #3b82f6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="last-month"] .sakura-option-icon {
+    color: #6366f1 !important;
+  }
+
+  .sakura-custom-select-option[data-value="this-quarter"] .sakura-option-icon {
+    color: #0891b2 !important;
+  }
+
+  .sakura-custom-select-option[data-value="this-year"] .sakura-option-icon {
+    color: #10b981 !important;
+  }
+
+  .sakura-custom-select-option[data-value="custom"] .sakura-option-icon {
+    color: #f59e0b !important;
+  }
+
   /* Icons in trigger */
   .sakura-custom-select-trigger .sakura-option-icon {
     margin-right: 8px;
@@ -12279,8 +12317,12 @@
 
   /* Import Modal Modifier - More compact for simpler import form */
   .sakura-modal-content--import {
-    min-height: auto;
     max-width: 600px;
+    max-height: 90vh;
+  }
+
+  .sakura-modal-content--import .sakura-modal-body {
+    padding-bottom: 16px;
   }
 
   .sakura-modal-header {
