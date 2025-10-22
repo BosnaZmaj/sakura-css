@@ -1,0 +1,362 @@
+// Demo Transaction Data for Sakura CSS
+// This file contains mock transaction data for different pages
+// When connecting to a real API, this file can be removed
+
+const DEMO_TRANSACTIONS = {
+  // Regular transactions page - mix of expenses and income
+  'transactions.html': [
+    {
+      id: 1,
+      date: new Date('2025-01-15'),
+      name: 'Whole Foods Market',
+      merchant: 'Store #1247 - Downtown',
+      amount: -127.43,
+      type: 'expense',
+      envelope: 'Groceries',
+      method: 'Debit Card',
+      bankAccount: 'Chase Bank',
+      tags: ['Organic'],
+      category: 'Groceries',
+      logo: 'https://logo.clearbit.com/wholefoodsmarket.com'
+    },
+    {
+      id: 2,
+      date: new Date('2025-01-15'),
+      name: 'Salary Deposit',
+      merchant: 'TechCorp Inc.',
+      amount: 3500.00,
+      type: 'income',
+      envelope: 'Income',
+      method: 'Direct Deposit',
+      bankAccount: 'Chase Bank',
+      tags: ['Recurring', 'Verified'],
+      category: 'Income',
+      icon: 'bi-cash-coin',
+      iconClass: 'income-icon'
+    },
+    {
+      id: 3,
+      date: new Date('2025-01-15'),
+      name: 'Shell Gas Station',
+      merchant: 'Station #4429 - Highway 101',
+      amount: -89.25,
+      type: 'expense',
+      envelope: 'Transportation',
+      method: 'Credit Card',
+      bankAccount: 'Chase Bank',
+      tags: ['Gas'],
+      category: 'Transportation',
+      logo: 'https://logo.clearbit.com/shell.com'
+    },
+    {
+      id: 4,
+      date: new Date('2025-01-15'),
+      name: 'Chipotle',
+      merchant: 'Downtown',
+      amount: -18.50,
+      type: 'expense',
+      envelope: 'Dining',
+      method: 'Credit Card',
+      bankAccount: 'Chase Bank',
+      tags: ['Lunch'],
+      category: 'Dining',
+      icon: 'bi-egg-fried',
+      iconClass: 'dining-icon'
+    },
+    {
+      id: 5,
+      date: new Date('2025-01-14'),
+      name: 'Netflix Subscription',
+      merchant: 'Monthly Premium Plan',
+      amount: -15.99,
+      type: 'expense',
+      envelope: 'Entertainment',
+      method: 'Credit Card',
+      bankAccount: 'Chase Bank',
+      tags: ['Recurring', 'Subscription'],
+      category: 'Entertainment',
+      logo: 'https://logo.clearbit.com/netflix.com'
+    },
+    {
+      id: 6,
+      date: new Date('2025-01-13'),
+      name: 'Target',
+      merchant: 'Store #0847',
+      amount: -82.33,
+      type: 'expense',
+      envelope: 'Groceries',
+      method: 'Debit Card',
+      bankAccount: 'Chase Bank',
+      tags: ['Household'],
+      category: 'Groceries',
+      logo: 'https://logo.clearbit.com/target.com'
+    },
+    {
+      id: 7,
+      date: new Date('2025-01-13'),
+      name: 'Starbucks',
+      merchant: 'Main Street Location',
+      amount: -6.45,
+      type: 'expense',
+      envelope: 'Dining',
+      method: 'Debit Card',
+      bankAccount: 'Chase Bank',
+      tags: ['Coffee'],
+      category: 'Dining',
+      logo: 'https://logo.clearbit.com/starbucks.com'
+    },
+    {
+      id: 8,
+      date: new Date('2025-01-12'),
+      name: 'Electric Bill',
+      merchant: 'City Power & Light',
+      amount: -65.00,
+      type: 'expense',
+      envelope: 'Utilities',
+      method: 'Auto Pay',
+      bankAccount: 'Chase Bank',
+      tags: ['Recurring'],
+      category: 'Utilities',
+      icon: 'bi-lightning-charge',
+      iconClass: 'utilities-icon'
+    },
+    {
+      id: 9,
+      date: new Date('2025-01-11'),
+      name: 'Pizza Palace',
+      merchant: 'Main Street',
+      amount: -32.50,
+      type: 'expense',
+      envelope: 'Dining',
+      method: 'Credit Card',
+      bankAccount: 'Chase Bank',
+      tags: ['Takeout'],
+      category: 'Dining',
+      icon: 'bi-egg-fried',
+      iconClass: 'dining-icon'
+    },
+    {
+      id: 10,
+      date: new Date('2025-01-10'),
+      name: 'Amazon Purchase',
+      merchant: 'Online Shopping',
+      amount: -156.89,
+      type: 'expense',
+      envelope: 'Shopping',
+      method: 'Credit Card',
+      bankAccount: 'Chase Bank',
+      tags: ['Electronics'],
+      category: 'Shopping',
+      logo: 'https://logo.clearbit.com/amazon.com'
+    }
+  ],
+
+  // Available envelope page - deposits and transfers to envelopes
+  'available-envelope.html': [
+    {
+      id: 1,
+      date: new Date('2025-01-15'),
+      name: 'Paycheck Deposit',
+      merchant: 'TechCorp Inc.',
+      amount: 3500.00,
+      type: 'income',
+      envelope: 'Deposit',
+      method: 'Direct Deposit',
+      bankAccount: 'Chase',
+      bankLogo: 'https://logo.clearbit.com/chase.com',
+      tags: ['Recurring', 'Verified'],
+      category: 'Income',
+      icon: 'bi-arrow-down-circle',
+      iconClass: 'sakura-transaction-icon--deposit'
+    },
+    {
+      id: 2,
+      date: new Date('2025-01-15'),
+      name: 'Transfer to Groceries',
+      merchant: 'Budget Allocation',
+      amount: -450.00,
+      type: 'transfer',
+      envelope: 'Groceries',
+      method: 'Internal Transfer',
+      bankAccount: 'Chase',
+      bankLogo: 'https://logo.clearbit.com/chase.com',
+      tags: ['Budget'],
+      category: 'Transfer',
+      icon: 'bi-arrow-left-right',
+      iconClass: 'sakura-transaction-icon--transfer'
+    },
+    {
+      id: 3,
+      date: new Date('2025-01-15'),
+      name: 'Transfer to Entertainment',
+      merchant: 'Budget Allocation',
+      amount: -200.00,
+      type: 'transfer',
+      envelope: 'Entertainment',
+      method: 'Internal Transfer',
+      bankAccount: 'Chase',
+      bankLogo: 'https://logo.clearbit.com/chase.com',
+      tags: ['Budget'],
+      category: 'Transfer',
+      icon: 'bi-arrow-left-right',
+      iconClass: 'sakura-transaction-icon--transfer'
+    },
+    {
+      id: 4,
+      date: new Date('2025-01-14'),
+      name: 'Transfer to Transportation',
+      merchant: 'Budget Allocation',
+      amount: -350.00,
+      type: 'transfer',
+      envelope: 'Transportation',
+      method: 'Internal Transfer',
+      bankAccount: 'Citi',
+      bankLogo: 'https://logo.clearbit.com/citi.com',
+      tags: ['Budget'],
+      category: 'Transfer',
+      icon: 'bi-arrow-left-right',
+      iconClass: 'sakura-transaction-icon--transfer'
+    },
+    {
+      id: 5,
+      date: new Date('2025-01-14'),
+      name: 'Freelance Payment',
+      merchant: 'Client Project',
+      amount: 850.00,
+      type: 'income',
+      envelope: 'Deposit',
+      method: 'Bank Transfer',
+      bankAccount: 'Citi',
+      bankLogo: 'https://logo.clearbit.com/citi.com',
+      tags: ['Income'],
+      category: 'Income',
+      icon: 'bi-arrow-down-circle',
+      iconClass: 'sakura-transaction-icon--deposit'
+    },
+    {
+      id: 6,
+      date: new Date('2025-01-13'),
+      name: 'Transfer to Utilities',
+      merchant: 'Budget Allocation',
+      amount: -250.00,
+      type: 'transfer',
+      envelope: 'Utilities',
+      method: 'Internal Transfer',
+      bankAccount: 'American Express',
+      bankLogo: 'https://logo.clearbit.com/americanexpress.com',
+      tags: ['Budget'],
+      category: 'Transfer',
+      icon: 'bi-arrow-left-right',
+      iconClass: 'sakura-transaction-icon--transfer'
+    },
+    {
+      id: 7,
+      date: new Date('2025-01-12'),
+      name: 'Transfer to Dining Out',
+      merchant: 'Budget Allocation',
+      amount: -180.00,
+      type: 'transfer',
+      envelope: 'Dining',
+      method: 'Internal Transfer',
+      bankAccount: 'Chase',
+      bankLogo: 'https://logo.clearbit.com/chase.com',
+      tags: ['Budget'],
+      category: 'Transfer',
+      icon: 'bi-arrow-left-right',
+      iconClass: 'sakura-transaction-icon--transfer'
+    },
+    {
+      id: 8,
+      date: new Date('2025-01-10'),
+      name: 'Interest Payment',
+      merchant: 'Savings Account',
+      amount: 12.50,
+      type: 'income',
+      envelope: 'Deposit',
+      method: 'Bank Interest',
+      bankAccount: 'Chase',
+      bankLogo: 'https://logo.clearbit.com/chase.com',
+      tags: ['Interest'],
+      category: 'Income',
+      icon: 'bi-arrow-down-circle',
+      iconClass: 'sakura-transaction-icon--deposit'
+    },
+    {
+      id: 9,
+      date: new Date('2025-01-08'),
+      name: 'Transfer to Healthcare',
+      merchant: 'Budget Allocation',
+      amount: -150.00,
+      type: 'transfer',
+      envelope: 'Healthcare',
+      method: 'Internal Transfer',
+      bankAccount: 'Citi',
+      bankLogo: 'https://logo.clearbit.com/citi.com',
+      tags: ['Budget'],
+      category: 'Transfer',
+      icon: 'bi-arrow-left-right',
+      iconClass: 'sakura-transaction-icon--transfer'
+    },
+    {
+      id: 10,
+      date: new Date('2025-01-05'),
+      name: 'Refund Received',
+      merchant: 'Amazon Return',
+      amount: 45.99,
+      type: 'income',
+      envelope: 'Deposit',
+      method: 'Refund',
+      bankAccount: 'American Express',
+      bankLogo: 'https://logo.clearbit.com/americanexpress.com',
+      tags: ['Refund'],
+      category: 'Income',
+      icon: 'bi-arrow-down-circle',
+      iconClass: 'sakura-transaction-icon--deposit'
+    },
+    {
+      id: 11,
+      date: new Date('2025-01-03'),
+      name: 'Transfer to Subscriptions',
+      merchant: 'Budget Allocation',
+      amount: -75.00,
+      type: 'transfer',
+      envelope: 'Subscriptions',
+      method: 'Internal Transfer',
+      bankAccount: 'American Express',
+      bankLogo: 'https://logo.clearbit.com/americanexpress.com',
+      tags: ['Budget'],
+      category: 'Transfer',
+      icon: 'bi-arrow-left-right',
+      iconClass: 'sakura-transaction-icon--transfer'
+    },
+    {
+      id: 12,
+      date: new Date('2025-01-01'),
+      name: 'Paycheck Deposit',
+      merchant: 'TechCorp Inc.',
+      amount: 3500.00,
+      type: 'income',
+      envelope: 'Deposit',
+      method: 'Direct Deposit',
+      bankAccount: 'Chase',
+      bankLogo: 'https://logo.clearbit.com/chase.com',
+      tags: ['Recurring', 'Verified'],
+      category: 'Income',
+      icon: 'bi-arrow-down-circle',
+      iconClass: 'sakura-transaction-icon--deposit'
+    }
+  ]
+};
+
+// Helper function to get the current page's filename
+function getCurrentPage() {
+  const path = window.location.pathname;
+  const page = path.split('/').pop() || 'index.html';
+  return page;
+}
+
+// Helper function to get transactions for the current page
+function getDemoTransactions() {
+  const currentPage = getCurrentPage();
+  return DEMO_TRANSACTIONS[currentPage] || DEMO_TRANSACTIONS['transactions.html'];
+}

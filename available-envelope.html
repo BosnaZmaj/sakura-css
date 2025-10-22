@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transactions - Sakura Budget</title>
+    <title>Available Envelope - Sakura Budget</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -21,7 +21,9 @@
                 <nav class="sakura-breadcrumb">
                     <a href="dashboard.html" class="sakura-breadcrumb-item">Dashboard</a>
                     <span class="sakura-breadcrumb-separator">/</span>
-                    <span class="sakura-breadcrumb-item">Transactions</span>
+                    <a href="envelopes.html" class="sakura-breadcrumb-item">Envelopes</a>
+                    <span class="sakura-breadcrumb-separator">/</span>
+                    <span class="sakura-breadcrumb-item">Available</span>
                 </nav>
             </div>
             <div class="sakura-header-right">
@@ -114,47 +116,46 @@
             <!-- Page Header -->
             <section class="sakura-page-header">
                 <div class="sakura-page-header-content">
-                    <h1>Transactions</h1>
-                    <p>Track and manage all your financial activity</p>
+                    <h1>Available Envelope</h1>
+                    <p>Deposits and direct transfers to envelopes</p>
                 </div>
                 <div class="sakura-page-header-actions">
-                    <button class="sakura-btn sakura-btn--outline" id="openImportCSVModal">Import CSV</button>
-                    <button class="sakura-btn sakura-btn--outline" id="openExportModal">Export</button>
-                    <button class="sakura-btn sakura-btn--primary" id="openAddTransactionModal">Add Transaction</button>
+                    <button class="sakura-btn sakura-btn--outline" id="openTransferToEnvelopeModal">Transfer to Envelope</button>
+                    <button class="sakura-btn sakura-btn--primary" id="openAddTransactionModal">Add Deposit</button>
                 </div>
             </section>
 
-            <!-- Transaction Summary Cards -->
+            <!-- Available Envelope Summary Cards -->
             <section class="sakura-transaction-summary">
-                <div class="sakura-summary-card" style="--summary-color: #10b981;">
-                    <div class="sakura-summary-icon">
-                        <i class="bi bi-graph-up-arrow"></i>
-                    </div>
-                    <div class="sakura-summary-amount">+$4,850.00</div>
-                    <div class="sakura-summary-label">Total Income</div>
-                    <div class="sakura-summary-change positive">+5.2% from last month</div>
-                </div>
-                <div class="sakura-summary-card" style="--summary-color: #ef4444;">
-                    <div class="sakura-summary-icon">
-                        <i class="bi bi-graph-down-arrow"></i>
-                    </div>
-                    <div class="sakura-summary-amount">-$3,267.45</div>
-                    <div class="sakura-summary-label">Total Expenses</div>
-                    <div class="sakura-summary-change negative">-2.1% from last month</div>
-                </div>
                 <div class="sakura-summary-card" style="--summary-color: #1e2a3b;">
                     <div class="sakura-summary-icon">
-                        <i class="bi bi-currency-dollar"></i>
+                        <i class="bi bi-cash-stack"></i>
                     </div>
-                    <div class="sakura-summary-amount">+$1,582.55</div>
-                    <div class="sakura-summary-label">Net Flow</div>
-                    <div class="sakura-summary-change positive">Better than budgeted</div>
+                    <div class="sakura-summary-amount">$1,834.00</div>
+                    <div class="sakura-summary-label">Current Balance</div>
+                    <div class="sakura-summary-change positive">Ready to allocate</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #10b981;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-arrow-down-circle"></i>
+                    </div>
+                    <div class="sakura-summary-amount">+$2,150.00</div>
+                    <div class="sakura-summary-label">Total Deposits</div>
+                    <div class="sakura-summary-change positive">This month</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #3b82f6;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-arrow-left-right"></i>
+                    </div>
+                    <div class="sakura-summary-amount">-$316.00</div>
+                    <div class="sakura-summary-label">Transferred Out</div>
+                    <div class="sakura-summary-change neutral">To envelopes</div>
                 </div>
                 <div class="sakura-summary-card" style="--summary-color: #8b5cf6;">
                     <div class="sakura-summary-icon">
                         <i class="bi bi-graph-up"></i>
                     </div>
-                    <div class="sakura-summary-amount">247</div>
+                    <div class="sakura-summary-amount">12</div>
                     <div class="sakura-summary-label">Total Transactions</div>
                     <div class="sakura-summary-change neutral">This month</div>
                 </div>
@@ -375,11 +376,6 @@
                 <div class="sakura-transaction-view sakura-list-view active" id="listView">
                     <div class="sakura-transaction-list sakura-transaction-timeline">
                         <!-- Transactions will be dynamically generated by JavaScript -->
-                        <!-- Load More Button -->
-                        <div class="sakura-load-more-container">
-                            <button class="sakura-btn sakura-btn--outline sakura-load-more-btn">Load More Transactions</button>
-                            <div class="sakura-load-more-info">Showing 15 of 100 transactions</div>
-                        </div>
                     </div>
                 </div>
 
@@ -425,11 +421,11 @@
                                     <td>Jan 15, 2025</td>
                                     <td>
                                         <div class="sakura-table-description">
-                                            <span class="sakura-table-name">Salary Deposit</span>
+                                            <span class="sakura-table-name">Paycheck Deposit</span>
                                             <span class="sakura-table-merchant">TechCorp Inc.</span>
                                         </div>
                                     </td>
-                                    <td><span class="sakura-table-envelope sakura-income-envelope">Income</span></td>
+                                    <td><span class="sakura-table-envelope sakura-income-envelope">Deposit</span></td>
                                     <td><span class="sakura-table-amount income">+$3,500.00</span></td>
                                     <td>
                                         <div class="sakura-table-actions">
@@ -443,12 +439,30 @@
                                     <td>Jan 15, 2025</td>
                                     <td>
                                         <div class="sakura-table-description">
-                                            <span class="sakura-table-name">Whole Foods Market</span>
-                                            <span class="sakura-table-merchant">Store #1247</span>
+                                            <span class="sakura-table-name">Transfer to Groceries</span>
+                                            <span class="sakura-table-merchant">Budget Allocation</span>
                                         </div>
                                     </td>
                                     <td><span class="sakura-table-envelope sakura-groceries-envelope">Groceries</span></td>
-                                    <td><span class="sakura-table-amount expense">-$127.43</span></td>
+                                    <td><span class="sakura-table-amount expense">-$450.00</span></td>
+                                    <td>
+                                        <div class="sakura-table-actions">
+                                            <button class="sakura-table-action-btn">Edit</button>
+                                            <button class="sakura-table-action-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="sakura-row-checkbox"></td>
+                                    <td>Jan 15, 2025</td>
+                                    <td>
+                                        <div class="sakura-table-description">
+                                            <span class="sakura-table-name">Transfer to Entertainment</span>
+                                            <span class="sakura-table-merchant">Budget Allocation</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="sakura-table-envelope sakura-entertainment-envelope">Entertainment</span></td>
+                                    <td><span class="sakura-table-amount expense">-$200.00</span></td>
                                     <td>
                                         <div class="sakura-table-actions">
                                             <button class="sakura-table-action-btn">Edit</button>
@@ -461,12 +475,156 @@
                                     <td>Jan 14, 2025</td>
                                     <td>
                                         <div class="sakura-table-description">
-                                            <span class="sakura-table-name">Netflix Subscription</span>
-                                            <span class="sakura-table-merchant">Monthly Premium</span>
+                                            <span class="sakura-table-name">Transfer to Transportation</span>
+                                            <span class="sakura-table-merchant">Budget Allocation</span>
                                         </div>
                                     </td>
-                                    <td><span class="sakura-table-envelope sakura-entertainment-envelope">Entertainment</span></td>
-                                    <td><span class="sakura-table-amount expense">-$15.99</span></td>
+                                    <td><span class="sakura-table-envelope sakura-transportation-envelope">Transportation</span></td>
+                                    <td><span class="sakura-table-amount expense">-$350.00</span></td>
+                                    <td>
+                                        <div class="sakura-table-actions">
+                                            <button class="sakura-table-action-btn">Edit</button>
+                                            <button class="sakura-table-action-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="sakura-row-checkbox"></td>
+                                    <td>Jan 14, 2025</td>
+                                    <td>
+                                        <div class="sakura-table-description">
+                                            <span class="sakura-table-name">Freelance Payment</span>
+                                            <span class="sakura-table-merchant">Client Project</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="sakura-table-envelope sakura-income-envelope">Deposit</span></td>
+                                    <td><span class="sakura-table-amount income">+$850.00</span></td>
+                                    <td>
+                                        <div class="sakura-table-actions">
+                                            <button class="sakura-table-action-btn">Edit</button>
+                                            <button class="sakura-table-action-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="sakura-row-checkbox"></td>
+                                    <td>Jan 13, 2025</td>
+                                    <td>
+                                        <div class="sakura-table-description">
+                                            <span class="sakura-table-name">Transfer to Utilities</span>
+                                            <span class="sakura-table-merchant">Budget Allocation</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="sakura-table-envelope sakura-utilities-envelope">Utilities</span></td>
+                                    <td><span class="sakura-table-amount expense">-$250.00</span></td>
+                                    <td>
+                                        <div class="sakura-table-actions">
+                                            <button class="sakura-table-action-btn">Edit</button>
+                                            <button class="sakura-table-action-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="sakura-row-checkbox"></td>
+                                    <td>Jan 12, 2025</td>
+                                    <td>
+                                        <div class="sakura-table-description">
+                                            <span class="sakura-table-name">Transfer to Dining Out</span>
+                                            <span class="sakura-table-merchant">Budget Allocation</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="sakura-table-envelope sakura-dining-envelope">Dining Out</span></td>
+                                    <td><span class="sakura-table-amount expense">-$180.00</span></td>
+                                    <td>
+                                        <div class="sakura-table-actions">
+                                            <button class="sakura-table-action-btn">Edit</button>
+                                            <button class="sakura-table-action-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="sakura-row-checkbox"></td>
+                                    <td>Jan 10, 2025</td>
+                                    <td>
+                                        <div class="sakura-table-description">
+                                            <span class="sakura-table-name">Interest Payment</span>
+                                            <span class="sakura-table-merchant">Savings Account</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="sakura-table-envelope sakura-income-envelope">Deposit</span></td>
+                                    <td><span class="sakura-table-amount income">+$12.50</span></td>
+                                    <td>
+                                        <div class="sakura-table-actions">
+                                            <button class="sakura-table-action-btn">Edit</button>
+                                            <button class="sakura-table-action-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="sakura-row-checkbox"></td>
+                                    <td>Jan 8, 2025</td>
+                                    <td>
+                                        <div class="sakura-table-description">
+                                            <span class="sakura-table-name">Transfer to Healthcare</span>
+                                            <span class="sakura-table-merchant">Budget Allocation</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="sakura-table-envelope sakura-healthcare-envelope">Healthcare</span></td>
+                                    <td><span class="sakura-table-amount expense">-$150.00</span></td>
+                                    <td>
+                                        <div class="sakura-table-actions">
+                                            <button class="sakura-table-action-btn">Edit</button>
+                                            <button class="sakura-table-action-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="sakura-row-checkbox"></td>
+                                    <td>Jan 5, 2025</td>
+                                    <td>
+                                        <div class="sakura-table-description">
+                                            <span class="sakura-table-name">Refund Received</span>
+                                            <span class="sakura-table-merchant">Amazon Return</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="sakura-table-envelope sakura-income-envelope">Deposit</span></td>
+                                    <td><span class="sakura-table-amount income">+$45.99</span></td>
+                                    <td>
+                                        <div class="sakura-table-actions">
+                                            <button class="sakura-table-action-btn">Edit</button>
+                                            <button class="sakura-table-action-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="sakura-row-checkbox"></td>
+                                    <td>Jan 3, 2025</td>
+                                    <td>
+                                        <div class="sakura-table-description">
+                                            <span class="sakura-table-name">Transfer to Subscriptions</span>
+                                            <span class="sakura-table-merchant">Budget Allocation</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="sakura-table-envelope sakura-subscriptions-envelope">Subscriptions</span></td>
+                                    <td><span class="sakura-table-amount expense">-$75.00</span></td>
+                                    <td>
+                                        <div class="sakura-table-actions">
+                                            <button class="sakura-table-action-btn">Edit</button>
+                                            <button class="sakura-table-action-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="sakura-row-checkbox"></td>
+                                    <td>Jan 1, 2025</td>
+                                    <td>
+                                        <div class="sakura-table-description">
+                                            <span class="sakura-table-name">Paycheck Deposit</span>
+                                            <span class="sakura-table-merchant">TechCorp Inc.</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="sakura-table-envelope sakura-income-envelope">Deposit</span></td>
+                                    <td><span class="sakura-table-amount income">+$3,500.00</span></td>
                                     <td>
                                         <div class="sakura-table-actions">
                                             <button class="sakura-table-action-btn">Edit</button>
@@ -505,6 +663,141 @@
             </section>
 
         </main>
+    </div>
+
+    <!-- Transfer to Envelope Modal -->
+    <div class="sakura-modal" id="transferToEnvelopeModal">
+        <div class="sakura-modal-overlay"></div>
+        <div class="sakura-modal-content">
+            <div class="sakura-modal-header">
+                <h2>Transfer to Envelope</h2>
+                <button class="sakura-modal-close" id="closeTransferToEnvelopeModal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="sakura-modal-body">
+                <form class="sakura-transaction-form">
+                    <!-- Date and Amount -->
+                    <div class="sakura-form-row sakura-form-row--split">
+                        <div class="sakura-form-field sakura-form-field--date">
+                            <label for="transferDate">Date</label>
+                            <div class="sakura-datepicker" id="transferDatepicker">
+                                <div class="sakura-datepicker-input">
+                                    <i class="bi bi-calendar3"></i>
+                                    <input type="text" id="transferDate" class="sakura-input" placeholder="MM/DD/YYYY" required>
+                                    <input type="hidden" id="transferDateValue">
+                                </div>
+                                <div class="sakura-datepicker-dropdown">
+                                    <div class="sakura-datepicker-header">
+                                        <button type="button" class="sakura-datepicker-prev"><i class="bi bi-chevron-left"></i></button>
+                                        <div class="sakura-datepicker-month"></div>
+                                        <button type="button" class="sakura-datepicker-next"><i class="bi bi-chevron-right"></i></button>
+                                    </div>
+                                    <div class="sakura-datepicker-weekdays">
+                                        <div class="sakura-datepicker-weekday">Sun</div>
+                                        <div class="sakura-datepicker-weekday">Mon</div>
+                                        <div class="sakura-datepicker-weekday">Tue</div>
+                                        <div class="sakura-datepicker-weekday">Wed</div>
+                                        <div class="sakura-datepicker-weekday">Thu</div>
+                                        <div class="sakura-datepicker-weekday">Fri</div>
+                                        <div class="sakura-datepicker-weekday">Sat</div>
+                                    </div>
+                                    <div class="sakura-datepicker-days"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sakura-form-field sakura-form-field--amount">
+                            <label for="transferAmount">Amount</label>
+                            <div class="sakura-input-with-prefix">
+                                <span class="sakura-input-prefix">$</span>
+                                <input type="number" id="transferAmount" class="sakura-input sakura-input--with-prefix" placeholder="0.00" step="0.01" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Envelope and Bank Account -->
+                    <div class="sakura-form-row sakura-form-row--split">
+                        <div class="sakura-form-field sakura-form-field--envelope">
+                            <label for="transferEnvelope">Transfer To Envelope</label>
+                            <div class="sakura-custom-select" id="transferEnvelopeSelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select envelope...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="groceries">
+                                        <i class="bi bi-cart sakura-option-icon"></i>
+                                        Groceries
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="entertainment">
+                                        <i class="bi bi-film sakura-option-icon"></i>
+                                        Entertainment
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="transportation">
+                                        <i class="bi bi-car-front sakura-option-icon"></i>
+                                        Transportation
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="utilities">
+                                        <i class="bi bi-lightning-charge sakura-option-icon"></i>
+                                        Utilities
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="dining">
+                                        <i class="bi bi-cup-straw sakura-option-icon"></i>
+                                        Dining Out
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="healthcare">
+                                        <i class="bi bi-heart-pulse sakura-option-icon"></i>
+                                        Healthcare
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="subscriptions">
+                                        <i class="bi bi-repeat sakura-option-icon"></i>
+                                        Subscriptions
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="shopping">
+                                        <i class="bi bi-bag sakura-option-icon"></i>
+                                        Shopping
+                                    </div>
+                                </div>
+                                <input type="hidden" id="transferEnvelope" required>
+                            </div>
+                        </div>
+                        <div class="sakura-form-field sakura-form-field--bank">
+                            <label for="transferBankAccount">Bank Account</label>
+                            <div class="sakura-custom-select" id="transferBankAccountSelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select bank account...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="chase">
+                                        <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-option-icon sakura-bank-logo">
+                                        Chase
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="citi">
+                                        <img src="https://logo.clearbit.com/citi.com" alt="Citi" class="sakura-option-icon sakura-bank-logo">
+                                        Citi
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="amex">
+                                        <img src="https://logo.clearbit.com/americanexpress.com" alt="American Express" class="sakura-option-icon sakura-bank-logo">
+                                        American Express
+                                    </div>
+                                </div>
+                                <input type="hidden" id="transferBankAccount" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="sakura-form-row">
+                        <div class="sakura-form-field sakura-form-field--notes">
+                            <label for="transferNotes">Notes (Optional)</label>
+                            <textarea id="transferNotes" class="sakura-input sakura-textarea" rows="3" placeholder="Add any additional details..."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="sakura-modal-footer">
+                <button type="button" class="sakura-btn sakura-btn--outline" id="cancelTransferToEnvelope">Cancel</button>
+                <button type="submit" class="sakura-btn sakura-btn--primary" id="submitTransferToEnvelope">
+                    <i class="bi bi-arrow-left-right"></i>
+                    Transfer to Envelope
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Add Transaction Modal -->

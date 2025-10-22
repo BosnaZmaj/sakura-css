@@ -150,7 +150,13 @@ class TransactionsManager {
   }
 
   getMockTransactions() {
-    // Base transactions (14 transactions)
+    // Load demo transactions from external data file
+    // When connecting to API, replace this with: return fetch('/api/transactions').then(...)
+    if (typeof getDemoTransactions === 'function') {
+      return getDemoTransactions();
+    }
+
+    // Fallback to basic transactions if demo data file not loaded
     const baseTransactions = [
       {
         id: 1,
@@ -858,7 +864,7 @@ class TransactionsManager {
         </div>
         <div class="sakura-transaction-meta">
           <span class="sakura-transaction-bank-account">
-            <img src="https://logo.clearbit.com/chase.com" alt="Chase Bank" class="sakura-bank-logo">
+            ${transaction.bankLogo ? `<img src="${transaction.bankLogo}" alt="${transaction.bankAccount}" class="sakura-bank-logo">` : ''}
             ${transaction.bankAccount}
           </span>
           <span class="sakura-transaction-envelope ${envelopeClass}">${transaction.envelope}</span>
@@ -1103,6 +1109,168 @@ function initializeModalDatepicker() {
   const input = datepicker.querySelector('.sakura-datepicker-input');
   const inputField = datepicker.querySelector('#transactionDate');
   const hiddenInput = datepicker.querySelector('#transactionDateValue');
+  const dropdown = datepicker.querySelector('.sakura-datepicker-dropdown');
+  const daysContainer = datepicker.querySelector('.sakura-datepicker-days');
+  const monthDisplay = datepicker.querySelector('.sakura-datepicker-month');
+  const prevBtn = datepicker.querySelector('.sakura-datepicker-prev');
+  const nextBtn = datepicker.querySelector('.sakura-datepicker-next');
+
+  let currentDate = new Date();
+  let selectedDate = null;
+
+  // Open dropdown when clicking on calendar icon
+  const calendarIcon = input.querySelector('i');
+  if (calendarIcon) {
+    calendarIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      datepicker.classList.add('active');
+      renderCalendar();
+    });
+  }
+
+  // Open dropdown when clicking on input field (but allow typing)
+  inputField.addEventListener('focus', () => {
+    datepicker.classList.add('active');
+    renderCalendar();
+  });
+
+  // Handle manual date input
+  inputField.addEventListener('input', (e) => {
+    const value = e.target.value;
+    // Try to parse the date (MM/DD/YYYY format)
+    const dateMatch = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+
+    if (dateMatch) {
+      const month = parseInt(dateMatch[1]) - 1; // Month is 0-indexed
+      const day = parseInt(dateMatch[2]);
+      const year = parseInt(dateMatch[3]);
+
+      const parsedDate = new Date(year, month, day);
+
+      // Validate the date is real
+      if (parsedDate.getMonth() === month &&
+          parsedDate.getDate() === day &&
+          parsedDate.getFullYear() === year) {
+        selectedDate = parsedDate;
+        currentDate = new Date(parsedDate);
+
+        // Update hidden input
+        const yyyy = selectedDate.getFullYear();
+        const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(selectedDate.getDate()).padStart(2, '0');
+        hiddenInput.value = `${yyyy}-${mm}-${dd}`;
+
+        // Update calendar if open
+        if (datepicker.classList.contains('active')) {
+          renderCalendar();
+        }
+      }
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!datepicker.contains(e.target)) {
+      datepicker.classList.remove('active');
+    }
+  });
+
+  // Previous month
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+  });
+
+  // Next month
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+  });
+
+  function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    // Update month display
+    monthDisplay.textContent = new Date(year, month, 1).toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric'
+    });
+
+    // Clear days
+    daysContainer.innerHTML = '';
+
+    // Get first day of month and calculate start date
+    const firstDay = new Date(year, month, 1);
+    const startDate = new Date(firstDay);
+    startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+    // Generate 42 days (6 weeks)
+    for (let i = 0; i < 42; i++) {
+      const day = new Date(startDate);
+      day.setDate(startDate.getDate() + i);
+
+      const dayElement = document.createElement('div');
+      dayElement.className = 'sakura-datepicker-day';
+      dayElement.textContent = day.getDate();
+
+      // Add classes
+      if (day.getMonth() !== month) {
+        dayElement.classList.add('other-month');
+      }
+
+      const today = new Date();
+      if (day.toDateString() === today.toDateString()) {
+        dayElement.classList.add('today');
+      }
+
+      if (selectedDate && day.toDateString() === selectedDate.toDateString()) {
+        dayElement.classList.add('selected');
+      }
+
+      // Click handler
+      dayElement.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectedDate = new Date(day);
+
+        // Update input display
+        inputField.value = selectedDate.toLocaleDateString('en-US', {
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric'
+        });
+
+        // Update hidden input (YYYY-MM-DD format)
+        const yyyy = selectedDate.getFullYear();
+        const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(selectedDate.getDate()).padStart(2, '0');
+        hiddenInput.value = `${yyyy}-${mm}-${dd}`;
+
+        // Close dropdown
+        datepicker.classList.remove('active');
+
+        // Re-render to update selected state
+        renderCalendar();
+      });
+
+      daysContainer.appendChild(dayElement);
+    }
+  }
+
+  // Initial render
+  renderCalendar();
+}
+
+// Initialize Transfer Modal Datepicker
+function initializeTransferDatepicker() {
+  const datepicker = document.getElementById('transferDatepicker');
+  if (!datepicker) return;
+
+  const input = datepicker.querySelector('.sakura-datepicker-input');
+  const inputField = datepicker.querySelector('#transferDate');
+  const hiddenInput = datepicker.querySelector('#transferDateValue');
   const dropdown = datepicker.querySelector('.sakura-datepicker-dropdown');
   const daysContainer = datepicker.querySelector('.sakura-datepicker-days');
   const monthDisplay = datepicker.querySelector('.sakura-datepicker-month');
@@ -1556,6 +1724,102 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Show success message (placeholder)
       alert('Export started!\nFormat: ' + format + '\nDate Range: ' + dateRange + '\nAccount: ' + account);
+    });
+  }
+});
+
+// ============================================================================
+// Transfer to Envelope Modal Management
+// ============================================================================
+document.addEventListener('DOMContentLoaded', function() {
+  const transferModal = document.getElementById('transferToEnvelopeModal');
+  const openTransferBtn = document.getElementById('openTransferToEnvelopeModal');
+  const closeTransferBtn = document.getElementById('closeTransferToEnvelopeModal');
+  const cancelTransferBtn = document.getElementById('cancelTransferToEnvelope');
+  const submitTransferBtn = document.getElementById('submitTransferToEnvelope');
+  const transferModalOverlay = transferModal?.querySelector('.sakura-modal-overlay');
+
+  // Initialize transfer datepicker
+  initializeTransferDatepicker();
+
+  // Open modal
+  if (openTransferBtn) {
+    openTransferBtn.addEventListener('click', function() {
+      transferModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // Close modal function
+  function closeTransferModalFunc() {
+    if (!transferModal) return;
+
+    transferModal.classList.remove('show');
+    document.body.style.overflow = '';
+
+    // Reset form
+    document.getElementById('transferDate').value = '';
+    document.getElementById('transferDateValue').value = '';
+    document.getElementById('transferAmount').value = '';
+    document.getElementById('transferNotes').value = '';
+
+    // Reset envelope select
+    const envelopeSelect = document.getElementById('transferEnvelopeSelect');
+    if (envelopeSelect) {
+      const trigger = envelopeSelect.querySelector('.sakura-custom-select-trigger');
+      trigger.textContent = 'Select envelope...';
+      trigger.classList.add('placeholder');
+      document.getElementById('transferEnvelope').value = '';
+    }
+
+    // Reset bank account select
+    const bankSelect = document.getElementById('transferBankAccountSelect');
+    if (bankSelect) {
+      const trigger = bankSelect.querySelector('.sakura-custom-select-trigger');
+      trigger.textContent = 'Select bank account...';
+      trigger.classList.add('placeholder');
+      document.getElementById('transferBankAccount').value = '';
+    }
+  }
+
+  // Close modal - X button
+  if (closeTransferBtn) {
+    closeTransferBtn.addEventListener('click', closeTransferModalFunc);
+  }
+
+  // Close modal - Cancel button
+  if (cancelTransferBtn) {
+    cancelTransferBtn.addEventListener('click', closeTransferModalFunc);
+  }
+
+  // Close modal - Click overlay
+  if (transferModalOverlay) {
+    transferModalOverlay.addEventListener('click', closeTransferModalFunc);
+  }
+
+  // Submit form
+  if (submitTransferBtn) {
+    submitTransferBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const date = document.getElementById('transferDateValue').value;
+      const amount = document.getElementById('transferAmount').value;
+      const envelope = document.getElementById('transferEnvelope').value;
+      const bankAccount = document.getElementById('transferBankAccount').value;
+      const notes = document.getElementById('transferNotes').value;
+
+      // Validate required fields
+      if (!date || !amount || !envelope || !bankAccount) {
+        alert('Please fill in all required fields');
+        return;
+      }
+
+      // Close modal
+      closeTransferModalFunc();
+
+      // Show success message (placeholder)
+      alert('Transfer created!\nAmount: $' + amount + '\nTo Envelope: ' + envelope + '\nFrom Account: ' + bankAccount);
     });
   }
 });
