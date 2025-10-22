@@ -1823,3 +1823,236 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// ============================================================================
+// Initialize Transfer from Available Modal Datepicker
+// ============================================================================
+function initializeTransferFromAvailableDatepicker() {
+  const datepicker = document.getElementById('transferFromAvailableDatepicker');
+  if (!datepicker) return;
+
+  const input = datepicker.querySelector('.sakura-datepicker-input');
+  const inputField = datepicker.querySelector('#transferFromAvailableDate');
+  const hiddenInput = datepicker.querySelector('#transferFromAvailableDateValue');
+  const dropdown = datepicker.querySelector('.sakura-datepicker-dropdown');
+  const daysContainer = datepicker.querySelector('.sakura-datepicker-days');
+  const monthDisplay = datepicker.querySelector('.sakura-datepicker-month');
+  const prevBtn = datepicker.querySelector('.sakura-datepicker-prev');
+  const nextBtn = datepicker.querySelector('.sakura-datepicker-next');
+
+  let currentDate = new Date();
+  let selectedDate = null;
+
+  // Open dropdown when clicking on calendar icon
+  const calendarIcon = input.querySelector('i');
+  if (calendarIcon) {
+    calendarIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      datepicker.classList.add('active');
+      renderCalendar();
+    });
+  }
+
+  // Open dropdown when clicking on input field
+  inputField.addEventListener('focus', () => {
+    datepicker.classList.add('active');
+    renderCalendar();
+  });
+
+  // Handle manual date input
+  inputField.addEventListener('input', (e) => {
+    const value = e.target.value;
+    const dateMatch = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+
+    if (dateMatch) {
+      const month = parseInt(dateMatch[1]) - 1;
+      const day = parseInt(dateMatch[2]);
+      const year = parseInt(dateMatch[3]);
+      const parsedDate = new Date(year, month, day);
+
+      if (parsedDate.getMonth() === month &&
+          parsedDate.getDate() === day &&
+          parsedDate.getFullYear() === year) {
+        selectedDate = parsedDate;
+        currentDate = new Date(parsedDate);
+
+        const yyyy = selectedDate.getFullYear();
+        const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(selectedDate.getDate()).padStart(2, '0');
+        hiddenInput.value = `${yyyy}-${mm}-${dd}`;
+
+        if (datepicker.classList.contains('active')) {
+          renderCalendar();
+        }
+      }
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!datepicker.contains(e.target)) {
+      datepicker.classList.remove('active');
+    }
+  });
+
+  // Previous month
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+  });
+
+  // Next month
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+  });
+
+  function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    monthDisplay.textContent = new Date(year, month, 1).toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric'
+    });
+
+    daysContainer.innerHTML = '';
+
+    const firstDay = new Date(year, month, 1);
+    const startDate = new Date(firstDay);
+    startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+    for (let i = 0; i < 42; i++) {
+      const day = new Date(startDate);
+      day.setDate(startDate.getDate() + i);
+
+      const dayElement = document.createElement('div');
+      dayElement.className = 'sakura-datepicker-day';
+      dayElement.textContent = day.getDate();
+
+      if (day.getMonth() !== month) {
+        dayElement.classList.add('other-month');
+      }
+
+      const today = new Date();
+      if (day.toDateString() === today.toDateString()) {
+        dayElement.classList.add('today');
+      }
+
+      if (selectedDate && day.toDateString() === selectedDate.toDateString()) {
+        dayElement.classList.add('selected');
+      }
+
+      dayElement.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectedDate = new Date(day);
+
+        inputField.value = selectedDate.toLocaleDateString('en-US', {
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric'
+        });
+
+        const yyyy = selectedDate.getFullYear();
+        const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(selectedDate.getDate()).padStart(2, '0');
+        hiddenInput.value = `${yyyy}-${mm}-${dd}`;
+
+        datepicker.classList.remove('active');
+        renderCalendar();
+      });
+
+      daysContainer.appendChild(dayElement);
+    }
+  }
+
+  renderCalendar();
+}
+
+// ============================================================================
+// Transfer from Available Modal Management
+// ============================================================================
+document.addEventListener('DOMContentLoaded', function() {
+  const transferModal = document.getElementById('transferFromAvailableModal');
+  const openTransferBtn = document.getElementById('openTransferFromAvailableModal');
+  const closeTransferBtn = document.getElementById('closeTransferFromAvailableModal');
+  const cancelTransferBtn = document.getElementById('cancelTransferFromAvailable');
+  const submitTransferBtn = document.getElementById('submitTransferFromAvailable');
+  const transferModalOverlay = transferModal?.querySelector('.sakura-modal-overlay');
+
+  // Initialize transfer datepicker
+  initializeTransferFromAvailableDatepicker();
+
+  // Open modal
+  if (openTransferBtn) {
+    openTransferBtn.addEventListener('click', function() {
+      transferModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // Close modal function
+  function closeTransferModalFunc() {
+    if (!transferModal) return;
+
+    transferModal.classList.remove('show');
+    document.body.style.overflow = '';
+
+    // Reset form
+    document.getElementById('transferFromAvailableDate').value = '';
+    document.getElementById('transferFromAvailableDateValue').value = '';
+    document.getElementById('transferFromAvailableAmount').value = '';
+    document.getElementById('transferFromAvailableNotes').value = '';
+
+    // Reset bank account select
+    const bankSelect = document.getElementById('transferFromAvailableBankAccountSelect');
+    if (bankSelect) {
+      const trigger = bankSelect.querySelector('.sakura-custom-select-trigger');
+      trigger.textContent = 'Select bank account...';
+      trigger.classList.add('placeholder');
+      document.getElementById('transferFromAvailableBankAccount').value = '';
+    }
+  }
+
+  // Close modal - X button
+  if (closeTransferBtn) {
+    closeTransferBtn.addEventListener('click', closeTransferModalFunc);
+  }
+
+  // Close modal - Cancel button
+  if (cancelTransferBtn) {
+    cancelTransferBtn.addEventListener('click', closeTransferModalFunc);
+  }
+
+  // Close modal - Click overlay
+  if (transferModalOverlay) {
+    transferModalOverlay.addEventListener('click', closeTransferModalFunc);
+  }
+
+  // Submit form
+  if (submitTransferBtn) {
+    submitTransferBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const date = document.getElementById('transferFromAvailableDateValue').value;
+      const amount = document.getElementById('transferFromAvailableAmount').value;
+      const bankAccount = document.getElementById('transferFromAvailableBankAccount').value;
+      const notes = document.getElementById('transferFromAvailableNotes').value;
+
+      // Validate required fields
+      if (!date || !amount || !bankAccount) {
+        alert('Please fill in all required fields');
+        return;
+      }
+
+      // Close modal
+      closeTransferModalFunc();
+
+      // Show success message (placeholder)
+      alert('Transfer created!\nAmount: $' + amount + '\nFrom Available to Groceries\nBank Account: ' + bankAccount);
+    });
+  }
+});
