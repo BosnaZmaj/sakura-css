@@ -116,7 +116,7 @@
                     <p>Manage your budget categories and track spending</p>
                 </div>
                 <div class="sakura-page-header-actions">
-                    <button class="sakura-btn sakura-btn--primary">
+                    <button class="sakura-btn sakura-btn--primary" id="openCreateEnvelopeModal">
                         <i class="bi bi-plus-lg"></i>
                         Create Envelope
                     </button>
@@ -580,6 +580,233 @@
         </main>
     </div>
 
+    <!-- Create Envelope Modal -->
+    <div id="createEnvelopeModal" class="sakura-modal">
+        <div class="sakura-modal-overlay"></div>
+        <div class="sakura-modal-content sakura-modal-content--medium">
+            <div class="sakura-modal-header">
+                <h3 class="sakura-modal-title">Create New Envelope</h3>
+                <button class="sakura-modal-close" aria-label="Close modal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="sakura-modal-body">
+                <form id="createEnvelopeForm">
+                    <div class="sakura-form-grid">
+                    <!-- Envelope Name -->
+                    <div class="sakura-form-group sakura-form-group--full">
+                        <label for="envelopeName" class="sakura-form-label">
+                            Envelope Name <span class="sakura-required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="envelopeName"
+                            name="envelopeName"
+                            class="sakura-input"
+                            placeholder="e.g., Groceries, Entertainment, Utilities"
+                            required
+                        >
+                    </div>
+
+                    <!-- Category -->
+                    <div class="sakura-form-group sakura-form-group--full">
+                        <label for="envelopeCategory" class="sakura-form-label">
+                            Category <span class="sakura-optional">(optional)</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="envelopeCategory"
+                            name="envelopeCategory"
+                            class="sakura-input"
+                            placeholder="e.g., Food & Dining, Bills, Leisure"
+                        >
+                    </div>
+
+                    <!-- Monthly Budget -->
+                    <div class="sakura-form-group">
+                        <label for="envelopeBudget" class="sakura-form-label">
+                            Monthly Budget <span class="sakura-required">*</span>
+                        </label>
+                        <div class="sakura-input-with-prefix">
+                            <span class="sakura-input-prefix">$</span>
+                            <input
+                                type="number"
+                                id="envelopeBudget"
+                                name="envelopeBudget"
+                                class="sakura-input sakura-input-with-prefix-input"
+                                placeholder="0.00"
+                                step="0.01"
+                                min="0"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Icon Selection -->
+                    <div class="sakura-form-group" style="max-width: 250px;">
+                        <label for="envelopeIcon" class="sakura-form-label">
+                            Icon <span class="sakura-required">*</span>
+                        </label>
+                        <div class="sakura-custom-select" id="envelopeIconSelect">
+                            <div class="sakura-custom-select-trigger placeholder">Select an icon...</div>
+                            <div class="sakura-custom-select-dropdown">
+                                <div class="sakura-custom-select-option" data-value="bi-cart">
+                                    <i class="bi bi-cart sakura-option-icon"></i>
+                                    Cart (Groceries)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-tv">
+                                    <i class="bi bi-tv sakura-option-icon"></i>
+                                    TV (Entertainment)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-car-front">
+                                    <i class="bi bi-car-front sakura-option-icon"></i>
+                                    Car (Transportation)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-house">
+                                    <i class="bi bi-house sakura-option-icon"></i>
+                                    House (Utilities)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-building">
+                                    <i class="bi bi-building sakura-option-icon"></i>
+                                    Building (Rent/Housing)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-heart-pulse">
+                                    <i class="bi bi-heart-pulse sakura-option-icon"></i>
+                                    Heart Pulse (Healthcare)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-cup-hot">
+                                    <i class="bi bi-cup-hot sakura-option-icon"></i>
+                                    Coffee Cup (Dining Out)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-bag">
+                                    <i class="bi bi-bag sakura-option-icon"></i>
+                                    Bag (Shopping)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-shield-check">
+                                    <i class="bi bi-shield-check sakura-option-icon"></i>
+                                    Shield (Insurance)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-phone">
+                                    <i class="bi bi-phone sakura-option-icon"></i>
+                                    Phone (Communication)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-activity">
+                                    <i class="bi bi-activity sakura-option-icon"></i>
+                                    Activity (Fitness)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-arrow-repeat">
+                                    <i class="bi bi-arrow-repeat sakura-option-icon"></i>
+                                    Arrows (Subscriptions)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-heart">
+                                    <i class="bi bi-heart sakura-option-icon"></i>
+                                    Heart (Pet Care)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-book">
+                                    <i class="bi bi-book sakura-option-icon"></i>
+                                    Book (Education)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-gift">
+                                    <i class="bi bi-gift sakura-option-icon"></i>
+                                    Gift (Gifts)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-piggy-bank">
+                                    <i class="bi bi-piggy-bank sakura-option-icon"></i>
+                                    Piggy Bank (Savings)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-wallet2">
+                                    <i class="bi bi-wallet2 sakura-option-icon"></i>
+                                    Wallet (Personal)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-tools">
+                                    <i class="bi bi-tools sakura-option-icon"></i>
+                                    Tools (Maintenance)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-briefcase">
+                                    <i class="bi bi-briefcase sakura-option-icon"></i>
+                                    Briefcase (Work)
+                                </div>
+                                <div class="sakura-custom-select-option" data-value="bi-star">
+                                    <i class="bi bi-star sakura-option-icon"></i>
+                                    Star (Other)
+                                </div>
+                            </div>
+                            <input type="hidden" id="envelopeIcon" name="envelopeIcon" required>
+                        </div>
+                    </div>
+
+                    <!-- Color Selection -->
+                    <div class="sakura-form-group sakura-form-group--full">
+                        <label class="sakura-form-label">
+                            Envelope Color <span class="sakura-required">*</span>
+                        </label>
+                        <div class="sakura-color-dot-picker">
+                            <label class="sakura-color-dot" title="Purple">
+                                <input type="radio" name="envelopeColor" value="#8b5cf6" required>
+                                <span class="sakura-dot" style="background-color: #8b5cf6;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Blue">
+                                <input type="radio" name="envelopeColor" value="#3b82f6" required>
+                                <span class="sakura-dot" style="background-color: #3b82f6;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Cyan">
+                                <input type="radio" name="envelopeColor" value="#06b6d4" required>
+                                <span class="sakura-dot" style="background-color: #06b6d4;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Pink">
+                                <input type="radio" name="envelopeColor" value="#ec4899" required>
+                                <span class="sakura-dot" style="background-color: #ec4899;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Orange">
+                                <input type="radio" name="envelopeColor" value="#f59e0b" required>
+                                <span class="sakura-dot" style="background-color: #f59e0b;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Green">
+                                <input type="radio" name="envelopeColor" value="#10b981" required>
+                                <span class="sakura-dot" style="background-color: #10b981;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Red">
+                                <input type="radio" name="envelopeColor" value="#ef4444" required>
+                                <span class="sakura-dot" style="background-color: #ef4444;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Violet">
+                                <input type="radio" name="envelopeColor" value="#a855f7" required>
+                                <span class="sakura-dot" style="background-color: #a855f7;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Sky">
+                                <input type="radio" name="envelopeColor" value="#0ea5e9" required>
+                                <span class="sakura-dot" style="background-color: #0ea5e9;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Indigo">
+                                <input type="radio" name="envelopeColor" value="#6366f1" required>
+                                <span class="sakura-dot" style="background-color: #6366f1;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Teal">
+                                <input type="radio" name="envelopeColor" value="#14b8a6" required>
+                                <span class="sakura-dot" style="background-color: #14b8a6;"></span>
+                            </label>
+                            <label class="sakura-color-dot" title="Amber">
+                                <input type="radio" name="envelopeColor" value="#f97316" required>
+                                <span class="sakura-dot" style="background-color: #f97316;"></span>
+                            </label>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+            <div class="sakura-modal-footer">
+                <button type="button" class="sakura-btn sakura-btn--outline" data-close-modal>
+                    Cancel
+                </button>
+                <button type="submit" form="createEnvelopeForm" class="sakura-btn sakura-btn--primary">
+                    <i class="bi bi-plus-lg"></i>
+                    Create Envelope
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="src/sakura.js"></script>
+    <script src="src/transactions-manager.js"></script>
 </body>
 </html>

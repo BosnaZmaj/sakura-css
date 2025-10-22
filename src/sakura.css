@@ -4621,6 +4621,87 @@
     margin-right: 8px;
   }
 
+  /* Envelope icon selector colors */
+  .sakura-custom-select-option[data-value="bi-cart"] .sakura-option-icon {
+    color: #8b5cf6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-tv"] .sakura-option-icon {
+    color: #3b82f6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-car-front"] .sakura-option-icon {
+    color: #06b6d4 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-house"] .sakura-option-icon {
+    color: #ec4899 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-building"] .sakura-option-icon {
+    color: #f59e0b !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-heart-pulse"] .sakura-option-icon {
+    color: #10b981 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-cup-hot"] .sakura-option-icon {
+    color: #ef4444 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-bag"] .sakura-option-icon {
+    color: #a855f7 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-shield-check"] .sakura-option-icon {
+    color: #0ea5e9 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-phone"] .sakura-option-icon {
+    color: #6366f1 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-activity"] .sakura-option-icon {
+    color: #14b8a6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-arrow-repeat"] .sakura-option-icon {
+    color: #f97316 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-heart"] .sakura-option-icon {
+    color: #84cc16 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-book"] .sakura-option-icon {
+    color: #d946ef !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-gift"] .sakura-option-icon {
+    color: #fb7185 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-piggy-bank"] .sakura-option-icon {
+    color: #10b981 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-wallet2"] .sakura-option-icon {
+    color: #8b5cf6 !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-tools"] .sakura-option-icon {
+    color: #64748b !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-briefcase"] .sakura-option-icon {
+    color: #1e293b !important;
+  }
+
+  .sakura-custom-select-option[data-value="bi-star"] .sakura-option-icon {
+    color: #fbbf24 !important;
+  }
+
   /* Scrollbar styling for dropdown */
   .sakura-custom-select-dropdown::-webkit-scrollbar {
     width: 6px;
@@ -11048,8 +11129,8 @@
   }
 
   .sakura-search-input-large {
-    @apply w-full py-4 pr-4 border border-gray-300 rounded-lg text-lg bg-gray-50;
-    padding-left: 3rem;
+    @apply w-full py-2.5 pr-4 border border-gray-300 rounded-lg text-base bg-gray-50;
+    padding-left: 2.75rem;
     font-family: var(--font-body);
     transition: all 0.2s ease;
   }
@@ -12287,7 +12368,6 @@
     border-radius: 24px;
     max-width: 680px;
     width: 100%;
-    min-height: 800px;
     max-height: 94vh;
     overflow: hidden;
     display: flex;
@@ -12367,7 +12447,6 @@
   .sakura-modal-body {
     padding: 26px 32px;
     overflow-y: auto;
-    flex: 1;
   }
 
   .sakura-modal-footer {
@@ -12377,6 +12456,9 @@
     padding: 20px 32px;
     border-top: 1px solid rgba(226, 232, 240, 0.6);
     background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(248, 250, 252, 0.8) 100%);
+    border-radius: 0 0 24px 24px;
+    margin: 0;
+    width: 100%;
   }
 
   /* Transaction Form Styles */
@@ -12445,7 +12527,8 @@
     z-index: 2;
   }
 
-  .sakura-input--with-prefix {
+  .sakura-input--with-prefix,
+  .sakura-input-with-prefix-input {
     padding-left: 2rem !important;
   }
 
@@ -12873,6 +12956,41 @@
 
   .sakura-help-example strong {
     color: var(--gray-900);
+  }
+
+  /* Color Dot Picker - Option 1 */
+  .sakura-color-dot-picker {
+    @apply flex flex-wrap gap-3 mt-2;
+  }
+
+  .sakura-color-dot {
+    @apply cursor-pointer transition-all;
+    position: relative;
+    display: inline-block;
+  }
+
+  .sakura-color-dot input[type="radio"] {
+    @apply hidden;
+  }
+
+  .sakura-dot {
+    @apply rounded-full transition-all;
+    display: block;
+    width: 26px;
+    height: 26px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 2px solid transparent;
+  }
+
+  .sakura-color-dot:hover .sakura-dot {
+    transform: scale(1.15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-color-dot input[type="radio"]:checked + .sakura-dot {
+    box-shadow: 0 0 0 3px white, 0 0 0 5px var(--secondary), 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
+    border: 2px solid white;
   }
 
 }

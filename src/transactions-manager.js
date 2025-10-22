@@ -2056,3 +2056,151 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// ============================================
+// CREATE ENVELOPE MODAL HANDLERS
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+  const createEnvelopeModal = document.getElementById('createEnvelopeModal');
+  const openCreateEnvelopeBtn = document.getElementById('openCreateEnvelopeModal');
+  const closeCreateEnvelopeBtn = createEnvelopeModal?.querySelector('.sakura-modal-close');
+  const createEnvelopeForm = document.getElementById('createEnvelopeForm');
+  const createEnvelopeModalOverlay = createEnvelopeModal?.querySelector('.sakura-modal-overlay');
+  const cancelCreateEnvelopeBtn = createEnvelopeModal?.querySelector('[data-close-modal]');
+
+  // Initialize custom icon dropdown
+  const iconSelect = document.getElementById('envelopeIconSelect');
+  if (iconSelect) {
+    const trigger = iconSelect.querySelector('.sakura-custom-select-trigger');
+    const dropdown = iconSelect.querySelector('.sakura-custom-select-dropdown');
+    const options = iconSelect.querySelectorAll('.sakura-custom-select-option');
+    const hiddenInput = iconSelect.querySelector('#envelopeIcon');
+
+    // Toggle dropdown
+    trigger.addEventListener('click', function() {
+      iconSelect.classList.toggle('open');
+    });
+
+    // Select option
+    options.forEach(option => {
+      option.addEventListener('click', function() {
+        const value = this.getAttribute('data-value');
+        const icon = this.querySelector('.sakura-option-icon').cloneNode(true);
+        const text = this.textContent.trim();
+
+        // Update trigger with icon and text
+        trigger.innerHTML = '';
+        trigger.appendChild(icon);
+        trigger.appendChild(document.createTextNode(' ' + text));
+        trigger.classList.remove('placeholder');
+
+        // Update hidden input
+        hiddenInput.value = value;
+
+        // Close dropdown
+        iconSelect.classList.remove('open');
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!iconSelect.contains(e.target)) {
+        iconSelect.classList.remove('open');
+      }
+    });
+  }
+
+  // Open modal
+  if (openCreateEnvelopeBtn) {
+    openCreateEnvelopeBtn.addEventListener('click', function() {
+      createEnvelopeModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // Close modal function
+  function closeCreateEnvelopeModalFunc() {
+    if (!createEnvelopeModal) return;
+
+    createEnvelopeModal.classList.remove('show');
+    document.body.style.overflow = '';
+
+    // Reset form
+    if (createEnvelopeForm) {
+      createEnvelopeForm.reset();
+    }
+
+    // Reset icon dropdown
+    if (iconSelect) {
+      const trigger = iconSelect.querySelector('.sakura-custom-select-trigger');
+      trigger.textContent = 'Select an icon...';
+      trigger.classList.add('placeholder');
+      document.getElementById('envelopeIcon').value = '';
+    }
+  }
+
+  // Close modal - X button
+  if (closeCreateEnvelopeBtn) {
+    closeCreateEnvelopeBtn.addEventListener('click', closeCreateEnvelopeModalFunc);
+  }
+
+  // Close modal - Cancel button
+  if (cancelCreateEnvelopeBtn) {
+    cancelCreateEnvelopeBtn.addEventListener('click', closeCreateEnvelopeModalFunc);
+  }
+
+  // Close modal - Click overlay
+  if (createEnvelopeModalOverlay) {
+    createEnvelopeModalOverlay.addEventListener('click', closeCreateEnvelopeModalFunc);
+  }
+
+  // Submit form
+  if (createEnvelopeForm) {
+    createEnvelopeForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const envelopeName = document.getElementById('envelopeName').value;
+      const envelopeCategory = document.getElementById('envelopeCategory').value;
+      const envelopeBudget = document.getElementById('envelopeBudget').value;
+      const envelopeIcon = document.getElementById('envelopeIcon').value;
+      const envelopeColor = document.querySelector('input[name="envelopeColor"]:checked')?.value;
+
+      // Validate required fields
+      if (!envelopeName || !envelopeBudget || !envelopeIcon || !envelopeColor) {
+        alert('Please fill in all required fields');
+        return;
+      }
+
+      // Validate budget is a positive number
+      if (parseFloat(envelopeBudget) <= 0) {
+        alert('Budget must be greater than 0');
+        return;
+      }
+
+      // Close modal
+      closeCreateEnvelopeModalFunc();
+
+      // Show success message (placeholder - in production this would be an API call)
+      alert('Envelope Created!\n\nName: ' + envelopeName +
+            '\nCategory: ' + (envelopeCategory || 'None') +
+            '\nMonthly Budget: $' + parseFloat(envelopeBudget).toFixed(2) +
+            '\nIcon: ' + envelopeIcon +
+            '\nColor: ' + envelopeColor);
+
+      // In production, this would:
+      // 1. Send POST request to API with envelope data
+      // 2. Receive new envelope ID from API
+      // 3. Add new envelope card to the grid dynamically
+      // 4. Show success notification
+
+      console.log('Envelope data:', {
+        name: envelopeName,
+        category: envelopeCategory,
+        budget: parseFloat(envelopeBudget),
+        icon: envelopeIcon,
+        color: envelopeColor
+      });
+    });
+  }
+});
