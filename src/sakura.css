@@ -12401,6 +12401,15 @@
     padding-bottom: 16px;
   }
 
+  /* Medium Modal Modifier - For Create Envelope and similar forms */
+  .sakura-modal-content--medium {
+    min-height: 700px;
+  }
+
+  .sakura-modal-content--medium .sakura-modal-body {
+    flex: 1;
+  }
+
   .sakura-modal-header {
     position: relative;
     z-index: 1;
@@ -12466,6 +12475,17 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+  }
+
+  /* Form Grid for Create Envelope Modal */
+  .sakura-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .sakura-form-group--full {
+    grid-column: 1 / -1;
   }
 
   .sakura-form-row {
