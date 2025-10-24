@@ -2203,4 +2203,141 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
+
+  // =====================================
+  // ADD INCOME SOURCE MODAL
+  // =====================================
+
+  const addIncomeModal = document.getElementById('addIncomeModal');
+  const openAddIncomeModalBtn = document.getElementById('openAddIncomeModal');
+  const addIncomeForm = document.getElementById('addIncomeForm');
+  const addIncomeModalCloseButtons = addIncomeModal ? addIncomeModal.querySelectorAll('[data-close-modal]') : [];
+  const addIncomeModalOverlay = addIncomeModal ? addIncomeModal.querySelector('.sakura-modal-overlay') : null;
+
+  // Initialize income modal custom dropdowns
+  if (addIncomeModal) {
+    const incomeFrequencySelect = addIncomeModal.querySelector('#incomeFrequencySelect');
+    const incomeAccountSelect = addIncomeModal.querySelector('#incomeAccountSelect');
+
+    if (incomeFrequencySelect) {
+      new CustomSelect(incomeFrequencySelect);
+    }
+
+    if (incomeAccountSelect) {
+      new CustomSelect(incomeAccountSelect);
+    }
+  }
+
+  // Open modal function
+  function openAddIncomeModalFunc() {
+    if (addIncomeModal) {
+      addIncomeModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  // Close modal function
+  function closeAddIncomeModalFunc() {
+    if (addIncomeModal) {
+      addIncomeModal.classList.remove('active');
+      document.body.style.overflow = '';
+
+      // Reset form
+      if (addIncomeForm) {
+        addIncomeForm.reset();
+        // Reset custom dropdowns
+        const customSelects = addIncomeModal.querySelectorAll('.sakura-custom-select');
+        customSelects.forEach(select => {
+          const trigger = select.querySelector('.sakura-custom-select-trigger');
+          const hiddenInput = select.querySelector('input[type="hidden"]');
+          if (trigger) {
+            trigger.textContent = trigger.dataset.placeholder || 'Select...';
+            trigger.classList.add('placeholder');
+          }
+          if (hiddenInput) {
+            hiddenInput.value = '';
+          }
+        });
+      }
+    }
+  }
+
+  // Open modal - Click button
+  if (openAddIncomeModalBtn) {
+    openAddIncomeModalBtn.addEventListener('click', openAddIncomeModalFunc);
+  }
+
+  // Close modal - Click close buttons
+  if (addIncomeModalCloseButtons.length > 0) {
+    addIncomeModalCloseButtons.forEach(button => {
+      button.addEventListener('click', closeAddIncomeModalFunc);
+    });
+  }
+
+  // Close modal - Press Escape
+  if (addIncomeModal) {
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && addIncomeModal.classList.contains('active')) {
+        closeAddIncomeModalFunc();
+      }
+    });
+  }
+
+  // Close modal - Click overlay
+  if (addIncomeModalOverlay) {
+    addIncomeModalOverlay.addEventListener('click', closeAddIncomeModalFunc);
+  }
+
+  // Submit form
+  if (addIncomeForm) {
+    addIncomeForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const incomeName = document.getElementById('incomeName').value;
+      const incomeCompany = document.getElementById('incomeCompany').value;
+      const incomeAmount = document.getElementById('incomeAmount').value;
+      const incomeFrequency = document.getElementById('incomeFrequency').value;
+      const incomeAccount = document.getElementById('incomeAccount').value;
+      const incomeNotes = document.getElementById('incomeNotes').value;
+
+      // Validate required fields
+      if (!incomeName || !incomeAmount || !incomeFrequency || !incomeAccount) {
+        alert('Please fill in all required fields');
+        return;
+      }
+
+      // Validate amount is a positive number
+      if (parseFloat(incomeAmount) <= 0) {
+        alert('Amount must be greater than 0');
+        return;
+      }
+
+      // Close modal
+      closeAddIncomeModalFunc();
+
+      // Show success message (placeholder - in production this would be an API call)
+      alert('Income Source Added!\n\nName: ' + incomeName +
+            '\nCompany: ' + (incomeCompany || 'Not specified') +
+            '\nAmount: $' + parseFloat(incomeAmount).toFixed(2) +
+            '\nFrequency: ' + incomeFrequency +
+            '\nAccount: ' + incomeAccount +
+            '\nNotes: ' + (incomeNotes || 'None'));
+
+      // In production, this would:
+      // 1. Send POST request to API with income source data
+      // 2. Receive new income source ID from API
+      // 3. Add new income source card to the grid dynamically
+      // 4. Show success notification
+
+      console.log('Income source data:', {
+        name: incomeName,
+        company: incomeCompany,
+        amount: parseFloat(incomeAmount),
+        frequency: incomeFrequency,
+        account: incomeAccount,
+        notes: incomeNotes
+      });
+    });
+  }
 });
