@@ -80,14 +80,16 @@ class CustomSelect {
     // Update trigger with icon and text
     this.selectedValue = option.dataset.value;
 
-    // Get the icon from the option if it exists
+    // Get the icon or bank logo from the option if it exists
     const optionIcon = option.querySelector('.sakura-option-icon');
-    if (optionIcon) {
-      const iconClone = optionIcon.cloneNode(true);
+    const bankLogo = option.querySelector('.sakura-bank-logo');
+
+    if (optionIcon || bankLogo) {
+      const iconClone = (optionIcon || bankLogo).cloneNode(true);
       this.trigger.innerHTML = '';
       this.trigger.appendChild(iconClone);
 
-      const textNode = document.createTextNode(option.textContent.trim());
+      const textNode = document.createTextNode(' ' + option.textContent.trim());
       this.trigger.appendChild(textNode);
     } else {
       this.trigger.textContent = option.textContent.trim();
@@ -2203,30 +2205,19 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
+});
 
-  // =====================================
-  // ADD INCOME SOURCE MODAL
-  // =====================================
-
+// =====================================
+// ADD INCOME SOURCE MODAL
+// =====================================
+document.addEventListener('DOMContentLoaded', function() {
   const addIncomeModal = document.getElementById('addIncomeModal');
   const openAddIncomeModalBtn = document.getElementById('openAddIncomeModal');
   const addIncomeForm = document.getElementById('addIncomeForm');
   const addIncomeModalCloseButtons = addIncomeModal ? addIncomeModal.querySelectorAll('[data-close-modal]') : [];
   const addIncomeModalOverlay = addIncomeModal ? addIncomeModal.querySelector('.sakura-modal-overlay') : null;
 
-  // Initialize income modal custom dropdowns
-  if (addIncomeModal) {
-    const incomeFrequencySelect = addIncomeModal.querySelector('#incomeFrequencySelect');
-    const incomeAccountSelect = addIncomeModal.querySelector('#incomeAccountSelect');
-
-    if (incomeFrequencySelect) {
-      new CustomSelect(incomeFrequencySelect);
-    }
-
-    if (incomeAccountSelect) {
-      new CustomSelect(incomeAccountSelect);
-    }
-  }
+  // Custom selects are initialized globally at line 1055-1062
 
   // Open modal function
   function openAddIncomeModalFunc() {

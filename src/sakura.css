@@ -4702,6 +4702,39 @@
     color: #fbbf24 !important;
   }
 
+  /* Frequency dropdown icons */
+  .sakura-custom-select-option[data-value="one-time"] .sakura-option-icon {
+    color: #f59e0b !important; /* Amber - single event */
+  }
+
+  .sakura-custom-select-option[data-value="weekly"] .sakura-option-icon {
+    color: #0ea5e9 !important; /* Sky blue - frequent */
+  }
+
+  .sakura-custom-select-option[data-value="bi-weekly"] .sakura-option-icon {
+    color: #3b82f6 !important; /* Blue - regular */
+  }
+
+  .sakura-custom-select-option[data-value="semi-monthly"] .sakura-option-icon {
+    color: #6366f1 !important; /* Indigo - twice a month */
+  }
+
+  .sakura-custom-select-option[data-value="monthly"] .sakura-option-icon {
+    color: #8b5cf6 !important; /* Purple - monthly cycle */
+  }
+
+  .sakura-custom-select-option[data-value="quarterly"] .sakura-option-icon {
+    color: #14b8a6 !important; /* Teal - quarterly */
+  }
+
+  .sakura-custom-select-option[data-value="semi-annually"] .sakura-option-icon {
+    color: #10b981 !important; /* Emerald - twice a year */
+  }
+
+  .sakura-custom-select-option[data-value="yearly"] .sakura-option-icon {
+    color: #059669 !important; /* Green - annual */
+  }
+
   /* Scrollbar styling for dropdown */
   .sakura-custom-select-dropdown::-webkit-scrollbar {
     width: 6px;
@@ -11986,7 +12019,8 @@
   }
 
   /* Show state */
-  .sakura-modal.show {
+  .sakura-modal.show,
+  .sakura-modal.active {
     display: flex;
   }
 
