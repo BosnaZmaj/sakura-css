@@ -13496,6 +13496,40 @@
     font-size: 14px;
   }
 
+  /* Income Source Card Modifier - Compact Size */
+  .sakura-income-sources-grid--compact {
+    gap: var(--space-5);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .sakura-income-source-card--compact {
+    padding: var(--space-5);
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-header {
+    margin-bottom: var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-icon i,
+  .sakura-income-source-card--compact .sakura-income-source-icon svg {
+    font-size: 24px;
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-amount {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-details {
+    margin-bottom: var(--space-3);
+  }
+
   /* Recent Income Section */
   .sakura-recent-income-section {
     margin-bottom: var(--space-8);
