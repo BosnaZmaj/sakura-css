@@ -2279,6 +2279,17 @@ document.addEventListener('DOMContentLoaded', function() {
     addIncomeModalOverlay.addEventListener('click', closeAddIncomeModalFunc);
   }
 
+  // Format amount input to show cents
+  const addIncomeAmountInput = document.getElementById('incomeAmount');
+  if (addIncomeAmountInput) {
+    addIncomeAmountInput.addEventListener('blur', function() {
+      const value = parseFloat(this.value);
+      if (!isNaN(value)) {
+        this.value = value.toFixed(2);
+      }
+    });
+  }
+
   // Submit form
   if (addIncomeForm) {
     addIncomeForm.addEventListener('submit', function(e) {
@@ -2327,6 +2338,316 @@ document.addEventListener('DOMContentLoaded', function() {
         amount: parseFloat(incomeAmount),
         frequency: incomeFrequency,
         account: incomeAccount,
+        notes: incomeNotes
+      });
+    });
+  }
+});
+
+// =====================================
+// VIEW/EDIT INCOME SOURCE MODAL
+// =====================================
+document.addEventListener('DOMContentLoaded', function() {
+  const viewIncomeModal = document.getElementById('viewIncomeModal');
+  const viewIncomeForm = document.getElementById('viewIncomeForm');
+  const viewIncomeModalCloseButtons = viewIncomeModal ? viewIncomeModal.querySelectorAll('[data-close-modal]') : [];
+  const viewIncomeModalOverlay = viewIncomeModal ? viewIncomeModal.querySelector('.sakura-modal-overlay') : null;
+  const deleteIncomeBtn = document.getElementById('deleteIncomeSource');
+
+  // Income source cards
+  const incomeSourceCards = document.querySelectorAll('.sakura-income-source-card');
+
+  // Demo data for income sources
+  const incomeSourcesData = {
+    'salary': {
+      name: 'Salary',
+      company: 'TechCorp Inc.',
+      amount: 3500.00,
+      frequency: 'monthly',
+      account: 'chase-checking',
+      notes: 'Monthly salary direct deposit',
+      status: 'active'
+    },
+    'freelance': {
+      name: 'Freelance Work',
+      company: 'Various Clients',
+      amount: 850.00,
+      frequency: 'one-time',
+      account: 'citi-checking',
+      notes: 'Variable freelance projects',
+      status: 'active'
+    },
+    'interest': {
+      name: 'Interest Income',
+      company: 'Savings Account',
+      amount: 12.50,
+      frequency: 'monthly',
+      account: 'chase-savings',
+      notes: 'Monthly interest from savings',
+      status: 'active'
+    }
+  };
+
+  // Update allocation totals
+  function updateAllocationTotals() {
+    const amountInput = document.getElementById('viewIncomeAmount');
+    const totalIncome = parseFloat(amountInput.value) || 0;
+
+    // Calculate total allocated from all allocation items
+    const allocationItems = document.querySelectorAll('.sakura-allocation-item');
+    let totalAllocated = 0;
+
+    allocationItems.forEach(item => {
+      const amountText = item.querySelector('.sakura-allocation-amount-value').textContent;
+      const amount = parseFloat(amountText.replace(/[$,]/g, ''));
+      totalAllocated += amount;
+
+      // Update percentage
+      const percentage = totalIncome > 0 ? ((amount / totalIncome) * 100).toFixed(1) : 0;
+      const percentageEl = item.querySelector('.sakura-allocation-envelope-percentage');
+      if (percentageEl) {
+        percentageEl.textContent = percentage + '%';
+      }
+    });
+
+    const remaining = totalIncome - totalAllocated;
+
+    // Update display
+    document.getElementById('totalIncome').textContent = '$' + totalIncome.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById('totalAllocated').textContent = '$' + totalAllocated.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById('totalRemaining').textContent = '$' + remaining.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    // Color code the remaining amount
+    const remainingEl = document.getElementById('totalRemaining');
+    remainingEl.classList.remove('remaining', 'allocated');
+    if (remaining >= 0) {
+      remainingEl.classList.add('remaining');
+    } else {
+      remainingEl.classList.add('allocated'); // Show in blue if over-allocated
+    }
+  }
+
+  // Setup remove allocation button handlers
+  function setupAllocationRemoveButtons() {
+    const removeButtons = document.querySelectorAll('.sakura-allocation-remove');
+    removeButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.closest('.sakura-allocation-item').remove();
+        updateAllocationTotals();
+      });
+    });
+  }
+
+  // Open modal function
+  function openViewIncomeModalFunc(data) {
+    if (viewIncomeModal) {
+      // Populate form with data
+      document.getElementById('viewIncomeName').value = data.name;
+      document.getElementById('viewIncomeCompany').value = data.company;
+      document.getElementById('viewIncomeAmount').value = data.amount.toFixed(2);
+      document.getElementById('viewIncomeNotes').value = data.notes || '';
+
+      // Update allocation totals based on income amount
+      updateAllocationTotals();
+
+      // Setup event listeners for allocations
+      setupAllocationRemoveButtons();
+
+      // Listen for income amount changes to update allocations
+      const amountInput = document.getElementById('viewIncomeAmount');
+      if (amountInput) {
+        // Remove any existing listener to avoid duplicates
+        const newAmountInput = amountInput.cloneNode(true);
+        amountInput.parentNode.replaceChild(newAmountInput, amountInput);
+
+        // Add the input listener to update allocations
+        newAmountInput.addEventListener('input', updateAllocationTotals);
+
+        // Add blur listener to format amount to 2 decimal places
+        newAmountInput.addEventListener('blur', function() {
+          const value = parseFloat(this.value);
+          if (!isNaN(value)) {
+            this.value = value.toFixed(2);
+          }
+        });
+      }
+
+      // Set frequency dropdown
+      const frequencySelect = document.getElementById('viewIncomeFrequencySelect');
+      const frequencyTrigger = frequencySelect.querySelector('.sakura-custom-select-trigger');
+      const frequencyOption = frequencySelect.querySelector(`[data-value="${data.frequency}"]`);
+      if (frequencyOption) {
+        const icon = frequencyOption.querySelector('.sakura-option-icon')?.cloneNode(true);
+        const text = frequencyOption.textContent.trim();
+        frequencyTrigger.innerHTML = '';
+        if (icon) {
+          frequencyTrigger.appendChild(icon);
+          frequencyTrigger.appendChild(document.createTextNode(' ' + text));
+        } else {
+          frequencyTrigger.textContent = text;
+        }
+        frequencyTrigger.classList.remove('placeholder');
+        document.getElementById('viewIncomeFrequency').value = data.frequency;
+      }
+
+      // Set account dropdown
+      const accountSelect = document.getElementById('viewIncomeAccountSelect');
+      const accountTrigger = accountSelect.querySelector('.sakura-custom-select-trigger');
+      const accountOption = accountSelect.querySelector(`[data-value="${data.account}"]`);
+      if (accountOption) {
+        const bankLogo = accountOption.querySelector('.sakura-bank-logo')?.cloneNode(true);
+        const text = accountOption.textContent.trim();
+        accountTrigger.innerHTML = '';
+        if (bankLogo) {
+          accountTrigger.appendChild(bankLogo);
+          accountTrigger.appendChild(document.createTextNode(' ' + text));
+        } else {
+          accountTrigger.textContent = text;
+        }
+        accountTrigger.classList.remove('placeholder');
+        document.getElementById('viewIncomeAccount').value = data.account;
+      }
+
+      // Set status radio
+      const statusRadio = document.querySelector(`input[name="viewIncomeStatus"][value="${data.status}"]`);
+      if (statusRadio) {
+        statusRadio.checked = true;
+      }
+
+      viewIncomeModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  // Close modal function
+  function closeViewIncomeModalFunc() {
+    if (viewIncomeModal) {
+      viewIncomeModal.classList.remove('active');
+      document.body.style.overflow = '';
+
+      // Reset form
+      if (viewIncomeForm) {
+        viewIncomeForm.reset();
+        // Reset custom dropdowns
+        const customSelects = viewIncomeModal.querySelectorAll('.sakura-custom-select');
+        customSelects.forEach(select => {
+          const trigger = select.querySelector('.sakura-custom-select-trigger');
+          const hiddenInput = select.querySelector('input[type="hidden"]');
+          if (trigger) {
+            trigger.textContent = 'Select...';
+            trigger.classList.add('placeholder');
+          }
+          if (hiddenInput) {
+            hiddenInput.value = '';
+          }
+        });
+      }
+    }
+  }
+
+  // Click on income source cards (but not the menu button)
+  incomeSourceCards.forEach((card, index) => {
+    card.addEventListener('click', function(e) {
+      // Don't open modal if clicking on menu button
+      if (e.target.closest('.sakura-income-source-menu')) {
+        return;
+      }
+
+      // Get the income source data based on card index
+      const dataKeys = Object.keys(incomeSourcesData);
+      const dataKey = dataKeys[index];
+      const data = incomeSourcesData[dataKey];
+
+      if (data) {
+        openViewIncomeModalFunc(data);
+      }
+    });
+  });
+
+  // Close modal - Click close buttons
+  if (viewIncomeModalCloseButtons.length > 0) {
+    viewIncomeModalCloseButtons.forEach(button => {
+      button.addEventListener('click', closeViewIncomeModalFunc);
+    });
+  }
+
+  // Close modal - Press Escape
+  if (viewIncomeModal) {
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && viewIncomeModal.classList.contains('active')) {
+        closeViewIncomeModalFunc();
+      }
+    });
+  }
+
+  // Close modal - Click overlay
+  if (viewIncomeModalOverlay) {
+    viewIncomeModalOverlay.addEventListener('click', closeViewIncomeModalFunc);
+  }
+
+  // Delete income source
+  if (deleteIncomeBtn) {
+    deleteIncomeBtn.addEventListener('click', function() {
+      if (confirm('Are you sure you want to delete this income source? This action cannot be undone.')) {
+        closeViewIncomeModalFunc();
+        alert('Income source deleted successfully!');
+        // In production, this would send a DELETE request to the API
+      }
+    });
+  }
+
+  // Submit form
+  if (viewIncomeForm) {
+    viewIncomeForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const incomeName = document.getElementById('viewIncomeName').value;
+      const incomeCompany = document.getElementById('viewIncomeCompany').value;
+      const incomeAmount = document.getElementById('viewIncomeAmount').value;
+      const incomeFrequency = document.getElementById('viewIncomeFrequency').value;
+      const incomeAccount = document.getElementById('viewIncomeAccount').value;
+      const incomeNotes = document.getElementById('viewIncomeNotes').value;
+      const incomeStatus = document.querySelector('input[name="viewIncomeStatus"]:checked').value;
+
+      // Validate required fields
+      if (!incomeName || !incomeAmount || !incomeFrequency || !incomeAccount) {
+        alert('Please fill in all required fields');
+        return;
+      }
+
+      // Validate amount is a positive number
+      if (parseFloat(incomeAmount) <= 0) {
+        alert('Amount must be greater than 0');
+        return;
+      }
+
+      // Close modal
+      closeViewIncomeModalFunc();
+
+      // Show success message (placeholder - in production this would be an API call)
+      alert('Income Source Updated!\n\nName: ' + incomeName +
+            '\nCompany: ' + (incomeCompany || 'Not specified') +
+            '\nAmount: $' + parseFloat(incomeAmount).toFixed(2) +
+            '\nFrequency: ' + incomeFrequency +
+            '\nAccount: ' + incomeAccount +
+            '\nStatus: ' + incomeStatus +
+            '\nNotes: ' + (incomeNotes || 'None'));
+
+      // In production, this would:
+      // 1. Send PUT request to API with updated income source data
+      // 2. Receive confirmation from API
+      // 3. Update the income source card in the grid dynamically
+      // 4. Show success notification
+
+      console.log('Updated income source data:', {
+        name: incomeName,
+        company: incomeCompany,
+        amount: parseFloat(incomeAmount),
+        frequency: incomeFrequency,
+        account: incomeAccount,
+        status: incomeStatus,
         notes: incomeNotes
       });
     });

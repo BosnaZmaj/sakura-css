@@ -5174,6 +5174,11 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 
+  /* Amount and Frequency row - narrower amount, wider frequency */
+  .sakura-form-row--amount-frequency {
+    grid-template-columns: 180px 1fr !important;
+  }
+
   /* First row with date, amount, merchant - optimized widths */
   .sakura-form-row-compact {
     grid-template-columns: 155px 140px 1fr;
@@ -12437,6 +12442,7 @@
 
   /* Medium Modal Modifier - For Create Envelope and similar forms */
   .sakura-modal-content--medium {
+    max-width: 780px;
     min-height: 700px;
   }
 
@@ -12522,6 +12528,228 @@
     grid-column: 1 / -1;
   }
 
+  /* Toggle Group for Status */
+  .sakura-toggle-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .sakura-toggle-option {
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .sakura-toggle-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .sakura-toggle-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    background: white;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #6b7280;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-toggle-label i {
+    font-size: 1.125rem;
+  }
+
+  .sakura-toggle-option:hover .sakura-toggle-label {
+    border-color: #d1d5db;
+    background: #f9fafb;
+  }
+
+  .sakura-toggle-option input[type="radio"]:checked + .sakura-toggle-label {
+    border-color: #10b981;
+    background: #ecfdf5;
+    color: #10b981;
+  }
+
+  .sakura-toggle-option input[type="radio"][value="paused"]:checked + .sakura-toggle-label {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    color: #3b82f6;
+  }
+
+  .sakura-toggle-option input[type="radio"]:focus + .sakura-toggle-label {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+  }
+
+  .sakura-toggle-option input[type="radio"][value="paused"]:focus + .sakura-toggle-label {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  /* Envelope Allocations Section */
+  .sakura-envelope-allocations-section {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .sakura-allocation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  .sakura-allocation-header .sakura-form-label {
+    margin-bottom: 0;
+  }
+
+  .sakura-btn--sm {
+    padding: 6px 12px;
+    font-size: 0.8125rem;
+  }
+
+  .sakura-allocation-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 16px;
+    background: #f9fafb;
+    border-radius: 8px;
+  }
+
+  .sakura-allocation-summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sakura-allocation-label {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .sakura-allocation-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .sakura-allocation-value.total {
+    color: #1e293b;
+  }
+
+  .sakura-allocation-value.allocated {
+    color: #3b82f6;
+  }
+
+  .sakura-allocation-value.remaining {
+    color: #10b981;
+  }
+
+  .sakura-allocations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sakura-allocation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-allocation-item:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  }
+
+  .sakura-allocation-envelope {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .sakura-allocation-envelope-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+  }
+
+  .sakura-allocation-envelope-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sakura-allocation-envelope-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .sakura-allocation-envelope-percentage {
+    font-size: 0.8125rem;
+    color: #6b7280;
+  }
+
+  .sakura-allocation-amount {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sakura-allocation-amount-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .sakura-allocation-remove {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-allocation-remove:hover {
+    background: #fee2e2;
+    color: #ef4444;
+  }
+
+  .sakura-allocation-remove i {
+    font-size: 0.875rem;
+  }
+
   .sakura-form-row {
     display: flex;
     gap: 20px;
@@ -12537,6 +12765,12 @@
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 20px;
+  }
+
+  .sakura-form-row--amount-frequency {
+    display: grid !important;
+    grid-template-columns: 180px 1fr 1fr !important;
+    gap: 16px;
   }
 
   .sakura-form-field {
