@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Sakura Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body class="sakura-dashboard-body">
+    <!-- Dashboard Header -->
+    <header class="sakura-dashboard-header">
+        <div class="sakura-dashboard-header-container">
+            <div class="sakura-header-left">
+                <div class="sakura-navbar-brand">
+                    <img src="dist/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+                </div>
+                <nav class="sakura-breadcrumb">
+                    <span class="sakura-breadcrumb-item">Analytics</span>
+                </nav>
+            </div>
+            <div class="sakura-header-right">
+                <div class="sakura-notification-container">
+                    <button class="sakura-notification-btn">
+                        <i class="bi bi-bell"></i>
+                        <span class="sakura-notification-badge">3</span>
+                    </button>
+                    <div class="sakura-notification-dropdown">
+                        <div class="sakura-notification-header">
+                            <h3>Notifications</h3>
+                            <button class="sakura-notification-mark-all">Mark all as read</button>
+                        </div>
+                        <div class="sakura-notification-list">
+                            <!-- Budget Alert -->
+                            <div class="sakura-notification-item unread" data-type="budget">
+                                <div class="sakura-notification-icon budget">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Entertainment envelope at 90%</div>
+                                    <div class="sakura-notification-message">You have $50 remaining in your Entertainment budget</div>
+                                    <div class="sakura-notification-time">2 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+
+                            <!-- Goal Update -->
+                            <div class="sakura-notification-item unread" data-type="goal">
+                                <div class="sakura-notification-icon goal">
+                                    <i class="bi bi-bullseye"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Emergency Fund milestone reached</div>
+                                    <div class="sakura-notification-message">Congratulations! Your Emergency Fund is now 50% complete</div>
+                                    <div class="sakura-notification-time">5 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+
+                            <!-- Income Notification -->
+                            <div class="sakura-notification-item unread" data-type="income">
+                                <div class="sakura-notification-icon income">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Salary deposited</div>
+                                    <div class="sakura-notification-message">$3,500.00 has been added to your Chase Bank account</div>
+                                    <div class="sakura-notification-time">Yesterday at 9:15 AM</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="sakura-notification-footer">
+                            <a href="notifications.html" class="sakura-notification-view-all">
+                                View All Notifications
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sakura-user-menu">
+                    <img src="https://avatar.iran.liara.run/public" alt="User" class="sakura-user-avatar">
+                    <div class="sakura-user-info">
+                        <span class="sakura-user-name">Pablo Peso</span>
+                        <span class="sakura-user-email">pablo@sakura.com</span>
+                    </div>
+                    <button class="sakura-user-menu-toggle">
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="sakura-user-dropdown">
+                        <button class="sakura-dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Settings
+                        </button>
+                        <div class="sakura-dropdown-divider"></div>
+                        <button class="sakura-dropdown-item danger">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Log Off
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="sakura-dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sakura-dashboard-sidebar">
+            <nav class="sakura-sidebar-nav">
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Dashboard</span>
+                    <a href="dashboard.html" class="sakura-nav-item">
+                        <i class="bi bi-grid"></i>
+                        <span>Overview</span>
+                    </a>
+                    <a href="envelopes.html" class="sakura-nav-item">
+                        <i class="bi bi-envelope"></i>
+                        <span>Envelopes</span>
+                    </a>
+                    <a href="transactions.html" class="sakura-nav-item">
+                        <i class="bi bi-arrow-left-right"></i>
+                        <span>Transactions</span>
+                    </a>
+                </div>
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Budget</span>
+                    <a href="income.html" class="sakura-nav-item">
+                        <i class="bi bi-cash-coin"></i>
+                        <span>Income</span>
+                    </a>
+                    <a href="analytics.html" class="sakura-nav-item sakura-nav-item--active">
+                        <i class="bi bi-graph-up"></i>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="goals.html" class="sakura-nav-item">
+                        <i class="bi bi-bullseye"></i>
+                        <span>Goals</span>
+                    </a>
+                    <a href="calendar.html" class="sakura-nav-item">
+                        <i class="bi bi-calendar"></i>
+                        <span>Calendar</span>
+                    </a>
+                    <a href="#" class="sakura-nav-item">
+                        <i class="bi bi-bar-chart"></i>
+                        <span>Reports</span>
+                    </a>
+                </div>
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Settings</span>
+                    <a href="#" class="sakura-nav-item">
+                        <i class="bi bi-gear"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="sakura-dashboard-main">
+            <!-- Page Header -->
+            <section class="sakura-page-header">
+                <div class="sakura-page-header-content">
+                    <h1>Expense Analytics</h1>
+                    <p>Insights, trends, and spending analysis to help you stay on budget</p>
+                </div>
+                <div class="sakura-page-header-actions">
+                    <button class="sakura-btn sakura-btn--outline">
+                        <i class="bi bi-download"></i>
+                        Export
+                    </button>
+                    <button class="sakura-btn sakura-btn--primary" id="openAddExpenseModal">
+                        <i class="bi bi-plus-lg"></i>
+                        Add Expense
+                    </button>
+                </div>
+            </section>
+
+            <!-- Expense Summary Cards -->
+            <section class="sakura-transaction-summary">
+                <div class="sakura-summary-card" style="--summary-color: #ef4444;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+                    <div class="sakura-summary-amount">$3,287.45</div>
+                    <div class="sakura-summary-label">Total Expenses (This Month)</div>
+                    <div class="sakura-summary-change negative">+8% from last month</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #f59e0b;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-calendar-week"></i>
+                    </div>
+                    <div class="sakura-summary-amount">$3,075.00</div>
+                    <div class="sakura-summary-label">Last Month</div>
+                    <div class="sakura-summary-change neutral">Total spent</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #8b5cf6;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-graph-down"></i>
+                    </div>
+                    <div class="sakura-summary-amount">$3,180.00</div>
+                    <div class="sakura-summary-label">Average Monthly</div>
+                    <div class="sakura-summary-change neutral">Last 6 months</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #06b6d4;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-tags"></i>
+                    </div>
+                    <div class="sakura-summary-amount">8</div>
+                    <div class="sakura-summary-label">Active Categories</div>
+                    <div class="sakura-summary-change neutral">Tracked this month</div>
+                </div>
+            </section>
+
+            <!-- Spending Insights -->
+            <section class="sakura-insights-section">
+                <div class="sakura-section-header">
+                    <h2>Spending Insights</h2>
+                    <div class="sakura-date-range-selector">
+                        <button class="sakura-date-range-btn active">This Month</button>
+                        <button class="sakura-date-range-btn">Last Month</button>
+                        <button class="sakura-date-range-btn">Last 3 Months</button>
+                        <button class="sakura-date-range-btn">Last 6 Months</button>
+                    </div>
+                </div>
+
+                <div class="sakura-insights-grid">
+                    <div class="sakura-insight-card">
+                        <div class="sakura-insight-icon" style="--insight-color: #ef4444;">
+                            <i class="bi bi-arrow-up-circle"></i>
+                        </div>
+                        <div class="sakura-insight-content">
+                            <h3 class="sakura-insight-title">Dining spending increased</h3>
+                            <p class="sakura-insight-text">You spent <strong>23% more</strong> on dining out this month compared to last month ($285.50 vs $232.10)</p>
+                        </div>
+                    </div>
+
+                    <div class="sakura-insight-card">
+                        <div class="sakura-insight-icon" style="--insight-color: #10b981;">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <div class="sakura-insight-content">
+                            <h3 class="sakura-insight-title">Transportation under budget</h3>
+                            <p class="sakura-insight-text">Great job! You're <strong>16% under budget</strong> on transportation ($420.15 of $500.00)</p>
+                        </div>
+                    </div>
+
+                    <div class="sakura-insight-card">
+                        <div class="sakura-insight-icon" style="--insight-color: #f59e0b;">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+                        <div class="sakura-insight-content">
+                            <h3 class="sakura-insight-title">Groceries nearing limit</h3>
+                            <p class="sakura-insight-text">You've used <strong>92% of your grocery budget</strong> with 15 days remaining this month</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Spending Trends Chart -->
+            <section class="sakura-analytics-section">
+                <div class="sakura-section-header">
+                    <h2>Spending Trends</h2>
+                    <p class="sakura-section-description">Your expense patterns over the last 6 months</p>
+                </div>
+
+                <div class="sakura-analytics-chart sakura-analytics-chart--trends">
+                    <div class="sakura-chart-header">
+                        <div class="sakura-chart-legend">
+                            <span class="sakura-legend-item">
+                                <span class="sakura-legend-color" style="background: #ef4444;"></span>
+                                Total Expenses
+                            </span>
+                            <span class="sakura-legend-item">
+                                <span class="sakura-legend-color" style="background: #8b5cf6;"></span>
+                                Average
+                            </span>
+                        </div>
+                    </div>
+                    <div class="sakura-chart-placeholder">
+                        <div class="sakura-chart-bars">
+                            <div class="sakura-chart-bar" style="height: 65%;" data-label="Aug" data-value="$2,850"></div>
+                            <div class="sakura-chart-bar" style="height: 72%;" data-label="Sep" data-value="$3,100"></div>
+                            <div class="sakura-chart-bar" style="height: 68%;" data-label="Oct" data-value="$2,980"></div>
+                            <div class="sakura-chart-bar" style="height: 75%;" data-label="Nov" data-value="$3,210"></div>
+                            <div class="sakura-chart-bar" style="height: 70%;" data-label="Dec" data-value="$3,075"></div>
+                            <div class="sakura-chart-bar active" style="height: 78%;" data-label="Jan" data-value="$3,287"></div>
+                        </div>
+                        <div class="sakura-chart-baseline"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category Breakdown & Top Merchants -->
+            <div class="sakura-analytics-row">
+                <!-- Category Breakdown -->
+                <section class="sakura-analytics-section sakura-analytics-section--half">
+                    <div class="sakura-section-header">
+                        <h2>Category Breakdown</h2>
+                        <p class="sakura-section-description">Where your money goes</p>
+                    </div>
+
+                    <div class="sakura-category-breakdown">
+                        <div class="sakura-category-breakdown-item">
+                            <div class="sakura-category-breakdown-bar" style="--category-width: 20%; --category-color: #10b981;">
+                                <span class="sakura-category-name">Groceries</span>
+                                <span class="sakura-category-amount">$645.80</span>
+                            </div>
+                            <span class="sakura-category-percent">20%</span>
+                        </div>
+                        <div class="sakura-category-breakdown-item">
+                            <div class="sakura-category-breakdown-bar" style="--category-width: 17%; --category-color: #8b5cf6;">
+                                <span class="sakura-category-name">Shopping</span>
+                                <span class="sakura-category-amount">$543.00</span>
+                            </div>
+                            <span class="sakura-category-percent">17%</span>
+                        </div>
+                        <div class="sakura-category-breakdown-item">
+                            <div class="sakura-category-breakdown-bar" style="--category-width: 13%; --category-color: #3b82f6;">
+                                <span class="sakura-category-name">Transportation</span>
+                                <span class="sakura-category-amount">$420.15</span>
+                            </div>
+                            <span class="sakura-category-percent">13%</span>
+                        </div>
+                        <div class="sakura-category-breakdown-item">
+                            <div class="sakura-category-breakdown-bar" style="--category-width: 9%; --category-color: #f59e0b;">
+                                <span class="sakura-category-name">Dining Out</span>
+                                <span class="sakura-category-amount">$285.50</span>
+                            </div>
+                            <span class="sakura-category-percent">9%</span>
+                        </div>
+                        <div class="sakura-category-breakdown-item">
+                            <div class="sakura-category-breakdown-bar" style="--category-width: 7%; --category-color: #06b6d4;">
+                                <span class="sakura-category-name">Utilities</span>
+                                <span class="sakura-category-amount">$215.00</span>
+                            </div>
+                            <span class="sakura-category-percent">7%</span>
+                        </div>
+                        <div class="sakura-category-breakdown-item">
+                            <div class="sakura-category-breakdown-bar" style="--category-width: 5%; --category-color: #ec4899;">
+                                <span class="sakura-category-name">Entertainment</span>
+                                <span class="sakura-category-amount">$178.00</span>
+                            </div>
+                            <span class="sakura-category-percent">5%</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Top Merchants -->
+                <section class="sakura-analytics-section sakura-analytics-section--half">
+                    <div class="sakura-section-header">
+                        <h2>Top Merchants</h2>
+                        <p class="sakura-section-description">Your most frequent vendors</p>
+                    </div>
+
+                    <div class="sakura-top-merchants-list">
+                        <div class="sakura-merchant-item">
+                            <div class="sakura-merchant-rank">1</div>
+                            <div class="sakura-merchant-logo">
+                                <img src="https://logo.clearbit.com/wholefoodsmarket.com" alt="Whole Foods">
+                            </div>
+                            <div class="sakura-merchant-info">
+                                <div class="sakura-merchant-name">Whole Foods Market</div>
+                                <div class="sakura-merchant-category">Groceries</div>
+                            </div>
+                            <div class="sakura-merchant-stats">
+                                <div class="sakura-merchant-amount">$487.25</div>
+                                <div class="sakura-merchant-count">8 transactions</div>
+                            </div>
+                        </div>
+
+                        <div class="sakura-merchant-item">
+                            <div class="sakura-merchant-rank">2</div>
+                            <div class="sakura-merchant-logo">
+                                <img src="https://logo.clearbit.com/amazon.com" alt="Amazon">
+                            </div>
+                            <div class="sakura-merchant-info">
+                                <div class="sakura-merchant-name">Amazon</div>
+                                <div class="sakura-merchant-category">Shopping</div>
+                            </div>
+                            <div class="sakura-merchant-stats">
+                                <div class="sakura-merchant-amount">$325.50</div>
+                                <div class="sakura-merchant-count">5 transactions</div>
+                            </div>
+                        </div>
+
+                        <div class="sakura-merchant-item">
+                            <div class="sakura-merchant-rank">3</div>
+                            <div class="sakura-merchant-logo">
+                                <img src="https://logo.clearbit.com/shell.com" alt="Shell">
+                            </div>
+                            <div class="sakura-merchant-info">
+                                <div class="sakura-merchant-name">Shell Gas Station</div>
+                                <div class="sakura-merchant-category">Transportation</div>
+                            </div>
+                            <div class="sakura-merchant-stats">
+                                <div class="sakura-merchant-amount">$280.00</div>
+                                <div class="sakura-merchant-count">4 transactions</div>
+                            </div>
+                        </div>
+
+                        <div class="sakura-merchant-item">
+                            <div class="sakura-merchant-rank">4</div>
+                            <div class="sakura-merchant-logo">
+                                <img src="https://logo.clearbit.com/starbucks.com" alt="Starbucks">
+                            </div>
+                            <div class="sakura-merchant-info">
+                                <div class="sakura-merchant-name">Starbucks</div>
+                                <div class="sakura-merchant-category">Dining Out</div>
+                            </div>
+                            <div class="sakura-merchant-stats">
+                                <div class="sakura-merchant-amount">$156.25</div>
+                                <div class="sakura-merchant-count">12 transactions</div>
+                            </div>
+                        </div>
+
+                        <div class="sakura-merchant-item">
+                            <div class="sakura-merchant-rank">5</div>
+                            <div class="sakura-merchant-logo">
+                                <img src="https://logo.clearbit.com/netflix.com" alt="Netflix">
+                            </div>
+                            <div class="sakura-merchant-info">
+                                <div class="sakura-merchant-name">Netflix</div>
+                                <div class="sakura-merchant-category">Entertainment</div>
+                            </div>
+                            <div class="sakura-merchant-stats">
+                                <div class="sakura-merchant-amount">$15.99</div>
+                                <div class="sakura-merchant-count">1 transaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Recent Expense Transactions -->
+            <section class="sakura-recent-expense-section">
+                <div class="sakura-section-header">
+                    <h2>Recent Expense Transactions</h2>
+                    <button class="sakura-btn sakura-btn--outline sakura-btn--sm">View All</button>
+                </div>
+
+                <div class="sakura-transaction-list">
+                    <!-- Transaction 1 -->
+                    <div class="sakura-transaction-item">
+                        <div class="sakura-transaction-icon">
+                            <img src="https://logo.clearbit.com/wholefoodsmarket.com" alt="Whole Foods">
+                        </div>
+                        <div class="sakura-transaction-details">
+                            <div class="sakura-transaction-name">Whole Foods Market</div>
+                            <div class="sakura-transaction-category">Groceries</div>
+                        </div>
+                        <div class="sakura-transaction-amount expense">
+                            -$127.43
+                            <div class="sakura-transaction-date">Jan 15</div>
+                        </div>
+                    </div>
+
+                    <!-- Transaction 2 -->
+                    <div class="sakura-transaction-item">
+                        <div class="sakura-transaction-icon">
+                            <img src="https://logo.clearbit.com/starbucks.com" alt="Starbucks">
+                        </div>
+                        <div class="sakura-transaction-details">
+                            <div class="sakura-transaction-name">Starbucks</div>
+                            <div class="sakura-transaction-category">Dining Out</div>
+                        </div>
+                        <div class="sakura-transaction-amount expense">
+                            -$12.50
+                            <div class="sakura-transaction-date">Jan 15</div>
+                        </div>
+                    </div>
+
+                    <!-- Transaction 3 -->
+                    <div class="sakura-transaction-item">
+                        <div class="sakura-transaction-icon">
+                            <img src="https://logo.clearbit.com/shell.com" alt="Shell">
+                        </div>
+                        <div class="sakura-transaction-details">
+                            <div class="sakura-transaction-name">Shell Gas Station</div>
+                            <div class="sakura-transaction-category">Transportation</div>
+                        </div>
+                        <div class="sakura-transaction-amount expense">
+                            -$55.00
+                            <div class="sakura-transaction-date">Jan 14</div>
+                        </div>
+                    </div>
+
+                    <!-- Transaction 4 -->
+                    <div class="sakura-transaction-item">
+                        <div class="sakura-transaction-icon">
+                            <img src="https://logo.clearbit.com/amazon.com" alt="Amazon">
+                        </div>
+                        <div class="sakura-transaction-details">
+                            <div class="sakura-transaction-name">Amazon Purchase</div>
+                            <div class="sakura-transaction-category">Shopping</div>
+                        </div>
+                        <div class="sakura-transaction-amount expense">
+                            -$89.99
+                            <div class="sakura-transaction-date">Jan 13</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="src/sakura.js"></script>
+</body>
+</html>
