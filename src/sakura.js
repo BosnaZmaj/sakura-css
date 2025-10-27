@@ -29,6 +29,7 @@ class SakuraFramework {
     this.setupNotificationDropdown();
     this.setupNotificationsPage();
     this.setupAnalyticsCharts();
+    this.initializeColoredDropdownIcons();
   }
 
   // Navigation functionality
@@ -2345,6 +2346,30 @@ class SakuraFramework {
 
     // Create the chart
     new Chart(canvas, config);
+  }
+
+  // Initialize colored dropdown icons automatically
+  initializeColoredDropdownIcons() {
+    // Find all dropdown option icons that don't already have the colored class
+    const optionIcons = document.querySelectorAll('.sakura-custom-select-option .sakura-option-icon:not(.sakura-option-icon--colored)');
+
+    optionIcons.forEach(icon => {
+      // Get the parent option element
+      const option = icon.closest('.sakura-custom-select-option');
+      if (!option) return;
+
+      // Get the data-value attribute
+      const dataValue = option.dataset.value;
+      if (!dataValue) return;
+
+      // Calculate color index based on data-value
+      const colorIndex = stringToColorIndex(dataValue);
+
+      // Add the colored modifier and color class
+      icon.classList.add('sakura-option-icon--colored', `color-${colorIndex}`);
+    });
+
+    console.log(`Initialized ${optionIcons.length} colored dropdown icons`);
   }
 
 }
