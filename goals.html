@@ -181,7 +181,7 @@
                         <i class="bi bi-download"></i>
                         Export
                     </button>
-                    <button class="sakura-btn sakura-btn--primary">
+                    <button class="sakura-btn sakura-btn--primary" id="openCreateGoalModal">
                         <i class="bi bi-plus-lg"></i>
                         Create Goal
                     </button>
@@ -302,6 +302,193 @@
         </main>
     </div>
 
+    <!-- Create Goal Modal -->
+    <div class="sakura-modal" id="createGoalModal">
+        <div class="sakura-modal-overlay"></div>
+        <div class="sakura-modal-content sakura-modal-content--medium">
+            <div class="sakura-modal-header">
+                <h2>Create New Goal</h2>
+                <button class="sakura-modal-close" data-close-modal>
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="sakura-modal-body">
+                <form id="createGoalForm">
+                    <!-- Goal Name -->
+                    <div class="sakura-form-group">
+                        <label for="goalName">Goal Name *</label>
+                        <input type="text" id="goalName" class="sakura-input" placeholder="e.g., Emergency Fund, Vacation" required>
+                    </div>
+
+                    <!-- Category & Icon Row -->
+                    <div class="sakura-form-row sakura-form-row--split">
+                        <!-- Category -->
+                        <div class="sakura-form-group">
+                            <label for="goalCategory">Category *</label>
+                            <div class="sakura-custom-select" id="goalCategorySelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select category...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="financial-security">
+                                        <i class="bi bi-shield-check sakura-option-icon"></i>
+                                        Financial Security
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="travel-leisure">
+                                        <i class="bi bi-airplane sakura-option-icon"></i>
+                                        Travel & Leisure
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="home-purchase">
+                                        <i class="bi bi-house sakura-option-icon"></i>
+                                        Home Purchase
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="education">
+                                        <i class="bi bi-mortarboard sakura-option-icon"></i>
+                                        Education
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="vehicle">
+                                        <i class="bi bi-car-front sakura-option-icon"></i>
+                                        Vehicle Purchase
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="investment">
+                                        <i class="bi bi-graph-up sakura-option-icon"></i>
+                                        Investment
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="wedding">
+                                        <i class="bi bi-heart sakura-option-icon"></i>
+                                        Wedding
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="other">
+                                        <i class="bi bi-star sakura-option-icon"></i>
+                                        Other
+                                    </div>
+                                </div>
+                                <input type="hidden" id="goalCategory" required>
+                            </div>
+                        </div>
+
+                        <!-- Icon Selection -->
+                        <div class="sakura-form-group">
+                            <label for="goalIcon">Icon *</label>
+                            <div class="sakura-custom-select" id="goalIconSelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select icon...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="currency-dollar">
+                                        <i class="bi bi-currency-dollar sakura-option-icon"></i>
+                                        Dollar Sign
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="piggy-bank">
+                                        <i class="bi bi-piggy-bank sakura-option-icon"></i>
+                                        Piggy Bank
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="geo-alt">
+                                        <i class="bi bi-geo-alt sakura-option-icon"></i>
+                                        Location Pin
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="house">
+                                        <i class="bi bi-house sakura-option-icon"></i>
+                                        House
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="car-front">
+                                        <i class="bi bi-car-front sakura-option-icon"></i>
+                                        Car
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="airplane">
+                                        <i class="bi bi-airplane sakura-option-icon"></i>
+                                        Airplane
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="mortarboard">
+                                        <i class="bi bi-mortarboard sakura-option-icon"></i>
+                                        Graduation Cap
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="heart">
+                                        <i class="bi bi-heart sakura-option-icon"></i>
+                                        Heart
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="trophy">
+                                        <i class="bi bi-trophy sakura-option-icon"></i>
+                                        Trophy
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="star">
+                                        <i class="bi bi-star sakura-option-icon"></i>
+                                        Star
+                                    </div>
+                                </div>
+                                <input type="hidden" id="goalIcon" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Target Amount & Target Date Row -->
+                    <div class="sakura-form-row sakura-form-row--amount-frequency">
+                        <!-- Target Amount -->
+                        <div class="sakura-form-group">
+                            <label for="goalTargetAmount">Target Amount *</label>
+                            <div class="sakura-input-with-prefix">
+                                <span class="sakura-input-prefix">$</span>
+                                <input type="number" id="goalTargetAmount" class="sakura-input sakura-input-with-prefix-input" step="0.01" placeholder="10000.00" required>
+                            </div>
+                        </div>
+
+                        <!-- Target Date -->
+                        <div class="sakura-form-group">
+                            <label for="goalTargetDate">Target Date *</label>
+                            <div class="sakura-datepicker" id="goalTargetDatepicker">
+                                <div class="sakura-datepicker-input">
+                                    <i class="bi bi-calendar3"></i>
+                                    <input type="text" id="goalTargetDate" class="sakura-input" placeholder="MM/DD/YYYY" required>
+                                    <input type="hidden" id="goalTargetDateValue">
+                                </div>
+                                <div class="sakura-datepicker-dropdown">
+                                    <div class="sakura-datepicker-header">
+                                        <button type="button" class="sakura-datepicker-prev"><i class="bi bi-chevron-left"></i></button>
+                                        <div class="sakura-datepicker-month"></div>
+                                        <button type="button" class="sakura-datepicker-next"><i class="bi bi-chevron-right"></i></button>
+                                    </div>
+                                    <div class="sakura-datepicker-weekdays">
+                                        <div class="sakura-datepicker-weekday">Sun</div>
+                                        <div class="sakura-datepicker-weekday">Mon</div>
+                                        <div class="sakura-datepicker-weekday">Tue</div>
+                                        <div class="sakura-datepicker-weekday">Wed</div>
+                                        <div class="sakura-datepicker-weekday">Thu</div>
+                                        <div class="sakura-datepicker-weekday">Fri</div>
+                                        <div class="sakura-datepicker-weekday">Sat</div>
+                                    </div>
+                                    <div class="sakura-datepicker-days"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Initial Contribution -->
+                    <div class="sakura-form-group">
+                        <label for="goalInitialAmount">Initial Contribution (Optional)</label>
+                        <div class="sakura-input-with-prefix">
+                            <span class="sakura-input-prefix">$</span>
+                            <input type="number" id="goalInitialAmount" class="sakura-input sakura-input-with-prefix-input" step="0.01" placeholder="0.00">
+                        </div>
+                        <p class="sakura-form-help">
+                            <i class="bi bi-info-circle"></i>
+                            Add starting funds to your goal (if any)
+                        </p>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="sakura-form-group">
+                        <label for="goalDescription">Description (Optional)</label>
+                        <textarea id="goalDescription" class="sakura-input sakura-textarea" rows="3" placeholder="Why is this goal important to you?"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="sakura-modal-footer">
+                <button type="button" class="sakura-btn sakura-btn--outline" data-close-modal>Cancel</button>
+                <button type="submit" form="createGoalForm" class="sakura-btn sakura-btn--primary">
+                    <i class="bi bi-plus-lg"></i>
+                    Create Goal
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="src/sakura.js"></script>
+    <script src="src/transactions-manager.js"></script>
 </body>
 </html>

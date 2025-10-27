@@ -19,6 +19,7 @@ class SakuraFramework {
     this.setupUserDropdown();
     this.setupNotificationDropdown();
     this.setupNotificationsPage();
+    this.setupAnalyticsCharts();
   }
 
   // Navigation functionality
@@ -221,6 +222,290 @@ class SakuraFramework {
       this.closeFeatureModal();
       this.openDemoModal();
     });
+
+    // Goal Categories Data
+    const goalCategories = [
+      { value: 'financial-security', label: 'Financial Security', icon: 'shield-check', bgColor: '#dcfdf4', textColor: '#059669' },
+      { value: 'travel-leisure', label: 'Travel & Leisure', icon: 'airplane', bgColor: '#dbeafe', textColor: '#2563eb' },
+      { value: 'home-purchase', label: 'Home Purchase', icon: 'house', bgColor: '#fef3c7', textColor: '#d97706' },
+      { value: 'education', label: 'Education', icon: 'mortarboard', bgColor: '#e0e7ff', textColor: '#4f46e5' },
+      { value: 'vehicle', label: 'Vehicle Purchase', icon: 'car-front', bgColor: '#ddd6fe', textColor: '#7c3aed' },
+      { value: 'investment', label: 'Investment', icon: 'graph-up', bgColor: '#dcfce7', textColor: '#16a34a' },
+      { value: 'wedding', label: 'Wedding', icon: 'heart', bgColor: '#fce7f3', textColor: '#db2777' },
+      { value: 'debt-payoff', label: 'Debt Payoff', icon: 'credit-card', bgColor: '#fee2e2', textColor: '#dc2626' },
+      { value: 'retirement', label: 'Retirement', icon: 'hourglass-split', bgColor: '#fed7aa', textColor: '#ea580c' },
+      { value: 'medical', label: 'Medical/Healthcare', icon: 'hospital', bgColor: '#fecaca', textColor: '#ef4444' },
+      { value: 'business', label: 'Business/Startup', icon: 'briefcase', bgColor: '#d1fae5', textColor: '#10b981' },
+      { value: 'entertainment', label: 'Entertainment/Hobby', icon: 'controller', bgColor: '#fbcfe8', textColor: '#ec4899' },
+      { value: 'other', label: 'Other', icon: 'star', bgColor: '#e5e7eb', textColor: '#6b7280' }
+    ];
+
+    // Goal Icons Data
+    const goalIcons = [
+      { value: 'currency-dollar', label: 'Dollar Sign', bgColor: '#dcfdf4', textColor: '#059669' },
+      { value: 'piggy-bank', label: 'Piggy Bank', bgColor: '#fce7f3', textColor: '#db2777' },
+      { value: 'geo-alt', label: 'Location Pin', bgColor: '#dbeafe', textColor: '#2563eb' },
+      { value: 'house', label: 'House', bgColor: '#fef3c7', textColor: '#d97706' },
+      { value: 'car-front', label: 'Car', bgColor: '#ddd6fe', textColor: '#7c3aed' },
+      { value: 'airplane', label: 'Airplane', bgColor: '#e0e7ff', textColor: '#4f46e5' },
+      { value: 'mortarboard', label: 'Graduation Cap', bgColor: '#dcfce7', textColor: '#16a34a' },
+      { value: 'heart', label: 'Heart', bgColor: '#fecdd3', textColor: '#e11d48' },
+      { value: 'trophy', label: 'Trophy', bgColor: '#fef08a', textColor: '#ca8a04' },
+      { value: 'star', label: 'Star', bgColor: '#fed7aa', textColor: '#ea580c' },
+      { value: 'gift', label: 'Gift', bgColor: '#fbcfe8', textColor: '#ec4899' },
+      { value: 'briefcase', label: 'Briefcase', bgColor: '#d1fae5', textColor: '#10b981' }
+    ];
+
+    // Create Goal Modal
+    const openCreateGoalBtn = document.getElementById('openCreateGoalModal');
+    const createGoalModal = document.getElementById('createGoalModal');
+    const closeGoalModalBtns = createGoalModal?.querySelectorAll('[data-close-modal]');
+    const createGoalForm = document.getElementById('createGoalForm');
+
+    // Populate category dropdown
+    const categoryDropdown = document.querySelector('#goalCategorySelect .sakura-custom-select-dropdown');
+    if (categoryDropdown) {
+      categoryDropdown.innerHTML = goalCategories.map(cat => `
+        <div class="sakura-custom-select-option" data-value="${cat.value}">
+          <i class="bi bi-${cat.icon} sakura-option-icon" style="background: ${cat.bgColor}; color: ${cat.textColor}; padding: 0.5rem; border-radius: 0.5rem;"></i>
+          ${cat.label}
+        </div>
+      `).join('');
+    }
+
+    // Populate icon dropdown
+    const iconDropdown = document.querySelector('#goalIconSelect .sakura-custom-select-dropdown');
+    if (iconDropdown) {
+      iconDropdown.innerHTML = goalIcons.map(icon => `
+        <div class="sakura-custom-select-option" data-value="${icon.value}">
+          <i class="bi bi-${icon.value} sakura-option-icon" style="background: ${icon.bgColor}; color: ${icon.textColor}; padding: 0.5rem; border-radius: 0.5rem;"></i>
+          ${icon.label}
+        </div>
+      `).join('');
+    }
+
+    // Initialize Goal Target Date Picker
+    const goalDatepicker = document.getElementById('goalTargetDatepicker');
+    if (goalDatepicker) {
+      const input = goalDatepicker.querySelector('.sakura-datepicker-input');
+      const inputField = goalDatepicker.querySelector('#goalTargetDate');
+      const hiddenInput = goalDatepicker.querySelector('#goalTargetDateValue');
+      const dropdown = goalDatepicker.querySelector('.sakura-datepicker-dropdown');
+      const daysContainer = goalDatepicker.querySelector('.sakura-datepicker-days');
+      const monthDisplay = goalDatepicker.querySelector('.sakura-datepicker-month');
+      const prevBtn = goalDatepicker.querySelector('.sakura-datepicker-prev');
+      const nextBtn = goalDatepicker.querySelector('.sakura-datepicker-next');
+
+      let currentDate = new Date();
+      let selectedDate = null;
+
+      // Open dropdown on icon click
+      const calendarIcon = input.querySelector('i');
+      if (calendarIcon) {
+        calendarIcon.addEventListener('click', (e) => {
+          e.stopPropagation();
+          goalDatepicker.classList.add('active');
+          renderGoalCalendar();
+        });
+      }
+
+      // Open dropdown on input focus
+      inputField.addEventListener('focus', () => {
+        goalDatepicker.classList.add('active');
+        renderGoalCalendar();
+      });
+
+      // Handle manual date input
+      inputField.addEventListener('input', (e) => {
+        const value = e.target.value;
+        const dateMatch = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+
+        if (dateMatch) {
+          const month = parseInt(dateMatch[1]) - 1;
+          const day = parseInt(dateMatch[2]);
+          const year = parseInt(dateMatch[3]);
+          const parsedDate = new Date(year, month, day);
+
+          if (parsedDate.getMonth() === month && parsedDate.getDate() === day && parsedDate.getFullYear() === year) {
+            selectedDate = parsedDate;
+            currentDate = new Date(parsedDate);
+            const yyyy = selectedDate.getFullYear();
+            const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(selectedDate.getDate()).padStart(2, '0');
+            hiddenInput.value = `${yyyy}-${mm}-${dd}`;
+            if (goalDatepicker.classList.contains('active')) {
+              renderGoalCalendar();
+            }
+          }
+        }
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!goalDatepicker.contains(e.target)) {
+          goalDatepicker.classList.remove('active');
+        }
+      });
+
+      // Previous month
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderGoalCalendar();
+      });
+
+      // Next month
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderGoalCalendar();
+      });
+
+      function renderGoalCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+
+        monthDisplay.textContent = new Date(year, month, 1).toLocaleDateString('en-US', {
+          month: 'long',
+          year: 'numeric'
+        });
+
+        daysContainer.innerHTML = '';
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+        // Previous month days
+        for (let i = firstDay - 1; i >= 0; i--) {
+          const day = daysInPrevMonth - i;
+          const dayEl = document.createElement('div');
+          dayEl.className = 'sakura-datepicker-day other-month';
+          dayEl.textContent = day;
+          daysContainer.appendChild(dayEl);
+        }
+
+        // Current month days
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dayEl = document.createElement('div');
+          dayEl.className = 'sakura-datepicker-day';
+          dayEl.textContent = day;
+
+          const dayDate = new Date(year, month, day);
+          const today = new Date();
+          if (dayDate.toDateString() === today.toDateString()) {
+            dayEl.classList.add('today');
+          }
+
+          if (selectedDate && dayDate.toDateString() === selectedDate.toDateString()) {
+            dayEl.classList.add('selected');
+          }
+
+          dayEl.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectedDate = dayDate;
+            const mm = String(month + 1).padStart(2, '0');
+            const dd = String(day).padStart(2, '0');
+            const yyyy = year;
+            inputField.value = `${mm}/${dd}/${yyyy}`;
+            hiddenInput.value = `${yyyy}-${mm}-${dd}`;
+            goalDatepicker.classList.remove('active');
+            renderGoalCalendar();
+          });
+
+          daysContainer.appendChild(dayEl);
+        }
+
+        // Next month days
+        const totalCells = daysContainer.children.length;
+        const remainingCells = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+        for (let day = 1; day <= remainingCells; day++) {
+          const dayEl = document.createElement('div');
+          dayEl.className = 'sakura-datepicker-day other-month';
+          dayEl.textContent = day;
+          daysContainer.appendChild(dayEl);
+        }
+      }
+    }
+
+    console.log('Create Goal Modal Setup:', {
+      button: !!openCreateGoalBtn,
+      modal: !!createGoalModal,
+      form: !!createGoalForm,
+      categories: goalCategories.length,
+      icons: goalIcons.length,
+      datepicker: !!goalDatepicker
+    });
+
+    if (openCreateGoalBtn && createGoalModal) {
+      openCreateGoalBtn.addEventListener('click', () => {
+        console.log('Create Goal button clicked!');
+        createGoalModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    if (closeGoalModalBtns && createGoalModal) {
+      closeGoalModalBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          console.log('Close button clicked');
+          createGoalModal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    if (createGoalModal) {
+      createGoalModal.addEventListener('click', (e) => {
+        if (e.target === createGoalModal) {
+          console.log('Overlay clicked');
+          createGoalModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && createGoalModal.classList.contains('active')) {
+          console.log('ESC pressed');
+          createGoalModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    if (createGoalForm && createGoalModal) {
+      createGoalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = {
+          name: document.getElementById('goalName').value,
+          category: document.getElementById('goalCategory').value,
+          targetAmount: document.getElementById('goalTargetAmount').value,
+          targetDate: document.getElementById('goalTargetDateValue').value,
+          icon: document.getElementById('goalIcon').value,
+          initialAmount: document.getElementById('goalInitialAmount').value || 0,
+          description: document.getElementById('goalDescription').value
+        };
+
+        console.log('Goal created:', formData);
+
+        // Close modal and reset form
+        createGoalModal.classList.remove('active');
+        document.body.style.overflow = '';
+        createGoalForm.reset();
+
+        // Reset custom selects
+        const customSelects = createGoalModal.querySelectorAll('.sakura-custom-select-trigger');
+        customSelects.forEach(trigger => {
+          trigger.textContent = trigger.classList.contains('placeholder') ?
+            trigger.dataset.placeholder || 'Select...' : 'Select...';
+          trigger.classList.add('placeholder');
+        });
+
+        // Show success message (you can enhance this)
+        alert('Goal created successfully!');
+      });
+    }
   }
 
   openFeatureModal(featureType) {
@@ -1496,6 +1781,555 @@ class SakuraFramework {
     // Update Unread filter count
     const unreadTab = document.querySelector('[data-filter="unread"] .sakura-filter-count');
     if (unreadTab) unreadTab.textContent = unreadCount.toString();
+  }
+
+  // Analytics charts setup with Chart.js
+  setupAnalyticsCharts() {
+    const spendingTrendsCanvas = document.getElementById('spendingTrendsChart');
+    const envelopeBreakdownCanvas = document.getElementById('envelopeBreakdownChart');
+    const topMerchantsCanvas = document.getElementById('topMerchantsChart');
+    const budgetVsActualCanvas = document.getElementById('budgetVsActualChart');
+
+    // Check if Chart.js is loaded
+    if (typeof Chart === 'undefined') {
+      console.warn('Chart.js is not loaded. Charts will not be rendered.');
+      return;
+    }
+
+    // Initialize Spending Trends Chart
+    if (spendingTrendsCanvas) {
+      this.initSpendingTrendsChart(spendingTrendsCanvas);
+    }
+
+    // Initialize Envelope Breakdown Chart
+    if (envelopeBreakdownCanvas) {
+      this.initEnvelopeBreakdownChart(envelopeBreakdownCanvas);
+    }
+
+    // Initialize Top Merchants Chart
+    if (topMerchantsCanvas) {
+      this.initTopMerchantsChart(topMerchantsCanvas);
+    }
+
+    // Initialize Budget vs Actual Chart
+    if (budgetVsActualCanvas) {
+      this.initBudgetVsActualChart(budgetVsActualCanvas);
+    }
+  }
+
+  // Spending Trends Line Chart
+  initSpendingTrendsChart(canvas) {
+
+    // Spending Trends Chart Data
+    const spendingData = {
+      labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
+      datasets: [
+        {
+          label: 'Total Expenses',
+          data: [2850, 3100, 2980, 3210, 3075, 3287],
+          backgroundColor: 'rgba(239, 68, 68, 0.1)',
+          borderColor: '#ef4444',
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#ef4444',
+          pointBorderColor: '#ffffff',
+          pointBorderWidth: 2,
+          pointHoverBackgroundColor: '#ef4444',
+          pointHoverBorderColor: '#ffffff',
+          pointHoverBorderWidth: 3
+        },
+        {
+          label: 'Average',
+          data: [3180, 3180, 3180, 3180, 3180, 3180],
+          backgroundColor: 'transparent',
+          borderColor: '#8b5cf6',
+          borderWidth: 2,
+          borderDash: [10, 5],
+          fill: false,
+          tension: 0,
+          pointRadius: 0,
+          pointHoverRadius: 0
+        }
+      ]
+    };
+
+    // Chart configuration
+    const config = {
+      type: 'line',
+      data: spendingData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            align: 'end',
+            labels: {
+              usePointStyle: true,
+              pointStyle: 'circle',
+              padding: 20,
+              font: {
+                family: 'Poppins, sans-serif',
+                size: 13,
+                weight: '500'
+              },
+              color: '#6b7280'
+            }
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            titleColor: '#1f2937',
+            bodyColor: '#6b7280',
+            borderColor: '#e5e7eb',
+            borderWidth: 1,
+            padding: 12,
+            boxPadding: 6,
+            usePointStyle: true,
+            titleFont: {
+              family: 'Poppins, sans-serif',
+              size: 14,
+              weight: '600'
+            },
+            bodyFont: {
+              family: 'Poppins, sans-serif',
+              size: 13,
+              weight: '500'
+            },
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                  label += '$' + context.parsed.y.toLocaleString();
+                }
+                return label;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            min: 2500,
+            max: 3500,
+            ticks: {
+              callback: function(value) {
+                return '$' + value.toLocaleString();
+              },
+              font: {
+                family: 'Poppins, sans-serif',
+                size: 12
+              },
+              color: '#9ca3af',
+              padding: 8
+            },
+            grid: {
+              color: 'rgba(229, 231, 235, 0.5)',
+              drawBorder: false
+            },
+            border: {
+              display: false
+            }
+          },
+          x: {
+            ticks: {
+              font: {
+                family: 'Poppins, sans-serif',
+                size: 12,
+                weight: '500'
+              },
+              color: '#6b7280',
+              padding: 8
+            },
+            grid: {
+              display: false
+            },
+            border: {
+              display: false
+            }
+          }
+        }
+      }
+    };
+
+    // Create the chart
+    new Chart(canvas, config);
+  }
+
+  // Envelope Breakdown Donut Chart
+  initEnvelopeBreakdownChart(canvas) {
+    // Envelope data
+    const envelopeData = {
+      labels: ['Groceries', 'Shopping', 'Transportation', 'Dining Out', 'Utilities', 'Entertainment'],
+      datasets: [{
+        data: [645.80, 543.00, 420.15, 285.50, 215.00, 178.00],
+        backgroundColor: [
+          '#10b981',
+          '#8b5cf6',
+          '#3b82f6',
+          '#f59e0b',
+          '#06b6d4',
+          '#ec4899'
+        ],
+        borderColor: '#ffffff',
+        borderWidth: 3,
+        hoverOffset: 8
+      }]
+    };
+
+    // Chart configuration
+    const config = {
+      type: 'doughnut',
+      data: envelopeData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1.2,
+        cutout: '65%',
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+              usePointStyle: true,
+              pointStyle: 'circle',
+              padding: 16,
+              font: {
+                family: 'Poppins, sans-serif',
+                size: 13,
+                weight: '500'
+              },
+              color: '#6b7280',
+              generateLabels: function(chart) {
+                const data = chart.data;
+                if (data.labels.length && data.datasets.length) {
+                  return data.labels.map((label, i) => {
+                    const value = data.datasets[0].data[i];
+                    const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                    const percentage = Math.round((value / total) * 100);
+                    return {
+                      text: `${label} (${percentage}%)`,
+                      fillStyle: data.datasets[0].backgroundColor[i],
+                      hidden: false,
+                      index: i
+                    };
+                  });
+                }
+                return [];
+              }
+            }
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            titleColor: '#1f2937',
+            bodyColor: '#6b7280',
+            borderColor: '#e5e7eb',
+            borderWidth: 1,
+            padding: 12,
+            boxPadding: 6,
+            usePointStyle: true,
+            titleFont: {
+              family: 'Poppins, sans-serif',
+              size: 14,
+              weight: '600'
+            },
+            bodyFont: {
+              family: 'Poppins, sans-serif',
+              size: 13,
+              weight: '500'
+            },
+            callbacks: {
+              label: function(context) {
+                const label = context.label || '';
+                const value = context.parsed;
+                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = Math.round((value / total) * 100);
+                return `${label}: $${value.toLocaleString()} (${percentage}%)`;
+              }
+            }
+          }
+        },
+        animation: {
+          animateRotate: true,
+          animateScale: true,
+          duration: 1000,
+          easing: 'easeInOutQuart'
+        }
+      }
+    };
+
+    // Create the chart
+    new Chart(canvas, config);
+  }
+
+  // Top Merchants Bar Chart
+  initTopMerchantsChart(canvas) {
+    // Merchant data
+    const merchantData = {
+      labels: ['Whole Foods', 'Amazon', 'Shell', 'Starbucks', 'Netflix'],
+      datasets: [{
+        label: 'Total Spent',
+        data: [487.25, 325.50, 280.00, 156.25, 15.99],
+        backgroundColor: [
+          'rgba(16, 185, 129, 0.8)',
+          'rgba(139, 92, 246, 0.8)',
+          'rgba(59, 130, 246, 0.8)',
+          'rgba(245, 158, 11, 0.8)',
+          'rgba(236, 72, 153, 0.8)'
+        ],
+        borderColor: [
+          '#10b981',
+          '#8b5cf6',
+          '#3b82f6',
+          '#f59e0b',
+          '#ec4899'
+        ],
+        borderWidth: 2,
+        borderRadius: 6
+      }]
+    };
+
+    // Chart configuration
+    const config = {
+      type: 'bar',
+      data: merchantData,
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1.2,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            titleColor: '#1f2937',
+            bodyColor: '#6b7280',
+            borderColor: '#e5e7eb',
+            borderWidth: 1,
+            padding: 12,
+            boxPadding: 6,
+            titleFont: {
+              family: 'Poppins, sans-serif',
+              size: 14,
+              weight: '600'
+            },
+            bodyFont: {
+              family: 'Poppins, sans-serif',
+              size: 13,
+              weight: '500'
+            },
+            callbacks: {
+              label: function(context) {
+                return 'Total: $' + context.parsed.x.toLocaleString();
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return '$' + value.toLocaleString();
+              },
+              font: {
+                family: 'Poppins, sans-serif',
+                size: 12
+              },
+              color: '#9ca3af',
+              padding: 8
+            },
+            grid: {
+              color: 'rgba(229, 231, 235, 0.5)',
+              drawBorder: false
+            },
+            border: {
+              display: false
+            }
+          },
+          y: {
+            ticks: {
+              font: {
+                family: 'Poppins, sans-serif',
+                size: 12,
+                weight: '500'
+              },
+              color: '#6b7280',
+              padding: 8
+            },
+            grid: {
+              display: false
+            },
+            border: {
+              display: false
+            }
+          }
+        }
+      }
+    };
+
+    // Create the chart
+    new Chart(canvas, config);
+  }
+
+  // Budget vs Actual Grouped Bar Chart
+  initBudgetVsActualChart(canvas) {
+    // Budget comparison data
+    const budgetData = {
+      labels: ['Groceries', 'Shopping', 'Transportation', 'Dining Out', 'Utilities', 'Entertainment'],
+      datasets: [
+        {
+          label: 'Budget',
+          data: [700, 600, 500, 300, 250, 200],
+          backgroundColor: 'rgba(203, 213, 225, 0.8)',
+          borderColor: '#cbd5e1',
+          borderWidth: 2,
+          borderRadius: 6
+        },
+        {
+          label: 'Actual',
+          data: [645.80, 543.00, 420.15, 285.50, 215.00, 178.00],
+          backgroundColor: 'rgba(59, 130, 246, 0.8)',
+          borderColor: '#3b82f6',
+          borderWidth: 2,
+          borderRadius: 6
+        }
+      ]
+    };
+
+    // Chart configuration
+    const config = {
+      type: 'bar',
+      data: budgetData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            align: 'end',
+            labels: {
+              usePointStyle: true,
+              pointStyle: 'circle',
+              padding: 20,
+              font: {
+                family: 'Poppins, sans-serif',
+                size: 13,
+                weight: '500'
+              },
+              color: '#6b7280'
+            }
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            titleColor: '#1f2937',
+            bodyColor: '#6b7280',
+            borderColor: '#e5e7eb',
+            borderWidth: 1,
+            padding: 12,
+            boxPadding: 6,
+            titleFont: {
+              family: 'Poppins, sans-serif',
+              size: 14,
+              weight: '600'
+            },
+            bodyFont: {
+              family: 'Poppins, sans-serif',
+              size: 13,
+              weight: '500'
+            },
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                  label += '$' + context.parsed.y.toLocaleString();
+                }
+                return label;
+              },
+              afterLabel: function(context) {
+                if (context.datasetIndex === 1) {
+                  const budgetValue = context.chart.data.datasets[0].data[context.dataIndex];
+                  const actualValue = context.parsed.y;
+                  const difference = actualValue - budgetValue;
+                  const percentage = ((difference / budgetValue) * 100).toFixed(1);
+                  if (difference < 0) {
+                    return 'Under budget by $' + Math.abs(difference).toLocaleString() + ' (' + Math.abs(percentage) + '%)';
+                  } else if (difference > 0) {
+                    return 'Over budget by $' + difference.toLocaleString() + ' (' + percentage + '%)';
+                  } else {
+                    return 'On budget';
+                  }
+                }
+                return '';
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return '$' + value.toLocaleString();
+              },
+              font: {
+                family: 'Poppins, sans-serif',
+                size: 12
+              },
+              color: '#9ca3af',
+              padding: 8
+            },
+            grid: {
+              color: 'rgba(229, 231, 235, 0.5)',
+              drawBorder: false
+            },
+            border: {
+              display: false
+            }
+          },
+          x: {
+            ticks: {
+              font: {
+                family: 'Poppins, sans-serif',
+                size: 12,
+                weight: '500'
+              },
+              color: '#6b7280',
+              padding: 8
+            },
+            grid: {
+              display: false
+            },
+            border: {
+              display: false
+            }
+          }
+        }
+      }
+    };
+
+    // Create the chart
+    new Chart(canvas, config);
   }
 
 }
