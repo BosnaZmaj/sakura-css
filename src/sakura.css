@@ -10927,6 +10927,48 @@
   }
 
   /* ===========================
+     ENVELOPE DRAG & DROP STYLES
+     =========================== */
+
+  /* Make draggable envelopes show grab cursor */
+  .sakura-envelope-card[draggable="true"] {
+    cursor: grab;
+    user-select: none;
+  }
+
+  /* Ensure cards have relative positioning for pseudo-elements */
+  .sakura-envelope-card {
+    position: relative;
+  }
+
+  /* Lift effect: Card being dragged */
+  .sakura-envelope-card--dragging {
+    opacity: 0.6;
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.25);
+    cursor: grabbing !important;
+    z-index: 1000;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* Smooth reorder: Other cards during drag */
+  .sakura-envelopes-grid--dragging .sakura-envelope-card:not(.sakura-envelope-card--dragging):not(.sakura-envelope-card--featured) {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Add smooth transition to all envelope cards */
+  .sakura-envelope-card {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s ease,
+                opacity 0.3s ease;
+  }
+
+  /* Prevent dragging the featured "Available" card */
+  .sakura-envelope-card--featured {
+    cursor: default !important;
+  }
+
+  /* ===========================
      TRANSACTIONS PAGE STYLES
      =========================== */
 

@@ -30,6 +30,7 @@ class SakuraFramework {
     this.setupNotificationsPage();
     this.setupAnalyticsCharts();
     this.initializeColoredDropdownIcons();
+    this.setupEnvelopeDragDrop();
   }
 
   // Navigation functionality
@@ -2370,6 +2371,192 @@ class SakuraFramework {
     });
 
     console.log(`Initialized ${optionIcons.length} colored dropdown icons`);
+  }
+
+  // Envelope drag and drop functionality
+  setupEnvelopeDragDrop() {
+    console.log('setupEnvelopeDragDrop called');
+
+    const envelopesGrid = document.querySelector('.sakura-envelopes-grid');
+    if (!envelopesGrid) {
+      console.log('No envelopes grid found');
+      return;
+    }
+
+    const draggableEnvelopes = envelopesGrid.querySelectorAll('.sakura-envelope-card[draggable="true"]');
+    console.log('Found draggable envelopes:', draggableEnvelopes.length);
+
+    if (draggableEnvelopes.length === 0) {
+      console.warn('No draggable envelopes found!');
+      return;
+    }
+
+    let draggedElement = null;
+    let draggedOverElement = null;
+    let isDragging = false;
+    let dragJustEnded = false;
+
+    // Load saved order from localStorage
+    this.loadEnvelopeOrder();
+
+    // Add drag event listeners to each draggable envelope
+    draggableEnvelopes.forEach(envelope => {
+      // Prevent click navigation on anchor tags during and after drag
+      if (envelope.tagName === 'A') {
+        envelope.addEventListener('click', function(e) {
+          if (isDragging || dragJustEnded) {
+            e.preventDefault();
+            return false;
+          }
+        });
+      }
+
+      // Drag start
+      envelope.addEventListener('dragstart', (e) => {
+        isDragging = true;
+        dragJustEnded = false;
+        draggedElement = envelope;
+        envelope.classList.add('sakura-envelope-card--dragging');
+        envelopesGrid.classList.add('sakura-envelopes-grid--dragging');
+
+        // For anchor tags, temporarily remove href to prevent browser link drag behavior
+        if (envelope.tagName === 'A' && envelope.href) {
+          envelope.dataset.originalHref = envelope.href;
+          envelope.removeAttribute('href');
+        }
+
+        // Prevent browser link drag/split-screen behavior
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('application/x-envelope-card', envelope.dataset.envelopeId);
+
+        console.log('Drag started:', envelope.dataset.envelopeId);
+      });
+
+      // Drag end
+      envelope.addEventListener('dragend', (e) => {
+        isDragging = false;
+        dragJustEnded = true;
+
+        envelope.classList.remove('sakura-envelope-card--dragging');
+        envelopesGrid.classList.remove('sakura-envelopes-grid--dragging');
+
+        // Restore href for anchor tags
+        if (envelope.tagName === 'A' && envelope.dataset.originalHref) {
+          envelope.setAttribute('href', envelope.dataset.originalHref);
+          delete envelope.dataset.originalHref;
+        }
+
+        // Remove all drag-over classes
+        document.querySelectorAll('.sakura-envelope-card--drag-over-before, .sakura-envelope-card--drag-over-after').forEach(el => {
+          el.classList.remove('sakura-envelope-card--drag-over-before', 'sakura-envelope-card--drag-over-after');
+        });
+
+        draggedElement = null;
+        draggedOverElement = null;
+
+        // Save the new order
+        this.saveEnvelopeOrder();
+
+        // Reset dragJustEnded flag after a short delay
+        setTimeout(() => {
+          dragJustEnded = false;
+        }, 100);
+      });
+
+      // Drag over
+      envelope.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+
+        if (!draggedElement || draggedElement === envelope) return;
+
+        // Don't allow dropping before the featured "Available" card
+        const featuredCard = envelopesGrid.querySelector('.sakura-envelope-card--featured');
+        if (envelope === featuredCard) return;
+
+        // Remove previous drag-over classes
+        document.querySelectorAll('.sakura-envelope-card--drag-over-before, .sakura-envelope-card--drag-over-after').forEach(el => {
+          el.classList.remove('sakura-envelope-card--drag-over-before', 'sakura-envelope-card--drag-over-after');
+        });
+
+        // Determine if we should insert before or after
+        // For grid layouts, use horizontal (X) position instead of vertical (Y)
+        const rect = envelope.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const envelopeMiddle = rect.left + rect.width / 2;
+
+        // Show insertion line AND move the element in real-time
+        if (mouseX < envelopeMiddle) {
+          envelope.classList.add('sakura-envelope-card--drag-over-before');
+          // Insert before
+          if (envelope !== draggedElement.nextSibling) {
+            envelopesGrid.insertBefore(draggedElement, envelope);
+          }
+        } else {
+          envelope.classList.add('sakura-envelope-card--drag-over-after');
+          // Insert after
+          if (envelope !== draggedElement.previousSibling) {
+            envelopesGrid.insertBefore(draggedElement, envelope.nextSibling);
+          }
+        }
+
+        draggedOverElement = envelope;
+      });
+
+      // Drag leave
+      envelope.addEventListener('dragleave', (e) => {
+        envelope.classList.remove('sakura-envelope-card--drag-over-before', 'sakura-envelope-card--drag-over-after');
+      });
+
+      // Drop
+      envelope.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // The reordering already happened in dragover, just clean up visual indicators
+        envelope.classList.remove('sakura-envelope-card--drag-over-before', 'sakura-envelope-card--drag-over-after');
+      });
+    });
+
+    console.log(`Initialized drag-and-drop for ${draggableEnvelopes.length} envelopes`);
+  }
+
+  // Save envelope order to localStorage
+  saveEnvelopeOrder() {
+    const envelopesGrid = document.querySelector('.sakura-envelopes-grid');
+    if (!envelopesGrid) return;
+
+    const envelopes = envelopesGrid.querySelectorAll('.sakura-envelope-card[data-envelope-id]');
+    const order = Array.from(envelopes).map(env => env.dataset.envelopeId);
+
+    localStorage.setItem('sakura-envelope-order', JSON.stringify(order));
+    console.log('Saved envelope order:', order);
+  }
+
+  // Load and apply saved envelope order
+  loadEnvelopeOrder() {
+    const envelopesGrid = document.querySelector('.sakura-envelopes-grid');
+    if (!envelopesGrid) return;
+
+    const savedOrder = localStorage.getItem('sakura-envelope-order');
+    if (!savedOrder) return;
+
+    try {
+      const order = JSON.parse(savedOrder);
+      const featuredCard = envelopesGrid.querySelector('.sakura-envelope-card--featured');
+
+      // Reorder envelopes based on saved order
+      order.forEach(envelopeId => {
+        const envelope = envelopesGrid.querySelector(`[data-envelope-id="${envelopeId}"]`);
+        if (envelope) {
+          envelopesGrid.appendChild(envelope);
+        }
+      });
+
+      console.log('Loaded envelope order:', order);
+    } catch (e) {
+      console.error('Failed to load envelope order:', e);
+    }
   }
 
 }
