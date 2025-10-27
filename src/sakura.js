@@ -1,6 +1,15 @@
 // Sakura CSS Framework JavaScript
 // Delightful interactions and animations for financial applications
 
+// Utility: Convert string to consistent color index (1-40)
+function stringToColorIndex(str, maxColors = 40) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return Math.abs(hash) % maxColors + 1;
+}
+
 class SakuraFramework {
   constructor() {
     this.init();
@@ -225,35 +234,35 @@ class SakuraFramework {
 
     // Goal Categories Data
     const goalCategories = [
-      { value: 'financial-security', label: 'Financial Security', icon: 'shield-check', bgColor: '#dcfdf4', textColor: '#059669' },
-      { value: 'travel-leisure', label: 'Travel & Leisure', icon: 'airplane', bgColor: '#dbeafe', textColor: '#2563eb' },
-      { value: 'home-purchase', label: 'Home Purchase', icon: 'house', bgColor: '#fef3c7', textColor: '#d97706' },
-      { value: 'education', label: 'Education', icon: 'mortarboard', bgColor: '#e0e7ff', textColor: '#4f46e5' },
-      { value: 'vehicle', label: 'Vehicle Purchase', icon: 'car-front', bgColor: '#ddd6fe', textColor: '#7c3aed' },
-      { value: 'investment', label: 'Investment', icon: 'graph-up', bgColor: '#dcfce7', textColor: '#16a34a' },
-      { value: 'wedding', label: 'Wedding', icon: 'heart', bgColor: '#fce7f3', textColor: '#db2777' },
-      { value: 'debt-payoff', label: 'Debt Payoff', icon: 'credit-card', bgColor: '#fee2e2', textColor: '#dc2626' },
-      { value: 'retirement', label: 'Retirement', icon: 'hourglass-split', bgColor: '#fed7aa', textColor: '#ea580c' },
-      { value: 'medical', label: 'Medical/Healthcare', icon: 'hospital', bgColor: '#fecaca', textColor: '#ef4444' },
-      { value: 'business', label: 'Business/Startup', icon: 'briefcase', bgColor: '#d1fae5', textColor: '#10b981' },
-      { value: 'entertainment', label: 'Entertainment/Hobby', icon: 'controller', bgColor: '#fbcfe8', textColor: '#ec4899' },
-      { value: 'other', label: 'Other', icon: 'star', bgColor: '#e5e7eb', textColor: '#6b7280' }
+      { value: 'financial-security', label: 'Financial Security', icon: 'shield-check' },
+      { value: 'travel-leisure', label: 'Travel & Leisure', icon: 'airplane' },
+      { value: 'home-purchase', label: 'Home Purchase', icon: 'house' },
+      { value: 'education', label: 'Education', icon: 'mortarboard' },
+      { value: 'vehicle', label: 'Vehicle Purchase', icon: 'car-front' },
+      { value: 'investment', label: 'Investment', icon: 'graph-up' },
+      { value: 'wedding', label: 'Wedding', icon: 'heart' },
+      { value: 'debt-payoff', label: 'Debt Payoff', icon: 'credit-card' },
+      { value: 'retirement', label: 'Retirement', icon: 'hourglass-split' },
+      { value: 'medical', label: 'Medical/Healthcare', icon: 'hospital' },
+      { value: 'business', label: 'Business/Startup', icon: 'briefcase' },
+      { value: 'entertainment', label: 'Entertainment/Hobby', icon: 'controller' },
+      { value: 'other', label: 'Other', icon: 'star' }
     ];
 
     // Goal Icons Data
     const goalIcons = [
-      { value: 'currency-dollar', label: 'Dollar Sign', bgColor: '#dcfdf4', textColor: '#059669' },
-      { value: 'piggy-bank', label: 'Piggy Bank', bgColor: '#fce7f3', textColor: '#db2777' },
-      { value: 'geo-alt', label: 'Location Pin', bgColor: '#dbeafe', textColor: '#2563eb' },
-      { value: 'house', label: 'House', bgColor: '#fef3c7', textColor: '#d97706' },
-      { value: 'car-front', label: 'Car', bgColor: '#ddd6fe', textColor: '#7c3aed' },
-      { value: 'airplane', label: 'Airplane', bgColor: '#e0e7ff', textColor: '#4f46e5' },
-      { value: 'mortarboard', label: 'Graduation Cap', bgColor: '#dcfce7', textColor: '#16a34a' },
-      { value: 'heart', label: 'Heart', bgColor: '#fecdd3', textColor: '#e11d48' },
-      { value: 'trophy', label: 'Trophy', bgColor: '#fef08a', textColor: '#ca8a04' },
-      { value: 'star', label: 'Star', bgColor: '#fed7aa', textColor: '#ea580c' },
-      { value: 'gift', label: 'Gift', bgColor: '#fbcfe8', textColor: '#ec4899' },
-      { value: 'briefcase', label: 'Briefcase', bgColor: '#d1fae5', textColor: '#10b981' }
+      { value: 'currency-dollar', label: 'Dollar Sign' },
+      { value: 'piggy-bank', label: 'Piggy Bank' },
+      { value: 'geo-alt', label: 'Location Pin' },
+      { value: 'house', label: 'House' },
+      { value: 'car-front', label: 'Car' },
+      { value: 'airplane', label: 'Airplane' },
+      { value: 'mortarboard', label: 'Graduation Cap' },
+      { value: 'heart', label: 'Heart' },
+      { value: 'trophy', label: 'Trophy' },
+      { value: 'star', label: 'Star' },
+      { value: 'gift', label: 'Gift' },
+      { value: 'briefcase', label: 'Briefcase' }
     ];
 
     // Create Goal Modal
@@ -262,26 +271,32 @@ class SakuraFramework {
     const closeGoalModalBtns = createGoalModal?.querySelectorAll('[data-close-modal]');
     const createGoalForm = document.getElementById('createGoalForm');
 
-    // Populate category dropdown
+    // Populate category dropdown with dynamic color assignment
     const categoryDropdown = document.querySelector('#goalCategorySelect .sakura-custom-select-dropdown');
     if (categoryDropdown) {
-      categoryDropdown.innerHTML = goalCategories.map(cat => `
-        <div class="sakura-custom-select-option" data-value="${cat.value}">
-          <i class="bi bi-${cat.icon} sakura-option-icon" style="background: ${cat.bgColor}; color: ${cat.textColor}; padding: 0.5rem; border-radius: 0.5rem;"></i>
-          ${cat.label}
-        </div>
-      `).join('');
+      categoryDropdown.innerHTML = goalCategories.map(cat => {
+        const colorClass = `color-${stringToColorIndex(cat.value)}`;
+        return `
+          <div class="sakura-custom-select-option" data-value="${cat.value}">
+            <i class="bi bi-${cat.icon} sakura-option-icon sakura-option-icon--colored ${colorClass}"></i>
+            ${cat.label}
+          </div>
+        `;
+      }).join('');
     }
 
-    // Populate icon dropdown
+    // Populate icon dropdown with dynamic color assignment
     const iconDropdown = document.querySelector('#goalIconSelect .sakura-custom-select-dropdown');
     if (iconDropdown) {
-      iconDropdown.innerHTML = goalIcons.map(icon => `
-        <div class="sakura-custom-select-option" data-value="${icon.value}">
-          <i class="bi bi-${icon.value} sakura-option-icon" style="background: ${icon.bgColor}; color: ${icon.textColor}; padding: 0.5rem; border-radius: 0.5rem;"></i>
-          ${icon.label}
-        </div>
-      `).join('');
+      iconDropdown.innerHTML = goalIcons.map(icon => {
+        const colorClass = `color-${stringToColorIndex(icon.value)}`;
+        return `
+          <div class="sakura-custom-select-option" data-value="${icon.value}">
+            <i class="bi bi-${icon.value} sakura-option-icon sakura-option-icon--colored ${colorClass}"></i>
+            ${icon.label}
+          </div>
+        `;
+      }).join('');
     }
 
     // Initialize Goal Target Date Picker

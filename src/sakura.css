@@ -4385,10 +4385,10 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     width: 100%;
     cursor: pointer;
-    color: #1e293b;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 8px;
+    color: #1e293b;
     user-select: none;
     outline: none !important;
     -webkit-tap-highlight-color: transparent;
@@ -4496,6 +4496,55 @@
     flex-shrink: 0;
   }
 
+  /* Colored icon modifier - adds background and adjusts spacing */
+  .sakura-option-icon--colored {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  /* Color Palette - 40 distinct color combinations */
+  /* Using !important to override parent hover/selected color */
+  .sakura-option-icon--colored.color-1 { background: #dcfce7; color: #15803d !important; }
+  .sakura-option-icon--colored.color-2 { background: #dbeafe; color: #1e40af !important; }
+  .sakura-option-icon--colored.color-3 { background: #fef3c7; color: #b45309 !important; }
+  .sakura-option-icon--colored.color-4 { background: #fce7f3; color: #be185d !important; }
+  .sakura-option-icon--colored.color-5 { background: #e0e7ff; color: #4338ca !important; }
+  .sakura-option-icon--colored.color-6 { background: #ddd6fe; color: #6b21a8 !important; }
+  .sakura-option-icon--colored.color-7 { background: #fed7aa; color: #c2410c !important; }
+  .sakura-option-icon--colored.color-8 { background: #d1fae5; color: #047857 !important; }
+  .sakura-option-icon--colored.color-9 { background: #fee2e2; color: #b91c1c !important; }
+  .sakura-option-icon--colored.color-10 { background: #fbcfe8; color: #be185d !important; }
+  .sakura-option-icon--colored.color-11 { background: #ccfbf1; color: #0f766e !important; }
+  .sakura-option-icon--colored.color-12 { background: #e0f2fe; color: #0369a1 !important; }
+  .sakura-option-icon--colored.color-13 { background: #fef9c3; color: #a16207 !important; }
+  .sakura-option-icon--colored.color-14 { background: #fecdd3; color: #be123c !important; }
+  .sakura-option-icon--colored.color-15 { background: #ede9fe; color: #5b21b6 !important; }
+  .sakura-option-icon--colored.color-16 { background: #fae8ff; color: #a21caf !important; }
+  .sakura-option-icon--colored.color-17 { background: #ffedd5; color: #c2410c !important; }
+  .sakura-option-icon--colored.color-18 { background: #dcfdf4; color: #059669 !important; }
+  .sakura-option-icon--colored.color-19 { background: #fecaca; color: #dc2626 !important; }
+  .sakura-option-icon--colored.color-20 { background: #fbcfe8; color: #db2777 !important; }
+  .sakura-option-icon--colored.color-21 { background: #a7f3d0; color: #065f46 !important; }
+  .sakura-option-icon--colored.color-22 { background: #bfdbfe; color: #1e3a8a !important; }
+  .sakura-option-icon--colored.color-23 { background: #fde68a; color: #92400e !important; }
+  .sakura-option-icon--colored.color-24 { background: #fda4af; color: #9f1239 !important; }
+  .sakura-option-icon--colored.color-25 { background: #c7d2fe; color: #3730a3 !important; }
+  .sakura-option-icon--colored.color-26 { background: #e9d5ff; color: #7e22ce !important; }
+  .sakura-option-icon--colored.color-27 { background: #fed7aa; color: #9a3412 !important; }
+  .sakura-option-icon--colored.color-28 { background: #6ee7b7; color: #064e3b !important; }
+  .sakura-option-icon--colored.color-29 { background: #f87171; color: #7f1d1d !important; }
+  .sakura-option-icon--colored.color-30 { background: #f9a8d4; color: #831843 !important; }
+  .sakura-option-icon--colored.color-31 { background: #99f6e4; color: #134e4a !important; }
+  .sakura-option-icon--colored.color-32 { background: #93c5fd; color: #1e3a8a !important; }
+  .sakura-option-icon--colored.color-33 { background: #fcd34d; color: #78350f !important; }
+  .sakura-option-icon--colored.color-34 { background: #fb7185; color: #881337 !important; }
+  .sakura-option-icon--colored.color-35 { background: #a5b4fc; color: #312e81 !important; }
+  .sakura-option-icon--colored.color-36 { background: #d8b4fe; color: #6b21a8 !important; }
+  .sakura-option-icon--colored.color-37 { background: #fdba74; color: #7c2d12 !important; }
+  .sakura-option-icon--colored.color-38 { background: #34d399; color: #064e3b !important; }
+  .sakura-option-icon--colored.color-39 { background: #ef4444; color: #7f1d1d !important; }
+  .sakura-option-icon--colored.color-40 { background: #ec4899; color: #831843 !important; }
+
   .sakura-option-logo {
     width: 20px;
     height: 20px;
@@ -4503,11 +4552,12 @@
     border-radius: 4px;
   }
 
-  .sakura-custom-select-option:hover .sakura-option-icon {
+  /* Hover effect - only apply blue color to non-colored icons */
+  .sakura-custom-select-option:hover .sakura-option-icon:not(.sakura-option-icon--colored) {
     color: #5B8BF5;
   }
 
-  .sakura-custom-select-option.selected .sakura-option-icon {
+  .sakura-custom-select-option.selected .sakura-option-icon:not(.sakura-option-icon--colored) {
     color: #5B8BF5;
   }
 
@@ -4519,220 +4569,16 @@
     border-radius: 4px;
   }
 
-  /* Colored envelope/category icons */
-  .sakura-custom-select-option[data-value="groceries"] .sakura-option-icon {
-    color: #10b981 !important;
-  }
-
-  .sakura-custom-select-option[data-value="entertainment"] .sakura-option-icon {
-    color: #8b5cf6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="transportation"] .sakura-option-icon {
-    color: #3b82f6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="utilities"] .sakura-option-icon {
-    color: #f59e0b !important;
-  }
-
-  .sakura-custom-select-option[data-value="dining"] .sakura-option-icon {
-    color: #ef4444 !important;
-  }
-
-  .sakura-custom-select-option[data-value="healthcare"] .sakura-option-icon {
-    color: #ec4899 !important;
-  }
-
-  /* Transaction Type colored icons */
-  .sakura-custom-select-option[data-value="expense"] .sakura-option-icon {
-    color: #ef4444 !important;
-  }
-
-  .sakura-custom-select-option[data-value="income"] .sakura-option-icon {
-    color: #10b981 !important;
-  }
-
-  .sakura-custom-select-option[data-value="transfer"] .sakura-option-icon {
-    color: #3b82f6 !important;
-  }
-
-  /* Payment Method colored icons */
-  .sakura-custom-select-option[data-value="credit-card"] .sakura-option-icon {
-    color: #8b5cf6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="debit-card"] .sakura-option-icon {
-    color: #3b82f6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="cash"] .sakura-option-icon {
-    color: #10b981 !important;
-  }
-
-  .sakura-custom-select-option[data-value="direct-deposit"] .sakura-option-icon {
-    color: #0891b2 !important;
-  }
-
-  .sakura-custom-select-option[data-value="auto-pay"] .sakura-option-icon {
-    color: #f59e0b !important;
-  }
-
-  /* Export file format colored icons */
-  .sakura-custom-select-option[data-value="csv"] .sakura-option-icon {
-    color: #10b981 !important;
-  }
-
-  .sakura-custom-select-option[data-value="excel"] .sakura-option-icon {
-    color: #059669 !important;
-  }
-
-  .sakura-custom-select-option[data-value="pdf"] .sakura-option-icon {
-    color: #ef4444 !important;
-  }
-
-  /* Date range colored icons */
-  .sakura-custom-select-option[data-value="all"] .sakura-option-icon {
-    color: #8b5cf6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="this-month"] .sakura-option-icon {
-    color: #3b82f6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="last-month"] .sakura-option-icon {
-    color: #6366f1 !important;
-  }
-
-  .sakura-custom-select-option[data-value="this-quarter"] .sakura-option-icon {
-    color: #0891b2 !important;
-  }
-
-  .sakura-custom-select-option[data-value="this-year"] .sakura-option-icon {
-    color: #10b981 !important;
-  }
-
-  .sakura-custom-select-option[data-value="custom"] .sakura-option-icon {
-    color: #f59e0b !important;
-  }
-
   /* Icons in trigger */
   .sakura-custom-select-trigger .sakura-option-icon {
     margin-right: 8px;
   }
 
-  /* Envelope icon selector colors */
-  .sakura-custom-select-option[data-value="bi-cart"] .sakura-option-icon {
-    color: #8b5cf6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-tv"] .sakura-option-icon {
-    color: #3b82f6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-car-front"] .sakura-option-icon {
-    color: #06b6d4 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-house"] .sakura-option-icon {
-    color: #ec4899 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-building"] .sakura-option-icon {
-    color: #f59e0b !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-heart-pulse"] .sakura-option-icon {
-    color: #10b981 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-cup-hot"] .sakura-option-icon {
-    color: #ef4444 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-bag"] .sakura-option-icon {
-    color: #a855f7 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-shield-check"] .sakura-option-icon {
-    color: #0ea5e9 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-phone"] .sakura-option-icon {
-    color: #6366f1 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-activity"] .sakura-option-icon {
-    color: #14b8a6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-arrow-repeat"] .sakura-option-icon {
-    color: #f97316 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-heart"] .sakura-option-icon {
-    color: #84cc16 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-book"] .sakura-option-icon {
-    color: #d946ef !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-gift"] .sakura-option-icon {
-    color: #fb7185 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-piggy-bank"] .sakura-option-icon {
-    color: #10b981 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-wallet2"] .sakura-option-icon {
-    color: #8b5cf6 !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-tools"] .sakura-option-icon {
-    color: #64748b !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-briefcase"] .sakura-option-icon {
-    color: #1e293b !important;
-  }
-
-  .sakura-custom-select-option[data-value="bi-star"] .sakura-option-icon {
-    color: #fbbf24 !important;
-  }
-
-  /* Frequency dropdown icons */
-  .sakura-custom-select-option[data-value="one-time"] .sakura-option-icon {
-    color: #f59e0b !important; /* Amber - single event */
-  }
-
-  .sakura-custom-select-option[data-value="weekly"] .sakura-option-icon {
-    color: #0ea5e9 !important; /* Sky blue - frequent */
-  }
-
-  .sakura-custom-select-option[data-value="bi-weekly"] .sakura-option-icon {
-    color: #3b82f6 !important; /* Blue - regular */
-  }
-
-  .sakura-custom-select-option[data-value="semi-monthly"] .sakura-option-icon {
-    color: #6366f1 !important; /* Indigo - twice a month */
-  }
-
-  .sakura-custom-select-option[data-value="monthly"] .sakura-option-icon {
-    color: #8b5cf6 !important; /* Purple - monthly cycle */
-  }
-
-  .sakura-custom-select-option[data-value="quarterly"] .sakura-option-icon {
-    color: #14b8a6 !important; /* Teal - quarterly */
-  }
-
-  .sakura-custom-select-option[data-value="semi-annually"] .sakura-option-icon {
-    color: #10b981 !important; /* Emerald - twice a year */
-  }
-
-  .sakura-custom-select-option[data-value="yearly"] .sakura-option-icon {
-    color: #059669 !important; /* Green - annual */
+  /* Scale down colored icons in trigger to fit within original trigger size */
+  .sakura-custom-select-trigger .sakura-option-icon--colored {
+    padding: 0.15rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
   }
 
   /* Scrollbar styling for dropdown */
@@ -10388,7 +10234,7 @@
 
   .sakura-goals-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-6);
   }
 
@@ -12872,6 +12718,9 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
     cursor: pointer;
     user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .sakura-modal .sakura-custom-select-trigger:hover {
@@ -13646,6 +13495,46 @@
     border: 1px solid var(--gray-200);
     border-radius: var(--radius-2xl);
     padding: var(--space-6);
+  }
+
+  .sakura-analytics-chart--trends {
+    height: 400px;
+  }
+
+  .sakura-analytics-chart--trends canvas {
+    max-height: 100%;
+  }
+
+  .sakura-analytics-chart--category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+  }
+
+  .sakura-analytics-chart--category canvas {
+    max-width: 100%;
+    max-height: 350px;
+  }
+
+  .sakura-analytics-chart--merchants {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+  }
+
+  .sakura-analytics-chart--merchants canvas {
+    max-width: 100%;
+    max-height: 350px;
+  }
+
+  .sakura-analytics-chart--budget {
+    height: 400px;
+  }
+
+  .sakura-analytics-chart--budget canvas {
+    max-height: 100%;
   }
 
   .sakura-chart-header {
