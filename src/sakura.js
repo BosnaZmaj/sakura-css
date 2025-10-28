@@ -31,6 +31,7 @@ class SakuraFramework {
     this.setupAnalyticsCharts();
     this.initializeColoredDropdownIcons();
     this.setupEnvelopeDragDrop();
+    this.setupIncomeModal();
   }
 
   // Navigation functionality
@@ -2557,6 +2558,186 @@ class SakuraFramework {
     } catch (e) {
       console.error('Failed to load envelope order:', e);
     }
+  }
+
+  // Income modal functionality
+  setupIncomeModal() {
+    console.log('setupIncomeModal called');
+
+    const openModalBtn = document.getElementById('openAddIncomeModal');
+    const modal = document.getElementById('addIncomeModal');
+    const modalOverlay = modal?.querySelector('.sakura-modal-overlay');
+    const closeModalBtns = modal?.querySelectorAll('[data-close-modal]');
+    const form = document.getElementById('addIncomeForm');
+
+    console.log('Modal elements found:', {
+      openModalBtn: !!openModalBtn,
+      modal: !!modal,
+      modalOverlay: !!modalOverlay,
+      closeModalBtns: closeModalBtns?.length,
+      form: !!form
+    });
+
+    if (!modal) {
+      console.log('No income modal found on this page');
+      return; // Modal doesn't exist on this page
+    }
+
+    // Initialize custom select dropdowns in the modal
+    const customSelects = modal.querySelectorAll('.sakura-custom-select');
+    customSelects.forEach(selectElement => {
+      const trigger = selectElement.querySelector('.sakura-custom-select-trigger');
+      const dropdown = selectElement.querySelector('.sakura-custom-select-dropdown');
+      const options = selectElement.querySelectorAll('.sakura-custom-select-option');
+      const hiddenInput = selectElement.querySelector('input[type="hidden"]');
+
+      if (!trigger || !dropdown || !options.length || !hiddenInput) return;
+
+      // Toggle dropdown
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectElement.classList.toggle('active');
+      });
+
+      // Select option
+      options.forEach(option => {
+        option.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          // Remove selected from all options
+          options.forEach(opt => opt.classList.remove('selected'));
+          option.classList.add('selected');
+
+          // Update trigger text with icon
+          const icon = option.querySelector('.sakura-option-icon, .sakura-bank-logo');
+          if (icon) {
+            const iconClone = icon.cloneNode(true);
+            trigger.innerHTML = '';
+            trigger.appendChild(iconClone);
+            const textNode = document.createTextNode(' ' + option.textContent.trim());
+            trigger.appendChild(textNode);
+          } else {
+            trigger.textContent = option.textContent.trim();
+          }
+
+          trigger.classList.remove('placeholder');
+
+          // Update hidden input
+          hiddenInput.value = option.dataset.value;
+
+          // Close dropdown
+          selectElement.classList.remove('active');
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!selectElement.contains(e.target)) {
+          selectElement.classList.remove('active');
+        }
+      });
+    });
+
+    console.log(`Initialized ${customSelects.length} custom selects`);
+
+    // Open modal
+    if (openModalBtn) {
+      openModalBtn.addEventListener('click', () => {
+        console.log('Add Income Source button clicked');
+        modal.classList.add('sakura-modal--active');
+        document.body.style.overflow = 'hidden';
+        console.log('Modal should now be active');
+      });
+    } else {
+      console.warn('openAddIncomeModal button not found');
+    }
+
+    // Close modal function
+    const closeModal = () => {
+      modal.classList.remove('sakura-modal--active');
+      document.body.style.overflow = '';
+
+      // Reset form
+      if (form) {
+        form.reset();
+
+        // Reset custom selects
+        const customSelects = modal.querySelectorAll('.sakura-custom-select');
+        customSelects.forEach(select => {
+          const trigger = select.querySelector('.sakura-custom-select-trigger');
+          const hiddenInput = select.querySelector('input[type="hidden"]');
+          if (trigger && hiddenInput) {
+            trigger.textContent = trigger.classList.contains('placeholder') ?
+              trigger.getAttribute('data-placeholder') || 'Select...' :
+              'Select...';
+            trigger.classList.add('placeholder');
+            hiddenInput.value = '';
+          }
+        });
+      }
+    };
+
+    // Close modal - Click close buttons
+    if (closeModalBtns) {
+      closeModalBtns.forEach(btn => {
+        btn.addEventListener('click', closeModal);
+      });
+    }
+
+    // Close modal - Click overlay
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', closeModal);
+    }
+
+    // Close modal - Press Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('sakura-modal--active')) {
+        closeModal();
+      }
+    });
+
+    // Handle form submission
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Get form values
+        const incomeName = document.getElementById('incomeName')?.value;
+        const incomeCompany = document.getElementById('incomeCompany')?.value;
+        const incomeAmount = document.getElementById('incomeAmount')?.value;
+        const incomeFrequency = document.getElementById('incomeFrequency')?.value;
+        const incomeAccount = document.getElementById('incomeAccount')?.value;
+        const incomeNotes = document.getElementById('incomeNotes')?.value;
+
+        // Validation
+        if (!incomeName || !incomeAmount || !incomeFrequency || !incomeAccount) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+
+        // Log the data (In production, this would send to API)
+        console.log('New income source:', {
+          name: incomeName,
+          company: incomeCompany,
+          amount: parseFloat(incomeAmount),
+          frequency: incomeFrequency,
+          account: incomeAccount,
+          notes: incomeNotes
+        });
+
+        // Close modal and show success
+        closeModal();
+        alert('Income source added successfully!');
+
+        // In production, this would:
+        // 1. Send POST request to API
+        // 2. Receive new income source ID
+        // 3. Dynamically add new card to the grid
+        // 4. Show success notification
+      });
+    }
+
+    console.log('Income modal setup complete');
   }
 
 }

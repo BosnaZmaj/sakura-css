@@ -10936,11 +10936,6 @@
     user-select: none;
   }
 
-  /* Ensure cards have relative positioning for pseudo-elements */
-  .sakura-envelope-card {
-    position: relative;
-  }
-
   /* Lift effect: Card being dragged */
   .sakura-envelope-card--dragging {
     opacity: 0.6;
@@ -10951,13 +10946,13 @@
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  /* Smooth reorder: Other cards during drag */
-  .sakura-envelopes-grid--dragging .sakura-envelope-card:not(.sakura-envelope-card--dragging):not(.sakura-envelope-card--featured) {
+  /* Smooth reorder: Other draggable cards during drag operation */
+  .sakura-envelopes-grid--dragging .sakura-envelope-card[draggable="true"]:not(.sakura-envelope-card--dragging):not(.sakura-envelope-card--featured) {
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  /* Add smooth transition to all envelope cards */
-  .sakura-envelope-card {
+  /* Smooth transitions for draggable envelope cards only */
+  .sakura-envelope-card[draggable="true"] {
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
                 box-shadow 0.3s ease,
                 opacity 0.3s ease;
@@ -11934,8 +11929,8 @@
     backdrop-filter: blur(8px);
   }
 
-  #sakura-feature-modal.sakura-modal--active,
-  #sakura-demo-modal.sakura-modal--active {
+  /* Modal active state - generic for all modals */
+  .sakura-modal.sakura-modal--active {
     display: flex;
   }
 
@@ -12335,6 +12330,16 @@
   }
 
   .sakura-modal-content--medium .sakura-modal-body {
+    flex: 1;
+  }
+
+  /* Income Modal Modifier - Taller for income forms */
+  .sakura-modal-content--income {
+    max-width: 780px;
+    min-height: 750px;
+  }
+
+  .sakura-modal-content--income .sakura-modal-body {
     flex: 1;
   }
 

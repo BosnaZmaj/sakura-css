@@ -339,67 +339,211 @@
             <section class="sakura-recent-income-section">
                 <div class="sakura-section-header">
                     <h2>Recent Income Transactions</h2>
-                    <button class="sakura-btn sakura-btn--outline sakura-btn--sm">View All</button>
+                    <a href="transactions.html" class="sakura-btn sakura-btn--outline sakura-btn--sm">View All</a>
                 </div>
 
-                <div class="sakura-transaction-list">
-                    <!-- Transaction 1 -->
-                    <div class="sakura-transaction-item">
-                        <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
-                            <i class="bi bi-cash-coin"></i>
+                <div class="sakura-transaction-list sakura-transaction-timeline">
+                    <!-- Date Group: Today -->
+                    <div class="sakura-date-group">
+                        <div class="sakura-date-group-header">
+                            <div class="sakura-date-bubble">T</div>
+                            <div class="sakura-date-group-title">
+                                <span class="sakura-date-group-date">Today</span>
+                                <span class="sakura-date-group-count">1 transaction</span>
+                            </div>
+                            <div class="sakura-date-group-summary">
+                                <span class="sakura-date-group-total positive">+$3,500.00</span>
+                            </div>
                         </div>
-                        <div class="sakura-transaction-details">
-                            <div class="sakura-transaction-name">Salary Deposit</div>
-                            <div class="sakura-transaction-category">TechCorp Inc.</div>
-                        </div>
-                        <div class="sakura-transaction-amount income">
-                            +$3,500.00
-                            <div class="sakura-transaction-date">Jan 15</div>
+                        <div class="sakura-date-group-transactions">
+                            <!-- Transaction: Salary Deposit -->
+                            <div class="sakura-transaction-item" data-type="income">
+                                <div class="sakura-transaction-checkbox">
+                                    <input type="checkbox" class="sakura-transaction-select">
+                                </div>
+                                <div class="sakura-transaction-icon">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="sakura-transaction-details">
+                                    <div class="sakura-transaction-main">
+                                        <div class="sakura-transaction-name">Salary Deposit</div>
+                                        <div class="sakura-transaction-merchant">TechCorp Inc.</div>
+                                    </div>
+                                    <div class="sakura-transaction-meta">
+                                        <span class="sakura-transaction-bank-account">
+                                            <i class="bi bi-bank"></i>
+                                            Chase Checking
+                                        </span>
+                                        <span class="sakura-transaction-time">
+                                            <i class="bi bi-clock"></i>
+                                            Jan 15, 9:15 AM
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="sakura-transaction-envelope-container">
+                                    <span class="sakura-transaction-envelope envelope-salary">
+                                        <i class="bi bi-envelope"></i>
+                                        Salary
+                                    </span>
+                                </div>
+                                <div class="sakura-transaction-amount income">+$3,500.00</div>
+                                <button class="sakura-transaction-edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Transaction 2 -->
-                    <div class="sakura-transaction-item">
-                        <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dbeafe; --transaction-text-color: #2563eb;">
-                            <i class="bi bi-laptop"></i>
+                    <!-- Date Group: Jan 14 -->
+                    <div class="sakura-date-group">
+                        <div class="sakura-date-group-header">
+                            <div class="sakura-date-bubble">14</div>
+                            <div class="sakura-date-group-title">
+                                <span class="sakura-date-group-date">Jan 14, 2025</span>
+                                <span class="sakura-date-group-count">1 transaction</span>
+                            </div>
+                            <div class="sakura-date-group-summary">
+                                <span class="sakura-date-group-total positive">+$850.00</span>
+                            </div>
                         </div>
-                        <div class="sakura-transaction-details">
-                            <div class="sakura-transaction-name">Freelance Payment</div>
-                            <div class="sakura-transaction-category">Client Project</div>
-                        </div>
-                        <div class="sakura-transaction-amount income">
-                            +$850.00
-                            <div class="sakura-transaction-date">Jan 14</div>
+                        <div class="sakura-date-group-transactions">
+                            <!-- Transaction: Freelance Payment -->
+                            <div class="sakura-transaction-item" data-type="income">
+                                <div class="sakura-transaction-checkbox">
+                                    <input type="checkbox" class="sakura-transaction-select">
+                                </div>
+                                <div class="sakura-transaction-icon">
+                                    <i class="bi bi-laptop"></i>
+                                </div>
+                                <div class="sakura-transaction-details">
+                                    <div class="sakura-transaction-main">
+                                        <div class="sakura-transaction-name">Freelance Payment</div>
+                                        <div class="sakura-transaction-merchant">Client Project - Website Redesign</div>
+                                    </div>
+                                    <div class="sakura-transaction-meta">
+                                        <span class="sakura-transaction-bank-account">
+                                            <i class="bi bi-bank"></i>
+                                            Citi Checking
+                                        </span>
+                                        <span class="sakura-transaction-time">
+                                            <i class="bi bi-clock"></i>
+                                            Jan 14, 2:30 PM
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="sakura-transaction-envelope-container">
+                                    <span class="sakura-transaction-envelope envelope-freelance">
+                                        <i class="bi bi-envelope"></i>
+                                        Freelance
+                                    </span>
+                                </div>
+                                <div class="sakura-transaction-amount income">+$850.00</div>
+                                <button class="sakura-transaction-edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Transaction 3 -->
-                    <div class="sakura-transaction-item">
-                        <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #fef3c7; --transaction-text-color: #d97706;">
-                            <i class="bi bi-piggy-bank"></i>
+                    <!-- Date Group: Jan 10 -->
+                    <div class="sakura-date-group">
+                        <div class="sakura-date-group-header">
+                            <div class="sakura-date-bubble">10</div>
+                            <div class="sakura-date-group-title">
+                                <span class="sakura-date-group-date">Jan 10, 2025</span>
+                                <span class="sakura-date-group-count">1 transaction</span>
+                            </div>
+                            <div class="sakura-date-group-summary">
+                                <span class="sakura-date-group-total positive">+$12.50</span>
+                            </div>
                         </div>
-                        <div class="sakura-transaction-details">
-                            <div class="sakura-transaction-name">Interest Payment</div>
-                            <div class="sakura-transaction-category">Savings Account</div>
-                        </div>
-                        <div class="sakura-transaction-amount income">
-                            +$12.50
-                            <div class="sakura-transaction-date">Jan 10</div>
+                        <div class="sakura-date-group-transactions">
+                            <!-- Transaction: Interest Payment -->
+                            <div class="sakura-transaction-item" data-type="income">
+                                <div class="sakura-transaction-checkbox">
+                                    <input type="checkbox" class="sakura-transaction-select">
+                                </div>
+                                <div class="sakura-transaction-icon">
+                                    <i class="bi bi-piggy-bank"></i>
+                                </div>
+                                <div class="sakura-transaction-details">
+                                    <div class="sakura-transaction-main">
+                                        <div class="sakura-transaction-name">Interest Payment</div>
+                                        <div class="sakura-transaction-merchant">High Yield Savings Account</div>
+                                    </div>
+                                    <div class="sakura-transaction-meta">
+                                        <span class="sakura-transaction-bank-account">
+                                            <i class="bi bi-bank"></i>
+                                            Chase Savings
+                                        </span>
+                                        <span class="sakura-transaction-time">
+                                            <i class="bi bi-clock"></i>
+                                            Jan 10, 12:00 AM
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="sakura-transaction-envelope-container">
+                                    <span class="sakura-transaction-envelope envelope-interest">
+                                        <i class="bi bi-envelope"></i>
+                                        Interest
+                                    </span>
+                                </div>
+                                <div class="sakura-transaction-amount income">+$12.50</div>
+                                <button class="sakura-transaction-edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Transaction 4 -->
-                    <div class="sakura-transaction-item">
-                        <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
-                            <i class="bi bi-cash-coin"></i>
+                    <!-- Date Group: Jan 1 -->
+                    <div class="sakura-date-group">
+                        <div class="sakura-date-group-header">
+                            <div class="sakura-date-bubble">1</div>
+                            <div class="sakura-date-group-title">
+                                <span class="sakura-date-group-date">Jan 1, 2025</span>
+                                <span class="sakura-date-group-count">1 transaction</span>
+                            </div>
+                            <div class="sakura-date-group-summary">
+                                <span class="sakura-date-group-total positive">+$3,500.00</span>
+                            </div>
                         </div>
-                        <div class="sakura-transaction-details">
-                            <div class="sakura-transaction-name">Salary Deposit</div>
-                            <div class="sakura-transaction-category">TechCorp Inc.</div>
-                        </div>
-                        <div class="sakura-transaction-amount income">
-                            +$3,500.00
-                            <div class="sakura-transaction-date">Jan 1</div>
+                        <div class="sakura-date-group-transactions">
+                            <!-- Transaction: Salary Deposit -->
+                            <div class="sakura-transaction-item" data-type="income">
+                                <div class="sakura-transaction-checkbox">
+                                    <input type="checkbox" class="sakura-transaction-select">
+                                </div>
+                                <div class="sakura-transaction-icon">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="sakura-transaction-details">
+                                    <div class="sakura-transaction-main">
+                                        <div class="sakura-transaction-name">Salary Deposit</div>
+                                        <div class="sakura-transaction-merchant">TechCorp Inc.</div>
+                                    </div>
+                                    <div class="sakura-transaction-meta">
+                                        <span class="sakura-transaction-bank-account">
+                                            <i class="bi bi-bank"></i>
+                                            Chase Checking
+                                        </span>
+                                        <span class="sakura-transaction-time">
+                                            <i class="bi bi-clock"></i>
+                                            Jan 1, 9:15 AM
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="sakura-transaction-envelope-container">
+                                    <span class="sakura-transaction-envelope envelope-salary">
+                                        <i class="bi bi-envelope"></i>
+                                        Salary
+                                    </span>
+                                </div>
+                                <div class="sakura-transaction-amount income">+$3,500.00</div>
+                                <button class="sakura-transaction-edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -410,7 +554,7 @@
     <!-- Add Income Source Modal -->
     <div class="sakura-modal" id="addIncomeModal">
         <div class="sakura-modal-overlay"></div>
-        <div class="sakura-modal-content sakura-modal-content--medium">
+        <div class="sakura-modal-content sakura-modal-content--income">
             <div class="sakura-modal-header">
                 <h2>Add Income Source</h2>
                 <button class="sakura-modal-close" data-close-modal>
@@ -529,7 +673,7 @@
     <!-- View/Edit Income Source Modal -->
     <div class="sakura-modal" id="viewIncomeModal">
         <div class="sakura-modal-overlay"></div>
-        <div class="sakura-modal-content sakura-modal-content--medium">
+        <div class="sakura-modal-content sakura-modal-content--income">
             <div class="sakura-modal-header">
                 <h3 class="sakura-modal-title">Income Source Details</h3>
                 <button class="sakura-modal-close" data-close-modal>
@@ -758,6 +902,5 @@
     </div>
 
     <script src="src/sakura.js"></script>
-    <script src="src/transactions-manager.js"></script>
 </body>
 </html>
