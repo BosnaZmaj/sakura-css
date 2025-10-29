@@ -274,84 +274,21 @@
                 </div>
 
                 <div class="sakura-analytics-chart sakura-analytics-chart--trends">
-                    <div class="sakura-chart-header">
-                        <div class="sakura-chart-legend">
-                            <span class="sakura-legend-item">
-                                <span class="sakura-legend-color" style="background: #ef4444;"></span>
-                                Total Expenses
-                            </span>
-                            <span class="sakura-legend-item">
-                                <span class="sakura-legend-color" style="background: #8b5cf6;"></span>
-                                Average
-                            </span>
-                        </div>
-                    </div>
-                    <div class="sakura-chart-placeholder">
-                        <div class="sakura-chart-bars">
-                            <div class="sakura-chart-bar" style="height: 65%;" data-label="Aug" data-value="$2,850"></div>
-                            <div class="sakura-chart-bar" style="height: 72%;" data-label="Sep" data-value="$3,100"></div>
-                            <div class="sakura-chart-bar" style="height: 68%;" data-label="Oct" data-value="$2,980"></div>
-                            <div class="sakura-chart-bar" style="height: 75%;" data-label="Nov" data-value="$3,210"></div>
-                            <div class="sakura-chart-bar" style="height: 70%;" data-label="Dec" data-value="$3,075"></div>
-                            <div class="sakura-chart-bar active" style="height: 78%;" data-label="Jan" data-value="$3,287"></div>
-                        </div>
-                        <div class="sakura-chart-baseline"></div>
-                    </div>
+                    <canvas id="spendingTrendsChart"></canvas>
                 </div>
             </section>
 
-            <!-- Category Breakdown & Top Merchants -->
+            <!-- Envelope Breakdown & Top Merchants -->
             <div class="sakura-analytics-row">
-                <!-- Category Breakdown -->
+                <!-- Envelope Breakdown -->
                 <section class="sakura-analytics-section sakura-analytics-section--half">
                     <div class="sakura-section-header">
-                        <h2>Category Breakdown</h2>
-                        <p class="sakura-section-description">Where your money goes</p>
+                        <h2>Envelope Breakdown</h2>
+                        <p class="sakura-section-description">Your budget allocation by envelope</p>
                     </div>
 
-                    <div class="sakura-category-breakdown">
-                        <div class="sakura-category-breakdown-item">
-                            <div class="sakura-category-breakdown-bar" style="--category-width: 20%; --category-color: #10b981;">
-                                <span class="sakura-category-name">Groceries</span>
-                                <span class="sakura-category-amount">$645.80</span>
-                            </div>
-                            <span class="sakura-category-percent">20%</span>
-                        </div>
-                        <div class="sakura-category-breakdown-item">
-                            <div class="sakura-category-breakdown-bar" style="--category-width: 17%; --category-color: #8b5cf6;">
-                                <span class="sakura-category-name">Shopping</span>
-                                <span class="sakura-category-amount">$543.00</span>
-                            </div>
-                            <span class="sakura-category-percent">17%</span>
-                        </div>
-                        <div class="sakura-category-breakdown-item">
-                            <div class="sakura-category-breakdown-bar" style="--category-width: 13%; --category-color: #3b82f6;">
-                                <span class="sakura-category-name">Transportation</span>
-                                <span class="sakura-category-amount">$420.15</span>
-                            </div>
-                            <span class="sakura-category-percent">13%</span>
-                        </div>
-                        <div class="sakura-category-breakdown-item">
-                            <div class="sakura-category-breakdown-bar" style="--category-width: 9%; --category-color: #f59e0b;">
-                                <span class="sakura-category-name">Dining Out</span>
-                                <span class="sakura-category-amount">$285.50</span>
-                            </div>
-                            <span class="sakura-category-percent">9%</span>
-                        </div>
-                        <div class="sakura-category-breakdown-item">
-                            <div class="sakura-category-breakdown-bar" style="--category-width: 7%; --category-color: #06b6d4;">
-                                <span class="sakura-category-name">Utilities</span>
-                                <span class="sakura-category-amount">$215.00</span>
-                            </div>
-                            <span class="sakura-category-percent">7%</span>
-                        </div>
-                        <div class="sakura-category-breakdown-item">
-                            <div class="sakura-category-breakdown-bar" style="--category-width: 5%; --category-color: #ec4899;">
-                                <span class="sakura-category-name">Entertainment</span>
-                                <span class="sakura-category-amount">$178.00</span>
-                            </div>
-                            <span class="sakura-category-percent">5%</span>
-                        </div>
+                    <div class="sakura-analytics-chart sakura-analytics-chart--category">
+                        <canvas id="envelopeBreakdownChart"></canvas>
                     </div>
                 </section>
 
@@ -359,87 +296,26 @@
                 <section class="sakura-analytics-section sakura-analytics-section--half">
                     <div class="sakura-section-header">
                         <h2>Top Merchants</h2>
-                        <p class="sakura-section-description">Your most frequent vendors</p>
+                        <p class="sakura-section-description">Your highest spending vendors</p>
                     </div>
 
-                    <div class="sakura-top-merchants-list">
-                        <div class="sakura-merchant-item">
-                            <div class="sakura-merchant-rank">1</div>
-                            <div class="sakura-merchant-logo">
-                                <img src="https://logo.clearbit.com/wholefoodsmarket.com" alt="Whole Foods">
-                            </div>
-                            <div class="sakura-merchant-info">
-                                <div class="sakura-merchant-name">Whole Foods Market</div>
-                                <div class="sakura-merchant-category">Groceries</div>
-                            </div>
-                            <div class="sakura-merchant-stats">
-                                <div class="sakura-merchant-amount">$487.25</div>
-                                <div class="sakura-merchant-count">8 transactions</div>
-                            </div>
-                        </div>
-
-                        <div class="sakura-merchant-item">
-                            <div class="sakura-merchant-rank">2</div>
-                            <div class="sakura-merchant-logo">
-                                <img src="https://logo.clearbit.com/amazon.com" alt="Amazon">
-                            </div>
-                            <div class="sakura-merchant-info">
-                                <div class="sakura-merchant-name">Amazon</div>
-                                <div class="sakura-merchant-category">Shopping</div>
-                            </div>
-                            <div class="sakura-merchant-stats">
-                                <div class="sakura-merchant-amount">$325.50</div>
-                                <div class="sakura-merchant-count">5 transactions</div>
-                            </div>
-                        </div>
-
-                        <div class="sakura-merchant-item">
-                            <div class="sakura-merchant-rank">3</div>
-                            <div class="sakura-merchant-logo">
-                                <img src="https://logo.clearbit.com/shell.com" alt="Shell">
-                            </div>
-                            <div class="sakura-merchant-info">
-                                <div class="sakura-merchant-name">Shell Gas Station</div>
-                                <div class="sakura-merchant-category">Transportation</div>
-                            </div>
-                            <div class="sakura-merchant-stats">
-                                <div class="sakura-merchant-amount">$280.00</div>
-                                <div class="sakura-merchant-count">4 transactions</div>
-                            </div>
-                        </div>
-
-                        <div class="sakura-merchant-item">
-                            <div class="sakura-merchant-rank">4</div>
-                            <div class="sakura-merchant-logo">
-                                <img src="https://logo.clearbit.com/starbucks.com" alt="Starbucks">
-                            </div>
-                            <div class="sakura-merchant-info">
-                                <div class="sakura-merchant-name">Starbucks</div>
-                                <div class="sakura-merchant-category">Dining Out</div>
-                            </div>
-                            <div class="sakura-merchant-stats">
-                                <div class="sakura-merchant-amount">$156.25</div>
-                                <div class="sakura-merchant-count">12 transactions</div>
-                            </div>
-                        </div>
-
-                        <div class="sakura-merchant-item">
-                            <div class="sakura-merchant-rank">5</div>
-                            <div class="sakura-merchant-logo">
-                                <img src="https://logo.clearbit.com/netflix.com" alt="Netflix">
-                            </div>
-                            <div class="sakura-merchant-info">
-                                <div class="sakura-merchant-name">Netflix</div>
-                                <div class="sakura-merchant-category">Entertainment</div>
-                            </div>
-                            <div class="sakura-merchant-stats">
-                                <div class="sakura-merchant-amount">$15.99</div>
-                                <div class="sakura-merchant-count">1 transaction</div>
-                            </div>
-                        </div>
+                    <div class="sakura-analytics-chart sakura-analytics-chart--merchants">
+                        <canvas id="topMerchantsChart"></canvas>
                     </div>
                 </section>
             </div>
+
+            <!-- Budget vs Actual -->
+            <section class="sakura-analytics-section">
+                <div class="sakura-section-header">
+                    <h2>Budget vs Actual</h2>
+                    <p class="sakura-section-description">Compare your planned budget to actual spending</p>
+                </div>
+
+                <div class="sakura-analytics-chart sakura-analytics-chart--budget">
+                    <canvas id="budgetVsActualChart"></canvas>
+                </div>
+            </section>
 
             <!-- Recent Expense Transactions -->
             <section class="sakura-recent-expense-section">
@@ -513,6 +389,7 @@
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
     <script src="src/sakura.js"></script>
 </body>
 </html>
