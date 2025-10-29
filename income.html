@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income - Sakura Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body class="sakura-dashboard-body">
+    <!-- Dashboard Header -->
+    <header class="sakura-dashboard-header">
+        <div class="sakura-dashboard-header-container">
+            <div class="sakura-header-left">
+                <div class="sakura-navbar-brand">
+                    <img src="dist/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+                </div>
+                <nav class="sakura-breadcrumb">
+                    <span class="sakura-breadcrumb-item">Income</span>
+                </nav>
+            </div>
+            <div class="sakura-header-right">
+                <div class="sakura-notification-container">
+                    <button class="sakura-notification-btn">
+                        <i class="bi bi-bell"></i>
+                        <span class="sakura-notification-badge">3</span>
+                    </button>
+                    <div class="sakura-notification-dropdown">
+                        <div class="sakura-notification-header">
+                            <h3>Notifications</h3>
+                            <button class="sakura-notification-mark-all">Mark all as read</button>
+                        </div>
+                        <div class="sakura-notification-list">
+                            <!-- Budget Alert -->
+                            <div class="sakura-notification-item unread" data-type="budget">
+                                <div class="sakura-notification-icon budget">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Entertainment envelope at 90%</div>
+                                    <div class="sakura-notification-message">You have $50 remaining in your Entertainment budget</div>
+                                    <div class="sakura-notification-time">2 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+
+                            <!-- Goal Update -->
+                            <div class="sakura-notification-item unread" data-type="goal">
+                                <div class="sakura-notification-icon goal">
+                                    <i class="bi bi-bullseye"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Emergency Fund milestone reached</div>
+                                    <div class="sakura-notification-message">Congratulations! Your Emergency Fund is now 50% complete</div>
+                                    <div class="sakura-notification-time">5 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+
+                            <!-- Income Notification -->
+                            <div class="sakura-notification-item unread" data-type="income">
+                                <div class="sakura-notification-icon income">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Salary deposited</div>
+                                    <div class="sakura-notification-message">$3,500.00 has been added to your Chase Bank account</div>
+                                    <div class="sakura-notification-time">Yesterday at 9:15 AM</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="sakura-notification-footer">
+                            <a href="notifications.html" class="sakura-notification-view-all">
+                                View All Notifications
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sakura-user-menu">
+                    <img src="https://avatar.iran.liara.run/public" alt="User" class="sakura-user-avatar">
+                    <div class="sakura-user-info">
+                        <span class="sakura-user-name">Pablo Peso</span>
+                        <span class="sakura-user-email">pablo@sakura.com</span>
+                    </div>
+                    <button class="sakura-user-menu-toggle">
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="sakura-user-dropdown">
+                        <a href="account.html" class="sakura-dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Settings
+                        </a>
+                        <div class="sakura-dropdown-divider"></div>
+                        <button class="sakura-dropdown-item danger">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Log Off
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="sakura-dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sakura-dashboard-sidebar">
+            <nav class="sakura-sidebar-nav">
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Dashboard</span>
+                    <a href="dashboard.html" class="sakura-nav-item">
+                        <i class="bi bi-grid"></i>
+                        <span>Overview</span>
+                    </a>
+                    <a href="envelopes.html" class="sakura-nav-item">
+                        <i class="bi bi-envelope"></i>
+                        <span>Envelopes</span>
+                    </a>
+                    <a href="transactions.html" class="sakura-nav-item">
+                        <i class="bi bi-arrow-left-right"></i>
+                        <span>Transactions</span>
+                    </a>
+                </div>
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Budget</span>
+                    <a href="income.html" class="sakura-nav-item sakura-nav-item--active">
+                        <i class="bi bi-cash-coin"></i>
+                        <span>Income</span>
+                    </a>
+                    <a href="analytics.html" class="sakura-nav-item">
+                        <i class="bi bi-graph-up"></i>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="goals.html" class="sakura-nav-item">
+                        <i class="bi bi-bullseye"></i>
+                        <span>Goals</span>
+                    </a>
+                    <a href="calendar.html" class="sakura-nav-item">
+                        <i class="bi bi-calendar"></i>
+                        <span>Calendar</span>
+                    </a>
+</div>
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Settings</span>
+                    <a href="account.html" class="sakura-nav-item">
+                        <i class="bi bi-gear"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="sakura-dashboard-main">
+            <!-- Page Header -->
+            <section class="sakura-page-header">
+                <div class="sakura-page-header-content">
+                    <h1>Income Sources</h1>
+                    <p>Track and manage your income sources and deposits</p>
+                </div>
+                <div class="sakura-page-header-actions">
+                    <button class="sakura-btn sakura-btn--outline">
+                        <i class="bi bi-download"></i>
+                        Export
+                    </button>
+                    <button class="sakura-btn sakura-btn--primary" id="openAddIncomeModal">
+                        <i class="bi bi-plus-lg"></i>
+                        Add Income Source
+                    </button>
+                </div>
+            </section>
+
+            <!-- Income Summary Cards -->
+            <section class="sakura-transaction-summary">
+                <div class="sakura-summary-card" style="--summary-color: #10b981;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
+                    <div class="sakura-summary-amount">$4,362.50</div>
+                    <div class="sakura-summary-label">Total Income (This Month)</div>
+                    <div class="sakura-summary-change positive">+12% from last month</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #8b5cf6;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <div class="sakura-summary-amount">$5,000.00</div>
+                    <div class="sakura-summary-label">Expected This Month</div>
+                    <div class="sakura-summary-change neutral">$637.50 pending</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #3b82f6;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-briefcase"></i>
+                    </div>
+                    <div class="sakura-summary-amount">3</div>
+                    <div class="sakura-summary-label">Active Income Sources</div>
+                    <div class="sakura-summary-change neutral">2 recurring, 1 one-time</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #06b6d4;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-graph-up"></i>
+                    </div>
+                    <div class="sakura-summary-amount">$4,850.00</div>
+                    <div class="sakura-summary-label">Average Monthly</div>
+                    <div class="sakura-summary-change neutral">Last 6 months</div>
+                </div>
+            </section>
+
+            <!-- Income Sources List -->
+            <section class="sakura-income-sources-section">
+                <div class="sakura-section-header">
+                    <h2>Your Income Sources</h2>
+                </div>
+
+                <div class="sakura-income-sources-grid sakura-income-sources-grid--compact">
+                    <!-- Income Source Card 1: Salary -->
+                    <div class="sakura-income-source-card sakura-income-source-card--compact" style="--income-color: #10b981; --income-color-rgb: 16, 185, 129;">
+                        <div class="sakura-income-source-header">
+                            <div class="sakura-income-source-icon">
+                                <i class="bi bi-briefcase"></i>
+                            </div>
+                            <div class="sakura-income-source-info">
+                                <h3 class="sakura-income-source-name">Salary</h3>
+                                <span class="sakura-income-source-company">TechCorp Inc.</span>
+                            </div>
+                            <button class="sakura-income-source-menu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                        </div>
+                        <div class="sakura-income-source-amount">$3,500.00</div>
+                        <div class="sakura-income-source-details">
+                            <div class="sakura-income-source-detail">
+                                <i class="bi bi-calendar-check"></i>
+                                <span>Recurring - Monthly</span>
+                            </div>
+                            <div class="sakura-income-source-detail">
+                                <i class="bi bi-clock"></i>
+                                <span>Next deposit: Feb 1, 2025</span>
+                            </div>
+                            <div class="sakura-income-source-detail">
+                                <i class="bi bi-bank"></i>
+                                <span>Chase Bank</span>
+                            </div>
+                        </div>
+                        <div class="sakura-income-source-status active">
+                            <i class="bi bi-check-circle"></i>
+                            Active
+                        </div>
+                    </div>
+
+                    <!-- Income Source Card 2: Freelance -->
+                    <div class="sakura-income-source-card sakura-income-source-card--compact" style="--income-color: #3b82f6; --income-color-rgb: 59, 130, 246;">
+                        <div class="sakura-income-source-header">
+                            <div class="sakura-income-source-icon">
+                                <i class="bi bi-laptop"></i>
+                            </div>
+                            <div class="sakura-income-source-info">
+                                <h3 class="sakura-income-source-name">Freelance Work</h3>
+                                <span class="sakura-income-source-company">Various Clients</span>
+                            </div>
+                            <button class="sakura-income-source-menu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                        </div>
+                        <div class="sakura-income-source-amount">$850.00</div>
+                        <div class="sakura-income-source-details">
+                            <div class="sakura-income-source-detail">
+                                <i class="bi bi-calendar"></i>
+                                <span>Variable - As Needed</span>
+                            </div>
+                            <div class="sakura-income-source-detail">
+                                <i class="bi bi-clock"></i>
+                                <span>Last deposit: Jan 14, 2025</span>
+                            </div>
+                            <div class="sakura-income-source-detail">
+                                <i class="bi bi-bank"></i>
+                                <span>Citi Bank</span>
+                            </div>
+                        </div>
+                        <div class="sakura-income-source-status active">
+                            <i class="bi bi-check-circle"></i>
+                            Active
+                        </div>
+                    </div>
+
+                    <!-- Income Source Card 3: Interest -->
+                    <div class="sakura-income-source-card sakura-income-source-card--compact" style="--income-color: #f59e0b; --income-color-rgb: 245, 158, 11;">
+                        <div class="sakura-income-source-header">
+                            <div class="sakura-income-source-icon">
+                                <i class="bi bi-piggy-bank"></i>
+                            </div>
+                            <div class="sakura-income-source-info">
+                                <h3 class="sakura-income-source-name">Interest Income</h3>
+                                <span class="sakura-income-source-company">Savings Account</span>
+                            </div>
+                            <button class="sakura-income-source-menu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                        </div>
+                        <div class="sakura-income-source-amount">$12.50</div>
+                        <div class="sakura-income-source-details">
+                            <div class="sakura-income-source-detail">
+                                <i class="bi bi-calendar-check"></i>
+                                <span>Recurring - Monthly</span>
+                            </div>
+                            <div class="sakura-income-source-detail">
+                                <i class="bi bi-clock"></i>
+                                <span>Last deposit: Jan 10, 2025</span>
+                            </div>
+                            <div class="sakura-income-source-detail">
+                                <i class="bi bi-bank"></i>
+                                <span>Chase Bank</span>
+                            </div>
+                        </div>
+                        <div class="sakura-income-source-status active">
+                            <i class="bi bi-check-circle"></i>
+                            Active
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Income Transactions -->
+            <section class="sakura-recent-income-section">
+                <div class="sakura-section-header">
+                    <h2>Recent Income Transactions</h2>
+                    <a href="transactions.html" class="sakura-btn sakura-btn--outline sakura-btn--sm">View All</a>
+                </div>
+
+                <div class="sakura-transaction-list sakura-transaction-timeline">
+                    <!-- Date Group: Today -->
+                    <div class="sakura-date-group">
+                        <div class="sakura-date-group-header">
+                            <div class="sakura-date-bubble">T</div>
+                            <div class="sakura-date-group-title">
+                                <span class="sakura-date-group-date">Today</span>
+                                <span class="sakura-date-group-count">1 transaction</span>
+                            </div>
+                            <div class="sakura-date-group-summary">
+                                <span class="sakura-date-group-total positive">+$3,500.00</span>
+                            </div>
+                        </div>
+                        <div class="sakura-date-group-transactions">
+                            <!-- Transaction: Salary Deposit -->
+                            <div class="sakura-transaction-item" data-type="income">
+                                <div class="sakura-transaction-checkbox">
+                                    <input type="checkbox" class="sakura-transaction-select">
+                                </div>
+                                <div class="sakura-transaction-icon">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="sakura-transaction-details">
+                                    <div class="sakura-transaction-main">
+                                        <div class="sakura-transaction-name">Salary Deposit</div>
+                                        <div class="sakura-transaction-merchant">TechCorp Inc.</div>
+                                    </div>
+                                    <div class="sakura-transaction-meta">
+                                        <span class="sakura-transaction-bank-account">
+                                            <i class="bi bi-bank"></i>
+                                            Chase Checking
+                                        </span>
+                                        <span class="sakura-transaction-time">
+                                            <i class="bi bi-clock"></i>
+                                            Jan 15, 9:15 AM
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="sakura-transaction-envelope-container">
+                                    <span class="sakura-transaction-envelope envelope-salary">
+                                        <i class="bi bi-envelope"></i>
+                                        Salary
+                                    </span>
+                                </div>
+                                <div class="sakura-transaction-amount income">+$3,500.00</div>
+                                <button class="sakura-transaction-edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date Group: Jan 14 -->
+                    <div class="sakura-date-group">
+                        <div class="sakura-date-group-header">
+                            <div class="sakura-date-bubble">14</div>
+                            <div class="sakura-date-group-title">
+                                <span class="sakura-date-group-date">Jan 14, 2025</span>
+                                <span class="sakura-date-group-count">1 transaction</span>
+                            </div>
+                            <div class="sakura-date-group-summary">
+                                <span class="sakura-date-group-total positive">+$850.00</span>
+                            </div>
+                        </div>
+                        <div class="sakura-date-group-transactions">
+                            <!-- Transaction: Freelance Payment -->
+                            <div class="sakura-transaction-item" data-type="income">
+                                <div class="sakura-transaction-checkbox">
+                                    <input type="checkbox" class="sakura-transaction-select">
+                                </div>
+                                <div class="sakura-transaction-icon">
+                                    <i class="bi bi-laptop"></i>
+                                </div>
+                                <div class="sakura-transaction-details">
+                                    <div class="sakura-transaction-main">
+                                        <div class="sakura-transaction-name">Freelance Payment</div>
+                                        <div class="sakura-transaction-merchant">Client Project - Website Redesign</div>
+                                    </div>
+                                    <div class="sakura-transaction-meta">
+                                        <span class="sakura-transaction-bank-account">
+                                            <i class="bi bi-bank"></i>
+                                            Citi Checking
+                                        </span>
+                                        <span class="sakura-transaction-time">
+                                            <i class="bi bi-clock"></i>
+                                            Jan 14, 2:30 PM
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="sakura-transaction-envelope-container">
+                                    <span class="sakura-transaction-envelope envelope-freelance">
+                                        <i class="bi bi-envelope"></i>
+                                        Freelance
+                                    </span>
+                                </div>
+                                <div class="sakura-transaction-amount income">+$850.00</div>
+                                <button class="sakura-transaction-edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date Group: Jan 10 -->
+                    <div class="sakura-date-group">
+                        <div class="sakura-date-group-header">
+                            <div class="sakura-date-bubble">10</div>
+                            <div class="sakura-date-group-title">
+                                <span class="sakura-date-group-date">Jan 10, 2025</span>
+                                <span class="sakura-date-group-count">1 transaction</span>
+                            </div>
+                            <div class="sakura-date-group-summary">
+                                <span class="sakura-date-group-total positive">+$12.50</span>
+                            </div>
+                        </div>
+                        <div class="sakura-date-group-transactions">
+                            <!-- Transaction: Interest Payment -->
+                            <div class="sakura-transaction-item" data-type="income">
+                                <div class="sakura-transaction-checkbox">
+                                    <input type="checkbox" class="sakura-transaction-select">
+                                </div>
+                                <div class="sakura-transaction-icon">
+                                    <i class="bi bi-piggy-bank"></i>
+                                </div>
+                                <div class="sakura-transaction-details">
+                                    <div class="sakura-transaction-main">
+                                        <div class="sakura-transaction-name">Interest Payment</div>
+                                        <div class="sakura-transaction-merchant">High Yield Savings Account</div>
+                                    </div>
+                                    <div class="sakura-transaction-meta">
+                                        <span class="sakura-transaction-bank-account">
+                                            <i class="bi bi-bank"></i>
+                                            Chase Savings
+                                        </span>
+                                        <span class="sakura-transaction-time">
+                                            <i class="bi bi-clock"></i>
+                                            Jan 10, 12:00 AM
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="sakura-transaction-envelope-container">
+                                    <span class="sakura-transaction-envelope envelope-interest">
+                                        <i class="bi bi-envelope"></i>
+                                        Interest
+                                    </span>
+                                </div>
+                                <div class="sakura-transaction-amount income">+$12.50</div>
+                                <button class="sakura-transaction-edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date Group: Jan 1 -->
+                    <div class="sakura-date-group">
+                        <div class="sakura-date-group-header">
+                            <div class="sakura-date-bubble">1</div>
+                            <div class="sakura-date-group-title">
+                                <span class="sakura-date-group-date">Jan 1, 2025</span>
+                                <span class="sakura-date-group-count">1 transaction</span>
+                            </div>
+                            <div class="sakura-date-group-summary">
+                                <span class="sakura-date-group-total positive">+$3,500.00</span>
+                            </div>
+                        </div>
+                        <div class="sakura-date-group-transactions">
+                            <!-- Transaction: Salary Deposit -->
+                            <div class="sakura-transaction-item" data-type="income">
+                                <div class="sakura-transaction-checkbox">
+                                    <input type="checkbox" class="sakura-transaction-select">
+                                </div>
+                                <div class="sakura-transaction-icon">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="sakura-transaction-details">
+                                    <div class="sakura-transaction-main">
+                                        <div class="sakura-transaction-name">Salary Deposit</div>
+                                        <div class="sakura-transaction-merchant">TechCorp Inc.</div>
+                                    </div>
+                                    <div class="sakura-transaction-meta">
+                                        <span class="sakura-transaction-bank-account">
+                                            <i class="bi bi-bank"></i>
+                                            Chase Checking
+                                        </span>
+                                        <span class="sakura-transaction-time">
+                                            <i class="bi bi-clock"></i>
+                                            Jan 1, 9:15 AM
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="sakura-transaction-envelope-container">
+                                    <span class="sakura-transaction-envelope envelope-salary">
+                                        <i class="bi bi-envelope"></i>
+                                        Salary
+                                    </span>
+                                </div>
+                                <div class="sakura-transaction-amount income">+$3,500.00</div>
+                                <button class="sakura-transaction-edit">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Income Source Modal -->
+    <div class="sakura-modal" id="addIncomeModal">
+        <div class="sakura-modal-overlay"></div>
+        <div class="sakura-modal-content sakura-modal-content--income">
+            <div class="sakura-modal-header">
+                <h2>Add Income Source</h2>
+                <button class="sakura-modal-close" data-close-modal>
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="sakura-modal-body">
+                <form id="addIncomeForm">
+                    <!-- Income Source Name -->
+                    <div class="sakura-form-group">
+                        <label for="incomeName">Income Source Name *</label>
+                        <input type="text" id="incomeName" class="sakura-input" placeholder="e.g., Salary, Freelance" required>
+                    </div>
+
+                    <!-- Company/Description -->
+                    <div class="sakura-form-group">
+                        <label for="incomeCompany">Company/Description</label>
+                        <input type="text" id="incomeCompany" class="sakura-input" placeholder="e.g., TechCorp Inc.">
+                    </div>
+
+                    <!-- Amount & Frequency Row -->
+                    <div class="sakura-form-row sakura-form-row--amount-frequency">
+                        <!-- Amount -->
+                        <div class="sakura-form-group">
+                            <label for="incomeAmount">Expected Amount *</label>
+                            <div class="sakura-input-with-prefix">
+                                <span class="sakura-input-prefix">$</span>
+                                <input type="number" id="incomeAmount" class="sakura-input sakura-input-with-prefix-input" step="0.01" placeholder="0.00" required>
+                            </div>
+                        </div>
+
+                        <!-- Frequency -->
+                        <div class="sakura-form-group">
+                            <label for="incomeFrequency">Frequency *</label>
+                            <div class="sakura-custom-select" id="incomeFrequencySelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select frequency...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="one-time">
+                                        <i class="bi bi-calendar sakura-option-icon"></i>
+                                        One-Time
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="weekly">
+                                        <i class="bi bi-calendar-week sakura-option-icon"></i>
+                                        Weekly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="bi-weekly">
+                                        <i class="bi bi-calendar2-week sakura-option-icon"></i>
+                                        Bi-Weekly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="semi-monthly">
+                                        <i class="bi bi-calendar2-range sakura-option-icon"></i>
+                                        Semi-Monthly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="monthly">
+                                        <i class="bi bi-calendar-check sakura-option-icon"></i>
+                                        Monthly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="quarterly">
+                                        <i class="bi bi-calendar2-month sakura-option-icon"></i>
+                                        Quarterly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="semi-annually">
+                                        <i class="bi bi-calendar-range sakura-option-icon"></i>
+                                        Semi-Annually
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="yearly">
+                                        <i class="bi bi-calendar3 sakura-option-icon"></i>
+                                        Yearly
+                                    </div>
+                                </div>
+                                <input type="hidden" id="incomeFrequency" required>
+                            </div>
+                        </div>
+
+                        <!-- Bank Account -->
+                        <div class="sakura-form-group">
+                            <label for="incomeAccount">Deposit Account *</label>
+                            <div class="sakura-custom-select" id="incomeAccountSelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select account...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="chase-checking">
+                                        <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                        Chase Checking
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="chase-savings">
+                                        <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                        Chase Savings
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="citi-checking">
+                                        <img src="https://logo.clearbit.com/citi.com" alt="Citi" class="sakura-bank-logo">
+                                        Citi Checking
+                                    </div>
+                                </div>
+                                <input type="hidden" id="incomeAccount" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="sakura-form-group">
+                        <label for="incomeNotes">Notes (Optional)</label>
+                        <textarea id="incomeNotes" class="sakura-input sakura-textarea" rows="3" placeholder="Add any additional details..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="sakura-modal-footer">
+                <button type="button" class="sakura-btn sakura-btn--outline" data-close-modal>Cancel</button>
+                <button type="submit" form="addIncomeForm" class="sakura-btn sakura-btn--primary">
+                    <i class="bi bi-plus-lg"></i>
+                    Add Income Source
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View/Edit Income Source Modal -->
+    <div class="sakura-modal" id="viewIncomeModal">
+        <div class="sakura-modal-overlay"></div>
+        <div class="sakura-modal-content sakura-modal-content--income">
+            <div class="sakura-modal-header">
+                <h3 class="sakura-modal-title">Income Source Details</h3>
+                <button class="sakura-modal-close" data-close-modal>
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="sakura-modal-body">
+                <form id="viewIncomeForm">
+                    <!-- Income Source Name -->
+                    <div class="sakura-form-group">
+                        <label for="viewIncomeName">Income Source Name *</label>
+                        <input type="text" id="viewIncomeName" class="sakura-input" placeholder="e.g., Salary, Freelance" required>
+                    </div>
+
+                    <!-- Company/Description -->
+                    <div class="sakura-form-group">
+                        <label for="viewIncomeCompany">Company/Description</label>
+                        <input type="text" id="viewIncomeCompany" class="sakura-input" placeholder="e.g., TechCorp Inc.">
+                    </div>
+
+                    <!-- Amount & Frequency Row -->
+                    <div class="sakura-form-row sakura-form-row--amount-frequency">
+                        <!-- Amount -->
+                        <div class="sakura-form-group">
+                            <label for="viewIncomeAmount">Expected Amount *</label>
+                            <div class="sakura-input-with-prefix">
+                                <span class="sakura-input-prefix">$</span>
+                                <input type="number" id="viewIncomeAmount" class="sakura-input sakura-input-with-prefix-input" step="0.01" placeholder="0.00" required>
+                            </div>
+                        </div>
+
+                        <!-- Frequency -->
+                        <div class="sakura-form-group">
+                            <label for="viewIncomeFrequency">Frequency *</label>
+                            <div class="sakura-custom-select" id="viewIncomeFrequencySelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select frequency...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="one-time">
+                                        <i class="bi bi-calendar sakura-option-icon"></i>
+                                        One-Time
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="weekly">
+                                        <i class="bi bi-calendar-week sakura-option-icon"></i>
+                                        Weekly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="bi-weekly">
+                                        <i class="bi bi-calendar2-week sakura-option-icon"></i>
+                                        Bi-Weekly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="semi-monthly">
+                                        <i class="bi bi-calendar2-range sakura-option-icon"></i>
+                                        Semi-Monthly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="monthly">
+                                        <i class="bi bi-calendar-check sakura-option-icon"></i>
+                                        Monthly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="quarterly">
+                                        <i class="bi bi-calendar2-month sakura-option-icon"></i>
+                                        Quarterly
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="semi-annually">
+                                        <i class="bi bi-calendar-range sakura-option-icon"></i>
+                                        Semi-Annually
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="yearly">
+                                        <i class="bi bi-calendar3 sakura-option-icon"></i>
+                                        Yearly
+                                    </div>
+                                </div>
+                                <input type="hidden" id="viewIncomeFrequency" required>
+                            </div>
+                        </div>
+
+                        <!-- Bank Account -->
+                        <div class="sakura-form-group">
+                            <label for="viewIncomeAccount">Deposit Account *</label>
+                            <div class="sakura-custom-select" id="viewIncomeAccountSelect">
+                                <div class="sakura-custom-select-trigger placeholder">Select account...</div>
+                                <div class="sakura-custom-select-dropdown">
+                                    <div class="sakura-custom-select-option" data-value="chase-checking">
+                                        <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                        Chase Checking
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="chase-savings">
+                                        <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="sakura-bank-logo">
+                                        Chase Savings
+                                    </div>
+                                    <div class="sakura-custom-select-option" data-value="citi-checking">
+                                        <img src="https://logo.clearbit.com/citi.com" alt="Citi" class="sakura-bank-logo">
+                                        Citi Checking
+                                    </div>
+                                </div>
+                                <input type="hidden" id="viewIncomeAccount" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="sakura-form-group">
+                        <label for="viewIncomeNotes">Notes (Optional)</label>
+                        <textarea id="viewIncomeNotes" class="sakura-input sakura-textarea" rows="3" placeholder="Add any additional details..."></textarea>
+                    </div>
+
+                    <!-- Status Toggle -->
+                    <div class="sakura-form-group">
+                        <label class="sakura-form-label">Status</label>
+                        <div class="sakura-toggle-group">
+                            <label class="sakura-toggle-option">
+                                <input type="radio" name="viewIncomeStatus" value="active" checked>
+                                <span class="sakura-toggle-label">
+                                    <i class="bi bi-check-circle"></i>
+                                    Active
+                                </span>
+                            </label>
+                            <label class="sakura-toggle-option">
+                                <input type="radio" name="viewIncomeStatus" value="paused">
+                                <span class="sakura-toggle-label">
+                                    <i class="bi bi-pause-circle"></i>
+                                    Paused
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Envelope Allocations Section -->
+                    <div class="sakura-form-group sakura-envelope-allocations-section">
+                        <div class="sakura-allocation-header">
+                            <label class="sakura-form-label">Envelope Allocations</label>
+                            <button type="button" class="sakura-btn sakura-btn--sm sakura-btn--outline" id="addAllocation">
+                                <i class="bi bi-plus-lg"></i>
+                                Add Allocation
+                            </button>
+                        </div>
+
+                        <!-- Allocation Summary -->
+                        <div class="sakura-allocation-summary">
+                            <div class="sakura-allocation-summary-item">
+                                <span class="sakura-allocation-label">Total Income</span>
+                                <span class="sakura-allocation-value total" id="totalIncome">$3,500.00</span>
+                            </div>
+                            <div class="sakura-allocation-summary-item">
+                                <span class="sakura-allocation-label">Allocated</span>
+                                <span class="sakura-allocation-value allocated" id="totalAllocated">$2,800.00</span>
+                            </div>
+                            <div class="sakura-allocation-summary-item">
+                                <span class="sakura-allocation-label">Remaining</span>
+                                <span class="sakura-allocation-value remaining" id="totalRemaining">$700.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Allocations List -->
+                        <div class="sakura-allocations-list" id="allocationsList">
+                            <!-- Allocation Item 1 -->
+                            <div class="sakura-allocation-item">
+                                <div class="sakura-allocation-envelope">
+                                    <div class="sakura-allocation-envelope-icon" style="background: #10b981;">
+                                        <i class="bi bi-cart"></i>
+                                    </div>
+                                    <div class="sakura-allocation-envelope-info">
+                                        <span class="sakura-allocation-envelope-name">Groceries</span>
+                                        <span class="sakura-allocation-envelope-percentage">40%</span>
+                                    </div>
+                                </div>
+                                <div class="sakura-allocation-amount">
+                                    <span class="sakura-allocation-amount-value">$1,400.00</span>
+                                    <button type="button" class="sakura-allocation-remove" title="Remove allocation">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Allocation Item 2 -->
+                            <div class="sakura-allocation-item">
+                                <div class="sakura-allocation-envelope">
+                                    <div class="sakura-allocation-envelope-icon" style="background: #3b82f6;">
+                                        <i class="bi bi-house"></i>
+                                    </div>
+                                    <div class="sakura-allocation-envelope-info">
+                                        <span class="sakura-allocation-envelope-name">Rent</span>
+                                        <span class="sakura-allocation-envelope-percentage">28.6%</span>
+                                    </div>
+                                </div>
+                                <div class="sakura-allocation-amount">
+                                    <span class="sakura-allocation-amount-value">$1,000.00</span>
+                                    <button type="button" class="sakura-allocation-remove" title="Remove allocation">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Allocation Item 3 -->
+                            <div class="sakura-allocation-item">
+                                <div class="sakura-allocation-envelope">
+                                    <div class="sakura-allocation-envelope-icon" style="background: #8b5cf6;">
+                                        <i class="bi bi-piggy-bank"></i>
+                                    </div>
+                                    <div class="sakura-allocation-envelope-info">
+                                        <span class="sakura-allocation-envelope-name">Savings</span>
+                                        <span class="sakura-allocation-envelope-percentage">11.4%</span>
+                                    </div>
+                                </div>
+                                <div class="sakura-allocation-amount">
+                                    <span class="sakura-allocation-amount-value">$400.00</span>
+                                    <button type="button" class="sakura-allocation-remove" title="Remove allocation">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="sakura-modal-footer">
+                <button type="button" class="sakura-btn sakura-btn--outline" data-close-modal>Cancel</button>
+                <button type="button" class="sakura-btn sakura-btn--danger" id="deleteIncomeSource">
+                    <i class="bi bi-trash"></i>
+                    Delete
+                </button>
+                <button type="submit" form="viewIncomeForm" class="sakura-btn sakura-btn--primary">
+                    <i class="bi bi-check-lg"></i>
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/sakura.js"></script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Fund - Sakura Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="src/sakura.css">
+</head>
+<body class="sakura-dashboard-body">
+    <!-- Dashboard Header -->
+    <header class="sakura-dashboard-header">
+        <div class="sakura-dashboard-header-container">
+            <div class="sakura-header-left">
+                <div class="sakura-navbar-brand">
+                    <img src="dist/sakura-logo.svg" alt="Sakura Budget" class="sakura-navbar-logo" style="height: 80px; width: auto;">
+                </div>
+                <nav class="sakura-breadcrumb">
+                    <a href="dashboard.html" class="sakura-breadcrumb-item">Dashboard</a>
+                    <span class="sakura-breadcrumb-separator">/</span>
+                    <a href="goals.html" class="sakura-breadcrumb-item">Goals</a>
+                    <span class="sakura-breadcrumb-separator">/</span>
+                    <span class="sakura-breadcrumb-item">Emergency Fund</span>
+                </nav>
+            </div>
+            <div class="sakura-header-right">
+                <div class="sakura-notification-container">
+                    <button class="sakura-notification-btn">
+                        <i class="bi bi-bell"></i>
+                        <span class="sakura-notification-badge">3</span>
+                    </button>
+                    <div class="sakura-notification-dropdown">
+                        <div class="sakura-notification-header">
+                            <h3>Notifications</h3>
+                            <button class="sakura-notification-mark-all">Mark all as read</button>
+                        </div>
+                        <div class="sakura-notification-list">
+                            <div class="sakura-notification-item unread" data-type="budget">
+                                <div class="sakura-notification-icon budget">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Entertainment envelope at 90%</div>
+                                    <div class="sakura-notification-message">You have $50 remaining in your Entertainment budget</div>
+                                    <div class="sakura-notification-time">2 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+                            <div class="sakura-notification-item unread" data-type="goal">
+                                <div class="sakura-notification-icon goal">
+                                    <i class="bi bi-bullseye"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Emergency Fund milestone reached</div>
+                                    <div class="sakura-notification-message">Congratulations! Your Emergency Fund is now 50% complete</div>
+                                    <div class="sakura-notification-time">5 hours ago</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+                            <div class="sakura-notification-item unread" data-type="income">
+                                <div class="sakura-notification-icon income">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="sakura-notification-content">
+                                    <div class="sakura-notification-title">Salary deposited</div>
+                                    <div class="sakura-notification-message">$3,500.00 has been added to your Chase Bank account</div>
+                                    <div class="sakura-notification-time">Yesterday at 9:15 AM</div>
+                                </div>
+                                <button class="sakura-notification-mark-read">
+                                    <i class="bi bi-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="sakura-notification-footer">
+                            <a href="notifications.html" class="sakura-notification-view-all">
+                                View All Notifications
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sakura-user-menu">
+                    <img src="https://avatar.iran.liara.run/public" alt="User" class="sakura-user-avatar">
+                    <div class="sakura-user-info">
+                        <span class="sakura-user-name">Pablo Peso</span>
+                        <span class="sakura-user-email">pablo@sakura.com</span>
+                    </div>
+                    <button class="sakura-user-menu-toggle">
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="sakura-user-dropdown">
+                        <button class="sakura-dropdown-item">
+                            <i class="bi bi-person"></i>
+                            Profile Settings
+                        </button>
+                        <button class="sakura-dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Preferences
+                        </button>
+                        <button class="sakura-dropdown-item">
+                            <i class="bi bi-question-circle"></i>
+                            Help Center
+                        </button>
+                        <hr class="sakura-dropdown-divider">
+                        <button class="sakura-dropdown-item logout">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="sakura-dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sakura-dashboard-sidebar">
+            <nav class="sakura-sidebar-nav">
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Dashboard</span>
+                    <a href="dashboard.html" class="sakura-nav-item">
+                        <i class="bi bi-grid"></i>
+                        <span>Overview</span>
+                    </a>
+                    <a href="envelopes.html" class="sakura-nav-item">
+                        <i class="bi bi-envelope"></i>
+                        <span>Envelopes</span>
+                    </a>
+                    <a href="transactions.html" class="sakura-nav-item">
+                        <i class="bi bi-arrow-left-right"></i>
+                        <span>Transactions</span>
+                    </a>
+                </div>
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Budget</span>
+                    <a href="income.html" class="sakura-nav-item">
+                        <i class="bi bi-cash-coin"></i>
+                        <span>Income</span>
+                    </a>
+                    <a href="analytics.html" class="sakura-nav-item">
+                        <i class="bi bi-graph-up"></i>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="goals.html" class="sakura-nav-item sakura-nav-item--active">
+                        <i class="bi bi-bullseye"></i>
+                        <span>Goals</span>
+                    </a>
+                    <a href="calendar.html" class="sakura-nav-item">
+                        <i class="bi bi-calendar"></i>
+                        <span>Calendar</span>
+                    </a>
+</div>
+                <div class="sakura-nav-section">
+                    <span class="sakura-section-title">Settings</span>
+                    <a href="account.html" class="sakura-nav-item">
+                        <i class="bi bi-gear"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="sakura-dashboard-main">
+            <!-- Page Header -->
+            <section class="sakura-page-header">
+                <div class="sakura-page-header-content">
+                    <h1>Emergency Fund</h1>
+                    <p>Financial Security - Target: $10,000 by Dec 2025</p>
+                </div>
+                <div class="sakura-page-header-actions">
+                    <button class="sakura-btn sakura-btn--outline">
+                        <i class="bi bi-pencil"></i>
+                        Edit Goal
+                    </button>
+                    <button class="sakura-btn sakura-btn--primary">
+                        <i class="bi bi-plus-lg"></i>
+                        Add Funds
+                    </button>
+                </div>
+            </section>
+
+            <!-- Goal Summary Cards -->
+            <section class="sakura-transaction-summary">
+                <div class="sakura-summary-card" style="--summary-color: #10b981;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+                    <div class="sakura-summary-amount">$10,000</div>
+                    <div class="sakura-summary-label">Target Amount</div>
+                    <div class="sakura-summary-change neutral">Goal by Dec 2025</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #3b82f6;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-piggy-bank"></i>
+                    </div>
+                    <div class="sakura-summary-amount">$6,750</div>
+                    <div class="sakura-summary-label">Current Saved</div>
+                    <div class="sakura-summary-change positive">67.5% of target</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #8b5cf6;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-graph-up"></i>
+                    </div>
+                    <div class="sakura-summary-amount">$3,250</div>
+                    <div class="sakura-summary-label">Remaining</div>
+                    <div class="sakura-summary-change neutral">32.5% to go</div>
+                </div>
+                <div class="sakura-summary-card" style="--summary-color: #f59e0b;">
+                    <div class="sakura-summary-icon">
+                        <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <div class="sakura-summary-amount">245</div>
+                    <div class="sakura-summary-label">Days Remaining</div>
+                    <div class="sakura-summary-change neutral">Until Dec 2025</div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section class="sakura-goals-section">
+                <div class="sakura-section-header">
+                    <h2>Progress Overview</h2>
+                </div>
+
+                <div class="sakura-goal-card">
+                    <div class="sakura-goal-header">
+                        <div class="sakura-goal-icon">
+                            <i class="bi bi-currency-dollar"></i>
+                        </div>
+                        <div class="sakura-goal-title-section">
+                            <h3>Overall Progress</h3>
+                            <span class="sakura-goal-category">Financial Security</span>
+                        </div>
+                    </div>
+                    <div class="sakura-goal-progress">
+                        <div class="sakura-goal-amounts">
+                            <span class="sakura-goal-current">$6,750</span>
+                            <span class="sakura-goal-target-amount">$10,000</span>
+                        </div>
+                        <div class="sakura-goal-progress-bar">
+                            <div class="sakura-goal-progress-fill" style="width: 67.5%"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contribution History -->
+            <section class="sakura-transaction-results">
+                <div class="sakura-results-header">
+                    <div class="sakura-results-info">
+                        <span class="sakura-results-count">Contribution History</span>
+                    </div>
+                </div>
+
+                <!-- List View with Timeline -->
+                <div class="sakura-transaction-view sakura-list-view active" id="listView">
+                    <div class="sakura-transaction-list sakura-transaction-timeline">
+                        <!-- January 15, 2025 -->
+                        <div class="sakura-date-group">
+                            <div class="sakura-date-group-header">
+                                <div class="sakura-date-bubble">15</div>
+                                <div class="sakura-date-group-title">
+                                    <span class="sakura-date-group-date">January 15, 2025</span>
+                                    <span class="sakura-date-group-count">1 contribution</span>
+                                </div>
+                                <div class="sakura-date-group-summary">
+                                    <span class="sakura-date-group-total positive">+$500.00</span>
+                                </div>
+                            </div>
+                            <div class="sakura-date-group-transactions">
+                                <div class="sakura-transaction-item">
+                                    <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
+                                        <i class="bi bi-piggy-bank"></i>
+                                    </div>
+                                    <div class="sakura-transaction-details">
+                                        <div class="sakura-transaction-name">Monthly Contribution</div>
+                                        <div class="sakura-transaction-category">Emergency Fund</div>
+                                    </div>
+                                    <div class="sakura-transaction-amount income">
+                                        +$500.00
+                                        <div class="sakura-transaction-date">3:45 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- January 10, 2025 -->
+                        <div class="sakura-date-group">
+                            <div class="sakura-date-group-header">
+                                <div class="sakura-date-bubble">10</div>
+                                <div class="sakura-date-group-title">
+                                    <span class="sakura-date-group-date">January 10, 2025</span>
+                                    <span class="sakura-date-group-count">1 contribution</span>
+                                </div>
+                                <div class="sakura-date-group-summary">
+                                    <span class="sakura-date-group-total positive">+$250.00</span>
+                                </div>
+                            </div>
+                            <div class="sakura-date-group-transactions">
+                                <div class="sakura-transaction-item">
+                                    <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
+                                        <i class="bi bi-piggy-bank"></i>
+                                    </div>
+                                    <div class="sakura-transaction-details">
+                                        <div class="sakura-transaction-name">Extra Income Deposit</div>
+                                        <div class="sakura-transaction-category">Emergency Fund</div>
+                                    </div>
+                                    <div class="sakura-transaction-amount income">
+                                        +$250.00
+                                        <div class="sakura-transaction-date">10:15 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- January 1, 2025 -->
+                        <div class="sakura-date-group">
+                            <div class="sakura-date-group-header">
+                                <div class="sakura-date-bubble">1</div>
+                                <div class="sakura-date-group-title">
+                                    <span class="sakura-date-group-date">January 1, 2025</span>
+                                    <span class="sakura-date-group-count">1 contribution</span>
+                                </div>
+                                <div class="sakura-date-group-summary">
+                                    <span class="sakura-date-group-total positive">+$1,000.00</span>
+                                </div>
+                            </div>
+                            <div class="sakura-date-group-transactions">
+                                <div class="sakura-transaction-item">
+                                    <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
+                                        <i class="bi bi-gift"></i>
+                                    </div>
+                                    <div class="sakura-transaction-details">
+                                        <div class="sakura-transaction-name">Bonus Deposit</div>
+                                        <div class="sakura-transaction-category">Emergency Fund</div>
+                                    </div>
+                                    <div class="sakura-transaction-amount income">
+                                        +$1,000.00
+                                        <div class="sakura-transaction-date">9:00 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- December 15, 2024 -->
+                        <div class="sakura-date-group">
+                            <div class="sakura-date-group-header">
+                                <div class="sakura-date-bubble">15</div>
+                                <div class="sakura-date-group-title">
+                                    <span class="sakura-date-group-date">December 15, 2024</span>
+                                    <span class="sakura-date-group-count">1 contribution</span>
+                                </div>
+                                <div class="sakura-date-group-summary">
+                                    <span class="sakura-date-group-total positive">+$500.00</span>
+                                </div>
+                            </div>
+                            <div class="sakura-date-group-transactions">
+                                <div class="sakura-transaction-item">
+                                    <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
+                                        <i class="bi bi-piggy-bank"></i>
+                                    </div>
+                                    <div class="sakura-transaction-details">
+                                        <div class="sakura-transaction-name">Monthly Contribution</div>
+                                        <div class="sakura-transaction-category">Emergency Fund</div>
+                                    </div>
+                                    <div class="sakura-transaction-amount income">
+                                        +$500.00
+                                        <div class="sakura-transaction-date">2:30 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- December 10, 2024 -->
+                        <div class="sakura-date-group">
+                            <div class="sakura-date-group-header">
+                                <div class="sakura-date-bubble">10</div>
+                                <div class="sakura-date-group-title">
+                                    <span class="sakura-date-group-date">December 10, 2024</span>
+                                    <span class="sakura-date-group-count">1 contribution</span>
+                                </div>
+                                <div class="sakura-date-group-summary">
+                                    <span class="sakura-date-group-total positive">+$2,000.00</span>
+                                </div>
+                            </div>
+                            <div class="sakura-date-group-transactions">
+                                <div class="sakura-transaction-item">
+                                    <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
+                                        <i class="bi bi-receipt"></i>
+                                    </div>
+                                    <div class="sakura-transaction-details">
+                                        <div class="sakura-transaction-name">Tax Refund</div>
+                                        <div class="sakura-transaction-category">Emergency Fund</div>
+                                    </div>
+                                    <div class="sakura-transaction-amount income">
+                                        +$2,000.00
+                                        <div class="sakura-transaction-date">11:20 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- November 15, 2024 -->
+                        <div class="sakura-date-group">
+                            <div class="sakura-date-group-header">
+                                <div class="sakura-date-bubble">15</div>
+                                <div class="sakura-date-group-title">
+                                    <span class="sakura-date-group-date">November 15, 2024</span>
+                                    <span class="sakura-date-group-count">1 contribution</span>
+                                </div>
+                                <div class="sakura-date-group-summary">
+                                    <span class="sakura-date-group-total positive">+$500.00</span>
+                                </div>
+                            </div>
+                            <div class="sakura-date-group-transactions">
+                                <div class="sakura-transaction-item">
+                                    <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
+                                        <i class="bi bi-piggy-bank"></i>
+                                    </div>
+                                    <div class="sakura-transaction-details">
+                                        <div class="sakura-transaction-name">Monthly Contribution</div>
+                                        <div class="sakura-transaction-category">Emergency Fund</div>
+                                    </div>
+                                    <div class="sakura-transaction-amount income">
+                                        +$500.00
+                                        <div class="sakura-transaction-date">4:15 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- November 5, 2024 -->
+                        <div class="sakura-date-group">
+                            <div class="sakura-date-group-header">
+                                <div class="sakura-date-bubble">5</div>
+                                <div class="sakura-date-group-title">
+                                    <span class="sakura-date-group-date">November 5, 2024</span>
+                                    <span class="sakura-date-group-count">1 contribution</span>
+                                </div>
+                                <div class="sakura-date-group-summary">
+                                    <span class="sakura-date-group-total positive">+$1,500.00</span>
+                                </div>
+                            </div>
+                            <div class="sakura-date-group-transactions">
+                                <div class="sakura-transaction-item">
+                                    <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
+                                        <i class="bi bi-cash-stack"></i>
+                                    </div>
+                                    <div class="sakura-transaction-details">
+                                        <div class="sakura-transaction-name">Freelance Project Payment</div>
+                                        <div class="sakura-transaction-category">Emergency Fund</div>
+                                    </div>
+                                    <div class="sakura-transaction-amount income">
+                                        +$1,500.00
+                                        <div class="sakura-transaction-date">1:00 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- October 15, 2024 -->
+                        <div class="sakura-date-group">
+                            <div class="sakura-date-group-header">
+                                <div class="sakura-date-bubble">15</div>
+                                <div class="sakura-date-group-title">
+                                    <span class="sakura-date-group-date">October 15, 2024</span>
+                                    <span class="sakura-date-group-count">1 contribution</span>
+                                </div>
+                                <div class="sakura-date-group-summary">
+                                    <span class="sakura-date-group-total positive">+$500.00</span>
+                                </div>
+                            </div>
+                            <div class="sakura-date-group-transactions">
+                                <div class="sakura-transaction-item">
+                                    <div class="sakura-transaction-icon icon-emoji" style="--transaction-color: #dcfdf4; --transaction-text-color: #059669;">
+                                        <i class="bi bi-piggy-bank"></i>
+                                    </div>
+                                    <div class="sakura-transaction-details">
+                                        <div class="sakura-transaction-name">Monthly Contribution</div>
+                                        <div class="sakura-transaction-category">Emergency Fund</div>
+                                    </div>
+                                    <div class="sakura-transaction-amount income">
+                                        +$500.00
+                                        <div class="sakura-transaction-date">3:00 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Load More Button -->
+                        <div class="sakura-load-more-container">
+                            <button class="sakura-btn sakura-btn--outline sakura-load-more-btn">Load More Contributions</button>
+                            <div class="sakura-load-more-info">Showing 8 of 24 contributions</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="src/sakura.js"></script>
+</body>
+</html>

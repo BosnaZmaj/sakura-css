@@ -1,5 +1,87 @@
 @import "tailwindcss";
 
+/* CSS Custom Properties for Components */
+:root {
+  /* Colors */
+  --primary: #1e2a3b;
+  --primary-light: #2d3f5a;
+  --primary-dark: #0f1419;
+  --secondary: #5b8bf5;
+  --secondary-light: #7ba5ff;
+  --accent: #10b981;
+  --accent-light: #34d399;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --success: #10b981;
+  --purple: #8b5cf6;
+  --purple-light: #a78bfa;
+  --pink: #ec4899;
+  --pink-light: #f472b6;
+
+  /* Neutrals */
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  /* Typography */
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, sans-serif;
+
+  /* Font Weights */
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Border Radius */
+  --radius: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.02);
+  --shadow-md: 0 4px 8px -2px rgb(0 0 0 / 0.04), 0 2px 4px -1px rgb(0 0 0 / 0.03);
+  --shadow-lg: 0 10px 20px -5px rgb(0 0 0 / 0.06), 0 4px 8px -2px rgb(0 0 0 / 0.04);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
 /* Tailwind v4 Theme Configuration */
 @theme {
   /* Sakura Brand Colors */
@@ -231,6 +313,7 @@
   /* Sakura Button Components - Basic versions for navigation */
   .sakura-btn {
     @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-2xl transition-all duration-200 no-underline border;
+    gap: 0.5rem;
   }
 
   .sakura-btn--sm {
@@ -244,17 +327,21 @@
   }
 
   .sakura-btn--primary:hover {
-    @apply bg-transparent text-sakura-primary;
+    @apply bg-white text-sakura-primary;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px -2px rgba(30, 42, 59, 0.3);
   }
 
   .sakura-btn--outline {
-    @apply bg-transparent text-sakura-primary border-sakura-primary;
+    @apply bg-white text-sakura-primary border-sakura-primary;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateY(0);
   }
 
   .sakura-btn--outline:hover {
     @apply bg-sakura-primary text-white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px -2px rgba(30, 42, 59, 0.3);
   }
 
   .sakura-btn--lg {
@@ -4275,92 +4362,245 @@
   }
 
   /* Feature Explanation Modal System */
-  .sakura-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(12px);
+
+  /* Custom Dropdown Component */
+  .sakura-custom-select {
+    position: relative;
+    width: 100%;
+  }
+
+  .sakura-custom-select-trigger {
+    @apply px-3 py-2 rounded-2xl;
+    border: 2px solid #e2e8f0;
+    border-style: solid;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 10px;
+    padding-right: 2.5rem;
+    font-size: 0.875rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    width: 100%;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    color: #1e293b;
+    user-select: none;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .sakura-custom-select-trigger.placeholder {
+    color: #94a3b8;
+  }
+
+  .sakura-custom-select-trigger:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 6px rgba(91, 139, 245, 0.06);
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235B8BF5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-size: 10px;
+  }
+
+  .sakura-custom-select.active .sakura-custom-select-trigger {
+    outline: none !important;
+    border: 2px solid #5B8BF5 !important;
+    border-style: solid !important;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235B8BF5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 10px;
+    box-shadow:
+      0 0 0 4px rgba(91, 139, 245, 0.08),
+      0 4px 12px rgba(91, 139, 245, 0.12);
+  }
+
+  .sakura-custom-select-trigger-with-icon {
+    padding-left: 3rem;
+  }
+
+  .sakura-custom-select-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 1rem;
+    box-shadow:
+      0 10px 40px -8px rgba(0, 0, 0, 0.12),
+      0 4px 16px -4px rgba(0, 0, 0, 0.08);
+    max-height: 240px;
+    overflow-y: auto;
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
+    transform: translateY(-8px);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .sakura-modal-overlay.sakura-modal--active {
+  .sakura-custom-select.active .sakura-custom-select-dropdown {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
+    transform: translateY(0);
   }
 
-  .sakura-modal-container {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(40px);
-    border-radius: 24px;
-    max-width: 800px;
-    max-height: 90vh;
-    width: 90%;
-    overflow-y: auto;
-    box-shadow:
-      0 25px 100px -20px rgba(0, 0, 0, 0.4),
-      0 15px 60px -15px rgba(0, 0, 0, 0.25),
-      0 0 0 1px rgba(255, 255, 255, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    transform: scale(0.9) translateY(30px);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .sakura-modal-overlay.sakura-modal--active .sakura-modal-container {
-    transform: scale(1) translateY(0);
-  }
-
-  .sakura-modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 32px;
-    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-    background: linear-gradient(135deg, rgba(91, 139, 245, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%);
-    border-radius: 24px 24px 0 0;
-  }
-
-  .sakura-modal-header h3 {
-    @apply text-2xl font-bold mb-0 font-heading;
-    color: #0f172a;
-    color: #1e2a3b;
-  }
-
-  .sakura-modal-close {
-    background: rgba(75, 85, 99, 0.1);
-    border: none;
-    color: #6b7280;
-    font-size: 20px;
+  .sakura-custom-select-option {
+    padding: 10px 14px;
     cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.875rem;
+    color: #1e293b;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
+    gap: 8px;
   }
 
-  .sakura-modal-close:hover {
-    background: rgba(75, 85, 99, 0.2);
-    color: #374151;
-    transform: scale(1.05);
+  .sakura-custom-select-option:first-child {
+    margin-top: 4px;
   }
 
-  .sakura-modal-body {
-    padding: 0;
+  .sakura-custom-select-option:last-child {
+    margin-bottom: 4px;
   }
+
+  .sakura-custom-select-option:hover {
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.08) 0%, rgba(139, 92, 246, 0.06) 100%);
+    color: #5B8BF5;
+  }
+
+  .sakura-custom-select-option.selected {
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%);
+    color: #5B8BF5;
+    font-weight: 500;
+  }
+
+  .sakura-custom-select-option.selected::after {
+    content: '✓';
+    margin-left: auto;
+    font-weight: bold;
+    color: #5B8BF5;
+  }
+
+  /* Option icons */
+  .sakura-option-icon {
+    font-size: 1.1rem;
+    color: #64748b;
+    transition: color 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  /* Colored icon modifier - adds background and adjusts spacing */
+  .sakura-option-icon--colored {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  /* Color Palette - 40 distinct color combinations */
+  /* Using !important to override parent hover/selected color */
+  .sakura-option-icon--colored.color-1 { background: #dcfce7; color: #15803d !important; }
+  .sakura-option-icon--colored.color-2 { background: #dbeafe; color: #1e40af !important; }
+  .sakura-option-icon--colored.color-3 { background: #fef3c7; color: #b45309 !important; }
+  .sakura-option-icon--colored.color-4 { background: #fce7f3; color: #be185d !important; }
+  .sakura-option-icon--colored.color-5 { background: #e0e7ff; color: #4338ca !important; }
+  .sakura-option-icon--colored.color-6 { background: #ddd6fe; color: #6b21a8 !important; }
+  .sakura-option-icon--colored.color-7 { background: #fed7aa; color: #c2410c !important; }
+  .sakura-option-icon--colored.color-8 { background: #d1fae5; color: #047857 !important; }
+  .sakura-option-icon--colored.color-9 { background: #fee2e2; color: #b91c1c !important; }
+  .sakura-option-icon--colored.color-10 { background: #fbcfe8; color: #be185d !important; }
+  .sakura-option-icon--colored.color-11 { background: #ccfbf1; color: #0f766e !important; }
+  .sakura-option-icon--colored.color-12 { background: #e0f2fe; color: #0369a1 !important; }
+  .sakura-option-icon--colored.color-13 { background: #fef9c3; color: #a16207 !important; }
+  .sakura-option-icon--colored.color-14 { background: #fecdd3; color: #be123c !important; }
+  .sakura-option-icon--colored.color-15 { background: #ede9fe; color: #5b21b6 !important; }
+  .sakura-option-icon--colored.color-16 { background: #fae8ff; color: #a21caf !important; }
+  .sakura-option-icon--colored.color-17 { background: #ffedd5; color: #c2410c !important; }
+  .sakura-option-icon--colored.color-18 { background: #dcfdf4; color: #059669 !important; }
+  .sakura-option-icon--colored.color-19 { background: #fecaca; color: #dc2626 !important; }
+  .sakura-option-icon--colored.color-20 { background: #fbcfe8; color: #db2777 !important; }
+  .sakura-option-icon--colored.color-21 { background: #a7f3d0; color: #065f46 !important; }
+  .sakura-option-icon--colored.color-22 { background: #bfdbfe; color: #1e3a8a !important; }
+  .sakura-option-icon--colored.color-23 { background: #fde68a; color: #92400e !important; }
+  .sakura-option-icon--colored.color-24 { background: #fda4af; color: #9f1239 !important; }
+  .sakura-option-icon--colored.color-25 { background: #c7d2fe; color: #3730a3 !important; }
+  .sakura-option-icon--colored.color-26 { background: #e9d5ff; color: #7e22ce !important; }
+  .sakura-option-icon--colored.color-27 { background: #fed7aa; color: #9a3412 !important; }
+  .sakura-option-icon--colored.color-28 { background: #6ee7b7; color: #064e3b !important; }
+  .sakura-option-icon--colored.color-29 { background: #f87171; color: #7f1d1d !important; }
+  .sakura-option-icon--colored.color-30 { background: #f9a8d4; color: #831843 !important; }
+  .sakura-option-icon--colored.color-31 { background: #99f6e4; color: #134e4a !important; }
+  .sakura-option-icon--colored.color-32 { background: #93c5fd; color: #1e3a8a !important; }
+  .sakura-option-icon--colored.color-33 { background: #fcd34d; color: #78350f !important; }
+  .sakura-option-icon--colored.color-34 { background: #fb7185; color: #881337 !important; }
+  .sakura-option-icon--colored.color-35 { background: #a5b4fc; color: #312e81 !important; }
+  .sakura-option-icon--colored.color-36 { background: #d8b4fe; color: #6b21a8 !important; }
+  .sakura-option-icon--colored.color-37 { background: #fdba74; color: #7c2d12 !important; }
+  .sakura-option-icon--colored.color-38 { background: #34d399; color: #064e3b !important; }
+  .sakura-option-icon--colored.color-39 { background: #ef4444; color: #7f1d1d !important; }
+  .sakura-option-icon--colored.color-40 { background: #ec4899; color: #831843 !important; }
+
+  .sakura-option-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  /* Hover effect - only apply blue color to non-colored icons */
+  .sakura-custom-select-option:hover .sakura-option-icon:not(.sakura-option-icon--colored) {
+    color: #5B8BF5;
+  }
+
+  .sakura-custom-select-option.selected .sakura-option-icon:not(.sakura-option-icon--colored) {
+    color: #5B8BF5;
+  }
+
+  /* Bank logo in dropdown options */
+  .sakura-bank-logo-option {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  /* Icons in trigger */
+  .sakura-custom-select-trigger .sakura-option-icon {
+    margin-right: 8px;
+  }
+
+  /* Scale down colored icons in trigger to fit within original trigger size */
+  .sakura-custom-select-trigger .sakura-option-icon--colored {
+    padding: 0.15rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+  }
+
+  /* Scrollbar styling for dropdown */
+  .sakura-custom-select-dropdown::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .sakura-custom-select-dropdown::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+    margin: 8px 0;
+  }
+
+  .sakura-custom-select-dropdown::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+
+  .sakura-custom-select-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
 
   /* Hero Visual Section */
   .sakura-feature-hero {
@@ -4776,6 +5016,45 @@
     gap: 16px;
   }
 
+  .sakura-form-row-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* Amount and Frequency row - narrower amount, wider frequency */
+  .sakura-form-row--amount-frequency {
+    grid-template-columns: 180px 1fr !important;
+  }
+
+  /* First row with date, amount, merchant - optimized widths */
+  .sakura-form-row-compact {
+    grid-template-columns: 155px 140px 1fr;
+  }
+
+  /* Compact inputs for date field - very tight */
+  .sakura-form-row-compact .sakura-form-group:nth-child(1) .sakura-form-input.sakura-input-with-icon {
+    padding-left: 2.25rem !important;
+    padding-right: 0.5rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  /* Compact inputs for amount field */
+  .sakura-form-row-compact .sakura-form-group:nth-child(2) .sakura-form-input.sakura-input-with-icon {
+    padding-left: 2.5rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Adjust icon position for date field */
+  .sakura-form-row-compact .sakura-form-group:nth-child(1) .sakura-input-icon {
+    left: 0.625rem;
+    font-size: 0.9rem;
+  }
+
+  /* Adjust icon position for amount field */
+  .sakura-form-row-compact .sakura-form-group:nth-child(2) .sakura-input-icon {
+    left: 0.75rem;
+  }
+
   /* Demo Dashboard */
   .sakura-demo-dashboard {
     padding: 24px 32px 32px;
@@ -4810,7 +5089,7 @@
     margin: 0 auto;
   }
 
-  .sakura-summary-card {
+  .sakura-demo-summary-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
     border: 1px solid rgba(226, 232, 240, 0.8);
     border-radius: 16px;
@@ -4822,12 +5101,12 @@
     backdrop-filter: blur(10px);
   }
 
-  .sakura-summary-card:hover {
+  .sakura-demo-summary-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.1);
   }
 
-  .sakura-summary-icon {
+  .sakura-demo-summary-icon {
     width: 48px;
     height: 48px;
     border-radius: 12px;
@@ -4839,29 +5118,29 @@
     flex-shrink: 0;
   }
 
-  .sakura-summary-card:nth-child(1) .sakura-summary-icon {
+  .sakura-demo-summary-card:nth-child(1) .sakura-demo-summary-icon {
     background: linear-gradient(135deg, #10B981 0%, #059669 100%);
   }
 
-  .sakura-summary-card:nth-child(2) .sakura-summary-icon {
+  .sakura-demo-summary-card:nth-child(2) .sakura-demo-summary-icon {
     background: linear-gradient(135deg, #5B8BF5 0%, #4A7EF4 100%);
   }
 
-  .sakura-summary-card:nth-child(3) .sakura-summary-icon {
+  .sakura-demo-summary-card:nth-child(3) .sakura-demo-summary-icon {
     background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
   }
 
-  .sakura-summary-content {
+  .sakura-demo-summary-content {
     flex: 1;
   }
 
-  .sakura-summary-label {
+  .sakura-demo-summary-label {
     font-size: 0.875rem;
     color: #6b7280;
     margin-bottom: 4px;
   }
 
-  .sakura-summary-value {
+  .sakura-demo-summary-value {
     font-size: 1.5rem;
     font-weight: 700;
     color: #1f2937;
@@ -5409,18 +5688,6 @@
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     box-sizing: border-box;
     pointer-events: none;
-  }
-
-  .sakura-checkbox-label:focus-within .sakura-checkmark {
-    outline: 2px solid #5b8bf5;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
-  }
-
-  .sakura-checkbox-label input[type="checkbox"]:focus + .sakura-checkmark {
-    outline: 2px solid #5b8bf5;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
   }
 
   .sakura-checkbox-label:hover .sakura-checkmark {
@@ -8300,6 +8567,6458 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 1rem;
+    }
+  }
+
+  /* =================================
+     DASHBOARD COMPONENTS
+     ================================= */
+
+  /* Dashboard Body */
+  .sakura-dashboard-body {
+    background: #f5f8fa;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Dashboard Header */
+  .sakura-dashboard-header {
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    padding: 1.25rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(30px) saturate(180%);
+    box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .sakura-dashboard-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .sakura-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .sakura-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+
+  .sakura-breadcrumb-item {
+    color: #334155;
+    font-weight: 500;
+  }
+
+  .sakura-header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .sakura-notification-btn {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-notification-btn i {
+    font-size: 20px;
+  }
+
+  .sakura-notification-btn:hover {
+    background-color: rgba(30, 42, 59, 0.04);
+    color: #1e293b;
+    transform: scale(1.05);
+  }
+
+  .sakura-notification-btn:active {
+    transform: scale(0.95);
+  }
+
+  .sakura-notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+  }
+
+  /* Notification Dropdown */
+  .sakura-notification-container {
+    position: relative;
+  }
+
+  .sakura-notification-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    width: 360px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.15s ease;
+    overflow: hidden;
+  }
+
+  .sakura-notification-container.active .sakura-notification-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  .sakura-notification-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .sakura-notification-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+  }
+
+  .sakura-notification-mark-all {
+    background: none;
+    border: none;
+    color: #5b8bf5;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-mark-all:hover {
+    background: #eff6ff;
+    color: #3b82f6;
+  }
+
+  .sakura-notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .sakura-notification-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-item:hover {
+    background: #f8fafc;
+  }
+
+  .sakura-notification-item:last-child {
+    border-bottom: none;
+  }
+
+  .sakura-notification-item.unread {
+    background: #f0f9ff;
+  }
+
+  .sakura-notification-item.unread:hover {
+    background: #e0f2fe;
+  }
+
+  .sakura-notification-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .sakura-notification-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-notification-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+  }
+
+  .sakura-notification-message {
+    font-size: 0.8125rem;
+    color: #64748b;
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+  }
+
+  .sakura-notification-time {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  .sakura-notification-mark-read {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: #22c55e;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-mark-read i {
+    font-size: 20px;
+  }
+
+  .sakura-notification-item:hover .sakura-notification-mark-read {
+    opacity: 1;
+  }
+
+  .sakura-notification-mark-read:hover {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+
+  /* Notification Icon Types */
+  .sakura-notification-icon.budget {
+    background: #fef3c7;
+    color: #d97706;
+  }
+
+  .sakura-notification-icon.goal {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+
+  .sakura-notification-icon.transaction {
+    background: #f3e8ff;
+    color: #9333ea;
+  }
+
+  .sakura-notification-icon.bill {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+
+  .sakura-notification-icon.income {
+    background: #d1fae5;
+    color: #059669;
+  }
+
+  .sakura-notification-icon.system {
+    background: #f1f5f9;
+    color: #475569;
+  }
+
+  /* Notification Footer */
+  .sakura-notification-footer {
+    border-top: 1px solid #e2e8f0;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sakura-notification-view-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: #5b8bf5;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-view-all:hover {
+    background: #eff6ff;
+    color: #3b82f6;
+  }
+
+  .sakura-notification-view-all i {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  .sakura-notification-view-all:hover i {
+    transform: translateX(3px);
+  }
+
+  /* Notifications Page Styles */
+  .sakura-notifications-page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .sakura-notifications-title-section h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .sakura-notifications-subtitle {
+    color: #64748b;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .sakura-notifications-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .sakura-btn--success {
+    background: white;
+    color: #22c55e;
+    border: 2px solid #22c55e;
+    padding: 0.4rem 1rem;
+  }
+
+  .sakura-btn--success:hover,
+  .sakura-btn--success:active {
+    background: #22c55e;
+    color: white;
+    border-color: #22c55e;
+  }
+
+  .sakura-btn--success i {
+    font-size: 1.125rem;
+    line-height: 1;
+  }
+
+  .sakura-btn--danger {
+    background: white;
+    color: #ef4444;
+    border: 2px solid #ef4444;
+  }
+
+  .sakura-btn--danger:hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+  }
+
+  .sakura-notifications-filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+  }
+
+  .sakura-filter-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    color: #64748b;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-filter-tab:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #475569;
+  }
+
+  .sakura-filter-tab.active {
+    background: #eff6ff;
+    border-color: #3b82f6;
+    color: #3b82f6;
+  }
+
+  .sakura-filter-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 0.375rem;
+    background: #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .sakura-filter-tab.active .sakura-filter-count {
+    background: #3b82f6;
+    color: white;
+  }
+
+  .sakura-notifications-page-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sakura-notification-date-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 2rem;
+  }
+
+  .sakura-notification-section {
+    margin-bottom: 3rem;
+  }
+
+  .sakura-notification-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .sakura-notification-date-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem 0;
+  }
+
+  .sakura-notification-page-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-page-item:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  .sakura-notification-page-item.unread {
+    background: #f0f9ff;
+    border-color: #bae6fd;
+  }
+
+  .sakura-notification-page-item.unread:hover {
+    background: #e0f2fe;
+    border-color: #7dd3fc;
+  }
+
+  .sakura-notification-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    align-self: center;
+  }
+
+  .sakura-notification-page-item .sakura-notification-actions {
+    opacity: 0;
+  }
+
+  .sakura-notification-page-item:hover .sakura-notification-actions {
+    opacity: 1;
+  }
+
+  .sakura-notification-page-item .sakura-notification-mark-read {
+    opacity: 1;
+  }
+
+  .sakura-notification-delete {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-notification-delete i {
+    font-size: 20px;
+  }
+
+  .sakura-notification-delete:hover {
+    background: #fef2f2;
+    color: #dc2626;
+  }
+
+  /* Breadcrumb styles */
+  .sakura-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sakura-breadcrumb-link {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .sakura-breadcrumb-link:hover {
+    color: #3b82f6;
+  }
+
+  .sakura-breadcrumb-separator {
+    color: #cbd5e1;
+    font-size: 0.875rem;
+  }
+
+  .sakura-user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+  }
+
+  .sakura-user-menu:hover {
+    background-color: rgba(30, 42, 59, 0.04);
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+  }
+
+  .sakura-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .sakura-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sakura-user-name {
+    font-weight: 500;
+    color: #0f172a;
+    font-size: 0.875rem;
+  }
+
+  .sakura-user-email {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  .sakura-user-menu-toggle {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-user-menu-toggle i {
+    font-size: 16px;
+  }
+
+  .sakura-user-menu-toggle:hover {
+    color: #475569;
+    background-color: #f1f5f9;
+  }
+
+  .sakura-user-menu-toggle.active i {
+    transform: rotate(180deg);
+  }
+
+  /* User Dropdown Menu */
+  .sakura-user-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.5rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 0.5rem;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.15s ease;
+  }
+
+  .sakura-user-menu.active .sakura-user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  .sakura-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: #475569;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-dropdown-item i {
+    font-size: 18px;
+    width: 18px;
+    text-align: center;
+  }
+
+  .sakura-dropdown-item:hover {
+    background: #f1f5f9;
+    color: #1e293b;
+  }
+
+  .sakura-dropdown-item.danger {
+    color: #dc2626;
+  }
+
+  .sakura-dropdown-item.danger:hover {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+
+  .sakura-dropdown-divider {
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 0.5rem 0;
+  }
+
+  /* Dashboard Layout */
+  .sakura-dashboard-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: calc(100vh - 80px);
+  }
+
+  /* Dashboard Sidebar */
+  .sakura-dashboard-sidebar {
+    background: rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(226, 232, 240, 0.6);
+    padding: 2rem 0;
+    position: sticky;
+    top: 120px;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    backdrop-filter: blur(30px) saturate(180%);
+  }
+
+  .sakura-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .sakura-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    color: #475569;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .sakura-nav-item i {
+    font-size: 20px;
+  }
+
+  .sakura-nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 28px;
+    background: linear-gradient(135deg, #5b8bf5, #7ba5ff);
+    border-radius: 0 6px 6px 0;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-nav-item:hover {
+    background: rgba(91, 139, 245, 0.08);
+    color: #5b8bf5;
+    transform: translateX(6px);
+  }
+
+  .sakura-nav-item:hover::before {
+    width: 5px;
+  }
+
+  .sakura-nav-item--active {
+    background: linear-gradient(135deg, #5b8bf5, #7ba5ff);
+    color: white;
+    box-shadow: 0 4px 12px -2px rgba(91, 139, 245, 0.25);
+  }
+
+  .sakura-nav-item--active::before {
+    width: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  .sakura-nav-section {
+    margin-top: 1rem;
+  }
+
+  .sakura-section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0 1rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  /* Dashboard Main Content */
+  .sakura-dashboard-main {
+    padding: 2rem 2.5rem;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Welcome Section */
+  .sakura-welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding: 2.5rem 3rem;
+    background: linear-gradient(135deg, #1e2a3b 0%, #5b8bf5 50%, #8b5cf6 100%);
+    border-radius: 1.75rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 24px -6px rgba(30, 42, 59, 0.2);
+  }
+
+  .sakura-welcome-section::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -15%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: sakura-welcomeFloat 25s ease-in-out infinite;
+  }
+
+  .sakura-welcome-section::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(50px);
+    animation: sakura-welcomeFloat 20s ease-in-out infinite reverse;
+  }
+
+  @keyframes sakura-welcomeFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.05); }
+    66% { transform: translate(-30px, 40px) scale(0.95); }
+  }
+
+  .sakura-welcome-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sakura-welcome-content h1 {
+    font-size: 1.875rem;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  .sakura-welcome-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 0;
+  }
+
+  .sakura-quick-actions {
+    display: flex;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+  }
+
+  /* Budget Summary Section */
+  .sakura-budget-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  /* Account Card */
+  .sakura-account-card {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(20px);
+  }
+
+  .sakura-account-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #5b8bf5, transparent 60%);
+    opacity: 0.12;
+    pointer-events: none;
+    filter: blur(30px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-account-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #5b8bf5 0%, #7ba5ff 50%, #5b8bf5 100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-account-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -6px rgba(91, 139, 245, 0.15);
+    border-color: rgba(91, 139, 245, 0.3);
+  }
+
+  .sakura-account-card:hover::before {
+    height: 6px;
+  }
+
+  .sakura-account-card:hover::after {
+    opacity: 0.2;
+    transform: scale(1.2);
+  }
+
+  .sakura-account-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .sakura-account-icon {
+    width: 64px;
+    height: 64px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px -2px rgba(91, 139, 245, 0.25);
+    overflow: hidden;
+  }
+
+  .sakura-account-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .sakura-account-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-account-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .sakura-account-type {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .sakura-account-balance {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e2a3b;
+    font-family: 'Inter', system-ui, sans-serif;
+    margin-bottom: 0.5rem;
+  }
+
+  .sakura-account-change {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .sakura-account-change.positive {
+    color: #10b981;
+  }
+
+  .sakura-account-change.negative {
+    color: #ef4444;
+  }
+
+  .sakura-account-change.neutral {
+    color: #64748b;
+  }
+
+  .sakura-account-change-icon {
+    font-size: 1rem;
+  }
+
+  .sakura-account-sparkline {
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.6);
+  }
+
+  .sakura-account-sparkline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .sakura-account-sparkline-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .sakura-account-sparkline-period {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  .sakura-account-sparkline-chart {
+    height: 40px;
+    position: relative;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+  }
+
+  .sakura-account-sparkline-chart svg {
+    flex: 1;
+    height: 100%;
+  }
+
+  .sakura-account-sparkline-value {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 500;
+    min-width: 20px;
+  }
+
+  .sakura-account-sparkline-value.min {
+    text-align: right;
+  }
+
+  .sakura-account-sparkline-value.max {
+    text-align: left;
+  }
+
+  .sakura-account-sparkline-path {
+    fill: none;
+    stroke: #5b8bf5;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.8;
+  }
+
+  .sakura-account-sparkline-fill {
+    fill: url(#sparkline-gradient);
+  }
+
+  .sakura-account-sparkline-hover-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: crosshair;
+  }
+
+  .sakura-account-sparkline-hover-dot {
+    fill: #5b8bf5;
+    stroke: white;
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .sakura-account-sparkline-hover-dot.active {
+    opacity: 1;
+  }
+
+  .sakura-account-sparkline-tooltip,
+  .sakura-summary-sparkline-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: var(--radius-lg);
+    font-size: var(--text-xs);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    z-index: 100;
+    line-height: 1.4;
+  }
+
+  /* Summary Cards */
+  .sakura-summary-card {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    border-radius: var(--radius-3xl);
+    padding: var(--space-8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(20px);
+  }
+
+  .sakura-summary-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--summary-color, #5b8bf5), transparent 60%);
+    opacity: 0.12;
+    pointer-events: none;
+    filter: blur(30px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--summary-color, #5b8bf5) 0%, rgba(var(--summary-color-rgb, 91, 139, 245), 0.7) 50%, var(--summary-color, #5b8bf5) 100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -6px rgba(91, 139, 245, 0.15);
+    border-color: rgba(var(--summary-color-rgb, 91, 139, 245), 0.3);
+  }
+
+  .sakura-summary-card:hover::before {
+    height: 6px;
+  }
+
+  .sakura-summary-card:hover::after {
+    opacity: 0.2;
+    transform: scale(1.2);
+  }
+
+  .sakura-summary-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .sakura-summary-icon {
+    width: 64px;
+    height: 64px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    box-shadow: 0 4px 12px -2px rgba(var(--summary-color-rgb, 91, 139, 245), 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sakura-summary-icon:has(i, svg) {
+    background: var(--summary-color, #5b8bf5);
+  }
+
+  .sakura-summary-icon::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), transparent);
+    border-radius: var(--radius-3xl);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-summary-card:hover .sakura-summary-icon {
+    transform: scale(1.05) rotate(-3deg);
+    box-shadow: 0 8px 20px -4px rgba(var(--summary-color-rgb, 91, 139, 245), 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-summary-card:hover .sakura-summary-icon::before {
+    opacity: 0.5;
+  }
+
+  .sakura-summary-icon i,
+  .sakura-summary-icon svg {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    line-height: 1;
+  }
+
+  .sakura-summary-title-section {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-summary-label {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-weight: var(--fw-medium);
+    margin: 0;
+    transition: font-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1.2;
+  }
+
+  /* Dashboard-specific summary labels (in title section) */
+  .sakura-summary-title-section .sakura-summary-label {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .sakura-summary-sublabel {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .sakura-summary-amount {
+    font-size: var(--text-xl);
+    font-weight: var(--fw-bold);
+    color: var(--primary);
+    font-family: var(--font-heading);
+    margin-bottom: var(--space-2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-summary-change {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-summary-change.positive {
+    color: var(--success);
+  }
+
+  .sakura-summary-change.positive .sakura-summary-change-icon {
+    color: var(--success);
+  }
+
+  .sakura-summary-change.negative {
+    color: var(--danger);
+  }
+
+  .sakura-summary-change.negative .sakura-summary-change-icon {
+    color: var(--danger);
+  }
+
+  .sakura-summary-change.neutral {
+    color: var(--gray-500);
+  }
+
+  .sakura-summary-change.neutral .sakura-summary-change-icon {
+    color: var(--gray-500);
+  }
+
+  .sakura-summary-change-icon {
+    font-size: var(--text-lg);
+  }
+
+  .sakura-summary-sparkline {
+    margin-top: var(--space-4);
+  }
+
+  .sakura-summary-sparkline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+  }
+
+  .sakura-summary-sparkline-label {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sakura-summary-sparkline-period {
+    font-size: var(--text-xs);
+    color: var(--gray-400);
+  }
+
+  .sakura-summary-sparkline-chart {
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .sakura-summary-sparkline-chart svg {
+    flex: 1;
+    height: 100%;
+  }
+
+  .sakura-summary-sparkline-value {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-medium);
+    color: var(--gray-500);
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .sakura-summary-sparkline-value.min {
+    text-align: left;
+  }
+
+  .sakura-summary-sparkline-value.max {
+    text-align: right;
+  }
+
+  .sakura-summary-sparkline-path {
+    fill: none;
+    stroke: var(--summary-color, #5b8bf5);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.8;
+  }
+
+  .sakura-summary-card:nth-child(2) .sakura-summary-sparkline-fill {
+    fill: url(#summary-gradient-1);
+  }
+
+  .sakura-summary-card:nth-child(3) .sakura-summary-sparkline-fill {
+    fill: url(#summary-gradient-2);
+  }
+
+  .sakura-summary-card:nth-child(4) .sakura-summary-sparkline-fill {
+    fill: url(#summary-gradient-3);
+  }
+
+  .sakura-summary-sparkline-hover-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: crosshair;
+  }
+
+  .sakura-summary-sparkline-hover-dot {
+    fill: var(--summary-color, #5b8bf5);
+    stroke: white;
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .sakura-summary-sparkline-hover-dot.active {
+    opacity: 1;
+  }
+
+  /* Envelopes Section */
+  .sakura-envelopes-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .sakura-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+  }
+
+  .sakura-section-header h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--fw-semibold);
+    color: var(--gray-900);
+    margin: 0;
+  }
+
+  .sakura-envelopes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-6);
+  }
+
+  /* Envelope Cards */
+  .sakura-envelope-card {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    border-radius: var(--radius-3xl);
+    padding: var(--space-8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(20px);
+  }
+
+  .sakura-envelope-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--envelope-color-light, var(--secondary)), transparent 60%);
+    opacity: 0.12;
+    pointer-events: none;
+    filter: blur(30px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-envelope-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--envelope-color, var(--secondary)) 0%, var(--envelope-color-light, var(--secondary-light)) 50%, var(--envelope-color, var(--secondary)) 100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-envelope-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -6px rgba(91, 139, 245, 0.15);
+    border-color: rgba(var(--envelope-color-rgb, 91, 139, 245), 0.3);
+  }
+
+  .sakura-envelope-card:hover::before {
+    height: 6px;
+  }
+
+  .sakura-envelope-card:hover::after {
+    opacity: 0.2;
+    transform: scale(1.2);
+  }
+
+  .sakura-envelope-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .sakura-envelope-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--envelope-color, var(--secondary)) 0%, var(--envelope-color-light, var(--secondary-light)) 100%);
+    border-radius: var(--radius-3xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px -2px rgba(var(--envelope-color-rgb, 91, 139, 245), 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .sakura-envelope-icon::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), transparent);
+    border-radius: var(--radius-3xl);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-envelope-card:hover .sakura-envelope-icon {
+    transform: scale(1.05) rotate(-3deg);
+    box-shadow: 0 8px 20px -4px rgba(var(--envelope-color-rgb, 91, 139, 245), 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-envelope-card:hover .sakura-envelope-icon::before {
+    opacity: 0.5;
+  }
+
+  .sakura-envelope-icon i,
+  .sakura-envelope-icon svg {
+    font-size: 32px;
+    color: white;
+    stroke-width: 2.5;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    line-height: 1;
+  }
+
+  .sakura-envelope-title-section {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-envelope-title {
+    font-size: var(--text-lg);
+    font-weight: var(--fw-semibold);
+    color: var(--gray-900);
+    margin: 0 0 var(--space-1) 0;
+  }
+
+  .sakura-envelope-category {
+    font-size: var(--text-sm);
+    color: var(--gray-500);
+    font-weight: var(--fw-medium);
+  }
+
+  .sakura-envelope-menu {
+    background: none;
+    border: none;
+    color: var(--gray-400);
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius);
+    transition: all var(--transition-fast);
+    position: relative;
+    font-size: var(--text-xl);
+  }
+
+  .sakura-envelope-menu:hover {
+    color: var(--gray-600);
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    transform: scale(1.1);
+  }
+
+  .sakura-envelope-amounts {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-envelope-current {
+    font-size: var(--text-3xl);
+    font-weight: var(--fw-bold);
+    color: var(--envelope-color, var(--secondary));
+    font-family: var(--font-heading);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-envelope-card:hover .sakura-envelope-current {
+    transform: scale(1.02);
+  }
+
+  .sakura-envelope-budget {
+    font-size: var(--text-sm);
+    color: var(--gray-500);
+  }
+
+  .sakura-envelope-progress {
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-envelope-progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(226, 232, 240, 0.6);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  }
+
+  .sakura-envelope-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--envelope-color, var(--secondary)) 0%, var(--envelope-color-light, var(--secondary-light)) 100%);
+    border-radius: 8px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sakura-envelope-progress-fill::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: sakuraProgressShimmer 2s ease-in-out infinite;
+  }
+
+  .sakura-envelope-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent);
+  }
+
+  @keyframes sakuraProgressShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+
+  .sakura-envelope-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-xl);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+  }
+
+  .sakura-envelope-status.status-good {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+
+  .sakura-envelope-status.status-warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+  }
+
+  .sakura-envelope-status.status-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+
+  .sakura-envelope-status-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ============================================
+     GOAL CARDS SECTION
+     ============================================ */
+
+  .sakura-goals-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .sakura-goals-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .sakura-goal-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sakura-goal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--success), #34d399);
+    transition: all var(--transition);
+  }
+
+  .sakura-goal-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at center, #34d399, transparent 70%);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .sakura-goal-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--success);
+  }
+
+  .sakura-goal-card:hover::before {
+    height: 6px;
+    background: linear-gradient(90deg, var(--success), #34d399, var(--success));
+  }
+
+  .sakura-goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .sakura-goal-title-section {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-goal-title-section h3 {
+    margin: 0 0 var(--space-1) 0;
+    font-size: var(--text-lg);
+    font-weight: var(--fw-semibold);
+    color: var(--gray-900);
+  }
+
+  .sakura-goal-category {
+    font-size: var(--text-sm);
+    color: var(--gray-500);
+    font-weight: var(--fw-medium);
+    margin-bottom: var(--space-1);
+    display: block;
+  }
+
+  .sakura-goal-target {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    margin: 0;
+  }
+
+  .sakura-goal-menu {
+    background: none;
+    border: none;
+    color: var(--gray-400);
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius);
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .sakura-goal-menu:hover {
+    color: var(--gray-600);
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    transform: scale(1.1);
+  }
+
+  .sakura-goal-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--success), #34d399);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition);
+  }
+
+  .sakura-goal-card:hover .sakura-goal-icon {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sakura-goal-icon i,
+  .sakura-goal-icon svg {
+    font-size: 26px;
+    color: white;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  .sakura-goal-progress {
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-goal-amounts {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-2);
+  }
+
+  .sakura-goal-current {
+    font-family: var(--font-heading);
+    font-weight: var(--fw-bold);
+    color: var(--success);
+    transition: all var(--transition-fast);
+    font-size: var(--text-lg);
+  }
+
+  .sakura-goal-card:hover .sakura-goal-current {
+    transform: scale(1.02);
+  }
+
+  .sakura-goal-target-amount {
+    font-family: var(--font-heading);
+    font-weight: var(--fw-medium);
+    color: var(--gray-600);
+    font-size: var(--text-lg);
+  }
+
+  .sakura-goal-progress-bar {
+    width: 100%;
+    height: 12px;
+    background: var(--gray-200);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .sakura-goal-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success), #34d399);
+    border-radius: 6px;
+    transition: width var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sakura-goal-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: sakuraProgressSparkle 3s ease-in-out infinite;
+  }
+
+  @keyframes sakuraProgressSparkle {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  .sakura-goal-actions {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .sakura-goal-actions .sakura-btn {
+    flex: 1;
+    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 1024px) {
+    .sakura-dashboard-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-dashboard-sidebar {
+      position: fixed;
+      top: 80px;
+      left: -260px;
+      width: 260px;
+      height: calc(100vh - 80px);
+      z-index: 999;
+      transition: left 0.3s ease;
+    }
+
+    .sakura-dashboard-sidebar.open {
+      left: 0;
+    }
+
+    .sakura-dashboard-main {
+      grid-column: 1;
+    }
+
+    .sakura-welcome-section {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .sakura-quick-actions {
+      width: 100%;
+    }
+
+    .sakura-quick-actions .sakura-btn {
+      flex: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sakura-dashboard-main {
+      padding: 1rem;
+    }
+
+    .sakura-dashboard-header-container {
+      padding: 0 1rem;
+    }
+
+    .sakura-header-right .sakura-user-info {
+      display: none;
+    }
+
+    .sakura-welcome-section {
+      padding: 1rem;
+    }
+
+    .sakura-welcome-content h1 {
+      font-size: 1.5rem;
+    }
+
+    .sakura-budget-summary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sakura-envelopes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sakura-goals-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sakura-dashboard-header-container {
+      padding: 0 0.75rem;
+    }
+
+    .sakura-welcome-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .sakura-quick-actions {
+      flex-direction: column;
+    }
+
+    .sakura-budget-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-envelopes-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-goals-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-goal-actions {
+      flex-direction: column;
+    }
+
+    .sakura-goal-actions .sakura-btn {
+      width: 100%;
+    }
+
+    .sakura-envelope-amounts {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-1);
+    }
+
+    .sakura-transaction-item {
+      padding: var(--space-3) var(--space-4);
+    }
+
+    .sakura-transaction-icon {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* Hover-to-reveal buttons for Envelopes and Transactions sections */
+  .sakura-envelopes-section .sakura-section-header button,
+  .sakura-transactions-section .sakura-section-header button {
+    @apply opacity-0 transition-opacity duration-300;
+  }
+
+  .sakura-envelopes-section:hover .sakura-section-header button,
+  .sakura-transactions-section:hover .sakura-section-header button {
+    @apply opacity-100;
+  }
+
+  .sakura-transaction-list {
+    @apply bg-white/80 rounded-2xl overflow-hidden;
+    backdrop-filter: blur(20px) saturate(180%);
+    border-width: 0px;
+  }
+
+  .sakura-transaction-header {
+    @apply bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center;
+  }
+
+  .sakura-transaction-header h3 {
+    @apply m-0 text-lg text-gray-900;
+  }
+
+  .sakura-transaction-filter {
+    @apply flex gap-2;
+  }
+
+  .sakura-filter-btn {
+    @apply px-3 py-1 bg-transparent border border-gray-300 rounded-lg text-xs text-gray-600 cursor-pointer;
+    @apply transition-all duration-300 relative overflow-hidden;
+  }
+
+  .sakura-filter-btn::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    z-index: -1;
+  }
+
+  .sakura-filter-btn.active,
+  .sakura-filter-btn:hover {
+    @apply text-white border-[#1e2a3b] -translate-y-px;
+    box-shadow: 0 4px 8px -2px rgba(30, 42, 59, 0.2);
+  }
+
+  .sakura-filter-btn.active::before,
+  .sakura-filter-btn:hover::before {
+    @apply opacity-100;
+  }
+
+  .sakura-transaction-item {
+    @apply flex items-center gap-4 px-6 py-4 border-b border-gray-100 transition-all duration-300 cursor-pointer relative;
+  }
+
+  .sakura-transaction-item::before {
+    content: '';
+    @apply absolute left-0 top-0 bottom-0 w-[3px];
+    background: var(--transaction-text-color, var(--primary));
+    transform: scaleX(0);
+    @apply transition-transform duration-300;
+  }
+
+  .sakura-transaction-item:last-child {
+    @apply border-b-0;
+  }
+
+  .sakura-transaction-item:hover {
+    @apply translate-x-1;
+    background-color: rgba(var(--transaction-text-color, 59, 130, 246), 0.03);
+  }
+
+  .sakura-transaction-item:hover::before {
+    transform: scaleX(1);
+  }
+
+  .sakura-transaction-icon {
+    @apply w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden;
+    color: var(--transaction-text-color, var(--gray-600));
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.1);
+  }
+
+  .sakura-transaction-icon.icon-emoji {
+    background: var(--transaction-color, var(--gray-100));
+  }
+
+  .sakura-transaction-icon i,
+  .sakura-transaction-icon svg {
+    @apply text-xl leading-none;
+  }
+
+  .sakura-transaction-icon img {
+    @apply w-full h-full object-cover rounded-full;
+  }
+
+  .sakura-transaction-details {
+    @apply flex-1 min-w-0;
+  }
+
+  .sakura-transaction-name {
+    @apply font-medium text-gray-900 mb-1;
+  }
+
+  .sakura-transaction-category {
+    @apply text-sm text-gray-500;
+  }
+
+  .sakura-transaction-amount {
+    @apply font-semibold text-right;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-transaction-amount.income {
+    @apply text-[#10b981];
+  }
+
+  .sakura-transaction-amount.expense {
+    @apply text-[#ef4444];
+  }
+
+  .sakura-transaction-date {
+    @apply text-xs text-gray-400 text-right mt-1;
+  }
+
+  /* ============================================
+     Dashboard Grid Layout
+     ============================================ */
+
+  .sakura-dashboard-grid {
+    @apply grid gap-6 items-start;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "envelopes transactions"
+      "goals transactions";
+  }
+
+  .sakura-envelopes-section {
+    grid-area: envelopes;
+  }
+
+  .sakura-goals-section {
+    grid-area: goals;
+  }
+
+  .sakura-transactions-section {
+    grid-area: transactions;
+  }
+
+  /* Responsive: Stack on smaller screens */
+  @media (max-width: 1200px) {
+    .sakura-dashboard-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "envelopes"
+        "goals"
+        "transactions";
+    }
+  }
+
+  /* ============================================
+     ENVELOPES PAGE STYLES
+     ============================================ */
+
+  /* Page Header */
+  .sakura-page-header {
+    @apply flex justify-between mb-8;
+    align-items: center;
+  }
+
+  .sakura-page-header-content h1 {
+    @apply text-3xl font-bold text-gray-900 mb-2;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-page-header-content p {
+    @apply text-gray-600 m-0;
+  }
+
+  .sakura-page-header-actions {
+    @apply flex gap-3;
+    align-self: center;
+  }
+
+  @media (max-width: 768px) {
+    .sakura-page-header {
+      @apply flex-col items-stretch gap-4;
+    }
+
+    .sakura-page-header-actions {
+      @apply w-full;
+    }
+
+    .sakura-page-header-actions .sakura-btn {
+      @apply w-full justify-center;
+    }
+  }
+
+  /* Envelopes Grid Layout */
+  .sakura-envelopes-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  /* Featured Available Envelope */
+  .sakura-envelope-card--featured {
+    grid-column: span 2;
+  }
+
+  .sakura-envelope-card--featured .sakura-envelope-header {
+    @apply items-start;
+  }
+
+  .sakura-envelope-card--featured .sakura-envelope-title {
+    @apply text-3xl;
+  }
+
+  .sakura-envelope-card--featured .sakura-envelope-category {
+    @apply text-sm;
+  }
+
+  .sakura-envelope-featured-amount {
+    @apply flex flex-col items-end text-right ml-auto;
+  }
+
+  .sakura-envelope-featured-amount .sakura-envelope-current {
+    @apply text-3xl font-bold mb-1;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-envelope-featured-amount .sakura-envelope-current.positive {
+    @apply text-green-600;
+  }
+
+  .sakura-envelope-featured-amount .sakura-envelope-current.negative {
+    @apply text-red-600;
+  }
+
+  .sakura-envelope-featured-amount .sakura-envelope-budget {
+    @apply text-sm text-gray-500;
+  }
+
+  .sakura-envelope-card--featured .sakura-envelope-chart {
+    @apply mt-6 pt-6 border-t border-gray-100;
+  }
+
+  .sakura-envelope-sparkline-header {
+    @apply flex justify-between items-center mb-2;
+  }
+
+  .sakura-envelope-sparkline-label {
+    @apply text-xs font-semibold text-gray-600 uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sakura-envelope-sparkline-period {
+    @apply text-xs text-gray-400;
+  }
+
+  .sakura-envelope-sparkline-chart {
+    @apply relative flex items-center gap-2;
+    height: 80px;
+  }
+
+  .sakura-envelope-sparkline-chart svg {
+    @apply flex-1;
+    height: 100%;
+  }
+
+  .sakura-envelope-sparkline-value {
+    @apply text-xs font-medium text-gray-500;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .sakura-envelope-sparkline-value.min {
+    text-align: left;
+  }
+
+  .sakura-envelope-sparkline-value.max {
+    text-align: right;
+  }
+
+  .sakura-envelope-sparkline-path {
+    fill: none;
+    stroke: var(--envelope-color);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.8;
+  }
+
+  /* Default neutral state */
+  .sakura-envelope-sparkline-chart--neutral .sakura-envelope-sparkline-fill {
+    fill: url(#available-gradient-neutral);
+  }
+
+  .sakura-envelope-sparkline-chart--neutral .sakura-envelope-sparkline-path {
+    stroke: #1e2a3b;
+  }
+
+  .sakura-envelope-sparkline-chart--neutral .sakura-envelope-sparkline-hover-dot {
+    fill: #1e2a3b;
+  }
+
+  /* Positive state - above starting balance */
+  .sakura-envelope-sparkline-chart--positive .sakura-envelope-sparkline-fill {
+    fill: url(#available-gradient-positive);
+  }
+
+  .sakura-envelope-sparkline-chart--positive .sakura-envelope-sparkline-path {
+    stroke: #10b981;
+  }
+
+  .sakura-envelope-sparkline-chart--positive .sakura-envelope-sparkline-hover-dot {
+    fill: #10b981;
+  }
+
+  /* Negative state - below starting balance */
+  .sakura-envelope-sparkline-chart--negative .sakura-envelope-sparkline-fill {
+    fill: url(#available-gradient-negative);
+  }
+
+  .sakura-envelope-sparkline-chart--negative .sakura-envelope-sparkline-path {
+    stroke: #ef4444;
+  }
+
+  .sakura-envelope-sparkline-chart--negative .sakura-envelope-sparkline-hover-dot {
+    fill: #ef4444;
+  }
+
+  .sakura-envelope-sparkline-hover-area {
+    @apply absolute top-0 left-0 right-0 bottom-0 cursor-crosshair;
+  }
+
+  .sakura-envelope-sparkline-hover-dot {
+    stroke: white;
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .sakura-envelope-sparkline-hover-dot.active {
+    opacity: 1;
+  }
+
+  .sakura-envelope-sparkline-tooltip {
+    @apply absolute bg-gray-900 text-white px-3 py-2 text-xs pointer-events-none opacity-0 whitespace-nowrap;
+    border-radius: var(--radius-lg);
+    transition: opacity 0.2s ease;
+    z-index: 100;
+    line-height: 1.4;
+  }
+
+  .sakura-envelope-sparkline-tooltip.active {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    .sakura-envelopes-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-envelope-card--featured {
+      grid-column: span 1;
+    }
+  }
+
+  /* ===========================
+     ENVELOPE DRAG & DROP STYLES
+     =========================== */
+
+  /* Make draggable envelopes show grab cursor */
+  .sakura-envelope-card[draggable="true"] {
+    cursor: grab;
+    user-select: none;
+  }
+
+  /* Lift effect: Card being dragged */
+  .sakura-envelope-card--dragging {
+    opacity: 0.6;
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.25);
+    cursor: grabbing !important;
+    z-index: 1000;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* Smooth reorder: Other draggable cards during drag operation */
+  .sakura-envelopes-grid--dragging .sakura-envelope-card[draggable="true"]:not(.sakura-envelope-card--dragging):not(.sakura-envelope-card--featured) {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Smooth transitions for draggable envelope cards only */
+  .sakura-envelope-card[draggable="true"] {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s ease,
+                opacity 0.3s ease;
+  }
+
+  /* Prevent dragging the featured "Available" card */
+  .sakura-envelope-card--featured {
+    cursor: default !important;
+  }
+
+  /* ===========================
+     TRANSACTIONS PAGE STYLES
+     =========================== */
+
+  /* Page Header */
+  .sakura-page-header {
+    @apply flex justify-between items-center mb-8 p-6 bg-white border border-gray-200 rounded-2xl;
+  }
+
+  .sakura-page-title h1 {
+    @apply mb-2 text-gray-900 text-3xl;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-page-title p {
+    @apply text-gray-600 mb-0 text-lg;
+    font-family: var(--font-body);
+  }
+
+  .sakura-page-actions {
+    @apply flex gap-3;
+  }
+
+  /* Transaction Summary */
+  .sakura-transaction-summary {
+    @apply grid gap-4 mb-8;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .sakura-summary-card {
+    @apply bg-white p-6 rounded-xl border border-gray-200 shadow-sm;
+    transition: all 0.3s ease;
+  }
+
+  .sakura-summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .sakura-summary-icon {
+    @apply w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4;
+    background: white;
+    color: white;
+  }
+
+  .sakura-summary-icon:has(i, svg) {
+    background: var(--summary-color);
+  }
+
+  .sakura-summary-icon i,
+  .sakura-summary-icon svg {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    line-height: 1;
+  }
+
+  .sakura-summary-change {
+    @apply text-xs font-medium;
+    font-family: var(--font-body);
+  }
+
+  .sakura-summary-change.positive {
+    @apply text-green-600;
+  }
+
+  .sakura-summary-change.negative {
+    @apply text-red-600;
+  }
+
+  .sakura-summary-change.neutral {
+    @apply text-gray-500;
+  }
+
+  /* Transaction Controls */
+  .sakura-transaction-controls {
+    @apply bg-white border border-gray-200 rounded-2xl p-6 mb-6;
+  }
+
+  .sakura-search-and-filters {
+    @apply mb-6;
+  }
+
+  .sakura-search-box-large {
+    @apply relative mb-4;
+  }
+
+  .sakura-search-input-large {
+    @apply w-full py-2.5 pr-4 border border-gray-300 rounded-lg text-base bg-gray-50;
+    padding-left: 2.75rem;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+
+  .sakura-search-input-large:focus {
+    @apply outline-none border-blue-600 bg-white;
+    box-shadow: 0 0 0 3px rgba(30, 42, 59, 0.1);
+  }
+
+  .sakura-search-box-large .sakura-search-icon {
+    @apply absolute top-1/2 text-gray-400;
+    left: 1rem;
+    transform: translateY(-50%);
+  }
+
+  .sakura-filter-controls {
+    @apply grid gap-4 items-end;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .sakura-filter-group {
+    @apply flex flex-col gap-2;
+  }
+
+  .sakura-filter-label {
+    @apply text-sm font-medium text-gray-700;
+    font-family: var(--font-body);
+  }
+
+  .sakura-filter-select {
+    @apply px-4 py-3 border border-gray-300 rounded-lg text-sm bg-white cursor-pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+
+  .sakura-filter-select:focus {
+    @apply outline-none border-blue-600;
+    box-shadow: 0 0 0 2px rgba(30, 42, 59, 0.1);
+  }
+
+  .sakura-filter-clear {
+    border-width: 2px !important;
+  }
+
+  .sakura-view-controls {
+    @apply flex justify-between items-center pt-6 border-t border-gray-200;
+  }
+
+  .sakura-view-toggle {
+    @apply flex bg-gray-100 rounded-lg p-1;
+  }
+
+  .sakura-view-btn {
+    @apply flex items-center gap-2 px-4 py-2 bg-transparent border-0 text-sm text-gray-600 cursor-pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+    border-radius: 0.75rem;
+  }
+
+  /* Active button styling */
+  .sakura-view-btn.active {
+    @apply bg-white text-blue-600 shadow-sm;
+  }
+
+  /* Active left button: round left corners, square right */
+  .sakura-view-btn:first-child.active {
+    border-radius: 0.75rem 0 0 0.75rem;
+  }
+
+  /* Active middle button: square corners */
+  .sakura-view-btn:not(:first-child):not(:last-child).active {
+    border-radius: 0;
+  }
+
+  /* Active right button: square left, round right corners */
+  .sakura-view-btn:last-child.active {
+    border-radius: 0 0.75rem 0.75rem 0;
+  }
+
+  .sakura-sort-controls {
+    @apply flex items-center gap-3;
+  }
+
+  /* Transaction Results */
+  .sakura-transaction-results {
+    @apply bg-white border border-gray-200 rounded-2xl overflow-hidden;
+  }
+
+  /* Results bar - horizontal layout without gray background */
+  .sakura-results-bar {
+    @apply flex justify-between items-center mb-6 px-6 pt-6;
+  }
+
+  .sakura-results-header {
+    @apply flex justify-between items-center p-6 border-b border-gray-200 bg-gray-50;
+  }
+
+  .sakura-results-info {
+    @apply flex items-center gap-2 text-sm text-gray-600;
+    font-family: var(--font-body);
+  }
+
+  .sakura-results-count {
+    @apply font-semibold text-gray-900;
+  }
+
+  .sakura-bulk-actions {
+    @apply flex gap-2;
+  }
+
+  /* Disabled state - stay gray, no transform */
+  .sakura-bulk-actions .sakura-btn:disabled {
+    @apply cursor-not-allowed;
+    color: #9ca3af;
+    border-color: #d1d5db;
+    background: transparent;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .sakura-bulk-actions .sakura-btn:disabled:hover {
+    color: #9ca3af;
+    border-color: #d1d5db;
+    background: transparent;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Edit Selected button - secondary style when enabled */
+  .sakura-bulk-actions #bulkEdit:not(:disabled) {
+    background: white;
+    color: #1e2a3b;
+    border-color: #1e2a3b;
+  }
+
+  .sakura-bulk-actions #bulkEdit:not(:disabled):hover {
+    background: #1e2a3b;
+    color: white;
+    border-color: #1e2a3b;
+  }
+
+  /* Delete Selected button - red outline when enabled, filled on hover */
+  .sakura-bulk-actions #bulkDelete:not(:disabled) {
+    color: #ef4444;
+    border-color: #ef4444;
+    background: transparent;
+  }
+
+  .sakura-bulk-actions #bulkDelete:not(:disabled):hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+  }
+
+  /* Transaction Views */
+  .sakura-transaction-view {
+    display: none;
+  }
+
+  .sakura-transaction-view.active {
+    display: block;
+  }
+
+  /* ========================================
+     TIMELINE LAYOUT SYSTEM
+     ======================================== */
+
+  /* Timeline Container */
+  .sakura-transaction-timeline {
+    position: relative;
+    padding-left: 4rem;
+  }
+
+  /* Main Timeline Vertical Line */
+  .sakura-transaction-timeline::before {
+    content: '';
+    position: absolute;
+    left: 2rem;
+    top: calc(2.25rem + 20px);
+    bottom: 0;
+    width: 2px;
+    @apply bg-gray-200;
+    z-index: 1;
+  }
+
+  /* Date Group Container */
+  .sakura-date-group {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  /* Date Group Header */
+  .sakura-date-group-header {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    z-index: 2;
+    @apply flex items-center justify-between;
+  }
+
+  /* Date Bubble on Timeline */
+  .sakura-date-bubble {
+    position: absolute;
+    left: calc(-2rem - 20px);
+    top: calc(0.75rem + 50%);
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    @apply bg-white border-blue-600 rounded-full flex items-center justify-center font-bold text-xs text-blue-600 shadow-sm;
+    border-width: 3px;
+    z-index: 3;
+  }
+
+  /* Date Group Title Layout */
+  .sakura-date-group-title {
+    @apply flex items-center gap-3 ml-4;
+  }
+
+  /* Date Label Styling */
+  .sakura-date-group-date {
+    @apply font-semibold text-gray-900 text-lg;
+    font-family: var(--font-heading);
+  }
+
+  /* Transaction Count Badge */
+  .sakura-date-group-count {
+    @apply text-sm text-gray-500;
+    font-family: var(--font-body);
+  }
+
+  /* Date Group Summary */
+  .sakura-date-group-summary {
+    @apply flex items-center gap-4 text-sm ml-4;
+    font-family: var(--font-body);
+  }
+
+  /* Date Group Total Styling */
+  .sakura-date-group-total {
+    @apply font-semibold text-gray-900;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-date-group-total.negative {
+    @apply text-red-600;
+  }
+
+  .sakura-date-group-total.positive {
+    @apply text-green-600;
+  }
+
+  /* Transactions Container within Date Group */
+  .sakura-date-group-transactions {
+    position: relative;
+  }
+
+  /* Timeline Connection Lines from Items to Main Line */
+  .sakura-transaction-timeline .sakura-transaction-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-2rem - 2px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 2px;
+    @apply bg-gray-300;
+    z-index: 2;
+  }
+
+  /* Timeline Item Hover Effects */
+  .sakura-transaction-timeline .sakura-transaction-item {
+    @apply relative p-4 border border-gray-200 rounded-lg shadow-sm mb-4 bg-white;
+    transition: all 0.2s ease;
+    border-right-width: 0px;
+  }
+
+  .sakura-transaction-timeline .sakura-transaction-item:hover {
+    transform: translateX(4px);
+    @apply shadow-md border-blue-600;
+  }
+
+  .sakura-transaction-timeline .sakura-transaction-item:hover::before {
+    @apply bg-blue-600;
+    width: 16px;
+  }
+
+  /* Responsive Timeline Design */
+  @media (max-width: 768px) {
+    .sakura-transaction-timeline {
+      padding-left: 3rem;
+    }
+
+    .sakura-transaction-timeline::before {
+      left: 1.5rem;
+    }
+
+    .sakura-date-bubble {
+      left: calc(-3rem + 1rem);
+      width: 32px;
+      height: 32px;
+      @apply text-xs;
+    }
+
+    .sakura-date-group-title {
+      @apply ml-2;
+    }
+
+    .sakura-date-group-summary {
+      @apply ml-2;
+    }
+
+    .sakura-transaction-timeline .sakura-transaction-item::before {
+      left: calc(-1.5rem - 2px);
+      width: 10px;
+    }
+
+    .sakura-transaction-timeline .sakura-transaction-item:hover::before {
+      width: 12px;
+    }
+  }
+
+  /* Transaction List */
+  .sakura-transaction-list.advanced .sakura-transaction-item {
+    @apply relative p-4 border border-gray-200 rounded-lg shadow-sm mb-4 ml-6 mr-6;
+    background: white;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-transaction-list.advanced .sakura-transaction-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #1e2a3b;
+  }
+
+  .sakura-transaction-item {
+    @apply flex items-center gap-4;
+  }
+
+  .sakura-transaction-item.selectable {
+    padding-left: 3rem;
+  }
+
+  .sakura-transaction-checkbox {
+    @apply absolute flex items-center opacity-0;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.2s ease;
+  }
+
+  .sakura-transaction-item:hover .sakura-transaction-checkbox,
+  .sakura-transaction-item.selected .sakura-transaction-checkbox {
+    opacity: 1;
+  }
+
+  .sakura-transaction-select {
+    @apply w-4 h-4 border-2 border-gray-300 rounded bg-white cursor-pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-transaction-select:checked {
+    @apply bg-blue-600 border-blue-600;
+  }
+
+  .sakura-transaction-icon {
+    @apply w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden bg-gray-100;
+  }
+
+  .sakura-transaction-icon img {
+    @apply w-full h-full object-cover;
+  }
+
+  .sakura-transaction-icon.income-icon {
+    @apply bg-green-100 text-green-600 text-2xl;
+  }
+
+  .sakura-transaction-icon.utilities-icon {
+    @apply bg-yellow-100 text-yellow-600 text-2xl;
+  }
+
+  .sakura-transaction-icon.health-icon {
+    @apply bg-purple-100 text-purple-600 text-2xl;
+  }
+
+  .sakura-transaction-details {
+    @apply flex flex-col gap-2 flex-1 min-w-0;
+  }
+
+  .sakura-transaction-main {
+    @apply flex flex-col gap-1;
+  }
+
+  .sakura-transaction-name {
+    @apply text-base font-semibold text-gray-900;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-merchant {
+    @apply text-sm text-gray-500;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-meta {
+    @apply flex items-center gap-3 flex-wrap;
+  }
+
+  .sakura-transaction-envelope {
+    @apply px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-envelope.envelope-groceries {
+    @apply bg-red-100 text-red-700;
+  }
+
+  .sakura-transaction-envelope.envelope-entertainment {
+    @apply bg-blue-100 text-blue-700;
+  }
+
+  .sakura-transaction-envelope.envelope-transportation {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-transaction-envelope.envelope-utilities {
+    @apply bg-yellow-100 text-yellow-700;
+  }
+
+  .sakura-transaction-envelope.envelope-shopping {
+    @apply bg-pink-100 text-pink-700;
+  }
+
+  .sakura-transaction-envelope.envelope-income {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-transaction-envelope.envelope-health {
+    @apply bg-purple-100 text-purple-700;
+  }
+
+  .sakura-transaction-envelope.envelope-dining {
+    @apply bg-orange-100 text-orange-700;
+  }
+
+  .sakura-transaction-method {
+    @apply text-xs text-gray-500;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-bank-account {
+    @apply text-xs text-blue-700 font-semibold flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 border border-blue-200;
+    font-family: var(--font-body);
+  }
+
+  .sakura-bank-logo {
+    @apply w-5 h-5 rounded-full;
+    object-fit: contain;
+  }
+
+  .sakura-transaction-tags {
+    @apply flex gap-1;
+  }
+
+  .sakura-tag {
+    @apply px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600;
+    font-family: var(--font-body);
+  }
+
+  .sakura-tag.recurring {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-tag--recurring {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-transaction-amount {
+    @apply text-lg font-bold flex-shrink-0;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-transaction-amount.income {
+    @apply text-green-600;
+  }
+
+  .sakura-transaction-amount.expense {
+    @apply text-red-600;
+  }
+
+  .sakura-transaction-amount.transfer {
+    @apply text-purple-600;
+  }
+
+  .sakura-transaction-date {
+    @apply text-xs text-gray-500 mt-1 font-normal;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-actions {
+    @apply flex gap-2 flex-shrink-0 opacity-0;
+    transition: opacity 0.2s ease;
+  }
+
+  .sakura-transaction-item:hover .sakura-transaction-actions {
+    opacity: 1;
+  }
+
+  .sakura-action-btn {
+    @apply w-8 h-8 rounded flex items-center justify-center text-gray-500 border border-gray-300 bg-transparent cursor-pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-action-btn:hover {
+    @apply bg-gray-100 text-gray-700;
+  }
+
+  .sakura-action-btn.danger {
+    @apply text-red-600;
+  }
+
+  .sakura-action-btn.danger:hover {
+    @apply bg-red-100 border-red-600;
+  }
+
+  .sakura-load-more-container {
+    @apply flex flex-col items-center p-8 border-t border-gray-200;
+  }
+
+  .sakura-load-more-btn {
+    @apply mb-4;
+  }
+
+  .sakura-load-more-info {
+    @apply text-sm text-gray-500;
+    font-family: var(--font-body);
+  }
+
+  /* Table View */
+  .sakura-transaction-table-container {
+    @apply overflow-x-auto;
+  }
+
+  .sakura-transaction-table {
+    @apply w-full border-collapse;
+  }
+
+  .sakura-transaction-table th {
+    @apply p-4 text-left font-semibold text-gray-700 bg-gray-50 border-b border-gray-200 relative select-none;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-table th.sortable {
+    @apply cursor-pointer;
+    transition: color 0.2s ease;
+  }
+
+  .sakura-transaction-table th.sortable:hover {
+    @apply text-blue-600;
+  }
+
+  .sakura-sort-icon {
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  .sakura-transaction-table th.sortable.asc .sakura-sort-icon {
+    transform: rotate(180deg);
+  }
+
+  .sakura-transaction-table td {
+    @apply p-4 border-b border-gray-100 align-middle;
+    font-family: var(--font-body);
+  }
+
+  .sakura-transaction-table tbody tr:hover {
+    @apply bg-gray-50;
+  }
+
+  .sakura-table-description {
+    @apply flex flex-col gap-1;
+  }
+
+  .sakura-table-name {
+    @apply font-medium text-gray-900;
+  }
+
+  .sakura-table-merchant {
+    @apply text-sm text-gray-500;
+  }
+
+  .sakura-table-envelope {
+    @apply px-3 py-1 rounded-xl text-xs font-medium bg-gray-100 text-gray-700 inline-block;
+  }
+
+  .sakura-table-envelope.sakura-income-envelope {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-table-envelope.sakura-groceries-envelope {
+    @apply bg-red-100 text-red-700;
+  }
+
+  .sakura-table-envelope.sakura-entertainment-envelope {
+    @apply bg-blue-100 text-blue-700;
+  }
+
+  .sakura-table-envelope.sakura-utilities-envelope {
+    @apply bg-yellow-100 text-yellow-700;
+  }
+
+  .sakura-table-envelope.sakura-transportation-envelope {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-table-amount {
+    @apply font-semibold;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-table-amount.income {
+    @apply text-green-600;
+  }
+
+  .sakura-table-amount.expense {
+    @apply text-red-600;
+  }
+
+  .sakura-table-actions {
+    @apply flex gap-2;
+  }
+
+  .sakura-table-action-btn {
+    @apply px-3 py-1 bg-transparent border border-gray-300 rounded-full text-xs text-gray-600 cursor-pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+
+  .sakura-table-action-btn:hover {
+    @apply bg-gray-100 text-gray-800;
+  }
+
+  /* Calendar View */
+  .sakura-calendar-header {
+    @apply flex justify-between items-center p-6 border-b border-gray-200;
+  }
+
+  .sakura-calendar-title {
+    @apply m-0 text-xl text-gray-900;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-calendar-nav-btn {
+    @apply w-10 h-10 bg-transparent border border-gray-300 rounded text-gray-600 cursor-pointer flex items-center justify-center text-lg;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-calendar-nav-btn:hover {
+    @apply bg-gray-100 text-gray-800;
+  }
+
+  .sakura-calendar-grid {
+    @apply p-6;
+  }
+
+  .sakura-calendar-weekdays {
+    @apply grid gap-2 mb-4;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .sakura-calendar-weekday {
+    @apply p-2 text-center text-sm font-semibold text-gray-600;
+    font-family: var(--font-body);
+  }
+
+  .sakura-calendar-days {
+    @apply grid gap-2;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .sakura-calendar-day {
+    @apply min-h-[100px] p-2 border border-gray-200 rounded bg-white cursor-pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-calendar-day:hover {
+    @apply bg-gray-50 border-blue-600;
+  }
+
+  .sakura-calendar-day.other-month {
+    @apply bg-gray-50 text-gray-400;
+  }
+
+  .sakura-calendar-day.today {
+    @apply bg-blue-600 text-white;
+  }
+
+  .sakura-calendar-day-number {
+    @apply font-semibold mb-2;
+    font-family: var(--font-body);
+  }
+
+  .sakura-calendar-transactions {
+    @apply flex flex-col gap-1;
+  }
+
+  .sakura-calendar-transaction {
+    @apply px-2 py-1 rounded-xl text-xs bg-gray-100 text-gray-700 flex justify-between items-center gap-2;
+    font-family: var(--font-body);
+  }
+
+  .sakura-calendar-transaction-name {
+    @apply overflow-hidden whitespace-nowrap flex-1;
+    text-overflow: ellipsis;
+  }
+
+  .sakura-calendar-transaction-amount {
+    @apply font-semibold whitespace-nowrap;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-calendar-transaction.income {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .sakura-calendar-transaction.expense {
+    @apply bg-red-100 text-red-700;
+  }
+
+  .sakura-calendar-more {
+    @apply text-xs text-gray-500 text-center py-1 font-medium cursor-pointer transition-colors;
+    font-family: var(--font-body);
+  }
+
+  .sakura-calendar-more:hover {
+    @apply text-gray-700 bg-gray-50 rounded;
+  }
+
+  /* Calendar Section & Container */
+  .sakura-calendar-section {
+    @apply mt-8 mb-8;
+  }
+
+  .sakura-calendar-container {
+    @apply bg-white rounded-2xl overflow-hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .sakura-calendar-header h2 {
+    @apply m-0 text-2xl font-semibold text-gray-900;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-calendar-nav {
+    @apply flex items-center gap-2;
+  }
+
+  /* Calendar Summary Section */
+  .sakura-calendar-summary {
+    @apply mt-8;
+  }
+
+  .sakura-calendar-summary h2 {
+    @apply text-2xl font-semibold text-gray-900 mb-6;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-summary-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  /* Account Settings Styles */
+  .sakura-settings-container {
+    @apply flex flex-col gap-8;
+  }
+
+  .sakura-settings-section {
+    @apply bg-white rounded-2xl overflow-hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .sakura-settings-section-header {
+    @apply flex justify-between items-start p-6 border-b border-gray-200;
+  }
+
+  .sakura-settings-section-header h2 {
+    @apply text-xl font-semibold text-gray-900 mb-1;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-settings-section-header p {
+    @apply text-sm text-gray-600;
+    font-family: var(--font-body);
+  }
+
+  .sakura-settings-section-body {
+    @apply p-6;
+  }
+
+  .sakura-profile-avatar-container {
+    @apply flex items-center gap-6 mb-8;
+  }
+
+  .sakura-profile-avatar {
+    @apply w-24 h-24 rounded-full border-4 border-white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .sakura-settings-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sakura-settings-field {
+    @apply flex flex-col gap-2;
+  }
+
+  .sakura-settings-field label {
+    @apply text-sm font-medium text-gray-700;
+    font-family: var(--font-body);
+  }
+
+  .sakura-input {
+    @apply px-4 py-2 border border-gray-300 rounded-lg;
+    font-family: var(--font-body);
+    transition: border-color 0.2s ease;
+  }
+
+  .sakura-input:focus {
+    @apply border-blue-500 outline-none;
+    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-input:read-only {
+    @apply bg-gray-50 cursor-not-allowed;
+  }
+
+  .sakura-settings-list {
+    @apply flex flex-col gap-4;
+  }
+
+  .sakura-settings-list-item {
+    @apply flex justify-between items-center p-4 border border-gray-200 rounded-lg;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-settings-list-item:hover {
+    @apply border-gray-300 bg-gray-50;
+  }
+
+  .sakura-settings-list-item--danger:hover {
+    @apply border-red-300 bg-red-50;
+  }
+
+  .sakura-settings-list-item-content {
+    @apply flex items-center gap-4;
+  }
+
+  .sakura-settings-list-item-content i {
+    @apply text-2xl text-gray-600;
+  }
+
+  .sakura-settings-list-item--danger .sakura-settings-list-item-content i {
+    @apply text-red-600;
+  }
+
+  .sakura-settings-list-item h3 {
+    @apply text-base font-semibold text-gray-900 mb-1;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-settings-list-item p {
+    @apply text-sm text-gray-600;
+    font-family: var(--font-body);
+  }
+
+  .sakura-settings-list-item-actions {
+    @apply flex items-center gap-2;
+  }
+
+  .sakura-bank-logo-sm {
+    @apply w-10 h-10 rounded-lg object-contain bg-white p-2 border border-gray-200;
+  }
+
+  /* Toggle Switch */
+  .sakura-toggle {
+    @apply relative inline-block w-12 h-6;
+  }
+
+  .sakura-toggle input {
+    @apply opacity-0 w-0 h-0;
+  }
+
+  .sakura-toggle-slider {
+    @apply absolute inset-0 bg-gray-300 rounded-full cursor-pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .sakura-toggle-slider::before {
+    content: '';
+    @apply absolute left-1 bottom-1 w-4 h-4 bg-white rounded-full;
+    transition: transform 0.3s ease;
+  }
+
+  .sakura-toggle input:checked + .sakura-toggle-slider {
+    @apply bg-blue-600;
+  }
+
+  .sakura-toggle input:checked + .sakura-toggle-slider::before {
+    transform: translateX(24px);
+  }
+
+  /* Subscription Plan Styles */
+  .sakura-plan-card {
+    @apply relative border border-gray-200 rounded-xl p-6;
+    transition: all 0.3s ease;
+  }
+
+  .sakura-plan-card--active {
+    @apply border-blue-500 bg-gradient-to-br from-blue-50 to-white;
+    box-shadow: 0 4px 12px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-plan-card--compact {
+    @apply p-5;
+  }
+
+  .sakura-plan-card--highlight {
+    @apply border-purple-500 bg-gradient-to-br from-purple-50 to-white;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
+  }
+
+  .sakura-plan-badge {
+    @apply absolute -top-3 left-6 px-4 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full;
+    font-family: var(--font-body);
+  }
+
+  .sakura-plan-badge--popular {
+    @apply bg-purple-600;
+  }
+
+  .sakura-plan-header {
+    @apply flex items-center gap-4 mb-6;
+  }
+
+  .sakura-plan-icon {
+    @apply w-14 h-14 rounded-xl bg-blue-600 text-white flex items-center justify-center text-2xl;
+    box-shadow: 0 4px 12px rgba(91, 139, 245, 0.3);
+  }
+
+  .sakura-plan-icon--free {
+    @apply bg-gray-600;
+    box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+  }
+
+  .sakura-plan-icon--family {
+    @apply bg-purple-600;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  .sakura-plan-name {
+    @apply text-2xl font-bold text-gray-900 mb-1;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-plan-card--compact .sakura-plan-name {
+    @apply text-xl;
+  }
+
+  .sakura-plan-price {
+    @apply text-lg text-gray-600 font-semibold;
+    font-family: var(--font-body);
+  }
+
+  .sakura-plan-card--compact .sakura-plan-price {
+    @apply text-base;
+  }
+
+  .sakura-plan-features {
+    @apply flex flex-col gap-3 mb-6;
+  }
+
+  .sakura-plan-feature {
+    @apply flex items-center gap-3 text-gray-700;
+    font-family: var(--font-body);
+  }
+
+  .sakura-plan-feature i {
+    @apply text-lg text-green-600;
+  }
+
+  .sakura-plan-card--compact .sakura-plan-feature {
+    @apply text-sm;
+  }
+
+  .sakura-plan-billing {
+    @apply flex flex-col gap-2 mb-6 pb-6 border-b border-gray-200;
+  }
+
+  .sakura-plan-billing-info {
+    @apply flex justify-between items-center;
+  }
+
+  .sakura-plan-billing-label {
+    @apply text-sm text-gray-600;
+    font-family: var(--font-body);
+  }
+
+  .sakura-plan-billing-value {
+    @apply text-sm font-semibold text-gray-900;
+    font-family: var(--font-body);
+  }
+
+  .sakura-plan-actions {
+    @apply flex gap-3 flex-wrap;
+  }
+
+  .sakura-other-plans {
+    @apply mt-8 pt-8 border-t border-gray-200;
+  }
+
+  .sakura-other-plans h3 {
+    @apply text-lg font-semibold text-gray-900 mb-4;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-plans-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .sakura-filter-controls {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sakura-view-controls {
+      @apply flex-col gap-4 items-stretch;
+    }
+
+    .sakura-transaction-table-container {
+      margin: 0 -1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sakura-page-header {
+      @apply flex-col gap-4 items-stretch;
+    }
+
+    .sakura-page-actions {
+      justify-content: stretch;
+    }
+
+    .sakura-page-actions .sakura-btn {
+      flex: 1;
+    }
+
+    .sakura-transaction-summary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sakura-filter-controls {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-view-toggle {
+      @apply w-full justify-center;
+    }
+
+    .sakura-view-btn {
+      flex: 1;
+      justify-content: center;
+    }
+
+    .sakura-results-header {
+      @apply flex-col gap-4 items-stretch;
+    }
+
+    .sakura-bulk-actions {
+      justify-content: center;
+    }
+
+    .sakura-transaction-list.advanced .sakura-transaction-item {
+      @apply p-4;
+    }
+
+    .sakura-transaction-item.selectable {
+      padding-left: 2rem;
+    }
+
+    .sakura-transaction-meta {
+      @apply flex-col items-start gap-2;
+    }
+
+    .sakura-calendar-days {
+      gap: 0.25rem;
+    }
+
+    .sakura-calendar-day {
+      min-height: 80px;
+      padding: 0.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sakura-transaction-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-transaction-controls {
+      @apply p-4;
+    }
+
+    .sakura-search-input-large {
+      @apply py-3 text-base;
+      padding-left: 2.5rem;
+    }
+
+    .sakura-view-btn {
+      @apply px-3 py-2 text-xs;
+    }
+
+    .sakura-transaction-item.selectable {
+      padding-left: 1.5rem;
+    }
+
+    .sakura-transaction-actions {
+      opacity: 1;
+    }
+
+    .sakura-action-btn {
+      padding: 0.25rem;
+    }
+  }
+
+  /* ========================================
+     MODAL COMPONENT
+     ======================================== */
+
+  /* Modal Wrapper - Hidden by default */
+  .sakura-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  /* Show state */
+  .sakura-modal.show,
+  .sakura-modal.active {
+    display: flex;
+  }
+
+  /* Home page modal wrapper - uses sakura-modal-overlay as wrapper */
+  #sakura-feature-modal,
+  #sakura-demo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Modal active state - generic for all modals */
+  .sakura-modal.sakura-modal--active {
+    display: flex;
+  }
+
+  /* Transactions modal overlay - child element inside sakura-modal wrapper */
+  .sakura-modal .sakura-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(30, 42, 59, 0.7) 0%, rgba(91, 139, 245, 0.3) 100%);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.3s ease;
+  }
+
+  /* Modal Container - White content box with enhanced shadow */
+  .sakura-modal-container {
+    position: relative;
+    z-index: 10000;
+    @apply bg-white rounded-2xl;
+    max-width: 600px;
+    width: 100%;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow:
+      0 20px 60px rgba(30, 42, 59, 0.3),
+      0 0 0 1px rgba(30, 42, 59, 0.05),
+      0 0 80px rgba(91, 139, 245, 0.15);
+  }
+
+  /* Modal slide in animation */
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-30px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Base Modal Header - Original style for home page modals */
+  .sakura-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%);
+    border-radius: 24px 24px 0 0;
+  }
+
+  .sakura-modal-header h3 {
+    @apply text-2xl font-bold mb-0 font-heading;
+    color: #1e2a3b;
+  }
+
+  .sakura-modal-close {
+    background: rgba(75, 85, 99, 0.1);
+    border: none;
+    color: #6b7280;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-modal-close:hover {
+    background: rgba(75, 85, 99, 0.2);
+    color: #374151;
+  }
+
+
+  /* Modal Form Styles */
+  .sakura-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .sakura-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .sakura-form-row--merchant-amount {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .sakura-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+
+  .sakura-form-label {
+    @apply text-sm font-semibold text-gray-700;
+    font-family: var(--font-body);
+    letter-spacing: -0.01em;
+  }
+
+  .sakura-form-input {
+    @apply rounded-lg border-2 transition-all;
+    font-family: var(--font-body);
+    border-color: #e5e7eb;
+    background: white;
+    color: #1e2a3b;
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+  }
+
+  .sakura-form-input:focus {
+    outline: none;
+    border-color: #5b8bf5;
+    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-form-input:hover:not(:focus) {
+    border-color: #d1d5db;
+  }
+
+  /* Amount Input with Dollar Sign */
+  .sakura-amount-input {
+    position: relative;
+    width: 100%;
+  }
+
+  .sakura-amount-prefix {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .sakura-form-input--amount {
+    padding-left: 1.75rem;
+  }
+
+  /* Custom Datepicker */
+  .sakura-datepicker {
+    position: relative;
+    width: 200px;
+  }
+
+  .sakura-datepicker-input {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .sakura-datepicker-input i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5b8bf5;
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .sakura-datepicker-input input.sakura-input,
+  .sakura-datepicker-input .sakura-form-input {
+    padding-left: 2.75rem;
+    cursor: pointer;
+  }
+
+  .sakura-datepicker-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    padding: 1rem;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+  }
+
+  .sakura-datepicker.active .sakura-datepicker-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .sakura-datepicker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .sakura-datepicker-month {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #1e2a3b;
+  }
+
+  .sakura-datepicker-nav {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-datepicker-nav:hover {
+    background: #f3f4f6;
+    color: #1e2a3b;
+  }
+
+  .sakura-datepicker-prev,
+  .sakura-datepicker-next {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-datepicker-prev:hover,
+  .sakura-datepicker-next:hover {
+    background: #f3f4f6;
+    color: #1e2a3b;
+  }
+
+  .sakura-datepicker-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .sakura-datepicker-weekdays div {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #9ca3af;
+    padding: 4px;
+    font-family: var(--font-body);
+  }
+
+  .sakura-datepicker-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .sakura-datepicker-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-family: var(--font-body);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: #374151;
+    border: 1px solid transparent;
+  }
+
+  .sakura-datepicker-day:hover {
+    background: #f3f4f6;
+    color: #1e2a3b;
+  }
+
+  .sakura-datepicker-day.other-month {
+    color: #d1d5db;
+  }
+
+  .sakura-datepicker-day.selected {
+    background: linear-gradient(135deg, #5b8bf5 0%, #8b5cf6 100%);
+    color: white;
+    font-weight: 600;
+  }
+
+  .sakura-datepicker-day.today {
+    border-color: #5b8bf5;
+    color: #5b8bf5;
+    font-weight: 600;
+  }
+
+  .sakura-datepicker-day.today.selected {
+    border-color: transparent;
+    color: white;
+  }
+
+  /* Responsive adjustments for modal */
+  @media (max-width: 768px) {
+    .sakura-modal {
+      padding: 0;
+    }
+
+    .sakura-modal-container {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 0;
+    }
+
+    .sakura-modal-header,
+    .sakura-modal-body,
+    .sakura-modal-footer {
+      padding: 1rem;
+    }
+
+    .sakura-modal-footer {
+      flex-direction: column;
+    }
+
+    .sakura-modal-footer .sakura-btn {
+      width: 100%;
+    }
+  }
+
+  /* Add Transaction Modal Specific Styles */
+  .sakura-modal-content {
+    position: relative;
+    z-index: 10000;
+    background: white;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-top: none;
+    border-radius: 24px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 94vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow:
+      0 20px 60px rgba(30, 42, 59, 0.25),
+      0 0 0 1px rgba(30, 42, 59, 0.05),
+      0 0 80px rgba(91, 139, 245, 0.1);
+  }
+
+  .sakura-modal-content::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    height: 5px;
+    background: linear-gradient(90deg, #5B8BF5 0%, #8B5CF6 50%, #5B8BF5 100%);
+    border-radius: 24px 24px 0 0;
+    z-index: 10;
+  }
+
+  /* Import Modal Modifier - More compact for simpler import form */
+  .sakura-modal-content--import {
+    max-width: 600px;
+    max-height: 90vh;
+  }
+
+  .sakura-modal-content--import .sakura-modal-body {
+    padding-bottom: 16px;
+  }
+
+  /* Medium Modal Modifier - For Create Envelope and similar forms */
+  .sakura-modal-content--medium {
+    max-width: 780px;
+    min-height: 700px;
+  }
+
+  .sakura-modal-content--medium .sakura-modal-body {
+    flex: 1;
+  }
+
+  /* Income Modal Modifier - Taller for income forms */
+  .sakura-modal-content--income {
+    max-width: 780px;
+    min-height: 750px;
+  }
+
+  .sakura-modal-content--income .sakura-modal-body {
+    flex: 1;
+  }
+
+  .sakura-modal-header {
+    position: relative;
+    z-index: 1;
+    padding: 32px 32px 28px;
+    border-bottom: none;
+    background: white;
+    text-align: center;
+  }
+
+  .sakura-modal-header h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    font-family: var(--font-heading);
+    position: relative;
+    display: inline-block;
+  }
+
+  .sakura-modal-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #5B8BF5, #8B5CF6);
+    border-radius: 2px;
+    animation: sakuraUnderlineGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes sakuraUnderlineGlow {
+    0%, 100% { opacity: 1; width: 60px; }
+    50% { opacity: 0.6; width: 80px; }
+  }
+
+  .sakura-modal-body,
+  .sakura-modal-footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sakura-modal-body {
+    padding: 26px 32px;
+    overflow-y: auto;
+  }
+
+  .sakura-modal-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding: 20px 32px;
+    border-top: 1px solid rgba(226, 232, 240, 0.6);
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(248, 250, 252, 0.8) 100%);
+    border-radius: 0 0 24px 24px;
+    margin: 0;
+    width: 100%;
+  }
+
+  /* Transaction Form Styles */
+  .sakura-transaction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Form Grid for Create Envelope Modal */
+  .sakura-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .sakura-form-group--full {
+    grid-column: 1 / -1;
+  }
+
+  /* Toggle Group for Status */
+  .sakura-toggle-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .sakura-toggle-option {
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .sakura-toggle-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .sakura-toggle-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    background: white;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #6b7280;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-toggle-label i {
+    font-size: 1.125rem;
+  }
+
+  .sakura-toggle-option:hover .sakura-toggle-label {
+    border-color: #d1d5db;
+    background: #f9fafb;
+  }
+
+  .sakura-toggle-option input[type="radio"]:checked + .sakura-toggle-label {
+    border-color: #10b981;
+    background: #ecfdf5;
+    color: #10b981;
+  }
+
+  .sakura-toggle-option input[type="radio"][value="paused"]:checked + .sakura-toggle-label {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    color: #3b82f6;
+  }
+
+  .sakura-toggle-option input[type="radio"]:focus + .sakura-toggle-label {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+  }
+
+  .sakura-toggle-option input[type="radio"][value="paused"]:focus + .sakura-toggle-label {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  /* Envelope Allocations Section */
+  .sakura-envelope-allocations-section {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .sakura-allocation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  .sakura-allocation-header .sakura-form-label {
+    margin-bottom: 0;
+  }
+
+  .sakura-btn--sm {
+    padding: 6px 12px;
+    font-size: 0.8125rem;
+  }
+
+  .sakura-allocation-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 16px;
+    background: #f9fafb;
+    border-radius: 8px;
+  }
+
+  .sakura-allocation-summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sakura-allocation-label {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .sakura-allocation-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .sakura-allocation-value.total {
+    color: #1e293b;
+  }
+
+  .sakura-allocation-value.allocated {
+    color: #3b82f6;
+  }
+
+  .sakura-allocation-value.remaining {
+    color: #10b981;
+  }
+
+  .sakura-allocations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sakura-allocation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-allocation-item:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  }
+
+  .sakura-allocation-envelope {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .sakura-allocation-envelope-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+  }
+
+  .sakura-allocation-envelope-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sakura-allocation-envelope-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .sakura-allocation-envelope-percentage {
+    font-size: 0.8125rem;
+    color: #6b7280;
+  }
+
+  .sakura-allocation-amount {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sakura-allocation-amount-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .sakura-allocation-remove {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sakura-allocation-remove:hover {
+    background: #fee2e2;
+    color: #ef4444;
+  }
+
+  .sakura-allocation-remove i {
+    font-size: 0.875rem;
+  }
+
+  .sakura-form-row {
+    display: flex;
+    gap: 20px;
+  }
+
+  .sakura-form-row--split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .sakura-form-row--merchant-amount {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+  }
+
+  .sakura-form-row--amount-frequency {
+    display: grid !important;
+    grid-template-columns: 180px 1fr 1fr !important;
+    gap: 16px;
+  }
+
+  .sakura-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sakura-form-field--date {
+    width: 180px;
+  }
+
+  .sakura-form-field--merchant {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-form-field--amount {
+    width: 140px;
+    flex-shrink: 0;
+  }
+
+  /* Input with prefix (currency indicator) */
+  .sakura-input-with-prefix {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .sakura-input-prefix {
+    position: absolute;
+    left: 16px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: #475569;
+    font-size: 0.9375rem;
+    font-family: var(--font-body);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .sakura-input--with-prefix,
+  .sakura-input-with-prefix-input {
+    padding-left: 2rem !important;
+  }
+
+  .sakura-form-field--type {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-form-field--envelope {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-form-field--payment {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-form-field--merchant-desc {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-form-field--notes {
+    width: 100%;
+  }
+
+  /* Custom select in modal - ensure dropdown is visible */
+  .sakura-modal .sakura-form-row,
+  .sakura-modal .sakura-form-field {
+    overflow: visible !important;
+  }
+
+  .sakura-modal .sakura-custom-select {
+    position: relative;
+  }
+
+  /* Reduce input padding to match original dropdown size */
+  .sakura-modal .sakura-input {
+    @apply px-3 py-2 rounded-2xl;
+  }
+
+  /* Match custom select trigger to reduced input styling */
+  .sakura-modal .sakura-custom-select-trigger {
+    @apply px-3 py-2 rounded-2xl;
+    border: 2px solid #e2e8f0;
+    font-size: 0.9375rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: #1e293b;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sakura-modal .sakura-custom-select-trigger:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(91, 139, 245, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .sakura-modal .sakura-custom-select.active .sakura-custom-select-trigger {
+    border-color: #5B8BF5;
+    box-shadow: 0 0 0 3px rgba(91, 139, 245, 0.1), 0 4px 12px rgba(91, 139, 245, 0.15);
+  }
+
+  .sakura-modal .sakura-custom-select-trigger.placeholder {
+    color: #94a3b8;
+  }
+
+  .sakura-modal .sakura-custom-select-dropdown {
+    position: absolute;
+    z-index: 100000 !important;
+  }
+
+  .sakura-modal .sakura-custom-select.active .sakura-custom-select-dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    z-index: 100000 !important;
+  }
+
+  /* Colorize icons in modal custom selects */
+  .sakura-modal .sakura-custom-select-option .bi-arrow-down-circle {
+    color: #ef4444;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-arrow-up-circle {
+    color: #10b981;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-arrow-left-right {
+    color: #3b82f6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-cart {
+    color: #10b981;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-film {
+    color: #8b5cf6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-car-front {
+    color: #3b82f6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-lightning-charge {
+    color: #f59e0b;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-egg-fried {
+    color: #ec4899;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-heart-pulse {
+    color: #ef4444;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-person {
+    color: #06b6d4;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-piggy-bank {
+    color: #10b981;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-credit-card,
+  .sakura-modal .sakura-custom-select-option .bi-credit-card-2-front {
+    color: #3b82f6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-bank {
+    color: #10b981;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-receipt {
+    color: #8b5cf6;
+  }
+
+  .sakura-modal .sakura-custom-select-option .bi-cash-coin {
+    color: #10b981;
+  }
+
+  /* Bank logo styling */
+  .sakura-bank-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .sakura-form-field label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .sakura-input {
+    @apply px-4 py-3 rounded-xl;
+    border: 2px solid #e2e8f0;
+    font-size: 0.9375rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: #1e293b;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+
+  .sakura-input:hover:not(:focus) {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(91, 139, 245, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .sakura-input:focus {
+    outline: none;
+    border-color: #5B8BF5;
+    background: white;
+    box-shadow:
+      0 0 0 4px rgba(91, 139, 245, 0.1),
+      0 8px 16px rgba(91, 139, 245, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .sakura-input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+  }
+
+  /* Date input specific styling */
+  input[type="date"].sakura-input {
+    width: 100%;
+  }
+
+  /* Number input specific styling */
+  input[type="number"].sakura-input {
+    width: 100%;
+  }
+
+  /* Select dropdown styling */
+  select.sakura-input {
+    width: 100%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 12px 8px !important;
+    padding-right: 40px;
+  }
+
+  select.sakura-input:hover {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 12px 8px !important;
+  }
+
+  select.sakura-input:focus {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 12px 8px !important;
+  }
+
+  select.sakura-input:active {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 12px 8px !important;
+  }
+
+  /* Fix for Firefox */
+  select.sakura-input::-moz-focus-inner {
+    border: 0;
+  }
+
+  /* Fix for IE */
+  select.sakura-input::-ms-expand {
+    display: none;
+  }
+
+  /* Textarea styling */
+  .sakura-textarea {
+    resize: vertical;
+    min-height: 90px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
+    padding: 14px 16px !important;
+  }
+
+  .sakura-textarea:focus {
+    min-height: 90px;
+  }
+
+  /* Import Form Styles */
+  .sakura-import-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* File Upload */
+  .sakura-file-upload {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sakura-file-upload label {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--gray-900);
+    white-space: nowrap;
+  }
+
+  /* Form Inline - Label and input on same line */
+  .sakura-form-inline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sakura-form-inline label {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--gray-900);
+    white-space: nowrap;
+    min-width: 120px;
+  }
+
+  .sakura-form-inline .sakura-custom-select {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .sakura-file-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px -2px rgba(91, 139, 245, 0.3);
+  }
+
+  .sakura-file-upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px -2px rgba(91, 139, 245, 0.4);
+  }
+
+  .sakura-file-upload-btn:active {
+    transform: translateY(0);
+  }
+
+  .sakura-file-upload-btn i {
+    font-size: 1.1em;
+  }
+
+  .sakura-file-upload-name {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-style: italic;
+  }
+
+
+  /* Form Help Text */
+  .sakura-form-help {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  .sakura-form-help i {
+    margin-top: 2px;
+    color: var(--secondary);
+    font-size: 1em;
+    flex-shrink: 0;
+  }
+
+  /* CSV Format Help */
+  .sakura-csv-format-help {
+    background: linear-gradient(135deg, rgba(91, 139, 245, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border: 1px solid rgba(91, 139, 245, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .sakura-help-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--primary);
+    font-size: var(--text-base);
+  }
+
+  .sakura-help-header i {
+    font-size: 1.3em;
+    color: var(--secondary);
+  }
+
+  .sakura-help-content {
+    font-size: var(--text-sm);
+    color: var(--gray-700);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .sakura-help-content p {
+    margin: 0 0 8px 0;
+  }
+
+  .sakura-help-content code {
+    display: block;
+    background: rgba(30, 42, 59, 0.05);
+    border: 1px solid rgba(30, 42, 59, 0.1);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    margin: 12px auto;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: var(--text-xs);
+    color: var(--primary);
+    text-align: center;
+  }
+
+  .sakura-help-example {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(91, 139, 245, 0.15);
+    text-align: left;
+  }
+
+  .sakura-help-example strong {
+    color: var(--gray-900);
+  }
+
+  /* Color Dot Picker - Option 1 */
+  .sakura-color-dot-picker {
+    @apply flex flex-wrap gap-3 mt-2;
+  }
+
+  .sakura-color-dot {
+    @apply cursor-pointer transition-all;
+    position: relative;
+    display: inline-block;
+  }
+
+  .sakura-color-dot input[type="radio"] {
+    @apply hidden;
+  }
+
+  .sakura-dot {
+    @apply rounded-full transition-all;
+    display: block;
+    width: 26px;
+    height: 26px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 2px solid transparent;
+  }
+
+  .sakura-color-dot:hover .sakura-dot {
+    transform: scale(1.15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-color-dot input[type="radio"]:checked + .sakura-dot {
+    box-shadow: 0 0 0 3px white, 0 0 0 5px var(--secondary), 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
+    border: 2px solid white;
+  }
+
+  /* ===================================
+     INCOME PAGE STYLES
+     =================================== */
+
+  /* Income Sources Grid */
+  .sakura-income-sources-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .sakura-income-sources-grid {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  }
+
+  /* Income Source Card - Following Envelope Card Pattern */
+  .sakura-income-source-card {
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(var(--income-color-rgb, 16, 185, 129), 0.015) 50%,
+      rgba(255, 255, 255, 0.95) 100%);
+    border: 1px solid rgba(var(--income-color-rgb, 16, 185, 129), 0.12);
+    border-radius: var(--radius-3xl);
+    padding: var(--space-8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(20px);
+  }
+
+  .sakura-income-source-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--income-color, #10b981), transparent 60%);
+    opacity: 0.12;
+    pointer-events: none;
+    filter: blur(30px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-income-source-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--income-color, #10b981) 0%, rgba(var(--income-color-rgb, 16, 185, 129), 0.7) 50%, var(--income-color, #10b981) 100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-income-source-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -6px rgba(var(--income-color-rgb, 16, 185, 129), 0.15);
+    border-color: rgba(var(--income-color-rgb, 16, 185, 129), 0.3);
+  }
+
+  .sakura-income-source-card:hover::before {
+    height: 6px;
+  }
+
+  .sakura-income-source-card:hover::after {
+    opacity: 0.2;
+    transform: scale(1.2);
+  }
+
+  .sakura-income-source-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .sakura-income-source-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--income-color, #10b981), rgba(var(--income-color-rgb, 16, 185, 129), 0.8));
+    box-shadow: 0 4px 12px -2px rgba(var(--income-color-rgb, 16, 185, 129), 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .sakura-income-source-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent 60%);
+    opacity: 0.3;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sakura-income-source-card:hover .sakura-income-source-icon {
+    transform: scale(1.05) rotate(-3deg);
+    box-shadow: 0 8px 20px -4px rgba(var(--income-color-rgb, 16, 185, 129), 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .sakura-income-source-card:hover .sakura-income-source-icon::before {
+    opacity: 0.5;
+  }
+
+  .sakura-income-source-icon i,
+  .sakura-income-source-icon svg {
+    font-size: 32px;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    line-height: 1;
+    z-index: 1;
+  }
+
+  .sakura-income-source-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-income-source-name {
+    font-size: var(--text-lg);
+    font-weight: var(--fw-semibold);
+    color: var(--gray-900);
+    font-family: var(--font-heading);
+    margin: 0 0 var(--space-1) 0;
+  }
+
+  .sakura-income-source-company {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-income-source-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    color: var(--gray-400);
+    font-size: 20px;
+    transition: all var(--transition);
+    border-radius: 8px;
+  }
+
+  .sakura-income-source-menu:hover {
+    background: var(--gray-100);
+    color: var(--gray-700);
+  }
+
+  .sakura-income-source-amount {
+    font-size: var(--text-4xl);
+    font-weight: var(--fw-bold);
+    color: var(--income-color, #10b981);
+    font-family: var(--font-heading);
+    margin-bottom: var(--space-4);
+    transition: all 0.3s ease;
+  }
+
+  .sakura-income-source-card:hover .sakura-income-source-amount {
+    transform: scale(1.02);
+  }
+
+  .sakura-income-source-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-income-source-detail {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-income-source-detail i {
+    color: var(--gray-400);
+    font-size: 16px;
+  }
+
+  .sakura-income-source-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    font-family: var(--font-body);
+  }
+
+  .sakura-income-source-status.active {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+  }
+
+  .sakura-income-source-status.inactive {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+  }
+
+  .sakura-income-source-status i {
+    font-size: 14px;
+  }
+
+  /* Income Source Card Modifier - Compact Size */
+  .sakura-income-sources-grid--compact {
+    gap: var(--space-5);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .sakura-income-source-card--compact {
+    padding: var(--space-5);
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-header {
+    margin-bottom: var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-icon i,
+  .sakura-income-source-card--compact .sakura-income-source-icon svg {
+    font-size: 24px;
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-amount {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .sakura-income-source-card--compact .sakura-income-source-details {
+    margin-bottom: var(--space-3);
+  }
+
+  /* Expense Analytics Components */
+
+  /* Insights Section */
+  .sakura-insights-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .sakura-date-range-selector {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .sakura-date-range-btn {
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--gray-300);
+    background: white;
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .sakura-date-range-btn:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-400);
+  }
+
+  .sakura-date-range-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  .sakura-insights-grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .sakura-insight-card {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    transition: all var(--transition);
+  }
+
+  .sakura-insight-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .sakura-insight-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--insight-color, var(--primary));
+    color: white;
+    flex-shrink: 0;
+    font-size: 24px;
+  }
+
+  .sakura-insight-content {
+    flex: 1;
+  }
+
+  .sakura-insight-title {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .sakura-insight-text {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Analytics Section */
+  .sakura-analytics-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .sakura-section-description {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    margin-top: var(--space-1);
+  }
+
+  .sakura-analytics-row {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: var(--space-8);
+  }
+
+  .sakura-analytics-row.hidden {
+    display: none;
+  }
+
+  .sakura-analytics-section--half {
+    margin-bottom: 0;
+  }
+
+  /* Analytics Charts */
+  .sakura-analytics-chart {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+  }
+
+  .sakura-analytics-chart--trends {
+    height: 400px;
+  }
+
+  .sakura-analytics-chart--trends canvas {
+    max-height: 100%;
+  }
+
+  .sakura-analytics-chart--category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+  }
+
+  .sakura-analytics-chart--category canvas {
+    max-width: 100%;
+    max-height: 350px;
+  }
+
+  .sakura-analytics-chart--merchants {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+  }
+
+  .sakura-analytics-chart--merchants canvas {
+    max-width: 100%;
+    max-height: 350px;
+  }
+
+  .sakura-analytics-chart--budget {
+    height: 400px;
+  }
+
+  .sakura-analytics-chart--budget canvas {
+    max-height: 100%;
+  }
+
+  .sakura-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-chart-legend {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .sakura-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+  }
+
+  .sakura-legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+  }
+
+  .sakura-chart-placeholder {
+    position: relative;
+    height: 300px;
+  }
+
+  .sakura-chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 100%;
+    gap: var(--space-3);
+  }
+
+  .sakura-chart-bar {
+    flex: 1;
+    background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+    border-radius: var(--radius) var(--radius) 0 0;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 20px;
+  }
+
+  .sakura-chart-bar:hover {
+    opacity: 0.8;
+    transform: translateY(-4px);
+  }
+
+  .sakura-chart-bar.active {
+    background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  }
+
+  .sakura-chart-bar::before {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--text-xs);
+    color: var(--gray-600);
+    white-space: nowrap;
+  }
+
+  .sakura-chart-bar::after {
+    content: attr(data-value);
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    color: var(--gray-900);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .sakura-chart-bar:hover::after {
+    opacity: 1;
+  }
+
+  .sakura-chart-baseline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gray-300);
+  }
+
+  /* Category Breakdown */
+  .sakura-category-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sakura-category-breakdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .sakura-category-breakdown-bar {
+    flex: 1;
+    height: 40px;
+    background: var(--category-color);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-3);
+    color: white;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    width: var(--category-width);
+    min-width: 120px;
+    transition: all 0.3s ease;
+  }
+
+  .sakura-category-breakdown-bar:hover {
+    opacity: 0.9;
+    transform: translateX(4px);
+  }
+
+  .sakura-category-name {
+    font-family: var(--font-heading);
+  }
+
+  .sakura-category-amount {
+    font-weight: var(--fw-semibold);
+  }
+
+  .sakura-category-percent {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-weight: var(--fw-medium);
+    min-width: 40px;
+    text-align: right;
+  }
+
+  /* Top Merchants */
+  .sakura-top-merchants-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sakura-merchant-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition);
+  }
+
+  .sakura-merchant-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--gray-300);
+  }
+
+  .sakura-merchant-rank {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--fw-bold);
+    font-size: var(--text-sm);
+    color: var(--gray-700);
+    flex-shrink: 0;
+  }
+
+  .sakura-merchant-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--gray-100);
+  }
+
+  .sakura-merchant-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sakura-merchant-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sakura-merchant-name {
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--gray-900);
+    font-family: var(--font-heading);
+  }
+
+  .sakura-merchant-category {
+    font-size: var(--text-xs);
+    color: var(--gray-600);
+  }
+
+  .sakura-merchant-stats {
+    text-align: right;
+  }
+
+  .sakura-merchant-amount {
+    font-size: var(--text-base);
+    font-weight: var(--fw-bold);
+    color: var(--gray-900);
+    font-family: var(--font-heading);
+  }
+
+  .sakura-merchant-count {
+    font-size: var(--text-xs);
+    color: var(--gray-600);
+  }
+
+  /* ========================================
+     NEW INSIGHT MODULES - ANALYTICS
+     ======================================== */
+
+  /* Insight Module - Hide by default if user prefers */
+  .sakura-insight-module {
+    display: block;
+  }
+
+  .sakura-insight-module.hidden {
+    display: none;
+  }
+
+  /* 1. Savings Rate Tracker */
+  .sakura-savings-rate-content {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+  }
+
+  .sakura-savings-rate-display {
+    display: flex;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .sakura-savings-rate-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+  }
+
+  .sakura-progress-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+  }
+
+  .sakura-savings-rate-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: #10b981;
+  }
+
+  .sakura-savings-rate-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    flex: 1;
+  }
+
+  .sakura-savings-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .sakura-savings-label {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-savings-value {
+    font-size: var(--text-xl);
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-savings-stat.positive {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-2);
+    color: #10b981;
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-base);
+    margin-top: var(--space-2);
+  }
+
+  .sakura-savings-stat.positive i {
+    font-size: 1.25rem;
+  }
+
+  /* 2. Spending Velocity */
+  .sakura-velocity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .sakura-velocity-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    transition: all var(--transition);
+  }
+
+  .sakura-velocity-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gray-300);
+  }
+
+  .sakura-velocity-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--velocity-color) 10%, white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sakura-velocity-icon i {
+    font-size: 2rem;
+    color: var(--velocity-color);
+  }
+
+  .sakura-velocity-stat {
+    flex: 1;
+  }
+
+  .sakura-velocity-value {
+    font-size: 1.875rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin-bottom: var(--space-1);
+  }
+
+  .sakura-velocity-label {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-velocity-warning {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+    color: #f59e0b;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+  }
+
+  .sakura-velocity-warning i {
+    font-size: 1rem;
+  }
+
+  /* 4. Recurring Costs */
+  .sakura-recurring-summary {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    margin-bottom: var(--space-4);
+    text-align: center;
+  }
+
+  .sakura-recurring-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .sakura-recurring-amount {
+    font-size: 3rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-recurring-label {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-recurring-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sakura-recurring-item {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all var(--transition);
+  }
+
+  .sakura-recurring-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--gray-300);
+  }
+
+  .sakura-recurring-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .sakura-recurring-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .sakura-recurring-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sakura-recurring-icon i {
+    font-size: 1.25rem;
+    color: var(--gray-600);
+  }
+
+  .sakura-recurring-name {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-recurring-frequency {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+    margin-top: 2px;
+  }
+
+  .sakura-recurring-item .sakura-recurring-amount {
+    font-size: var(--text-xl);
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  /* 5. Cash Flow Summary */
+  .sakura-cashflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .sakura-cashflow-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    transition: all var(--transition);
+  }
+
+  .sakura-cashflow-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .sakura-cashflow-card.income {
+    border-left: 4px solid #10b981;
+  }
+
+  .sakura-cashflow-card.expense {
+    border-left: 4px solid #ef4444;
+  }
+
+  .sakura-cashflow-card.net.positive {
+    border-left: 4px solid #3b82f6;
+  }
+
+  .sakura-cashflow-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    color: var(--gray-600);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+  }
+
+  .sakura-cashflow-header i {
+    font-size: 1.25rem;
+  }
+
+  .sakura-cashflow-amount {
+    font-size: 2rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin-bottom: var(--space-2);
+  }
+
+  .sakura-cashflow-detail {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-cashflow-runway {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    color: white;
+  }
+
+  .sakura-runway-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    margin-bottom: var(--space-3);
+    opacity: 0.9;
+  }
+
+  .sakura-runway-label i {
+    font-size: 1.25rem;
+  }
+
+  .sakura-runway-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .sakura-runway-months {
+    font-size: 2.5rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+  }
+
+  .sakura-runway-detail {
+    font-size: var(--text-base);
+    opacity: 0.95;
+    line-height: 1.6;
+  }
+
+  /* 7. Year-over-Year Comparison */
+  .sakura-yoy-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto;
+    gap: var(--space-4);
+    align-items: center;
+    margin-bottom: var(--space-6);
+  }
+
+  .sakura-yoy-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  .sakura-yoy-card.current {
+    border: 2px solid #3b82f6;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, white 100%);
+  }
+
+  .sakura-yoy-period {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+    margin-bottom: var(--space-2);
+  }
+
+  .sakura-yoy-amount {
+    font-size: 1.875rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-yoy-arrow {
+    font-size: 2rem;
+    color: var(--gray-400);
+  }
+
+  .sakura-yoy-change {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: var(--fw-semibold);
+  }
+
+  .sakura-yoy-change.negative {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.05);
+    border-color: rgba(239, 68, 68, 0.2);
+  }
+
+  .sakura-yoy-change.positive {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+
+  .sakura-yoy-breakdown {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+  }
+
+  .sakura-yoy-breakdown h3 {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sakura-yoy-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: var(--text-sm);
+  }
+
+  .sakura-yoy-category:last-child {
+    border-bottom: none;
+  }
+
+  .sakura-yoy-category span:first-child {
+    color: var(--gray-700);
+    font-family: var(--font-body);
+  }
+
+  .sakura-yoy-category span:last-child {
+    font-weight: var(--fw-semibold);
+  }
+
+  .sakura-yoy-category span.negative {
+    color: #ef4444;
+  }
+
+  .sakura-yoy-category span.positive {
+    color: #10b981;
+  }
+
+  /* 8. Budget Health Score */
+  .sakura-health-score-display {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-health-score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+  }
+
+  .sakura-health-grade {
+    font-size: 3rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    line-height: 1;
+  }
+
+  .sakura-health-points {
+    font-size: var(--text-sm);
+    opacity: 0.9;
+    margin-top: var(--space-1);
+  }
+
+  .sakura-health-summary {
+    flex: 1;
+  }
+
+  .sakura-health-summary p {
+    font-size: var(--text-base);
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .sakura-health-envelopes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .sakura-health-envelope {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sakura-health-envelope.healthy {
+    border-left: 4px solid #10b981;
+    background: rgba(16, 185, 129, 0.02);
+  }
+
+  .sakura-health-envelope.warning {
+    border-left: 4px solid #f59e0b;
+    background: rgba(245, 158, 11, 0.02);
+  }
+
+  .sakura-health-envelope.critical {
+    border-left: 4px solid #ef4444;
+    background: rgba(239, 68, 68, 0.02);
+  }
+
+  .sakura-health-envelope-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--gray-700);
+  }
+
+  .sakura-health-envelope.healthy i {
+    color: #10b981;
+  }
+
+  .sakura-health-envelope.warning i {
+    color: #f59e0b;
+  }
+
+  .sakura-health-envelope.critical i {
+    color: #ef4444;
+  }
+
+  .sakura-health-status {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .sakura-health-envelope.healthy .sakura-health-status {
+    color: #10b981;
+  }
+
+  .sakura-health-envelope.warning .sakura-health-status {
+    color: #f59e0b;
+  }
+
+  .sakura-health-envelope.critical .sakura-health-status {
+    color: #ef4444;
+  }
+
+  /* 9. Smart Recommendations */
+  .sakura-recommendations-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .sakura-recommendation-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    display: flex;
+    gap: var(--space-4);
+    transition: all var(--transition);
+  }
+
+  .sakura-recommendation-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gray-300);
+  }
+
+  .sakura-recommendation-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .sakura-recommendation-icon i {
+    font-size: 1.5rem;
+  }
+
+  .sakura-recommendation-content {
+    flex: 1;
+  }
+
+  .sakura-recommendation-content h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .sakura-recommendation-content p {
+    font-size: var(--text-sm);
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin: 0 0 var(--space-3) 0;
+  }
+
+  /* 10. Financial Runway */
+  .sakura-runway-display {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-runway-timeline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .sakura-runway-stat-large {
+    text-align: center;
+    padding: var(--space-4);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border-radius: var(--radius-xl);
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .sakura-runway-number {
+    font-size: 4rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    line-height: 1;
+  }
+
+  .sakura-runway-unit {
+    font-size: var(--text-lg);
+    opacity: 0.9;
+    margin-top: var(--space-1);
+  }
+
+  .sakura-runway-description {
+    flex: 1;
+    font-size: var(--text-base);
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+
+  .sakura-runway-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .sakura-runway-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--gray-50);
+    border-radius: var(--radius);
+  }
+
+  .sakura-runway-label {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-runway-value {
+    font-size: var(--text-base);
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-runway-progress {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+  }
+
+  .sakura-runway-progress-label {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin-bottom: var(--space-3);
+  }
+
+  .sakura-runway-progress-bar {
+    height: 12px;
+    background: var(--gray-200);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: var(--space-2);
+  }
+
+  .sakura-runway-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+    border-radius: 999px;
+    transition: width 0.5s ease;
+  }
+
+  .sakura-runway-progress-text {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  /* Customize Insights Modal */
+  .sakura-customize-description {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+  }
+
+  .sakura-insight-toggles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sakura-insight-toggle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4);
+    background: var(--gray-50);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition);
+  }
+
+  .sakura-insight-toggle-item:hover {
+    background: var(--gray-100);
+  }
+
+  .sakura-insight-toggle-info {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  .sakura-insight-toggle-info i {
+    font-size: 1.5rem;
+    color: var(--gray-600);
+    margin-top: 2px;
+  }
+
+  .sakura-insight-toggle-info h3 {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin: 0 0 var(--space-1) 0;
+  }
+
+  .sakura-insight-toggle-info p {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Responsive adjustments for new insights */
+  @media (max-width: 1024px) {
+    .sakura-savings-rate-display {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .sakura-savings-rate-details {
+      width: 100%;
+    }
+
+    .sakura-yoy-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .sakura-yoy-arrow {
+      transform: rotate(90deg);
+      justify-self: center;
+    }
+
+    .sakura-runway-timeline {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .sakura-health-score-display {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sakura-velocity-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-cashflow-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-health-envelopes {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-runway-breakdown {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Recent Expense Section */
+  .sakura-recent-expense-section {
+    margin-bottom: var(--space-8);
+  }
+
+  /* Responsive adjustments for expenses page */
+  @media (max-width: 768px) {
+    .sakura-analytics-row {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-date-range-selector {
+      flex-wrap: wrap;
+    }
+
+    .sakura-insights-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Recent Income Section */
+  .sakura-recent-income-section {
+    margin-bottom: var(--space-8);
+  }
+
+  /* Responsive adjustments for income page */
+  @media (max-width: 768px) {
+    .sakura-income-sources-grid {
+      grid-template-columns: 1fr;
     }
   }
 
