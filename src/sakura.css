@@ -13833,6 +13833,10 @@
     margin-bottom: var(--space-8);
   }
 
+  .sakura-analytics-row.hidden {
+    display: none;
+  }
+
   .sakura-analytics-section--half {
     margin-bottom: 0;
   }
@@ -14115,6 +14119,875 @@
   .sakura-merchant-count {
     font-size: var(--text-xs);
     color: var(--gray-600);
+  }
+
+  /* ========================================
+     NEW INSIGHT MODULES - ANALYTICS
+     ======================================== */
+
+  /* Insight Module - Hide by default if user prefers */
+  .sakura-insight-module {
+    display: block;
+  }
+
+  .sakura-insight-module.hidden {
+    display: none;
+  }
+
+  /* 1. Savings Rate Tracker */
+  .sakura-savings-rate-content {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+  }
+
+  .sakura-savings-rate-display {
+    display: flex;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .sakura-savings-rate-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+  }
+
+  .sakura-progress-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+  }
+
+  .sakura-savings-rate-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: #10b981;
+  }
+
+  .sakura-savings-rate-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    flex: 1;
+  }
+
+  .sakura-savings-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .sakura-savings-label {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-savings-value {
+    font-size: var(--text-xl);
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-savings-stat.positive {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-2);
+    color: #10b981;
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-base);
+    margin-top: var(--space-2);
+  }
+
+  .sakura-savings-stat.positive i {
+    font-size: 1.25rem;
+  }
+
+  /* 2. Spending Velocity */
+  .sakura-velocity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .sakura-velocity-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    transition: all var(--transition);
+  }
+
+  .sakura-velocity-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gray-300);
+  }
+
+  .sakura-velocity-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--velocity-color) 10%, white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sakura-velocity-icon i {
+    font-size: 2rem;
+    color: var(--velocity-color);
+  }
+
+  .sakura-velocity-stat {
+    flex: 1;
+  }
+
+  .sakura-velocity-value {
+    font-size: 1.875rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin-bottom: var(--space-1);
+  }
+
+  .sakura-velocity-label {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-velocity-warning {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+    color: #f59e0b;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+  }
+
+  .sakura-velocity-warning i {
+    font-size: 1rem;
+  }
+
+  /* 4. Recurring Costs */
+  .sakura-recurring-summary {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    margin-bottom: var(--space-4);
+    text-align: center;
+  }
+
+  .sakura-recurring-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .sakura-recurring-amount {
+    font-size: 3rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-recurring-label {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-recurring-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sakura-recurring-item {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all var(--transition);
+  }
+
+  .sakura-recurring-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--gray-300);
+  }
+
+  .sakura-recurring-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .sakura-recurring-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .sakura-recurring-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sakura-recurring-icon i {
+    font-size: 1.25rem;
+    color: var(--gray-600);
+  }
+
+  .sakura-recurring-name {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-recurring-frequency {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+    margin-top: 2px;
+  }
+
+  .sakura-recurring-item .sakura-recurring-amount {
+    font-size: var(--text-xl);
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  /* 5. Cash Flow Summary */
+  .sakura-cashflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .sakura-cashflow-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    transition: all var(--transition);
+  }
+
+  .sakura-cashflow-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .sakura-cashflow-card.income {
+    border-left: 4px solid #10b981;
+  }
+
+  .sakura-cashflow-card.expense {
+    border-left: 4px solid #ef4444;
+  }
+
+  .sakura-cashflow-card.net.positive {
+    border-left: 4px solid #3b82f6;
+  }
+
+  .sakura-cashflow-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    color: var(--gray-600);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+  }
+
+  .sakura-cashflow-header i {
+    font-size: 1.25rem;
+  }
+
+  .sakura-cashflow-amount {
+    font-size: 2rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin-bottom: var(--space-2);
+  }
+
+  .sakura-cashflow-detail {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-cashflow-runway {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    color: white;
+  }
+
+  .sakura-runway-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    margin-bottom: var(--space-3);
+    opacity: 0.9;
+  }
+
+  .sakura-runway-label i {
+    font-size: 1.25rem;
+  }
+
+  .sakura-runway-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .sakura-runway-months {
+    font-size: 2.5rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+  }
+
+  .sakura-runway-detail {
+    font-size: var(--text-base);
+    opacity: 0.95;
+    line-height: 1.6;
+  }
+
+  /* 7. Year-over-Year Comparison */
+  .sakura-yoy-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto;
+    gap: var(--space-4);
+    align-items: center;
+    margin-bottom: var(--space-6);
+  }
+
+  .sakura-yoy-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  .sakura-yoy-card.current {
+    border: 2px solid #3b82f6;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, white 100%);
+  }
+
+  .sakura-yoy-period {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+    margin-bottom: var(--space-2);
+  }
+
+  .sakura-yoy-amount {
+    font-size: 1.875rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-yoy-arrow {
+    font-size: 2rem;
+    color: var(--gray-400);
+  }
+
+  .sakura-yoy-change {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: var(--fw-semibold);
+  }
+
+  .sakura-yoy-change.negative {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.05);
+    border-color: rgba(239, 68, 68, 0.2);
+  }
+
+  .sakura-yoy-change.positive {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+
+  .sakura-yoy-breakdown {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+  }
+
+  .sakura-yoy-breakdown h3 {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sakura-yoy-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: var(--text-sm);
+  }
+
+  .sakura-yoy-category:last-child {
+    border-bottom: none;
+  }
+
+  .sakura-yoy-category span:first-child {
+    color: var(--gray-700);
+    font-family: var(--font-body);
+  }
+
+  .sakura-yoy-category span:last-child {
+    font-weight: var(--fw-semibold);
+  }
+
+  .sakura-yoy-category span.negative {
+    color: #ef4444;
+  }
+
+  .sakura-yoy-category span.positive {
+    color: #10b981;
+  }
+
+  /* 8. Budget Health Score */
+  .sakura-health-score-display {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-health-score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+  }
+
+  .sakura-health-grade {
+    font-size: 3rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    line-height: 1;
+  }
+
+  .sakura-health-points {
+    font-size: var(--text-sm);
+    opacity: 0.9;
+    margin-top: var(--space-1);
+  }
+
+  .sakura-health-summary {
+    flex: 1;
+  }
+
+  .sakura-health-summary p {
+    font-size: var(--text-base);
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .sakura-health-envelopes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .sakura-health-envelope {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sakura-health-envelope.healthy {
+    border-left: 4px solid #10b981;
+    background: rgba(16, 185, 129, 0.02);
+  }
+
+  .sakura-health-envelope.warning {
+    border-left: 4px solid #f59e0b;
+    background: rgba(245, 158, 11, 0.02);
+  }
+
+  .sakura-health-envelope.critical {
+    border-left: 4px solid #ef4444;
+    background: rgba(239, 68, 68, 0.02);
+  }
+
+  .sakura-health-envelope-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--gray-700);
+  }
+
+  .sakura-health-envelope.healthy i {
+    color: #10b981;
+  }
+
+  .sakura-health-envelope.warning i {
+    color: #f59e0b;
+  }
+
+  .sakura-health-envelope.critical i {
+    color: #ef4444;
+  }
+
+  .sakura-health-status {
+    font-size: var(--text-xs);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .sakura-health-envelope.healthy .sakura-health-status {
+    color: #10b981;
+  }
+
+  .sakura-health-envelope.warning .sakura-health-status {
+    color: #f59e0b;
+  }
+
+  .sakura-health-envelope.critical .sakura-health-status {
+    color: #ef4444;
+  }
+
+  /* 9. Smart Recommendations */
+  .sakura-recommendations-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .sakura-recommendation-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    display: flex;
+    gap: var(--space-4);
+    transition: all var(--transition);
+  }
+
+  .sakura-recommendation-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gray-300);
+  }
+
+  .sakura-recommendation-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .sakura-recommendation-icon i {
+    font-size: 1.5rem;
+  }
+
+  .sakura-recommendation-content {
+    flex: 1;
+  }
+
+  .sakura-recommendation-content h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .sakura-recommendation-content p {
+    font-size: var(--text-sm);
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin: 0 0 var(--space-3) 0;
+  }
+
+  /* 10. Financial Runway */
+  .sakura-runway-display {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+
+  .sakura-runway-timeline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .sakura-runway-stat-large {
+    text-align: center;
+    padding: var(--space-4);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border-radius: var(--radius-xl);
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .sakura-runway-number {
+    font-size: 4rem;
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    line-height: 1;
+  }
+
+  .sakura-runway-unit {
+    font-size: var(--text-lg);
+    opacity: 0.9;
+    margin-top: var(--space-1);
+  }
+
+  .sakura-runway-description {
+    flex: 1;
+    font-size: var(--text-base);
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+
+  .sakura-runway-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .sakura-runway-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--gray-50);
+    border-radius: var(--radius);
+  }
+
+  .sakura-runway-label {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  .sakura-runway-value {
+    font-size: var(--text-base);
+    font-weight: var(--fw-bold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+  }
+
+  .sakura-runway-progress {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+  }
+
+  .sakura-runway-progress-label {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin-bottom: var(--space-3);
+  }
+
+  .sakura-runway-progress-bar {
+    height: 12px;
+    background: var(--gray-200);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: var(--space-2);
+  }
+
+  .sakura-runway-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+    border-radius: 999px;
+    transition: width 0.5s ease;
+  }
+
+  .sakura-runway-progress-text {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+  }
+
+  /* Customize Insights Modal */
+  .sakura-customize-description {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+  }
+
+  .sakura-insight-toggles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sakura-insight-toggle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4);
+    background: var(--gray-50);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition);
+  }
+
+  .sakura-insight-toggle-item:hover {
+    background: var(--gray-100);
+  }
+
+  .sakura-insight-toggle-info {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  .sakura-insight-toggle-info i {
+    font-size: 1.5rem;
+    color: var(--gray-600);
+    margin-top: 2px;
+  }
+
+  .sakura-insight-toggle-info h3 {
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    font-family: var(--font-heading);
+    color: var(--gray-900);
+    margin: 0 0 var(--space-1) 0;
+  }
+
+  .sakura-insight-toggle-info p {
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+    font-family: var(--font-body);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Responsive adjustments for new insights */
+  @media (max-width: 1024px) {
+    .sakura-savings-rate-display {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .sakura-savings-rate-details {
+      width: 100%;
+    }
+
+    .sakura-yoy-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .sakura-yoy-arrow {
+      transform: rotate(90deg);
+      justify-self: center;
+    }
+
+    .sakura-runway-timeline {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .sakura-health-score-display {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sakura-velocity-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-cashflow-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-health-envelopes {
+      grid-template-columns: 1fr;
+    }
+
+    .sakura-runway-breakdown {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* Recent Expense Section */

@@ -150,11 +150,7 @@
                         <i class="bi bi-calendar"></i>
                         <span>Calendar</span>
                     </a>
-                    <a href="#" class="sakura-nav-item">
-                        <i class="bi bi-bar-chart"></i>
-                        <span>Reports</span>
-                    </a>
-                </div>
+</div>
                 <div class="sakura-nav-section">
                     <span class="sakura-section-title">Settings</span>
                     <a href="account.html" class="sakura-nav-item">
@@ -174,6 +170,10 @@
                     <p>Insights, trends, and spending analysis to help you stay on budget</p>
                 </div>
                 <div class="sakura-page-header-actions">
+                    <button class="sakura-btn sakura-btn--outline" id="customizeInsightsBtn">
+                        <i class="bi bi-sliders"></i>
+                        Customize Insights
+                    </button>
                     <button class="sakura-btn sakura-btn--outline">
                         <i class="bi bi-download"></i>
                         Export
@@ -267,7 +267,7 @@
             </section>
 
             <!-- Spending Trends Chart -->
-            <section class="sakura-analytics-section">
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="spending-trends">
                 <div class="sakura-section-header">
                     <h2>Spending Trends</h2>
                     <p class="sakura-section-description">Your expense patterns over the last 6 months</p>
@@ -281,7 +281,7 @@
             <!-- Envelope Breakdown & Top Merchants -->
             <div class="sakura-analytics-row">
                 <!-- Envelope Breakdown -->
-                <section class="sakura-analytics-section sakura-analytics-section--half">
+                <section class="sakura-analytics-section sakura-analytics-section--half sakura-insight-module" data-insight-id="envelope-breakdown">
                     <div class="sakura-section-header">
                         <h2>Envelope Breakdown</h2>
                         <p class="sakura-section-description">Your budget allocation by envelope</p>
@@ -293,7 +293,7 @@
                 </section>
 
                 <!-- Top Merchants -->
-                <section class="sakura-analytics-section sakura-analytics-section--half">
+                <section class="sakura-analytics-section sakura-analytics-section--half sakura-insight-module" data-insight-id="top-merchants">
                     <div class="sakura-section-header">
                         <h2>Top Merchants</h2>
                         <p class="sakura-section-description">Your highest spending vendors</p>
@@ -306,7 +306,7 @@
             </div>
 
             <!-- Budget vs Actual -->
-            <section class="sakura-analytics-section">
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="budget-vs-actual">
                 <div class="sakura-section-header">
                     <h2>Budget vs Actual</h2>
                     <p class="sakura-section-description">Compare your planned budget to actual spending</p>
@@ -317,76 +317,581 @@
                 </div>
             </section>
 
-            <!-- Recent Expense Transactions -->
-            <section class="sakura-recent-expense-section">
+            <!-- 1. Savings Rate Tracker -->
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="savings-rate">
                 <div class="sakura-section-header">
-                    <h2>Recent Expense Transactions</h2>
-                    <button class="sakura-btn sakura-btn--outline sakura-btn--sm">View All</button>
+                    <h2>Savings Rate</h2>
+                    <p class="sakura-section-description">Track your monthly savings as a percentage of income</p>
                 </div>
-
-                <div class="sakura-transaction-list">
-                    <!-- Transaction 1 -->
-                    <div class="sakura-transaction-item">
-                        <div class="sakura-transaction-icon">
-                            <img src="https://logo.clearbit.com/wholefoodsmarket.com" alt="Whole Foods">
+                <div class="sakura-savings-rate-content">
+                    <div class="sakura-savings-rate-display">
+                        <div class="sakura-savings-rate-circle">
+                            <svg viewBox="0 0 100 100" class="sakura-progress-ring">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#e2e8f0" stroke-width="8"/>
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#10b981" stroke-width="8"
+                                        stroke-dasharray="283" stroke-dashoffset="70.75"
+                                        transform="rotate(-90 50 50)" stroke-linecap="round"/>
+                            </svg>
+                            <div class="sakura-savings-rate-percentage">25%</div>
                         </div>
-                        <div class="sakura-transaction-details">
-                            <div class="sakura-transaction-name">Whole Foods Market</div>
-                            <div class="sakura-transaction-category">Groceries</div>
-                        </div>
-                        <div class="sakura-transaction-amount expense">
-                            -$127.43
-                            <div class="sakura-transaction-date">Jan 15</div>
-                        </div>
-                    </div>
-
-                    <!-- Transaction 2 -->
-                    <div class="sakura-transaction-item">
-                        <div class="sakura-transaction-icon">
-                            <img src="https://logo.clearbit.com/starbucks.com" alt="Starbucks">
-                        </div>
-                        <div class="sakura-transaction-details">
-                            <div class="sakura-transaction-name">Starbucks</div>
-                            <div class="sakura-transaction-category">Dining Out</div>
-                        </div>
-                        <div class="sakura-transaction-amount expense">
-                            -$12.50
-                            <div class="sakura-transaction-date">Jan 15</div>
-                        </div>
-                    </div>
-
-                    <!-- Transaction 3 -->
-                    <div class="sakura-transaction-item">
-                        <div class="sakura-transaction-icon">
-                            <img src="https://logo.clearbit.com/shell.com" alt="Shell">
-                        </div>
-                        <div class="sakura-transaction-details">
-                            <div class="sakura-transaction-name">Shell Gas Station</div>
-                            <div class="sakura-transaction-category">Transportation</div>
-                        </div>
-                        <div class="sakura-transaction-amount expense">
-                            -$55.00
-                            <div class="sakura-transaction-date">Jan 14</div>
-                        </div>
-                    </div>
-
-                    <!-- Transaction 4 -->
-                    <div class="sakura-transaction-item">
-                        <div class="sakura-transaction-icon">
-                            <img src="https://logo.clearbit.com/amazon.com" alt="Amazon">
-                        </div>
-                        <div class="sakura-transaction-details">
-                            <div class="sakura-transaction-name">Amazon Purchase</div>
-                            <div class="sakura-transaction-category">Shopping</div>
-                        </div>
-                        <div class="sakura-transaction-amount expense">
-                            -$89.99
-                            <div class="sakura-transaction-date">Jan 13</div>
+                        <div class="sakura-savings-rate-details">
+                            <div class="sakura-savings-stat">
+                                <span class="sakura-savings-label">This Month</span>
+                                <span class="sakura-savings-value">$875.00</span>
+                            </div>
+                            <div class="sakura-savings-stat">
+                                <span class="sakura-savings-label">Recommended</span>
+                                <span class="sakura-savings-value">20%</span>
+                            </div>
+                            <div class="sakura-savings-stat positive">
+                                <i class="bi bi-arrow-up"></i>
+                                <span>5% above target</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <!-- 2. Spending Velocity & Projections -->
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="spending-velocity">
+                <div class="sakura-section-header">
+                    <h2>Spending Velocity</h2>
+                    <p class="sakura-section-description">Daily spending rate and end-of-month projections</p>
+                </div>
+                <div class="sakura-velocity-grid">
+                    <div class="sakura-velocity-card">
+                        <div class="sakura-velocity-icon" style="--velocity-color: #3b82f6;">
+                            <i class="bi bi-speedometer"></i>
+                        </div>
+                        <div class="sakura-velocity-stat">
+                            <div class="sakura-velocity-value">$109.58</div>
+                            <div class="sakura-velocity-label">Average Daily Spend</div>
+                        </div>
+                    </div>
+                    <div class="sakura-velocity-card">
+                        <div class="sakura-velocity-icon" style="--velocity-color: #f59e0b;">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <div class="sakura-velocity-stat">
+                            <div class="sakura-velocity-value">$3,396.98</div>
+                            <div class="sakura-velocity-label">Projected Month-End Total</div>
+                            <div class="sakura-velocity-warning">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                $96.98 over budget
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sakura-velocity-card">
+                        <div class="sakura-velocity-icon" style="--velocity-color: #10b981;">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+                        <div class="sakura-velocity-stat">
+                            <div class="sakura-velocity-value">15 days</div>
+                            <div class="sakura-velocity-label">Remaining This Month</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Recurring Costs Overview -->
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="recurring-costs">
+                <div class="sakura-section-header">
+                    <h2>Recurring Costs</h2>
+                    <p class="sakura-section-description">Monthly subscriptions and automatic payments</p>
+                </div>
+                <div class="sakura-recurring-summary">
+                    <div class="sakura-recurring-total">
+                        <div class="sakura-recurring-amount">$247.93</div>
+                        <div class="sakura-recurring-label">Total Monthly Recurring</div>
+                    </div>
+                </div>
+                <div class="sakura-recurring-list">
+                    <div class="sakura-recurring-item">
+                        <div class="sakura-recurring-info">
+                            <div class="sakura-recurring-icon">
+                                <img src="https://logo.clearbit.com/netflix.com" alt="Netflix">
+                            </div>
+                            <div>
+                                <div class="sakura-recurring-name">Netflix Premium</div>
+                                <div class="sakura-recurring-frequency">Monthly • Next: Feb 1</div>
+                            </div>
+                        </div>
+                        <div class="sakura-recurring-amount">$15.99</div>
+                    </div>
+                    <div class="sakura-recurring-item">
+                        <div class="sakura-recurring-info">
+                            <div class="sakura-recurring-icon">
+                                <img src="https://logo.clearbit.com/spotify.com" alt="Spotify">
+                            </div>
+                            <div>
+                                <div class="sakura-recurring-name">Spotify Premium</div>
+                                <div class="sakura-recurring-frequency">Monthly • Next: Feb 5</div>
+                            </div>
+                        </div>
+                        <div class="sakura-recurring-amount">$9.99</div>
+                    </div>
+                    <div class="sakura-recurring-item">
+                        <div class="sakura-recurring-info">
+                            <div class="sakura-recurring-icon">
+                                <i class="bi bi-lightning-charge"></i>
+                            </div>
+                            <div>
+                                <div class="sakura-recurring-name">Electric Utility</div>
+                                <div class="sakura-recurring-frequency">Monthly • Next: Feb 3</div>
+                            </div>
+                        </div>
+                        <div class="sakura-recurring-amount">$125.00</div>
+                    </div>
+                    <div class="sakura-recurring-item">
+                        <div class="sakura-recurring-info">
+                            <div class="sakura-recurring-icon">
+                                <i class="bi bi-phone"></i>
+                            </div>
+                            <div>
+                                <div class="sakura-recurring-name">Phone Bill</div>
+                                <div class="sakura-recurring-frequency">Monthly • Next: Feb 10</div>
+                            </div>
+                        </div>
+                        <div class="sakura-recurring-amount">$65.00</div>
+                    </div>
+                    <div class="sakura-recurring-item">
+                        <div class="sakura-recurring-info">
+                            <div class="sakura-recurring-icon">
+                                <img src="https://logo.clearbit.com/amazon.com" alt="Amazon">
+                            </div>
+                            <div>
+                                <div class="sakura-recurring-name">Amazon Prime</div>
+                                <div class="sakura-recurring-frequency">Monthly • Next: Feb 15</div>
+                            </div>
+                        </div>
+                        <div class="sakura-recurring-amount">$14.99</div>
+                    </div>
+                    <div class="sakura-recurring-item">
+                        <div class="sakura-recurring-info">
+                            <div class="sakura-recurring-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <div>
+                                <div class="sakura-recurring-name">Car Insurance</div>
+                                <div class="sakura-recurring-frequency">Monthly • Next: Feb 1</div>
+                            </div>
+                        </div>
+                        <div class="sakura-recurring-amount">$16.96</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Cash Flow Summary -->
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="cash-flow">
+                <div class="sakura-section-header">
+                    <h2>Cash Flow Summary</h2>
+                    <p class="sakura-section-description">Income vs expenses and net cash flow</p>
+                </div>
+                <div class="sakura-cashflow-grid">
+                    <div class="sakura-cashflow-card income">
+                        <div class="sakura-cashflow-header">
+                            <i class="bi bi-arrow-down-circle"></i>
+                            <span>Total Income</span>
+                        </div>
+                        <div class="sakura-cashflow-amount">$3,500.00</div>
+                        <div class="sakura-cashflow-detail">This month</div>
+                    </div>
+                    <div class="sakura-cashflow-card expense">
+                        <div class="sakura-cashflow-header">
+                            <i class="bi bi-arrow-up-circle"></i>
+                            <span>Total Expenses</span>
+                        </div>
+                        <div class="sakura-cashflow-amount">$3,287.45</div>
+                        <div class="sakura-cashflow-detail">This month</div>
+                    </div>
+                    <div class="sakura-cashflow-card net positive">
+                        <div class="sakura-cashflow-header">
+                            <i class="bi bi-wallet2"></i>
+                            <span>Net Cash Flow</span>
+                        </div>
+                        <div class="sakura-cashflow-amount">+$212.55</div>
+                        <div class="sakura-cashflow-detail">6% of income saved</div>
+                    </div>
+                </div>
+                <div class="sakura-cashflow-runway">
+                    <div class="sakura-runway-label">
+                        <i class="bi bi-shield-fill-check"></i>
+                        <span>Financial Runway</span>
+                    </div>
+                    <div class="sakura-runway-stat">
+                        <div class="sakura-runway-months">4.2 months</div>
+                        <div class="sakura-runway-detail">Emergency fund covers 4.2 months of expenses</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Year-over-Year Comparison -->
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="year-comparison">
+                <div class="sakura-section-header">
+                    <h2>Year-over-Year Comparison</h2>
+                    <p class="sakura-section-description">Compare spending to the same month last year</p>
+                </div>
+                <div class="sakura-yoy-grid">
+                    <div class="sakura-yoy-card">
+                        <div class="sakura-yoy-period">January 2024</div>
+                        <div class="sakura-yoy-amount">$2,945.00</div>
+                    </div>
+                    <div class="sakura-yoy-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                    <div class="sakura-yoy-card current">
+                        <div class="sakura-yoy-period">January 2025</div>
+                        <div class="sakura-yoy-amount">$3,287.45</div>
+                    </div>
+                    <div class="sakura-yoy-change negative">
+                        <i class="bi bi-arrow-up"></i>
+                        <span>+11.6% increase</span>
+                    </div>
+                </div>
+                <div class="sakura-yoy-breakdown">
+                    <h3>Category Changes</h3>
+                    <div class="sakura-yoy-category">
+                        <span>Groceries</span>
+                        <span class="negative">+15% ($85.50)</span>
+                    </div>
+                    <div class="sakura-yoy-category">
+                        <span>Dining Out</span>
+                        <span class="negative">+23% ($52.40)</span>
+                    </div>
+                    <div class="sakura-yoy-category">
+                        <span>Transportation</span>
+                        <span class="positive">-8% ($35.20)</span>
+                    </div>
+                    <div class="sakura-yoy-category">
+                        <span>Entertainment</span>
+                        <span class="positive">-12% ($18.00)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Envelope Health Score -->
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="health-score">
+                <div class="sakura-section-header">
+                    <h2>Budget Health Score</h2>
+                    <p class="sakura-section-description">Overall budget performance rating</p>
+                </div>
+                <div class="sakura-health-score-display">
+                    <div class="sakura-health-score-circle">
+                        <div class="sakura-health-grade">B+</div>
+                        <div class="sakura-health-points">87/100</div>
+                    </div>
+                    <div class="sakura-health-summary">
+                        <p>You're doing well! Your budget is mostly on track with a few areas for improvement.</p>
+                    </div>
+                </div>
+                <div class="sakura-health-envelopes">
+                    <div class="sakura-health-envelope healthy">
+                        <div class="sakura-health-envelope-info">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Transportation</span>
+                        </div>
+                        <span class="sakura-health-status">Healthy</span>
+                    </div>
+                    <div class="sakura-health-envelope healthy">
+                        <div class="sakura-health-envelope-info">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Entertainment</span>
+                        </div>
+                        <span class="sakura-health-status">Healthy</span>
+                    </div>
+                    <div class="sakura-health-envelope warning">
+                        <div class="sakura-health-envelope-info">
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+                            <span>Groceries</span>
+                        </div>
+                        <span class="sakura-health-status">At Risk</span>
+                    </div>
+                    <div class="sakura-health-envelope critical">
+                        <div class="sakura-health-envelope-info">
+                            <i class="bi bi-x-circle-fill"></i>
+                            <span>Dining Out</span>
+                        </div>
+                        <span class="sakura-health-status">Over Budget</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Smart Recommendations -->
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="recommendations">
+                <div class="sakura-section-header">
+                    <h2>Smart Recommendations</h2>
+                    <p class="sakura-section-description">Personalized tips based on your spending patterns</p>
+                </div>
+                <div class="sakura-recommendations-list">
+                    <div class="sakura-recommendation-card">
+                        <div class="sakura-recommendation-icon">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <div class="sakura-recommendation-content">
+                            <h3>Reduce dining expenses</h3>
+                            <p>You're spending 23% more on dining out than last month. Consider meal prepping to save approximately <strong>$150/month</strong>.</p>
+                            <button class="sakura-btn sakura-btn--sm sakura-btn--outline">Learn More</button>
+                        </div>
+                    </div>
+                    <div class="sakura-recommendation-card">
+                        <div class="sakura-recommendation-icon">
+                            <i class="bi bi-graph-down-arrow"></i>
+                        </div>
+                        <div class="sakura-recommendation-content">
+                            <h3>Review subscriptions</h3>
+                            <p>You have 6 recurring subscriptions totaling <strong>$96.93/month</strong>. Consider canceling unused services.</p>
+                            <button class="sakura-btn sakura-btn--sm sakura-btn--outline">View Subscriptions</button>
+                        </div>
+                    </div>
+                    <div class="sakura-recommendation-card">
+                        <div class="sakura-recommendation-icon">
+                            <i class="bi bi-piggy-bank"></i>
+                        </div>
+                        <div class="sakura-recommendation-content">
+                            <h3>Increase savings rate</h3>
+                            <p>Your savings rate is 6%. Try to increase to the recommended 20% by reducing discretionary spending.</p>
+                            <button class="sakura-btn sakura-btn--sm sakura-btn--outline">Set Goal</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. Financial Runway -->
+            <section class="sakura-analytics-section sakura-insight-module" data-insight-id="financial-runway">
+                <div class="sakura-section-header">
+                    <h2>Financial Runway</h2>
+                    <p class="sakura-section-description">How long your savings can sustain current spending</p>
+                </div>
+                <div class="sakura-runway-display">
+                    <div class="sakura-runway-timeline">
+                        <div class="sakura-runway-stat-large">
+                            <div class="sakura-runway-number">4.2</div>
+                            <div class="sakura-runway-unit">months</div>
+                        </div>
+                        <div class="sakura-runway-description">
+                            Your emergency fund of <strong>$13,800</strong> covers 4.2 months of expenses at your current spending rate of <strong>$3,287/month</strong>.
+                        </div>
+                    </div>
+                    <div class="sakura-runway-breakdown">
+                        <div class="sakura-runway-item">
+                            <span class="sakura-runway-label">Days until next paycheck</span>
+                            <span class="sakura-runway-value">14 days</span>
+                        </div>
+                        <div class="sakura-runway-item">
+                            <span class="sakura-runway-label">Daily budget remaining</span>
+                            <span class="sakura-runway-value">$15.17/day</span>
+                        </div>
+                        <div class="sakura-runway-item">
+                            <span class="sakura-runway-label">Burn rate</span>
+                            <span class="sakura-runway-value">$109.58/day</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sakura-runway-progress">
+                    <div class="sakura-runway-progress-label">Emergency Fund Goal Progress</div>
+                    <div class="sakura-runway-progress-bar">
+                        <div class="sakura-runway-progress-fill" style="width: 69%;"></div>
+                    </div>
+                    <div class="sakura-runway-progress-text">$13,800 of $20,000 goal (6 months recommended)</div>
+                </div>
+            </section>
         </main>
+    </div>
+
+    <!-- Customize Insights Modal -->
+    <div class="sakura-modal" id="customizeInsightsModal">
+        <div class="sakura-modal-overlay"></div>
+        <div class="sakura-modal-content" style="max-width: 600px;">
+            <div class="sakura-modal-header">
+                <h2>Customize Insights</h2>
+                <button class="sakura-modal-close" id="closeCustomizeModal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="sakura-modal-body">
+                <p class="sakura-customize-description">Choose which insights you'd like to see on your analytics page. You can always change these later.</p>
+
+                <div class="sakura-insight-toggles">
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-graph-up"></i>
+                            <div>
+                                <h3>Spending Trends</h3>
+                                <p>6-month expense pattern chart</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="spending-trends" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-pie-chart"></i>
+                            <div>
+                                <h3>Envelope Breakdown</h3>
+                                <p>Budget allocation by envelope chart</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="envelope-breakdown" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-shop"></i>
+                            <div>
+                                <h3>Top Merchants</h3>
+                                <p>Highest spending vendors chart</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="top-merchants" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-bar-chart"></i>
+                            <div>
+                                <h3>Budget vs Actual</h3>
+                                <p>Compare planned budget to spending</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="budget-vs-actual" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-piggy-bank"></i>
+                            <div>
+                                <h3>Savings Rate</h3>
+                                <p>Track your monthly savings percentage</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="savings-rate" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-speedometer"></i>
+                            <div>
+                                <h3>Spending Velocity</h3>
+                                <p>Daily spending rate and projections</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="spending-velocity" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-arrow-repeat"></i>
+                            <div>
+                                <h3>Recurring Costs</h3>
+                                <p>Monthly subscriptions and payments</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="recurring-costs" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-wallet2"></i>
+                            <div>
+                                <h3>Cash Flow Summary</h3>
+                                <p>Income vs expenses overview</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="cash-flow" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-calendar3"></i>
+                            <div>
+                                <h3>Year-over-Year Comparison</h3>
+                                <p>Compare to last year's spending</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="year-comparison" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-heart-pulse"></i>
+                            <div>
+                                <h3>Budget Health Score</h3>
+                                <p>Overall budget performance rating</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="health-score" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-lightbulb"></i>
+                            <div>
+                                <h3>Smart Recommendations</h3>
+                                <p>Personalized spending tips</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="recommendations" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="sakura-insight-toggle-item">
+                        <div class="sakura-insight-toggle-info">
+                            <i class="bi bi-hourglass-split"></i>
+                            <div>
+                                <h3>Financial Runway</h3>
+                                <p>Emergency fund sustainability</p>
+                            </div>
+                        </div>
+                        <label class="sakura-toggle">
+                            <input type="checkbox" data-insight="financial-runway" checked>
+                            <span class="sakura-toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="sakura-modal-footer">
+                <button class="sakura-btn sakura-btn--outline" id="resetInsights">
+                    <i class="bi bi-arrow-clockwise"></i>
+                    Reset to Default
+                </button>
+                <button class="sakura-btn sakura-btn--primary" id="saveInsights">
+                    <i class="bi bi-check-lg"></i>
+                    Save Preferences
+                </button>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>

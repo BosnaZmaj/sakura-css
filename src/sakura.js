@@ -33,6 +33,7 @@ class SakuraFramework {
     this.setupEnvelopeDragDrop();
     this.setupIncomeModal();
     this.setupCalendar();
+    this.setupInsightsCustomization();
   }
 
   // Navigation functionality
@@ -2880,6 +2881,142 @@ class SakuraFramework {
     return date1.getFullYear() === date2.getFullYear() &&
            date1.getMonth() === date2.getMonth() &&
            date1.getDate() === date2.getDate();
+  }
+
+  // ========================================
+  // ANALYTICS INSIGHTS CUSTOMIZATION
+  // ========================================
+
+  setupInsightsCustomization() {
+    const customizeBtn = document.getElementById('customizeInsightsBtn');
+    const modal = document.getElementById('customizeInsightsModal');
+    const closeBtn = document.getElementById('closeCustomizeModal');
+    const saveBtn = document.getElementById('saveInsights');
+    const resetBtn = document.getElementById('resetInsights');
+    const modalOverlay = modal?.querySelector('.sakura-modal-overlay');
+
+    if (!customizeBtn || !modal) return;
+
+    // Load saved preferences on page load
+    this.loadInsightPreferences();
+
+    // Open modal
+    customizeBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    // Close modal handlers
+    const closeModal = () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn?.addEventListener('click', closeModal);
+    modalOverlay?.addEventListener('click', closeModal);
+
+    // Save preferences
+    saveBtn?.addEventListener('click', () => {
+      this.saveInsightPreferences();
+      closeModal();
+    });
+
+    // Reset to defaults
+    resetBtn?.addEventListener('click', () => {
+      if (confirm('Reset all insights to default visibility?')) {
+        localStorage.removeItem('sakura-insight-preferences');
+        // Check all toggles
+        const toggles = modal.querySelectorAll('input[type="checkbox"]');
+        toggles.forEach(toggle => {
+          toggle.checked = true;
+        });
+        // Show all insights
+        document.querySelectorAll('.sakura-insight-module').forEach(module => {
+          module.classList.remove('hidden');
+        });
+      }
+    });
+  }
+
+  loadInsightPreferences() {
+    const preferences = localStorage.getItem('sakura-insight-preferences');
+    if (!preferences) return;
+
+    try {
+      const prefs = JSON.parse(preferences);
+
+      // Apply preferences to page
+      Object.keys(prefs).forEach(insightId => {
+        const isVisible = prefs[insightId];
+        const module = document.querySelector(`[data-insight-id="${insightId}"]`);
+        const toggle = document.querySelector(`[data-insight="${insightId}"]`);
+
+        if (module) {
+          if (isVisible) {
+            module.classList.remove('hidden');
+          } else {
+            module.classList.add('hidden');
+          }
+        }
+
+        if (toggle) {
+          toggle.checked = isVisible;
+        }
+      });
+
+      // Handle the analytics row visibility
+      this.updateAnalyticsRowVisibility(prefs);
+    } catch (e) {
+      console.error('Failed to load insight preferences:', e);
+    }
+  }
+
+  saveInsightPreferences() {
+    const modal = document.getElementById('customizeInsightsModal');
+    if (!modal) return;
+
+    const toggles = modal.querySelectorAll('input[type="checkbox"][data-insight]');
+    const preferences = {};
+
+    toggles.forEach(toggle => {
+      const insightId = toggle.getAttribute('data-insight');
+      const isChecked = toggle.checked;
+      preferences[insightId] = isChecked;
+
+      // Apply visibility immediately
+      const module = document.querySelector(`[data-insight-id="${insightId}"]`);
+      if (module) {
+        if (isChecked) {
+          module.classList.remove('hidden');
+        } else {
+          module.classList.add('hidden');
+        }
+      }
+    });
+
+    // Handle the analytics row that contains envelope-breakdown and top-merchants
+    this.updateAnalyticsRowVisibility(preferences);
+
+    // Save to localStorage
+    localStorage.setItem('sakura-insight-preferences', JSON.stringify(preferences));
+  }
+
+  updateAnalyticsRowVisibility(preferences) {
+    const analyticsRow = document.querySelector('.sakura-analytics-row');
+    if (!analyticsRow) return;
+
+    const envelopeModule = analyticsRow.querySelector('[data-insight-id="envelope-breakdown"]');
+    const merchantsModule = analyticsRow.querySelector('[data-insight-id="top-merchants"]');
+
+    // If both are hidden, hide the parent row
+    const envelopeHidden = envelopeModule && envelopeModule.classList.contains('hidden');
+    const merchantsHidden = merchantsModule && merchantsModule.classList.contains('hidden');
+
+    if (envelopeHidden && merchantsHidden) {
+      analyticsRow.classList.add('hidden');
+    } else {
+      analyticsRow.classList.remove('hidden');
+    }
   }
 
 }
