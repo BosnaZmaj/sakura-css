@@ -486,6 +486,142 @@ const DEMO_TRANSACTIONS = {
       icon: 'bi-arrow-down-circle',
       iconClass: 'sakura-transaction-icon--deposit'
     }
+  ],
+
+  // Calendar page - all transactions for monthly view
+  'calendar.html': [
+    {
+      id: 1,
+      date: new Date('2025-01-01'),
+      name: 'Salary',
+      merchant: 'TechCorp Inc.',
+      amount: 3500.00,
+      type: 'income',
+      envelope: 'Income',
+      method: 'Direct Deposit',
+      bankAccount: 'Chase Bank',
+      tags: ['Recurring'],
+      category: 'Income',
+      icon: 'bi-cash-coin',
+      iconClass: 'income-icon'
+    },
+    {
+      id: 2,
+      date: new Date('2025-01-03'),
+      name: 'Groceries',
+      merchant: 'Whole Foods',
+      amount: -85.00,
+      type: 'expense',
+      envelope: 'Groceries',
+      method: 'Debit Card',
+      bankAccount: 'Chase Bank',
+      tags: [],
+      category: 'Groceries'
+    },
+    {
+      id: 3,
+      date: new Date('2025-01-05'),
+      name: 'Dining',
+      merchant: 'Restaurant',
+      amount: -42.00,
+      type: 'expense',
+      envelope: 'Dining',
+      method: 'Credit Card',
+      bankAccount: 'Chase Bank',
+      tags: [],
+      category: 'Dining'
+    },
+    {
+      id: 4,
+      date: new Date('2025-01-05'),
+      name: 'Gas',
+      merchant: 'Shell',
+      amount: -55.00,
+      type: 'expense',
+      envelope: 'Transportation',
+      method: 'Credit Card',
+      bankAccount: 'Chase Bank',
+      tags: [],
+      category: 'Transportation'
+    },
+    {
+      id: 5,
+      date: new Date('2025-01-08'),
+      name: 'Rent',
+      merchant: 'Property Management',
+      amount: -1200.00,
+      type: 'expense',
+      envelope: 'Housing',
+      method: 'Bank Transfer',
+      bankAccount: 'Chase Bank',
+      tags: ['Recurring'],
+      category: 'Housing'
+    },
+    {
+      id: 6,
+      date: new Date('2025-01-10'),
+      name: 'Interest',
+      merchant: 'Savings Account',
+      amount: 12.50,
+      type: 'income',
+      envelope: 'Income',
+      method: 'Bank Interest',
+      bankAccount: 'Chase Bank',
+      tags: [],
+      category: 'Income'
+    },
+    {
+      id: 7,
+      date: new Date('2025-01-10'),
+      name: 'Groceries',
+      merchant: 'Target',
+      amount: -92.00,
+      type: 'expense',
+      envelope: 'Groceries',
+      method: 'Debit Card',
+      bankAccount: 'Chase Bank',
+      tags: [],
+      category: 'Groceries'
+    },
+    {
+      id: 8,
+      date: new Date('2025-01-14'),
+      name: 'Freelance',
+      merchant: 'Client Project',
+      amount: 850.00,
+      type: 'income',
+      envelope: 'Income',
+      method: 'Bank Transfer',
+      bankAccount: 'Chase Bank',
+      tags: [],
+      category: 'Income'
+    },
+    {
+      id: 9,
+      date: new Date('2025-01-15'),
+      name: 'Shopping',
+      merchant: 'Amazon',
+      amount: -125.00,
+      type: 'expense',
+      envelope: 'Shopping',
+      method: 'Credit Card',
+      bankAccount: 'Chase Bank',
+      tags: [],
+      category: 'Shopping'
+    },
+    {
+      id: 10,
+      date: new Date('2025-01-17'),
+      name: 'Groceries',
+      merchant: 'Safeway',
+      amount: -78.00,
+      type: 'expense',
+      envelope: 'Groceries',
+      method: 'Debit Card',
+      bankAccount: 'Chase Bank',
+      tags: [],
+      category: 'Groceries'
+    }
   ]
 };
 

@@ -11789,6 +11789,40 @@
     @apply text-gray-700 bg-gray-50 rounded;
   }
 
+  /* Calendar Section & Container */
+  .sakura-calendar-section {
+    @apply mt-8 mb-8;
+  }
+
+  .sakura-calendar-container {
+    @apply bg-white rounded-2xl overflow-hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .sakura-calendar-header h2 {
+    @apply m-0 text-2xl font-semibold text-gray-900;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-calendar-nav {
+    @apply flex items-center gap-2;
+  }
+
+  /* Calendar Summary Section */
+  .sakura-calendar-summary {
+    @apply mt-8;
+  }
+
+  .sakura-calendar-summary h2 {
+    @apply text-2xl font-semibold text-gray-900 mb-6;
+    font-family: var(--font-heading);
+  }
+
+  .sakura-summary-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
   /* Responsive Design */
   @media (max-width: 1024px) {
     .sakura-filter-controls {

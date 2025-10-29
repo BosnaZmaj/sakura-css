@@ -32,6 +32,7 @@ class SakuraFramework {
     this.initializeColoredDropdownIcons();
     this.setupEnvelopeDragDrop();
     this.setupIncomeModal();
+    this.setupCalendar();
   }
 
   // Navigation functionality
@@ -2738,6 +2739,147 @@ class SakuraFramework {
     }
 
     console.log('Income modal setup complete');
+  }
+
+  // Calendar setup - populate calendar with transactions
+  setupCalendar() {
+    const calendarDays = document.querySelector('.sakura-calendar-days');
+    if (!calendarDays) return;
+
+    // Load transactions from demo data
+    if (typeof getDemoTransactions !== 'function') {
+      console.warn('Calendar: getDemoTransactions not available');
+      return;
+    }
+
+    const transactions = getDemoTransactions();
+    if (!transactions || transactions.length === 0) {
+      console.warn('Calendar: No transactions available');
+      return;
+    }
+
+    // Group transactions by date
+    const transactionsByDate = {};
+    transactions.forEach(transaction => {
+      const dateKey = this.formatDateKey(transaction.date);
+      if (!transactionsByDate[dateKey]) {
+        transactionsByDate[dateKey] = [];
+      }
+      transactionsByDate[dateKey].push(transaction);
+    });
+
+    // Clear existing calendar days
+    calendarDays.innerHTML = '';
+
+    // Get current month/year (hardcoded to January 2025 for now)
+    const year = 2025;
+    const month = 0; // January (0-indexed)
+    const today = new Date();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const prevMonthLastDay = new Date(year, month, 0).getDate();
+    const firstDayOfWeek = firstDay.getDay(); // 0 = Sunday
+    const daysInMonth = lastDay.getDate();
+
+    // Add previous month days (faded)
+    for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+      const dayNum = prevMonthLastDay - i;
+      const dayElement = this.createCalendarDay(dayNum, 'other-month', null);
+      calendarDays.appendChild(dayElement);
+    }
+
+    // Add current month days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const currentDate = new Date(year, month, day);
+      const dateKey = this.formatDateKey(currentDate);
+      const dayTransactions = transactionsByDate[dateKey] || [];
+      const isToday = this.isSameDay(currentDate, today);
+
+      const dayElement = this.createCalendarDay(day, isToday ? 'today' : '', dayTransactions);
+      calendarDays.appendChild(dayElement);
+    }
+
+    // Add next month days to fill the grid (35 total cells = 5 weeks)
+    const totalCells = firstDayOfWeek + daysInMonth;
+    const remainingCells = totalCells <= 35 ? 35 - totalCells : 42 - totalCells;
+    for (let day = 1; day <= remainingCells; day++) {
+      const dayElement = this.createCalendarDay(day, 'other-month', null);
+      calendarDays.appendChild(dayElement);
+    }
+
+    console.log('Calendar populated with', transactions.length, 'transactions');
+  }
+
+  // Helper: Create a calendar day element
+  createCalendarDay(dayNumber, extraClass, transactions) {
+    const dayDiv = document.createElement('div');
+    dayDiv.className = `sakura-calendar-day ${extraClass}`.trim();
+
+    const dayNumberSpan = document.createElement('span');
+    dayNumberSpan.className = 'sakura-calendar-day-number';
+    dayNumberSpan.textContent = dayNumber;
+    dayDiv.appendChild(dayNumberSpan);
+
+    // Add transactions if any
+    if (transactions && transactions.length > 0) {
+      const transactionsDiv = document.createElement('div');
+      transactionsDiv.className = 'sakura-calendar-transactions';
+
+      // Show up to 3 transactions
+      const displayTransactions = transactions.slice(0, 3);
+      displayTransactions.forEach(transaction => {
+        const transactionDiv = this.createCalendarTransaction(transaction);
+        transactionsDiv.appendChild(transactionDiv);
+      });
+
+      // Show "more" indicator if there are more than 3
+      if (transactions.length > 3) {
+        const moreDiv = document.createElement('div');
+        moreDiv.className = 'sakura-calendar-more';
+        moreDiv.textContent = `+${transactions.length - 3} more`;
+        transactionsDiv.appendChild(moreDiv);
+      }
+
+      dayDiv.appendChild(transactionsDiv);
+    }
+
+    return dayDiv;
+  }
+
+  // Helper: Create a calendar transaction element
+  createCalendarTransaction(transaction) {
+    const transactionDiv = document.createElement('div');
+    transactionDiv.className = `sakura-calendar-transaction ${transaction.type}`;
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'sakura-calendar-transaction-name';
+    nameSpan.textContent = transaction.name;
+
+    const amountSpan = document.createElement('span');
+    amountSpan.className = 'sakura-calendar-transaction-amount';
+    const prefix = transaction.amount >= 0 ? '+' : '';
+    amountSpan.textContent = `${prefix}$${Math.abs(transaction.amount).toFixed(2)}`;
+
+    transactionDiv.appendChild(nameSpan);
+    transactionDiv.appendChild(amountSpan);
+
+    return transactionDiv;
+  }
+
+  // Helper: Format date as YYYY-MM-DD key
+  formatDateKey(date) {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  // Helper: Check if two dates are the same day
+  isSameDay(date1, date2) {
+    return date1.getFullYear() === date2.getFullYear() &&
+           date1.getMonth() === date2.getMonth() &&
+           date1.getDate() === date2.getDate();
   }
 
 }
