@@ -170,6 +170,36 @@
 }
 
 @layer components {
+  /* ========================================
+     FINANCIAL NUMBER TYPOGRAPHY
+     ======================================== */
+  /* Tabular Numbers - Ensures all digits have equal width for perfect alignment */
+  [class*="-amount"],
+  [class*="-price"],
+  [class*="-value"],
+  [class*="-total"],
+  [class*="-balance"],
+  [class*="-cost"],
+  .sakura-summary-amount,
+  .sakura-envelope-amount,
+  .sakura-transaction-amount,
+  .sakura-table-amount,
+  .sakura-stat-number,
+  .sakura-stat-value,
+  .sakura-pricing-amount,
+  .sakura-savings-value,
+  .sakura-velocity-value,
+  .sakura-recurring-amount,
+  .sakura-cashflow-amount,
+  .sakura-yoy-amount,
+  .sakura-runway-number,
+  .sakura-health-points,
+  .sakura-goal-current,
+  .sakura-goal-target {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
   /* Sakura Navigation Components */
   .sakura-navbar {
     background-color: rgba(255, 255, 255, 0.7);

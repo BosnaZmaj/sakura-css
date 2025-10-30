@@ -497,7 +497,7 @@
             </div>
 
             <div class="checkbox-container">
-                <input type="checkbox" id="improvement-6">
+                <input type="checkbox" id="improvement-6" checked>
                 <label for="improvement-6" class="checkbox-label">Implement this improvement</label>
             </div>
 
@@ -521,6 +521,58 @@
 
             <div class="impact">
                 <strong>Impact:</strong> Perfect vertical alignment of numbers in columns. Easier to scan and compare values. Professional typography for financial data.
+            </div>
+
+            <h3>Implementation Details:</h3>
+            <div class="implementation-log">
+                <h4>sakura.css - Tabular Numbers Typography</h4>
+                <p><strong>Location:</strong> Lines 173-201</p>
+                <p><strong>Technique:</strong> Combined attribute selectors with explicit class names</p>
+
+                <h4>Attribute Selectors (Catch-all patterns):</h4>
+                <ul>
+                    <li><code>[class*="-amount"]</code> - Catches all classes containing "-amount"</li>
+                    <li><code>[class*="-price"]</code> - Catches all classes containing "-price"</li>
+                    <li><code>[class*="-value"]</code> - Catches all classes containing "-value"</li>
+                    <li><code>[class*="-total"]</code> - Catches all classes containing "-total"</li>
+                    <li><code>[class*="-balance"]</code> - Catches all classes containing "-balance"</li>
+                    <li><code>[class*="-cost"]</code> - Catches all classes containing "-cost"</li>
+                </ul>
+
+                <h4>Explicit Classes (Specific components):</h4>
+                <ul>
+                    <li><code>.sakura-summary-amount</code> - Summary card amounts</li>
+                    <li><code>.sakura-envelope-amount</code> - Envelope budget amounts</li>
+                    <li><code>.sakura-transaction-amount</code> - Transaction amounts</li>
+                    <li><code>.sakura-table-amount</code> - Table column amounts</li>
+                    <li><code>.sakura-stat-number</code> - Statistics displays</li>
+                    <li><code>.sakura-stat-value</code> - Stat values</li>
+                    <li><code>.sakura-pricing-amount</code> - Pricing table amounts</li>
+                    <li><code>.sakura-savings-value</code> - Savings rate values</li>
+                    <li><code>.sakura-velocity-value</code> - Spending velocity numbers</li>
+                    <li><code>.sakura-recurring-amount</code> - Recurring cost amounts</li>
+                    <li><code>.sakura-cashflow-amount</code> - Cash flow amounts</li>
+                    <li><code>.sakura-yoy-amount</code> - Year-over-year amounts</li>
+                    <li><code>.sakura-runway-number</code> - Runway calculations</li>
+                    <li><code>.sakura-health-points</code> - Health score points</li>
+                    <li><code>.sakura-goal-current</code> - Goal current amounts</li>
+                    <li><code>.sakura-goal-target</code> - Goal target amounts</li>
+                </ul>
+
+                <h4>CSS Properties Applied:</h4>
+                <ul>
+                    <li><code>font-variant-numeric: tabular-nums</code> - Forces equal-width digits</li>
+                    <li><code>letter-spacing: -0.02em</code> - Tighter, more professional spacing</li>
+                </ul>
+
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Perfect vertical alignment in columns and tables</li>
+                    <li>No layout shift when numbers update dynamically</li>
+                    <li>Easier to scan and compare financial values</li>
+                    <li>Professional appearance matching banking applications</li>
+                    <li>Comprehensive coverage via attribute selectors + explicit classes</li>
+                </ul>
             </div>
         </div>
 

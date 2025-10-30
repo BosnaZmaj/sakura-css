@@ -2859,7 +2859,7 @@ class SakuraFramework {
     const amountSpan = document.createElement('span');
     amountSpan.className = 'sakura-calendar-transaction-amount';
     const prefix = transaction.amount >= 0 ? '+' : '';
-    amountSpan.textContent = `${prefix}$${Math.abs(transaction.amount).toFixed(2)}`;
+    amountSpan.textContent = `${prefix}$${Math.abs(transaction.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
     transactionDiv.appendChild(nameSpan);
     transactionDiv.appendChild(amountSpan);

@@ -807,7 +807,7 @@ class TransactionsManager {
           <span class="sakura-date-group-count">${group.transactions.length} transaction${group.transactions.length !== 1 ? 's' : ''}</span>
         </div>
         <div class="sakura-date-group-summary">
-          <span class="sakura-date-group-total ${totalClass}">${totalPrefix}$${Math.abs(total).toFixed(2)}</span>
+          <span class="sakura-date-group-total ${totalClass}">${totalPrefix}$${Math.abs(total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         </div>
       </div>
       <div class="sakura-date-group-transactions">
@@ -877,7 +877,7 @@ class TransactionsManager {
         </div>
       </div>
       <div class="sakura-transaction-amount ${amountClass}">
-        ${amountPrefix}$${Math.abs(transaction.amount).toFixed(2)}
+        ${amountPrefix}$${Math.abs(transaction.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         <div class="sakura-transaction-date">${dateStr}</div>
       </div>
       <div class="sakura-transaction-actions">
@@ -955,7 +955,7 @@ class TransactionsManager {
       const transactionsHTML = visibleTransactions.map(t => `
         <div class="sakura-calendar-transaction ${t.type}">
           <span class="sakura-calendar-transaction-name">${t.name}</span>
-          <span class="sakura-calendar-transaction-amount">${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toFixed(2)}</span>
+          <span class="sakura-calendar-transaction-amount">${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         </div>
       `).join('');
 
@@ -998,7 +998,7 @@ class TransactionsManager {
       const transactionsHTML = visibleTransactions.map(t => `
         <div class="sakura-calendar-transaction ${t.type}">
           <span class="sakura-calendar-transaction-name">${t.name}</span>
-          <span class="sakura-calendar-transaction-amount">${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toFixed(2)}</span>
+          <span class="sakura-calendar-transaction-amount">${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         </div>
       `).join('');
 
@@ -1019,7 +1019,7 @@ class TransactionsManager {
       const transactionsHTML = allTransactions.map(t => `
         <div class="sakura-calendar-transaction ${t.type}">
           <span class="sakura-calendar-transaction-name">${t.name}</span>
-          <span class="sakura-calendar-transaction-amount">${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toFixed(2)}</span>
+          <span class="sakura-calendar-transaction-amount">${t.amount > 0 ? '+' : ''}$${Math.abs(t.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         </div>
       `).join('');
 
@@ -1048,7 +1048,7 @@ class TransactionsManager {
 
     if (totalElement) {
       const total = this.filteredTransactions.reduce((sum, t) => sum + t.amount, 0);
-      totalElement.textContent = `$${total.toFixed(2)}`;
+      totalElement.textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
   }
 }
@@ -2413,9 +2413,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const remaining = totalIncome - totalAllocated;
 
     // Update display
-    document.getElementById('totalIncome').textContent = '$' + totalIncome.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    document.getElementById('totalAllocated').textContent = '$' + totalAllocated.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    document.getElementById('totalRemaining').textContent = '$' + remaining.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById('totalIncome').textContent = '$' + totalIncome.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById('totalAllocated').textContent = '$' + totalAllocated.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById('totalRemaining').textContent = '$' + remaining.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     // Color code the remaining amount
     const remainingEl = document.getElementById('totalRemaining');
