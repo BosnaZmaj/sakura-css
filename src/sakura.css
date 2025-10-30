@@ -2820,15 +2820,19 @@
     border-color: #cbd5e1;
   }
 
-  /* Free Plan - Gray theme */
+  /* Free Plan - Teal theme */
   .sakura-pricing-card:nth-child(1) {
-    border-color: #cbd5e1;
-    border-top-color: #64748b;
+    border-color: #14b8a6;
+    border-top: 6px solid #14b8a6;
+    background: linear-gradient(135deg,
+      rgba(20, 184, 166, 0.02) 0%,
+      rgba(255, 255, 255, 1) 30%,
+      rgba(255, 255, 255, 1) 100%);
   }
 
   .sakura-pricing-card:nth-child(1):hover {
-    border-color: #94a3b8;
-    box-shadow: 0 15px 30px rgba(100, 116, 139, 0.12);
+    border-color: #0d9488;
+    box-shadow: 0 15px 30px rgba(20, 184, 166, 0.12);
   }
 
   /* Plus Plan - Blue theme (Most Popular) */
@@ -2840,23 +2844,28 @@
       rgba(91, 139, 245, 0.02) 0%,
       rgba(255, 255, 255, 1) 30%,
       rgba(255, 255, 255, 1) 100%);
-    box-shadow: 0 10px 30px rgba(91, 139, 245, 0.15);
+    transition: all 0.3s ease !important;
   }
 
   .sakura-pricing-card--popular:hover {
     transform: scale(1.05);
-    border-color: #4f7df3;
+    border-color: #1e40af !important;
+    border-top-color: #1e40af !important;
     box-shadow: 0 20px 40px rgba(91, 139, 245, 0.2);
   }
 
   /* Family Plan - Purple theme */
   .sakura-pricing-card:nth-child(3) {
-    border-color: #a78bfa;
-    border-top-color: #8b5cf6;
+    border-color: #8b5cf6;
+    border-top: 6px solid #8b5cf6;
+    background: linear-gradient(135deg,
+      rgba(139, 92, 246, 0.02) 0%,
+      rgba(255, 255, 255, 1) 30%,
+      rgba(255, 255, 255, 1) 100%);
   }
 
   .sakura-pricing-card:nth-child(3):hover {
-    border-color: #8b5cf6;
+    border-color: #6d28d9;
     box-shadow: 0 15px 30px rgba(139, 92, 246, 0.12);
   }
 
@@ -2900,17 +2909,17 @@
 
   /* Free Plan Icon */
   .sakura-pricing-card:nth-child(1) .sakura-plan-icon {
-    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-    border-color: #cbd5e1;
+    background: linear-gradient(135deg, #ccfbf1, #99f6e4);
+    border-color: #14b8a6;
   }
 
   .sakura-pricing-card:nth-child(1) .sakura-plan-icon i {
-    color: #64748b;
+    color: #14b8a6;
   }
 
   .sakura-pricing-card:nth-child(1):hover .sakura-plan-icon {
-    background: linear-gradient(135deg, #64748b, #94a3b8);
-    border-color: #64748b;
+    background: linear-gradient(135deg, #14b8a6, #0d9488);
+    border-color: #14b8a6;
     transform: scale(1.1);
   }
 
@@ -2920,7 +2929,7 @@
 
   /* Plus Plan Icon (Popular) */
   .sakura-pricing-card--popular .sakura-plan-icon {
-    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    background: linear-gradient(135deg, #dbeafe, #93c5fdba);
     border-color: #5b8bf5;
   }
 
@@ -2929,8 +2938,8 @@
   }
 
   .sakura-pricing-card--popular:hover .sakura-plan-icon {
-    background: linear-gradient(135deg, #5b8bf5, #8b5cf6);
-    border-color: #4f7df3;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    border-color: #3b82f6;
     transform: scale(1.1);
   }
 
@@ -3027,27 +3036,28 @@
 
   /* Enhanced pricing buttons */
   .sakura-pricing-card:nth-child(1) .sakura-btn--outline {
-    border-color: #64748b;
-    color: #64748b;
+    border-color: #14b8a6;
+    color: #14b8a6;
     transition: all 0.3s ease;
   }
 
   .sakura-pricing-card:nth-child(1) .sakura-btn--outline:hover {
-    background: linear-gradient(135deg, #64748b, #94a3b8);
-    border-color: #64748b;
+    background: linear-gradient(135deg, #0d9488, #14b8a6);
+    border-color: #14b8a6;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(100, 116, 139, 0.3);
+    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
   }
 
   .sakura-pricing-card--popular .sakura-btn--primary {
-    background: linear-gradient(135deg, #5b8bf5, #8b5cf6);
+    background: linear-gradient(135deg, #5b8bf5, #3b82f6);
     border: none;
     transition: all 0.3s ease;
   }
 
   .sakura-pricing-card--popular .sakura-btn--primary:hover {
-    background: linear-gradient(135deg, #4f7df3, #7c3aed);
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: white !important;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(91, 139, 245, 0.4);
   }

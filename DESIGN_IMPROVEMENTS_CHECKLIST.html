@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Improvements Checklist - Sakura CSS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 3px solid #1e2a3b;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #1e2a3b;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+        }
+
+        .improvement {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #5b8bf5;
+        }
+
+        .improvement-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .improvement-number {
+            width: 48px;
+            height: 48px;
+            background: #1e2a3b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .improvement-title {
+            font-size: 1.75rem;
+            color: #1e2a3b;
+            font-weight: 600;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: #5b8bf5;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: #1e2a3b;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #5b8bf5;
+            font-weight: bold;
+        }
+
+        .impact {
+            background: #eff6ff;
+            border-left: 3px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .impact strong {
+            color: #1e40af;
+        }
+
+        code {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e2a3b;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checkbox-container:hover {
+            border-color: #5b8bf5;
+            background: #f8fafc;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-weight: 600;
+            color: #1e2a3b;
+            font-size: 1.125rem;
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            color: #64748b;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .checkbox-container input[type="checkbox"] {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Design Improvements Checklist</h1>
+            <p class="subtitle">Sakura CSS Framework - High-Priority Enhancements</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-value">8</span>
+                <span class="stat-label">Total Improvements</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">~500</span>
+                <span class="stat-label">Lines of CSS</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">~40</span>
+                <span class="stat-label">Lines of JavaScript</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">3</span>
+                <span class="stat-label">Files Modified</span>
+            </div>
+        </div>
+
+        <!-- Improvement 1 -->
+        <div class="improvement">
+            <div class="improvement-header">
+                <div class="improvement-number">1</div>
+                <h2 class="improvement-title">Increased Spacing in Dense Areas</h2>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="improvement-1" checked>
+                <label for="improvement-1" class="checkbox-label">✅ IMPLEMENTED</label>
+            </div>
+
+            <h3>Changes Implemented:</h3>
+            <ul>
+                <li>✅ Analytics sections: margin-bottom <code>--space-8</code> → <code>--space-10</code></li>
+                <li>✅ Budget summary grid: gap <code>--space-6</code> → <code>--space-7</code></li>
+                <li>✅ Envelopes grid: gap <code>--space-6</code> → <code>--space-7</code></li>
+                <li>✅ Goals grid: gap <code>--space-6</code> → <code>--space-7</code></li>
+                <li>✅ Income sources grid: gap <code>--space-6</code> → <code>--space-7</code></li>
+                <li>✅ Analytics row: gap <code>--space-6</code> → <code>--space-7</code></li>
+            </ul>
+
+            <h3>Changes Skipped:</h3>
+            <ul>
+                <li>❌ Navigation items spacing (reverted at user request)</li>
+            </ul>
+
+            <div class="impact">
+                <strong>Impact:</strong> More breathing room in card grids and sections. Increased spacing improves readability without overwhelming the layout.
+            </div>
+        </div>
+
+        <!-- Improvement 2 -->
+        <div class="improvement">
+            <div class="improvement-header">
+                <div class="improvement-number">2</div>
+                <h2 class="improvement-title">Loading States & Skeleton Screens</h2>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="improvement-2" checked>
+                <label for="improvement-2" class="checkbox-label">✅ IMPLEMENTED</label>
+            </div>
+
+            <h3>Changes Implemented:</h3>
+            <ul>
+                <li>✅ Added skeleton component system (418 lines CSS)</li>
+                <li>✅ Skeleton envelope cards with shimmer effect</li>
+                <li>✅ Skeleton account cards with chart placeholders</li>
+                <li>✅ Skeleton transaction items</li>
+                <li>✅ Skeleton charts with animated bars</li>
+                <li>✅ Loading spinner component (sm, default, lg sizes)</li>
+                <li>✅ Shimmer and pulse animations</li>
+                <li>✅ Responsive skeleton grids (2, 3, 4 columns)</li>
+                <li>✅ Text skeleton components (sm, default, lg, title)</li>
+                <li>✅ Loading container with spinner and text</li>
+                <li>✅ Accessibility: prefers-reduced-motion support</li>
+            </ul>
+
+            <h3>Animations Added:</h3>
+            <ul>
+                <li>✅ <code>sakuraSkeletonPulse</code> - Opacity pulse for bars (2s ease-in-out)</li>
+                <li>✅ <code>sakuraSkeletonShimmer</code> - Sliding gradient effect (1.6s linear)</li>
+                <li>✅ <code>sakuraSpinnerRotate</code> - Spinner rotation (0.8s linear)</li>
+            </ul>
+
+            <h3>Demo Page:</h3>
+            <p style="margin: 0.5rem 0; color: var(--gray-700);"><a href="skeleton-demo.html" style="color: #5b8bf5;">View skeleton-demo.html</a> to see all skeleton components in action</p>
+
+            <div class="impact">
+                <strong>Impact:</strong> Professional loading feedback for async content. Reduces perceived loading time and dramatically improves user experience with smooth, animated placeholders.
+            </div>
+        </div>
+
+        <!-- Improvement 3 -->
+        <div class="improvement">
+            <div class="improvement-header">
+                <div class="improvement-number">3</div>
+                <h2 class="improvement-title">Button Hover/Active States</h2>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="improvement-3" checked>
+                <label for="improvement-3" class="checkbox-label">✅ IMPLEMENTED</label>
+            </div>
+
+            <h3>Changes Implemented:</h3>
+            <ul>
+                <li>✅ Added <code>:active</code> states with <code>transform: translateY(0) scale(0.98)</code></li>
+                <li>✅ Reduced shadow on press for depth effect</li>
+                <li>✅ Primary buttons (<code>.sakura-btn--primary</code>)</li>
+                <li>✅ Outline buttons (<code>.sakura-btn--outline</code>)</li>
+                <li>✅ CTA primary buttons</li>
+                <li>✅ CTA secondary buttons</li>
+                <li>✅ Pricing card buttons (all 3 card styles)</li>
+                <li>✅ Pricing CTA buttons (primary & ghost)</li>
+            </ul>
+
+            <h3>Technical Details:</h3>
+            <ul>
+                <li>Press effect: Returns to Y(0) from lifted hover state and scales to 98%</li>
+                <li>Shadow reduction: Creates realistic "pressed into page" effect</li>
+                <li>Fast transition: Inherits existing 0.3s cubic-bezier timing</li>
+            </ul>
+
+            <div class="impact">
+                <strong>Impact:</strong> Tactile "press down" feedback when clicking buttons. Creates satisfying physical interaction feel similar to iOS buttons. Improves perceived responsiveness of the entire UI.
+            </div>
+        </div>
+
+        <!-- Improvement 4 -->
+        <div class="improvement">
+            <div class="improvement-header">
+                <div class="improvement-number">4</div>
+                <h2 class="improvement-title">Mobile Logo Size & Navigation</h2>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="improvement-4">
+                <label for="improvement-4" class="checkbox-label">Implement this improvement</label>
+            </div>
+
+            <h3>Changes (at @media max-width: 768px):</h3>
+            <ul>
+                <li>Dashboard logo: <code>80px</code> → <code>56px</code> height (30% smaller)</li>
+                <li>Navigation items: <code>min-height: 48px</code></li>
+                <li>Navigation items: padding <code>1rem 1.25rem</code></li>
+                <li>Navigation icons: <code>20px</code> → <code>22px</code> (easier to see)</li>
+                <li>Icon buttons: <code>min-width: 44px</code>, <code>min-height: 44px</code></li>
+            </ul>
+
+            <div class="impact">
+                <strong>Impact:</strong> Better mobile UX with appropriate logo sizing. WCAG 2.1 Level AAA compliant touch targets (44x44px minimum).
+            </div>
+        </div>
+
+        <!-- Improvement 5 -->
+        <div class="improvement">
+            <div class="improvement-header">
+                <div class="improvement-number">5</div>
+                <h2 class="improvement-title">Empty States for Customizable Insights</h2>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="improvement-5">
+                <label for="improvement-5" class="checkbox-label">Implement this improvement</label>
+            </div>
+
+            <h3>Changes:</h3>
+            <ul>
+                <li>Add empty state component (~75 lines CSS)</li>
+                <li>Add empty state HTML to analytics.html</li>
+                <li>Add JavaScript logic to show/hide empty state</li>
+                <li>Wire empty state button to customization modal</li>
+            </ul>
+
+            <h3>Components:</h3>
+            <ul>
+                <li><code>.sakura-empty-state</code> - Main container</li>
+                <li><code>.sakura-empty-state-icon</code> - Large circular icon (96px)</li>
+                <li><code>.sakura-empty-state-title</code> - Heading</li>
+                <li><code>.sakura-empty-state-message</code> - Description text</li>
+                <li><code>.sakura-empty-state-action</code> - CTA button</li>
+            </ul>
+
+            <div class="impact">
+                <strong>Impact:</strong> Helpful feedback when all analytics insights are hidden. Guides users to customize their view.
+            </div>
+        </div>
+
+        <!-- Improvement 6 -->
+        <div class="improvement">
+            <div class="improvement-header">
+                <div class="improvement-number">6</div>
+                <h2 class="improvement-title">Number Typography (Tabular Nums)</h2>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="improvement-6">
+                <label for="improvement-6" class="checkbox-label">Implement this improvement</label>
+            </div>
+
+            <h3>Changes:</h3>
+            <ul>
+                <li>Add <code>font-variant-numeric: tabular-nums</code> to all amount displays</li>
+                <li>Add <code>letter-spacing: -0.02em</code> for tighter spacing</li>
+                <li>Apply to ~23 classes via attribute selectors and explicit classes</li>
+            </ul>
+
+            <h3>Classes Covered:</h3>
+            <ul>
+                <li>All <code>*-amount</code> and <code>*-price</code> classes</li>
+                <li><code>.sakura-summary-amount</code></li>
+                <li><code>.sakura-envelope-amounts</code></li>
+                <li><code>.sakura-transaction-amount</code></li>
+                <li><code>.sakura-table-amount</code></li>
+                <li><code>.sakura-stat-number</code></li>
+                <li>And 17+ more financial display classes</li>
+            </ul>
+
+            <div class="impact">
+                <strong>Impact:</strong> Perfect vertical alignment of numbers in columns. Easier to scan and compare values. Professional typography for financial data.
+            </div>
+        </div>
+
+        <!-- Improvement 7 -->
+        <div class="improvement">
+            <div class="improvement-header">
+                <div class="improvement-number">7</div>
+                <h2 class="improvement-title">Enhanced Dropdown Animations</h2>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="improvement-7">
+                <label for="improvement-7" class="checkbox-label">Implement this improvement</label>
+            </div>
+
+            <h3>Changes:</h3>
+            <ul>
+                <li>Add 3 keyframe animations (slideIn, slideUp, itemFadeIn)</li>
+                <li>Dropdown animation duration: <code>0.3s</code> → <code>0.4s</code></li>
+                <li>Item animation duration: <code>0.25s</code> → <code>0.4s</code></li>
+                <li>Staggered delays: <code>0.08s, 0.12s, 0.16s, 0.20s...</code></li>
+                <li>Fix modal dropdown animations with proper <code>!important</code></li>
+            </ul>
+
+            <h3>Applied To:</h3>
+            <ul>
+                <li>Custom select dropdowns (bank accounts, envelopes, etc.)</li>
+                <li>Notification dropdown</li>
+                <li>User menu dropdown</li>
+                <li>Modal dropdowns</li>
+            </ul>
+
+            <div class="impact">
+                <strong>Impact:</strong> Smooth, noticeable cascade effect as dropdown items appear. Slowed down from "pointless" speed to appreciable animation.
+            </div>
+        </div>
+
+        <!-- Improvement 8 -->
+        <div class="improvement">
+            <div class="improvement-header">
+                <div class="improvement-number">8</div>
+                <h2 class="improvement-title">Accessibility Improvements</h2>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="improvement-8">
+                <label for="improvement-8" class="checkbox-label">Implement this improvement</label>
+            </div>
+
+            <h3>Changes:</h3>
+            <ul>
+                <li>Add comprehensive focus states (~120 lines CSS)</li>
+                <li>Blue focus ring (<code>#5b8bf5</code>, 2px) for keyboard navigation</li>
+                <li>Button focus: outline + shadow glow</li>
+                <li>Input focus: border + shadow</li>
+                <li>Card focus: outline + shadow</li>
+                <li>Dropdown item focus: background + outline</li>
+                <li>Link focus: outline + subtle background</li>
+            </ul>
+
+            <h3>Utilities Added:</h3>
+            <ul>
+                <li><code>.skip-to-main</code> - Skip link for keyboard users</li>
+                <li><code>.sr-only</code> - Screen reader only content</li>
+                <li>Support for <code>@media (prefers-contrast: high)</code></li>
+                <li>Support for <code>@media (prefers-reduced-motion: reduce)</code></li>
+            </ul>
+
+            <h3>Fixes:</h3>
+            <ul>
+                <li>Focus reset refined to <code>*:focus:not(:focus-visible)</code></li>
+                <li>Safer pattern that preserves keyboard navigation</li>
+            </ul>
+
+            <div class="impact">
+                <strong>Impact:</strong> Full keyboard navigation support. WCAG 2.1 AA/AAA compliance. Better experience for users with disabilities.
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Sakura CSS Framework</strong> - Design Improvements Checklist</p>
+            <p>Branch: design-improvements | Base: main</p>
+        </footer>
+    </div>
+
+    <script>
+        // Save checkbox states to localStorage
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            // Load saved state
+            const saved = localStorage.getItem(checkbox.id);
+            if (saved === 'true') {
+                checkbox.checked = true;
+            }
+
+            // Save on change
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(checkbox.id, checkbox.checked);
+            });
+        });
+    </script>
+</body>
+</html>
