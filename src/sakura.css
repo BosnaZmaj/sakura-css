@@ -9909,7 +9909,7 @@
     width: 64px;
     height: 64px;
     background: white;
-    border-radius: 50%;
+    border-radius: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11182,49 +11182,6 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 
-  .sakura-summary-card {
-    @apply bg-white p-6 rounded-xl border border-gray-200 shadow-sm;
-    transition: all 0.3s ease;
-  }
-
-  .sakura-summary-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-  }
-
-  .sakura-summary-icon {
-    @apply w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4;
-    background: white;
-    color: white;
-  }
-
-  .sakura-summary-icon:has(i, svg) {
-    background: var(--summary-color);
-  }
-
-  .sakura-summary-icon i,
-  .sakura-summary-icon svg {
-    font-size: 32px;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-    line-height: 1;
-  }
-
-  .sakura-summary-change {
-    @apply text-xs font-medium;
-    font-family: var(--font-body);
-  }
-
-  .sakura-summary-change.positive {
-    @apply text-green-600;
-  }
-
-  .sakura-summary-change.negative {
-    @apply text-red-600;
-  }
-
-  .sakura-summary-change.neutral {
-    @apply text-gray-500;
-  }
 
   /* Transaction Controls */
   .sakura-transaction-controls {
