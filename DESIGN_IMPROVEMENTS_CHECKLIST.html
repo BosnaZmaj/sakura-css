@@ -403,7 +403,7 @@
             </div>
 
             <div class="checkbox-container">
-                <input type="checkbox" id="improvement-5">
+                <input type="checkbox" id="improvement-5" checked>
                 <label for="improvement-5" class="checkbox-label">Implement this improvement</label>
             </div>
 
@@ -426,6 +426,54 @@
 
             <div class="impact">
                 <strong>Impact:</strong> Helpful feedback when all analytics insights are hidden. Guides users to customize their view.
+            </div>
+
+            <h3>Implementation Details:</h3>
+            <div class="implementation-log">
+                <h4>sakura.css - Empty State Component</h4>
+                <p><strong>Location:</strong> Lines 14925-14988</p>
+                <p><strong>CSS Components:</strong></p>
+                <ul>
+                    <li><code>.sakura-empty-state</code> - Hidden by default, centered flex container with dashed border</li>
+                    <li><code>.sakura-empty-state.visible</code> - Display flex when all insights hidden</li>
+                    <li><code>.sakura-empty-state-icon</code> - 96px circular icon with blue gradient and glow effect</li>
+                    <li><code>.sakura-empty-state-title</code> - 1.5rem bold heading</li>
+                    <li><code>.sakura-empty-state-message</code> - Gray descriptive text, max-width 480px</li>
+                    <li><code>.sakura-empty-state-action</code> - Button container with spacing</li>
+                </ul>
+
+                <h4>analytics.html - Empty State HTML</h4>
+                <p><strong>Location:</strong> Lines 224-239</p>
+                <p><strong>Features:</strong></p>
+                <ul>
+                    <li>Graph icon in gradient circle with glow</li>
+                    <li>"No Insights to Display" heading</li>
+                    <li>Helpful description message</li>
+                    <li>"Customize Insights" primary button</li>
+                </ul>
+
+                <h4>sakura.js - Empty State Logic</h4>
+                <p><strong>Location:</strong> Lines 2892, 2910-2914, 2945, 2978, 3011, 3029-3047</p>
+                <p><strong>Functionality:</strong></p>
+                <ul>
+                    <li>Added <code>emptyStateBtn</code> variable to setupInsightsCustomization()</li>
+                    <li>Wired empty state button to open customization modal</li>
+                    <li>Created <code>updateEmptyState()</code> method to check if all insights hidden</li>
+                    <li>Called <code>updateEmptyState()</code> after loading preferences</li>
+                    <li>Called <code>updateEmptyState()</code> after saving preferences</li>
+                    <li>Called <code>updateEmptyState()</code> after resetting to defaults</li>
+                    <li>Empty state shows only when ALL insight modules are hidden</li>
+                </ul>
+
+                <p><strong>User Flow:</strong></p>
+                <ul>
+                    <li>User opens Customize Insights modal</li>
+                    <li>User unchecks all insight toggles</li>
+                    <li>All insight modules hide from page</li>
+                    <li>Empty state automatically appears with helpful message</li>
+                    <li>User clicks "Customize Insights" on empty state</li>
+                    <li>Modal reopens to allow re-enabling insights</li>
+                </ul>
             </div>
         </div>
 

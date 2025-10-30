@@ -2889,6 +2889,7 @@ class SakuraFramework {
 
   setupInsightsCustomization() {
     const customizeBtn = document.getElementById('customizeInsightsBtn');
+    const emptyStateBtn = document.getElementById('emptyStateCustomizeBtn');
     const modal = document.getElementById('customizeInsightsModal');
     const closeBtn = document.getElementById('closeCustomizeModal');
     const saveBtn = document.getElementById('saveInsights');
@@ -2902,6 +2903,12 @@ class SakuraFramework {
 
     // Open modal
     customizeBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    // Open modal from empty state button
+    emptyStateBtn?.addEventListener('click', () => {
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
@@ -2934,6 +2941,8 @@ class SakuraFramework {
         document.querySelectorAll('.sakura-insight-module').forEach(module => {
           module.classList.remove('hidden');
         });
+        // Update empty state (should hide it since all are visible)
+        this.updateEmptyState();
       }
     });
   }
@@ -2966,6 +2975,9 @@ class SakuraFramework {
 
       // Handle the analytics row visibility
       this.updateAnalyticsRowVisibility(prefs);
+
+      // Update empty state visibility
+      this.updateEmptyState();
     } catch (e) {
       console.error('Failed to load insight preferences:', e);
     }
@@ -2997,6 +3009,9 @@ class SakuraFramework {
     // Handle the analytics row that contains envelope-breakdown and top-merchants
     this.updateAnalyticsRowVisibility(preferences);
 
+    // Update empty state visibility
+    this.updateEmptyState();
+
     // Save to localStorage
     localStorage.setItem('sakura-insight-preferences', JSON.stringify(preferences));
   }
@@ -3016,6 +3031,26 @@ class SakuraFramework {
       analyticsRow.classList.add('hidden');
     } else {
       analyticsRow.classList.remove('hidden');
+    }
+  }
+
+  updateEmptyState() {
+    const emptyState = document.getElementById('analyticsEmptyState');
+    if (!emptyState) return;
+
+    // Get all insight modules
+    const insightModules = document.querySelectorAll('.sakura-insight-module');
+
+    // Check if all modules are hidden
+    const allHidden = Array.from(insightModules).every(module =>
+      module.classList.contains('hidden')
+    );
+
+    // Show empty state if all insights are hidden, hide it otherwise
+    if (allHidden) {
+      emptyState.classList.add('visible');
+    } else {
+      emptyState.classList.remove('visible');
     }
   }
 
