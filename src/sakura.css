@@ -200,6 +200,126 @@
     letter-spacing: -0.02em;
   }
 
+  /* ========================================
+     ACCESSIBILITY IMPROVEMENTS
+     ======================================== */
+
+  /* Skip to Main Content Link */
+  .skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+    z-index: 9999;
+    font-weight: var(--fw-semibold);
+  }
+
+  .skip-to-main:focus {
+    top: 0;
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Focus Reset - Preserve Keyboard Navigation */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Focus Visible States */
+  *:focus-visible {
+    outline: 2px solid #5b8bf5;
+    outline-offset: 2px;
+  }
+
+  /* Button Focus States */
+  button:focus-visible,
+  .sakura-btn:focus-visible {
+    outline: 2px solid #5b8bf5;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(91, 139, 245, 0.2);
+  }
+
+  /* Card Focus States */
+  .sakura-envelope-card:focus-visible,
+  .sakura-goal-card:focus-visible,
+  .sakura-account-card:focus-visible,
+  .sakura-pricing-card:focus-visible {
+    outline: 2px solid #5b8bf5;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(91, 139, 245, 0.15);
+  }
+
+  /* Dropdown Item Focus */
+  .sakura-custom-select-option:focus-visible,
+  .sakura-dropdown-item:focus-visible {
+    outline: 2px solid #5b8bf5;
+    outline-offset: -2px;
+    background: rgba(91, 139, 245, 0.1);
+  }
+
+  /* Link Focus States */
+  a:focus-visible {
+    outline: 2px solid #5b8bf5;
+    outline-offset: 2px;
+    background: rgba(91, 139, 245, 0.05);
+    border-radius: 2px;
+  }
+
+  /* Navigation Item Focus */
+  .sakura-nav-item:focus-visible {
+    outline: 2px solid #5b8bf5;
+    outline-offset: -2px;
+    background: rgba(91, 139, 245, 0.1);
+  }
+
+  /* Checkbox and Radio Focus */
+  input[type="checkbox"]:focus-visible,
+  input[type="radio"]:focus-visible {
+    outline: 2px solid #5b8bf5;
+    outline-offset: 2px;
+  }
+
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    *:focus-visible {
+      outline-width: 3px;
+      outline-color: currentColor;
+    }
+
+    button:focus-visible,
+    .sakura-btn:focus-visible {
+      outline-width: 3px;
+      box-shadow: none;
+    }
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* Sakura Navigation Components */
   .sakura-navbar {
     background-color: rgba(255, 255, 255, 0.7);

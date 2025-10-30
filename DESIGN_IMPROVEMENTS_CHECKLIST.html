@@ -618,7 +618,7 @@
             </div>
 
             <div class="checkbox-container">
-                <input type="checkbox" id="improvement-8">
+                <input type="checkbox" id="improvement-8" checked>
                 <label for="improvement-8" class="checkbox-label">Implement this improvement</label>
             </div>
 
@@ -627,10 +627,10 @@
                 <li>Add comprehensive focus states (~120 lines CSS)</li>
                 <li>Blue focus ring (<code>#5b8bf5</code>, 2px) for keyboard navigation</li>
                 <li>Button focus: outline + shadow glow</li>
-                <li>Input focus: border + shadow</li>
                 <li>Card focus: outline + shadow</li>
                 <li>Dropdown item focus: background + outline</li>
                 <li>Link focus: outline + subtle background</li>
+                <li><strong>Note:</strong> Input focus states intentionally excluded (existing styles preserved)</li>
             </ul>
 
             <h3>Utilities Added:</h3>
@@ -649,6 +649,62 @@
 
             <div class="impact">
                 <strong>Impact:</strong> Full keyboard navigation support. WCAG 2.1 AA/AAA compliance. Better experience for users with disabilities.
+            </div>
+
+            <h3>Implementation Details:</h3>
+            <div class="implementation-log">
+                <h4>sakura.css - Accessibility Features</h4>
+                <p><strong>Location:</strong> Lines 203-321</p>
+
+                <h4>Utility Classes:</h4>
+                <ul>
+                    <li><code>.skip-to-main</code> - Hidden until keyboard focus, jumps to main content</li>
+                    <li><code>.sr-only</code> - Screen reader only text (visually hidden)</li>
+                </ul>
+
+                <h4>Focus States (Blue #5b8bf5):</h4>
+                <ul>
+                    <li>Buttons: 2px outline + 4px shadow glow</li>
+                    <li>Cards (envelope, goal, account, pricing): 2px outline + shadow</li>
+                    <li>Dropdowns: 2px outline + background tint</li>
+                    <li>Links: 2px outline + subtle background</li>
+                    <li>Navigation items: 2px outline + background</li>
+                    <li>Checkboxes/Radios: 2px outline</li>
+                    <li><strong>Inputs: Not modified</strong> (existing styles preserved per user request)</li>
+                </ul>
+
+                <h4>Focus Management:</h4>
+                <ul>
+                    <li><code>*:focus:not(:focus-visible)</code> - Removes mouse click outlines</li>
+                    <li><code>*:focus-visible</code> - Shows outlines only for keyboard navigation</li>
+                    <li>Preserves accessibility while improving visual experience</li>
+                </ul>
+
+                <h4>High Contrast Support:</h4>
+                <ul>
+                    <li><code>@media (prefers-contrast: high)</code></li>
+                    <li>Increases outline width to 3px</li>
+                    <li>Uses currentColor for better contrast</li>
+                    <li>Removes shadows (can reduce contrast)</li>
+                </ul>
+
+                <h4>Reduced Motion Support:</h4>
+                <ul>
+                    <li><code>@media (prefers-reduced-motion: reduce)</code></li>
+                    <li>Disables all animations and transitions</li>
+                    <li>Sets durations to 0.01ms</li>
+                    <li>Removes scroll-behavior smooth</li>
+                    <li>Respects user motion preferences</li>
+                </ul>
+
+                <h4>WCAG Compliance:</h4>
+                <ul>
+                    <li>2.4.1 Bypass Blocks (skip link)</li>
+                    <li>2.4.7 Focus Visible (keyboard navigation)</li>
+                    <li>1.4.11 Non-text Contrast (focus indicators)</li>
+                    <li>2.3.3 Animation from Interactions (reduced motion)</li>
+                    <li>1.4.6 Contrast Enhanced (high contrast support)</li>
+                </ul>
             </div>
         </div>
 
