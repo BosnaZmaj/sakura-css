@@ -10522,6 +10522,30 @@
     .sakura-goals-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    /* Mobile Logo Size - 30% smaller (80px → 56px) */
+    .sakura-dashboard-header .sakura-navbar-logo {
+      height: 56px !important;
+    }
+
+    /* Mobile Navigation - WCAG Touch Targets */
+    .sakura-nav-item {
+      padding: 1rem 1.25rem;
+      min-height: 48px;
+    }
+
+    /* Mobile Navigation Icons - Slightly larger for touch */
+    .sakura-nav-item i {
+      font-size: 22px;
+    }
+
+    /* Icon Buttons - WCAG Level AAA (44x44px minimum) */
+    [class*="icon-btn"],
+    .sakura-icon-button,
+    .sakura-header-right button {
+      min-width: 44px;
+      min-height: 44px;
+    }
   }
 
   @media (max-width: 480px) {
